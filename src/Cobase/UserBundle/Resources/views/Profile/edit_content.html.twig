@@ -1,0 +1,9 @@
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="post" id="form" class="blogger">
+    {{ form_row(form.email) }}
+    {{ form_row(form.current_password) }}
+    {{ form_widget(form._token) }}
+
+    <div class="btns">
+        <input class="button" type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}">
+    </div>
+</form>

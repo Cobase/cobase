@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}YouHighFiveMe{% endblock %}</title>
+    <meta charset="utf-8">
+    {% block stylesheets %}
+        <!-- Styles -->
+        <link href="{{ asset('css/cv/styles.css') }}" media="screen" rel="stylesheet" type="text/css" >
+        <link href="{{ asset('css/cv/print.css') }}" media="print" rel="stylesheet" type="text/css" >
+    {% endblock %}
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-39255634-1']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+    </script>
+</head>
+
+<body>
+<div id="container"">
+
+<div id="cv-logo">
+    <a href="{{ path('CobaseAppBundle_homepage') }}"><img class="logo" src="{{ asset('images/logo.png') }}"/></a>
+</div>
+
+<div id="top">
+    <img src="{{ gravatar(user.getEmail()) }}" alt="Profile Photo" id="pic" />
+    <div id="contact-info">
+        <h1>{{ user.getName() }}</h1>
+        <p>
+            Events and High Fives
+        </p>
+    </div>
+</div>
+
+<div class="clear">&nbsp;</div>
+
+<div id="cv">
+    <dl>
+        {% block content %}{% endblock %}
+    </dl>
+</div>
+<div class="clear"></div>
+</div>
+
+</body>
+
+</html>

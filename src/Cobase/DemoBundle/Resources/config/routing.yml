@@ -1,0 +1,12 @@
+CobaseDemoBundle_demo:
+    pattern:  /demo
+    defaults: { _controller: CobaseDemoBundle:Default:index }
+
+CobaseDemoBundle_demo_create:
+    pattern:  /demo/create
+    defaults: { _controller: CobaseDemoBundle:Default:create }
+
+CobaseDemoBundle_demo_meoow:
+    pattern:  /demo/meoow
+    defaults: { _controller: CobaseDemoBundle:Default:meoow }
+

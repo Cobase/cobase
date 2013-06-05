@@ -1,0 +1,5 @@
+services:
+    portal_demo.service.cat:
+        class:     Cobase\DemoBundle\Service\CatService
+        arguments: ["@form.factory"]
+        

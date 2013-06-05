@@ -1,0 +1,84 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: @CobaseAppBundle/Resources/config/config.yml }
+
+framework:
+    #esi:             ~
+    translator:      { fallback: %locale% }
+    secret:          %secret%
+    router:          { resource: "%kernel.root_dir%/config/routing.yml" }
+    form:            true
+    csrf_protection: true
+    validation:      { enable_annotations: true }
+    templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
+    session:         true
+      
+# Twig Configuration
+twig:
+    debug:            %kernel.debug%
+    strict_variables: %kernel.debug%
+
+# Assetic Configuration
+assetic:
+    debug: %kernel.debug%
+    use_controller: false
+    filters:
+        cssrewrite: ~
+        # closure:
+        # jar: %kernel.root_dir%/java/compiler.jar
+        yui_css:
+            jar: %kernel.root_dir%/Resources/java/yuicompressor-2.4.6.jar
+            
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver:   %database_driver%
+        host:     %database_host%
+        port:     %database_port%
+        dbname:   %database_name%
+        user:     %database_user%
+        password: %database_password%
+        charset:  UTF8
+
+    orm:
+        auto_generate_proxy_classes: %kernel.debug%
+        auto_mapping: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: %mailer_transport%
+    host:      %mailer_host%
+    username:  %mailer_user%
+    password:  %mailer_password%
+
+jms_security_extra:
+    secure_all_services: false
+
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Cobase\UserBundle\Entity\User
+    
+    registration:
+        form:
+            type: portal_user_registration
+
+    registration:
+            form:
+                type: portal_user_registration
+            confirmation:
+                enabled: false
+
+# Gravatar Configuration
+ornicar_gravatar:
+    rating: g
+    size: 105
+    default: mm
+
+# Captcha
+ewz_recaptcha:
+    public_key:   6LcpWN4SAAAAAOmSwDeV365jlf-OAf3hJ2IvWLoq
+    private_key:  6LcpWN4SAAAAANy1nu2Awuj1kEVLmbBbx1A6pItI
+    secure:       false
+    locale_key:   kernel.default_locale

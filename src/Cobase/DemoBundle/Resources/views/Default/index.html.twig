@@ -1,0 +1,14 @@
+{% extends 'CobaseDemoBundle::layout.html.twig' %}
+
+{% block body %}
+<div class=" block-2">
+    <section>
+        <form id="form" action="{{ path('CobaseDemoBundle_demo_create') }}" method="post" {{ form_enctype(form) }} class="blogger" novalidate>
+            {{ form_widget(form) }}
+            <div class="btns">
+                <input class="button" type="submit" value="Submit">
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}

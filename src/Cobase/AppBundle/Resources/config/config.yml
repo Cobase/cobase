@@ -1,0 +1,14 @@
+parameters:
+
+    # Contact email address
+    cobase_app.emails.contact_email: info@arturgajewski.com
+
+    # Max latest events
+    cobase_app.comments.max_latest_events: 5
+
+    # Max latest highfives
+    cobase_app.comments.max_latest_highfives: 5
+
+    # Should the recaptha service be enabled for form submits
+    # with users that are not logged in?
+    cobase_app.enable_recaptha: true

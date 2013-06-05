@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <h2 class="p3">
+        <span class="color-1">No access</span> to this page
+    </h2>
+
+    <p>
+        We are sorry, but you are not allowed to access this page.
+    </p>
+{% endblock content %}
+
+{% block sidenav %}
+    <h2 class="p3"><span class="color-1">Latest</span> events</h2>
+
+    <p class="p5">
+    {% for event in latestEvents %}
+        <article class="event-small">
+            <div class="data">
+                <header>
+                    <strong><a href="{{ path('CobaseAppBundle_event_view', { 'eventId': event.shortUrl }) }}">{{ event.title }}</a></strong><br/>
+                    By {{ event.user.getName() }}
+                </header>
+            </div>
+        </article>
+    {% else %}
+        <p class="p2"><strong>No events found...</strong></p>
+    {% endfor %}
+    </p>
+{% endblock sidenav %}

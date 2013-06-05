@@ -1,0 +1,1 @@
+set :deploy_to,   "/home/agajewsk/www/youhighfiveme.test"

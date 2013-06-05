@@ -1,0 +1,47 @@
+services:
+    cobase_app.twig.extension:
+        class: Cobase\AppBundle\Twig\Extensions\CobaseAppExtension
+        tags:
+            - { name: twig.extension }
+           
+    portal_user.registration.form.type:
+        class: Cobase\UserBundle\Form\Type\RegistrationFormType
+        arguments: [%fos_user.model.user.class%, @translator]
+        tags:
+            - { name: form.type, alias: portal_user_registration }
+
+    cobase_user.profile.form.type:
+            class: Cobase\UserBundle\Form\Type\ProfileFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                - { name: form.type, alias: portal_user_profile }
+
+    cobase_app.service.event:
+        class:     Cobase\AppBundle\Service\EventService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.event", "@security.context"]
+
+    cobase_app.repository.event:
+        class:           Cobase\AppBundle\Entity\Event
+        arguments:       [Cobase\AppBundle\Entity\Event]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+
+    cobase_app.service.highfive:
+            class:     Cobase\AppBundle\Service\HighfiveService
+            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.highfive", "@security.context"]
+
+    cobase_app.repository.highfive:
+            class:           Cobase\AppBundle\Entity\Highfive
+            arguments:       [Cobase\AppBundle\Entity\Highfive]
+            factory_service: doctrine.orm.entity_manager
+            factory_method:  getRepository
+
+    cobase_app.service.user:
+                class:     Cobase\AppBundle\Service\UserService
+                arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.user", "@security.context"]
+
+    cobase_app.repository.user:
+                class:           Cobase\UserBundle\Entity\User
+                arguments:       [Cobase\UserBundle\Entity\User]
+                factory_service: doctrine.orm.entity_manager
+                factory_method:  getRepository

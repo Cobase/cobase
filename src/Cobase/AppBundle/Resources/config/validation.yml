@@ -1,0 +1,14 @@
+Cobase\AppBundle\Entity\Event:
+    properties:
+        title:
+            - NotBlank: ~
+            - MinLength: 5
+            - MaxLength: 160
+        description:
+            - NotBlank: ~
+            - MinLength: 5
+            - MaxLength: 160
+        tags:
+            - NotBlank: ~
+            - MaxLength: 160
+            

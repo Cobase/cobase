@@ -1,0 +1,98 @@
+{% extends 'CobaseAppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h2 class="p10"><span class="color-1">Browse</span> all quick high fives <span class="color-1">for you</span></h2>
+    {% for quickHighfive in quickHighfives %}
+        <article class="event">
+            <div class="data">
+                <header>
+                    {{ quickHighfive.created|date('M d, Y') }} by <a href="#">{{ quickHighfive.getAuthor() }}</a>
+                </header>
+                <p class="description">{{ quickHighfive.comment }}</p>
+            </div>
+        </article>
+    {% else %}
+        <p class="p2"><strong>No quick high fives found...</strong></p>
+    {% endfor %}
+{% endblock content %}
+
+{% block sidenav %}
+    <h2 class="p3"><span class="color-1">Sorting</span> options</h2>
+    <ul class="list-1">
+        <li><a href="{{ path('CobaseAppBundle_all_quickHighFives') }}/desc">Latest quickies</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_quickHighFives') }}/asc">Oldest quickies</a></li>
+    </ul>
+    <br/>
+
+    <h2 class="p3"><span class="color-1">Show</span> me</h2>
+    <ul class="list-1">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('CobaseAppBundle_highfives_received') }}">Latest for you</a></li>
+        {% endif %}
+        <li><a href="{{ path('CobaseAppBundle_all_events') }}">All events</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}">All high fives</a></li>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('CobaseAppBundle_all_quickHighFives') }}">All quickies for you</a></li>
+        {% endif %}
+        <li><a href="{{ path('CobaseAppBundle_users') }}">All users</a></li>
+    </ul>
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <br/>
+        <h2 class="p3"><span class="color-1">Your</span> options</h2>
+        <ul class="list-1">
+            <li><a href="{{ path('CobaseAppBundle_event_new') }}">Create new event</a></li>
+            <li><a href="{{ path('CobaseAppBundle_cv') }}">Activity page</a></li>
+        </ul>
+    {% endif %}
+
+    <!-- functinality not implemented yet
+    <div class="form-search">
+        <h2><span class="color-1 editable">Find </span>a user</h2>
+        <form id="form-user-search" method="post">
+            <input id="search-user-keyword" type="text" value="Enter username" onBlur="if(this.value=='') this.value='Enter username'" onFocus="if(this.value =='Enter username' ) this.value=''"  />
+            <a id="user-search-submit" href="#" onClick="document.getElementById('form-search').submit()" class="search_button">Search</a>
+        </form>
+    </div>
+    -->
+
+    <div class="form-search">
+        <h2><span class="color-1 editable">Find </span>an event</h2>
+        <form id="form-event-search" method="post">
+            <input id="search-event-keyword" name="searchWord" type="text" />
+            <input id="event-search-submit" type="submit" class="search_button" value="Search">
+        </form>
+    </div>
+
+    <div class="addThis">
+        <h2 class="p3"><span class="color-1">Share</span> with friends</h2>
+        <!-- AddThis Button BEGIN -->
+        <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+            <a class="addthis_button_facebook at300b" original-title="Facebook" href="#">
+                <span class=" at300bs at15nc at15t_facebook">
+                    <span class="at_a11y">Share on facebook</span>
+                </span>
+            </a>
+            <a class="addthis_button_linkedin at300b" original-title="Linkedin" href="http://www.addthis.com/bookmark.php?v=250&amp;winname=addthis&amp;pub=xa-4f38d9fc271a9537&amp;source=tbx32-250&amp;lng=en-US&amp;s=linkedin&amp;url=http%3A%2F%2Fsykettatyohon.fi%2Ffi&amp;title=Etusivu-%20Ty%C3%B6hyvinvoinnin%20kohtaamispaikka&amp;ate=AT-xa-4f38d9fc271a9537/-/-/50b4cd2fb0ad546b/2&amp;frommenu=1&amp;uid=50b4cd2fa7d7a0d7&amp;ct=1&amp;pre=http%3A%2F%2Fwww.google.fi%2Furl%3Fsa%3Dt%26rct%3Dj%26q%3D%26esrc%3Ds%26source%3Dweb%26cd%3D1%26ved%3D0CCgQFjAA%26url%3Dhttp%253A%252F%252Fsykettatyohon.fi%252F%26ei%3DLM20UIPULMnk4QS_6oHQCg%26usg%3DAFQjCNEvexbdIpwKXJ3wjbqHzz2gkB-rxg&amp;tt=0&amp;captcha_provider=nucaptcha" target="_blank">
+                <span class=" at300bs at15nc at15t_linkedin">
+                    <span class="at_a11y">Share on linkedin</span>
+                </span>
+            </a>
+            <a class="addthis_button_twitter at300b" original-title="Tweet This" href="#">
+                <span class=" at300bs at15nc at15t_twitter">
+                    <span class="at_a11y">Share on twitter</span>
+                </span>
+            </a>
+            <a class="addthis_button_compact at300m" href="#">
+                <span class=" at300bs at15nc at15t_compact">
+                    <span class="at_a11y">More Sharing Services</span>
+                </span>
+            </a>
+            <div class="atclear"></div>
+        </div>
+        <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-4f38d9fc271a9537"></script>
+        <!-- AddThis Button END -->
+    </div>
+{% endblock sidenav %}
+
+

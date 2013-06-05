@@ -1,0 +1,36 @@
+jms_security_extra:
+    secure_all_services: false
+    expressions: true
+
+security:
+    providers:
+        fos_userbundle:
+            id: fos_user.user_provider.username
+
+    encoders:
+        FOS\UserBundle\Model\UserInterface: sha512
+
+    firewalls:
+        main:
+            pattern: ^/
+            form_login:
+                provider: fos_userbundle
+                csrf_provider: form.csrf_provider
+            logout:       true
+            anonymous:    true
+
+    access_control:
+        - { path: ^/login$,    role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/register$,  role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/resetting$, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/profile$,  role: ROLE_USER }
+
+        - { path: ^/event/new$,    role: ROLE_USER }
+        - { path: ^/event/create$, role: ROLE_USER }
+
+        - { path: ^/for/me$,    role: ROLE_USER }
+        - { path: ^/cv$,       role: ROLE_USER }
+
+    role_hierarchy:
+        ROLE_ADMIN:       ROLE_USER
+        ROLE_SUPER_ADMIN: ROLE_ADMIN

@@ -1,0 +1,68 @@
+{% extends 'CobaseAppBundle::layout.html.twig' %}
+
+{% block content %}
+    <h2 class="p10"><span class="color-1">Latest</span> high fives <span class="color-1">for you</span></h2>
+    {% for highfive in highfives %}
+        <article class="event">
+            <div class="author">
+                <img src="{{ gravatar(highfive.user.getEmail()) }}"/>
+            </div>
+            <div class="data">
+                <header>
+                    <h3><a href="{{ path('CobaseAppBundle_event_view', { 'eventId': highfive.event.shortUrl }) }}">{{ highfive.event.title }}</a></h3>
+                    {{ highfive.created|date('M d, Y') }} by <a href="#">{{ highfive.user.getName() }}</a>
+                </header>
+                <p class="description">{{ highfive.comment }}</p>
+            </div>
+        </article>
+    {% else %}
+        <p class="p2"><strong>No high fives found...</strong></p>
+    {% endfor %}
+
+    <h2 class="p10"><span class="color-1">Latest</span> quick high fives <span class="color-1">for you</span></h2>
+    {% for quickHighfive in quickHighfives %}
+        <article class="event">
+            <div class="data">
+                <header>
+                    {{ quickHighfive.created|date('M d, Y') }} by <a href="#">{{ quickHighfive.getAuthor() }}</a>
+                </header>
+                <p class="description">{{ quickHighfive.comment }}</p>
+            </div>
+        </article>
+    {% else %}
+        <p class="p2"><strong>No quick high fives found...</strong></p>
+    {% endfor %}
+{% endblock content %}
+
+{% block sidenav %}
+    <h2 class="p3"><span class="color-1">Show</span> me</h2>
+    <ul class="list-1">
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('CobaseAppBundle_highfives_received') }}">Latest for you</a></li>
+        {% endif %}
+        <li><a href="{{ path('CobaseAppBundle_all_events') }}">All events</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}">All high fives</a></li>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li><a href="{{ path('CobaseAppBundle_all_quickHighFives') }}">All quickies for you</a></li>
+        {% endif %}
+        <li><a href="{{ path('CobaseAppBundle_users') }}">All users</a></li>
+    </ul>
+    <br/>
+
+    <h2 class="p3"><span class="color-1">Latest</span> events</h2>
+    <p class="p5">
+    {% for event in latestEvents %}
+        <article class="event-small">
+            <div class="data">
+                <header>
+                    <strong><a href="{{ path('CobaseAppBundle_event_view', { 'eventId': event.shortUrl }) }}">{{ event.title }}</a></strong><br/>
+                    By {{ event.user.getName() }}
+                </header>
+            </div>
+        </article>
+    {% else %}
+        <p class="p2"><strong>No events found...</strong></p>
+    {% endfor %}
+    </p>
+{% endblock sidenav %}
+

@@ -1,0 +1,4 @@
+# Form field labels
+form:
+    realname: "Your real name:"
+    gravatar: "Gravatar email:"

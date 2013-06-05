@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <h2 class="p3">
+        <span class="color-1">Register</span> an account
+    </h2>
+
+    {% include "FOSUserBundle:Registration:register_content.html.twig" %}
+{% endblock content %}
+
+{% block sidenav %}
+    <h2 class="p3"><span class="color-1">Why</span> register?</h2>
+    <p>
+        By registering to YouHighFiveMe, you will be able to create your own events and invite friends and co-workers to give you high fives.
+    </p>
+
+    <br/>
+
+    <h2 class="p3"><span class="color-1">Road</span> to success</h2>
+    <p>
+        Once you create events and receive high fives for them, you can offer your record page as a link in your official Curriculum Vitae. The more people like your projects, the better asset your YouHighFiveMe profile becomes for you.
+    </p>
+
+    <br/>
+
+    <h2 class="p3"><span class="color-1">Privacy</span> information</h2>
+    <p>
+        We will not, in any case, solicit your personal information to any third party. The information you enter is only used inside the application.
+    </p>
+{% endblock sidenav %}
