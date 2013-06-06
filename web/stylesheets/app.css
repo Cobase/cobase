@@ -1,0 +1,14 @@
+/* Info wall related message elements */
+
+.info p { 
+    margin: 0px; 
+}
+
+.info p#author { 
+    font-weight: bold; 
+}
+
+.info p#date {
+    color: #666666;
+    margin-top: 5px;
+}
