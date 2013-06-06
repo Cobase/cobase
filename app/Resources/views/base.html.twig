@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Bootstrap Admin</title>
+    <title>Cobase - Corporate base for information</title>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
@@ -63,7 +63,7 @@
             </li>
 
         </ul>
-        <a class="brand" href="index.html">Awesome.</a>
+        <a class="brand" href="index.html">Cobase | Corporate Social Media</a>
     </div>
 </div>
 
@@ -361,6 +361,7 @@
 </div>
 
 <div class="span4 sidebar">
+    {% block commentsWidget %}
     <div class="widget">
         <h2>Latest Comments</h2>
         <ul class="cards">
@@ -411,16 +412,19 @@
             </li>
         </ul>
     </div>
+    {% endblock %}
+
+    {% block tabsWidget %}
     <div class="widget">
         <ul id="myTab" class="nav nav-tabs three-tabs fancy">
-            <li class="active"><a href="#home" data-toggle="tab">Orders</a></li>
-            <li><a href="#promotions" data-toggle="tab">Promotions</a></li>
+            <li class="active"><a href="#tab1" data-toggle="tab">Tab 1</a></li>
+            <li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
             <li class="dropdown">
-                <a href="#deals" data-toggle="tab">Deals</a>
+                <a href="#tab3" data-toggle="tab">Tab 3</a>
             </li>
         </ul>
         <div class="tab-content">
-            <div class="tab-pane fade in active" id="home">
+            <div class="tab-pane fade in active" id="tab1">
                 <ul class="cards">
                     <li>
                         <p class="pull-right text-error">$20,500</p>
@@ -449,8 +453,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="tab-pane fade" id="promotions">
-
+            <div class="tab-pane fade" id="tab2">
                 <ul class="cards">
                     <li style="padding: 0em 1em;"><h3>This is something interesting.</h3></li>
                     <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
@@ -458,7 +461,7 @@
                     <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
                 </ul>
             </div>
-            <div class="tab-pane fade" id="deals">
+            <div class="tab-pane fade" id="tab3">
                 <ul class="cards">
                     <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
                     <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
@@ -468,54 +471,8 @@
             </div>
         </div>
     </div>
-
-    <div class="widget">
-        <ul class="nav nav-tabs two-tabs fancy">
-            <li class="active"><a href="#upgrade" data-toggle="tab">Upgrade Account</a></li>
-            <li><a href="#why-upgrade" data-toggle="tab">Why Upgrade?</a></li>
-        </ul>
-        <div class="tab-content">
-            <div class="tab-pane fade in active" id="upgrade">
-                <ul class="unstyled cards not-bottom">
-
-
-
-                    <li>
-                        <i class="icon-leaf pull-left text-info"></i>
-                        <p class="title"><strong>More Features</strong></p>
-                        <p class="info small">This is the kind of thing you really need.</p>
-                    </li>
-
-                    <li>
-                        <i class="icon-group pull-left text-info"></i>
-                        <p class="title"><strong>Unlimited Users</strong></p>
-                        <p class="info small">This is the kind of thing you really need.</p>
-                    </li>
-
-                    <li>
-                        <i class="icon-trophy pull-left text-info"></i>
-                        <p class="title"><strong>Custom Database</strong></p>
-                        <p class="info small">This is the kind of thing you really need.</p>
-                    </li>
-
-                    <li>
-                        <i class="icon-book pull-left text-info"></i>
-                        <p class="title"><strong>Enhanced Reporting</strong></p>
-                        <p class="info small">This is the kind of thing you really need.</p>
-                    </li>
-
-                </ul>
-                <button class="btn btn-primary pull-right">Upgrade Now</button>
-            </div>
-            <div class="tab-pane fade" id="why-upgrade">
-                <h3>This is something interesting.</h3>
-                <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</p>
-                <button class="btn btn-primary pull-right">Upgrade Now</button>
-            </div>
-        </div>
-    </div>
+    {% endblock %}
 </div>
-
 
 <footer>
     <hr>
