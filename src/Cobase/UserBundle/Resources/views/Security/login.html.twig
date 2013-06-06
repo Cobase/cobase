@@ -1,41 +1,40 @@
-{% extends '::base.html.twig' %}
+{% extends '::blank.html.twig' %}
 
 {% block content %}
-    <h2 class="p3">
-        <span class="color-1">Login</span> form
-    </h2>
-
-    {% if error %}
-        <div class="form-error">{{ error|trans({}, 'FOSUserBundle') }}</div>
-    {% endif %}
-
-    <form action="{{ path("fos_user_security_check") }}" method="post" id="form" class="blogger">
-        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-        <label for="username">{{ 'security.login.username'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
-
-        <label for="password">{{ 'security.login.password'|trans({}, 'FOSUserBundle') }}</label>
-        <input type="password" id="password" name="_password" required="required" />
-
-        <br/>
-        <input type="checkbox" class="checkbox-field" id="remember_me" name="_remember_me" value="on" />{{ 'security.login.remember_me'|trans({}, 'FOSUserBundle') }}
-
-        <div class="btns">
-            <input class="button" type="submit" value="{{ 'security.login.submit'|trans({}, 'FOSUserBundle') }}">
+    <div class="row-fluid login">
+        <div class="dialog">
+            <div class="block" style="padding: 10px">
+                <div class="block-header">
+                    <h2>Login</h2>
+                </div>
+                <form action="{{ path("fos_user_security_check") }}" method="POST">
+                    {% if error %}
+                        <div class="alert alert-error fade in">{{ error|trans }}</div>
+                    {% endif %}
+                    <div id="fos_user_login_form">
+                        <div>
+                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
+                        <div>
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" id="password" name="_password" required="required" />
+                        </div>
+                        <div>
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    </div>
+                    <input type="submit" class="login-submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                    <ul class="links">
+                        <li><a href="/">&laquo; Back to main page</a></li>
+                    </ul>
+                </form>
+            </div>
         </div>
-    </form>
+    </div>
 {% endblock content %}
 
-{% block sidenav %}
-    <h2 class="p3"><span class="color-1">Welcome</span></h2>
-    <p>
-        Please login to join a great community and share your appreciation for other people's work.
-    </p>
 
-    <br/>
 
-    <h2 class="p3"><span class="color-1">Please</span> note</h2>
-    <p>
-        This application is currently in beta stage. This means some changes to the application may occur without further notice.
-    </p>
-{% endblock sidenav %}

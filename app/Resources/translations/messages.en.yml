@@ -2,3 +2,11 @@
 form:
     realname: "Your real name:"
     gravatar: "Gravatar email:"
+    
+security:
+    login:
+      username: "Username:"
+      password: "Password:"
+      remember_me: "Remember me"
+      submit: "Login"
+      

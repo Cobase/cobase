@@ -12,3 +12,32 @@
     color: #666666;
     margin-top: 5px;
 }
+
+/* Login/Logout/Register related stuff */
+
+#login-errors {
+    margin-bottom: 10px;
+    color: #AA0000;
+}
+
+ul.links {
+    margin-top: 20px;
+}
+
+ul.links, li {
+    list-style-type: none;
+}
+
+.links li {
+    padding-left: 0px; text-indent: -2em;
+}
+
+.dialog input[type="checkbox"] {
+    float: left;
+    margin-right: 5px !important;
+    position: relative;
+    top: 3px;
+}
+.login-submit {
+    margin-top: 5px;
+}
