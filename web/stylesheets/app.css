@@ -42,3 +42,22 @@ ul.links, li {
 .login-submit {
     margin-top: 5px;
 }
+
+/* Group listing related */
+
+.group-title {
+    font-size: 1.2em;
+}
+
+.group-description {
+    font-style: italic;
+}
+
+.group-open {
+    margin-top: 5px;
+}
+
+/* Common */
+.strong {
+    font-weight: bold;
+}

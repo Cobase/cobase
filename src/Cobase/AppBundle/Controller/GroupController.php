@@ -30,7 +30,7 @@ class GroupController extends BaseController
         $gravatarGiven = true;
         if ($user->getGravatar() == null) {
             // @TODO: Implement this feature
-            //$gravatarGiven = false;
+            $gravatarGiven = false;
         }
 
         return $this->render('CobaseAppBundle:Group:create.html.twig', array(
@@ -71,7 +71,7 @@ class GroupController extends BaseController
             ->generate('CobaseAppBundle_group_view', array('groupId' => $group->getShortUrl()), true);
 
         $service->saveGroup($group, $user);
-
+  
         if ($group->getIsPublic()) {
             return $this->redirect($this->generateUrl('CobaseAppBundle_homepage'));
         } else {
@@ -108,26 +108,17 @@ class GroupController extends BaseController
         $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
         $submitted     = false;
-        $showForm      = true;
         $allowModify   = false;
 
         if ($user) {
-            if ($postService->hasUserSubmittedPostForGroup($group, $user)) {
-                $submitted = true;
-                $showForm = false;
-            }
             if ($group->getUser() === $user) {
                 $allowModify = true;
-                $showForm = false;
+            
             }
-        } else {
-            $showForm = false;
         }
-
-        if ($request->getMethod() == 'POST' && !$submitted && $showForm) {
-            if (!$this->processForm($form)) {
-                $showForm = true;
-            } else {
+        
+        if ($request->getMethod() == 'POST' && !$submitted) {
+            if ($this->processForm($form)) {
                 $postService->savePost($post, $group, $user);
 
                 $this->sendMail("You have received new high five for an group",
@@ -148,7 +139,6 @@ class GroupController extends BaseController
             'group'         => $group,
             'latestGroups'  => $latestGroups,
             'form'          => $form->createView(),
-            'showForm'      => $showForm,
             'allowModify'   => $allowModify,
         ));
     }

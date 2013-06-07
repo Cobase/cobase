@@ -1758,18 +1758,19 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 @media (max-width: 1020px) {
   .content {
-    margin-left: 50px;
+    /* margin-left: 50px; */
   }
+  
   #sidebar-nav .nav {
     margin-left: 0em;
   }
   #sidebar-nav .nav li a,
   #sidebar-nav .nav li a:hover {
-    padding: .75em;
-    font-size: 1.25em;
+    /* padding: .75em; */
+    /* font-size: 1.25em; */
   }
   #sidebar-nav .nav  > li > a span {
-    display: none;
+    /* display: none; */
   }
   .cards .large-stat {
     font-size: 1em;
@@ -1787,7 +1788,7 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
     margin-top: -0.5em;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   /*Adjust this if you have more or less tabs in the main menu*/
   #phone-navigation {
     display: block;
@@ -1828,6 +1829,10 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
+  
+  #dropdown-username {
+      display: none;
+  }
   .item-summary li {
     padding-left: 0em;
   }

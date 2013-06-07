@@ -25,6 +25,11 @@ class Group
     /**
      * @ORM\Column(type="string")
      */
+    protected $shortUrl;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     protected $title;
 
     /**
@@ -73,6 +78,7 @@ class Group
     {
         $this->posts = new ArrayCollection();
 
+        $this->shortUrl = base_convert(microtime(true), 10, 36);
         $this->setCreated(new \DateTime());
         $this->setUpdated(new \DateTime());
         $this->setIsPublic(true);
@@ -135,6 +141,14 @@ class Group
     }
 
     /**
+     * Create short URL
+     */
+    public function createShortUrl()
+    {
+        $this->shortUrl = base_convert(microtime(true), 10, 36);
+    }
+    
+    /**
      * Get id
      *
      * @return integer
@@ -144,6 +158,16 @@ class Group
         return $this->id;
     }
 
+    /**
+     * Get event's short URL
+     *
+     * @return string
+     */
+    public function getShortUrl()
+    {
+        return $this->shortUrl;
+    }
+    
     /**
      * Set title
      *
