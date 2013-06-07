@@ -21,7 +21,6 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
 
-
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -46,11 +45,9 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav pull-right">
-
             <!-- 
             <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
             -->
-            
             <li id="fat-menu" class="dropdown">
 
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
@@ -78,64 +75,39 @@
                     </ul>
                 {% endif %}
             </li>
-
         </ul>
         <a class="brand" href="{{ path('CobaseAppBundle_homepage') }}">Cobase</a>
     </div>
 </div>
 
 <div id="main-menu">
-
     <div id="phone-navigation">
         <select class="selectnav" id="phone-menu">
-
-            <option value="index.html" selected="selected"> Your wall</option>
-
+            <option value="{{ path('CobaseAppBundle_homepage') }}" selected="selected"> Your wall</option>
             <option value="reports.html" > Reports</option>
-
             <option value="components.html" > Components</option>
-
             <option value="pricing.html" > Pricing</option>
-
             <option value="" > Settings</option>
-
             <option value="sign-in.html" >- Sign In Page</option>
-
             <option value="sign-up.html" >- Sign Up Page</option>
-
             <option value="reset-password.html" >- Reset Password Page</option>
-
             <option value="">----------------------</option>
-
             <option value="index.html" selected="selected"> Dashboard</option>
-
             <option value="reports.html" > Reports</option>
-
             <option value="components.html" > UI Features</option>
-
             <option value="pricing.html" > Pricing</option>
-
             <option value="media.html" > Media</option>
-
             <option value="blog.html" > Blog</option>
-
             <option value="help.html" > Help</option>
-
             <option value="faq.html" > Faq</option>
-
             <option value="calendar.html" > Calendar</option>
-
             <option value="forms.html" > Forms</option>
-
             <option value="tables.html" > Tables</option>
-
             <option value="icons.html" > Font Awesome</option>
-
         </select>
     </div>
-
     <ul class="nav nav-tabs">
-        <li class="active"><a href="index.html"><i class="icon-list"></i> <span>Your wall</span></a></li>
+        <li class="active"><a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-list"></i> <span>Your wall</span></a></li>
         <li ><a href="reports.html" ><i class="icon-folder-open"></i> <span>Reports</span></a></li>
         <li ><a href="reports.html" ><i class="icon-group"></i> <span>Browse Groups</span></a></li>
         <li ><a href="reports.html" ><i class="icon-user"></i> <span>Browse Users</span></a></li>
@@ -143,50 +115,21 @@
     </ul>
 </div>
 
-
 <div id="sidebar-nav">
-
     <ul id="dashboard-menu" class="nav nav-list">
-
-        <li class="active "><a href="index.html"><i class="icon-list"></i> <span>Your wall</span></a></li>
-
-
+        <li class="active "><a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-list"></i> <span>Your wall</span></a></li>
         <li class=" "><a href="reports.html"><i class="icon-bar-chart"></i> <span>Reports</span></a></li>
-
-
         <li class=" "><a href="components.html"><i class="icon-briefcase"></i> <span>UI Features</span></a></li>
-
-
         <li class=" "><a href="pricing.html"><i class="icon-magic"></i> <span>Pricing</span></a></li>
-
-
         <li class=" "><a href="media.html"><i class="icon-film"></i> <span>Media</span></a></li>
-
-
         <li class=" "><a href="blog.html"><i class="icon-beaker"></i> <span>Blog</span></a></li>
-
-
         <li class=" "><a href="help.html"><i class="icon-question-sign"></i> <span>Help</span></a></li>
-
-
         <li class=" "><a href="faq.html"><i class="icon-book"></i> <span>Faq</span></a></li>
-
-
         <li class=" "><a href="calendar.html"><i class="icon-calendar"></i> <span>Calendar</span></a></li>
-
-
         <li class=" "><a href="forms.html"><i class="icon-tasks"></i> <span>Forms</span></a></li>
-
-
         <li class=" "><a href="tables.html"><i class="icon-table"></i> <span>Tables</span></a></li>
-
-
-
         <li class=" theme-mobile-hack"><a href="mobile.html"><i class="icon-comment-alt"></i> <span>Mobile</span></a></li>
-
         <li class=" "><a href="icons.html"><i class="icon-heart"></i> <span>Font Awesome</span></a></li>
-
-
     </ul>
 </div>
 
@@ -203,7 +146,6 @@
     {% block content %}{% endblock %}
 </div>
 <!-- End of Main Content -->
-
 
 </div>
 </div>
@@ -322,15 +264,14 @@
 
 <footer>
     <hr>
-    <p class="pull-right">Design by <a href="http://www.portnine.com" target="_blank">Portnine</a></p>
-    <p>&copy; 2013 <a href="#">Your Company</a></p>
+    <p>&copy; {{ "now"|date("Y") }} Cobase, all rights reserved.</p>
 </footer>
 
 </div>
 </div>
 </div>
 
-<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
 <script type="text/javascript">
     $("[rel=tooltip]").tooltip();
     $(function() {
