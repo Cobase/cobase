@@ -8,31 +8,31 @@ services:
         class: Cobase\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%, @translator]
         tags:
-            - { name: form.type, alias: portal_user_registration }
+            - { name: form.type, alias: cobase_user_registration }
 
     cobase_user.profile.form.type:
             class: Cobase\UserBundle\Form\Type\ProfileFormType
             arguments: [%fos_user.model.user.class%]
             tags:
-                - { name: form.type, alias: portal_user_profile }
+                - { name: form.type, alias: cobase_user_profile }
 
-    cobase_app.service.event:
-        class:     Cobase\AppBundle\Service\EventService
-        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.event", "@security.context"]
+    cobase_app.service.group:
+        class:     Cobase\AppBundle\Service\GroupService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.group", "@security.context"]
 
-    cobase_app.repository.event:
-        class:           Cobase\AppBundle\Entity\Event
-        arguments:       [Cobase\AppBundle\Entity\Event]
+    cobase_app.repository.group:
+        class:           Cobase\AppBundle\Entity\Group
+        arguments:       [Cobase\AppBundle\Entity\Group]
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
 
-    cobase_app.service.highfive:
-            class:     Cobase\AppBundle\Service\HighfiveService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.highfive", "@security.context"]
+    cobase_app.service.post:
+            class:     Cobase\AppBundle\Service\PostService
+            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context"]
 
-    cobase_app.repository.highfive:
-            class:           Cobase\AppBundle\Entity\Highfive
-            arguments:       [Cobase\AppBundle\Entity\Highfive]
+    cobase_app.repository.post:
+            class:           Cobase\AppBundle\Entity\Post
+            arguments:       [Cobase\AppBundle\Entity\Post]
             factory_service: doctrine.orm.entity_manager
             factory_method:  getRepository
 

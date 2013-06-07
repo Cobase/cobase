@@ -3,11 +3,11 @@ parameters:
     # Contact email address
     cobase_app.emails.contact_email: info@arturgajewski.com
 
-    # Max latest events
-    cobase_app.comments.max_latest_events: 5
+    # Max latest groups
+    cobase_app.comments.max_latest_groups: 5
 
-    # Max latest highfives
-    cobase_app.comments.max_latest_highfives: 5
+    # Max latest posts
+    cobase_app.comments.max_latest_posts: 5
 
     # Should the recaptha service be enabled for form submits
     # with users that are not logged in?

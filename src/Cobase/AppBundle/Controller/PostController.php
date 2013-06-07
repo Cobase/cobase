@@ -3,16 +3,16 @@
 namespace Cobase\AppBundle\Controller;
 
 use Cobase\AppBundle\Controller\BaseController;
-use Cobase\AppBundle\Entity\QuickHighfive;
-use Cobase\AppBundle\Form\QuickHighfiveType;
+use Cobase\AppBundle\Entity\QuickPost;
+use Cobase\AppBundle\Form\QuickPostType;
 
 /**
- * Event controller.
+ * Post controller.
  */
-class HighFiveController extends BaseController
+class PostController extends BaseController
 {
     /**
-     * Show all High Fives
+     * Show all Posts
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -25,30 +25,30 @@ class HighFiveController extends BaseController
 
         $limit = null;
 
-        $highFiveService = $this->getHighfiveService();
-        $highFives = $highFiveService->getAllHighfivesforPublicEvents($limit, $orderType);
+        $postService = $this->getPostService();
+        $posts = $postService->getAllPostsforPublicGroups($limit, $orderType);
 
-        return $this->render('CobaseAppBundle:Page:allHighFives.html.twig', array(
-            'highfives' => $highFives,
+        return $this->render('CobaseAppBundle:Page:allPosts.html.twig', array(
+            'highfives' => $posts,
         ));
     }
 
     /**
-     * Show all Quick High Fives for current user
+     * Show all Quick Posts for current user
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function showAllQuickHighFivesAction($orderType = 'asc')
+    public function showAllQuickPostsAction($orderType = 'asc')
     {
-        $highFiveService = $this->getHighfiveService();
-        $eventService    = $this->getEventService();
-        $latestEvents    = $eventService->getLatestPublicEvents($this->container->getParameter('cobase_app.comments.max_latest_events'));
+        $postService = $this->getPostService();
+        $groupService    = $this->getGroupService();
+        $latestGroups    = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
         $user = $this->getCurrentUser();
         $limit = null;
 
         if (!$user) {
-            return $this->render('CobaseAppBundle:Event:noaccess.html.twig', array('latestEvents' => $latestEvents));
+            return $this->render('CobaseAppBundle:Group:noaccess.html.twig', array('latestGroups' => $latestGroups));
         }
 
         $order = 'asc';
@@ -56,11 +56,11 @@ class HighFiveController extends BaseController
             $order = 'desc';
         }
 
-        $quickHighFives = $highFiveService->getAllQuickHighfivesForUser($user, $limit, $order);
+        $quickPosts = $postService->getAllQuickPostsForUser($user, $limit, $order);
 
-        return $this->render('CobaseAppBundle:Page:allQuickHighFives.html.twig', array(
-            'quickHighfives' => $quickHighFives,
-            'latestEvents'   => $latestEvents,
+        return $this->render('CobaseAppBundle:Page:allQuickPosts.html.twig', array(
+            'quickPosts' => $quickPosts,
+            'latestGroups'   => $latestGroups,
         ));
     }
 
@@ -72,10 +72,10 @@ class HighFiveController extends BaseController
     public function quickAction($username)
     {
         $currentUser     = $this->getCurrentUser();
-        $eventService    = $this->getEventService();
-        $highfiveService = $this->getHighfiveService();
+        $groupService    = $this->getGroupService();
+        $highfiveService = $this->getPostService();
 
-        $latestEvents    = $eventService->getLatestPublicEvents($this->container->getParameter('cobase_app.comments.max_latest_events'));
+        $latestGroups    = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
         $enableCaptcha = true;
         if ($currentUser) {
@@ -86,9 +86,9 @@ class HighFiveController extends BaseController
             }
         }
 
-        $quickHighfive   = new QuickHighfive($enableCaptcha);
+        $quickPost   = new QuickPost($enableCaptcha);
         $request         = $this->getRequest();
-        $form            = $this->createForm(new QuickHighfiveType(), $quickHighfive);
+        $form            = $this->createForm(new QuickPostType(), $quickPost);
 
         if ($enableCaptcha === false) {
             $form->remove('recaptcha');
@@ -99,27 +99,27 @@ class HighFiveController extends BaseController
         $user            = $userManager->findUserByUsername($username);
 
         if (!$user) {
-            return $this->render('CobaseAppBundle:Event:userNotFound.html.twig', array());
+            return $this->render('CobaseAppBundle:Group:userNotFound.html.twig', array());
         }
 
         $showForm = true;
 
         if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
-                $quickHighfive->setUser($user);
+                $quickPost->setUser($user);
 
                 if ($currentUser) {
-                    $quickHighfive->setAuthor($currentUser->getName());
+                    $quickPost->setAuthor($currentUser->getName());
                 }
 
-                $highfiveService->saveQuickHighfive($quickHighfive);
+                $highfiveService->saveQuickPost($quickPost);
 
                 $this->sendMail("You have received new quick high five",
                     $user->getEmail(),
-                    $this->renderView('CobaseAppBundle:Page:newQuickHighFiveEmail.txt.twig',
+                    $this->renderView('CobaseAppBundle:Page:newQuickPostEmail.txt.twig',
                         array(
                             'to'   => $user,
-                            'from' => $quickHighfive->getAuthor(),
+                            'from' => $quickPost->getAuthor(),
                         )
                     ));
 
@@ -128,10 +128,10 @@ class HighFiveController extends BaseController
             }
         }
 
-        return $this->render('CobaseAppBundle:HighFive:quick.html.twig', array(
+        return $this->render('CobaseAppBundle:Post:quick.html.twig', array(
             'form' => $form->createView(),
             'user' => $user,
-            'latestEvents' => $latestEvents,
+            'latestGroups' => $latestGroups,
             'showForm' => $showForm,
         ));
     }

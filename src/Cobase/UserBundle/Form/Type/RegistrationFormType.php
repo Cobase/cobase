@@ -44,6 +44,6 @@ class RegistrationFormType extends BaseType
      */
     public function getName()
     {
-        return 'portal_user_registration';
+        return 'cobase_user_registration';
     }
 }

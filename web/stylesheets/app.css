@@ -11,6 +11,7 @@
 .info p#date {
     color: #666666;
     margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 /* Login/Logout/Register related stuff */

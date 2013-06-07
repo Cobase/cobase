@@ -1,46 +1,40 @@
 {% extends 'CobaseAppBundle::layout.html.twig' %}
 
 {% block content %}
-    <h2 class="p8" xmlns="http://www.w3.org/1999/html"><span class="color-1">Browse</span> all events</h2>
-    {% for event in events %}
-        <article class="event">
+    <h2 class="p8" xmlns="http://www.w3.org/1999/html"><span class="color-1">Browse</span> all posts</h2>
+    {% for post in posts %}
+        <article class="group">
             <div class="author">
-                <a href="{{ path('CobaseAppBundle_event_view', { 'eventId': event.shortUrl }) }}"><img src="{{ gravatar(event.user.getEmail()) }}"/></a>
+                <img src="{{ gravatar(post.user.getEmail()) }}"/>
             </div>
             <div class="data">
                 <header>
-                    <h3><a href="{{ path('CobaseAppBundle_event_view', { 'eventId': event.shortUrl }) }}">{{ event.title }}</a></h3>
-                    {{ event.created|date('M d, Y') }} by <a href="{{ path('CobaseAppBundle_cv') }}/{{ event.user.getUserName() }}">{{ event.user.getName() }}</a>
+                    <h3><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></h3>
+                    {{ post.created|date('M d, Y') }} by <a href="{{ path('CobaseAppBundle_cv') }}/{{ post.user.getUserName() }}">{{ post.user.getName() }}</a>
                 </header>
-                <p class="description">{{ event.description|show_maxlen(65, '...') }}</p>
-                <p class="count"><img src="{{ asset('images/hand.gif') }}"/>{{ event.countHighfives }} high fives</p>
+                <p class="description">{{ post.comment }}</p>
             </div>
         </article>
     {% else %}
-        <p class="p2"><strong>No events found...</strong></p>
+        <p class="p2"><strong>No posts found...</strong></p>
     {% endfor %}
 {% endblock content %}
 
 {% block sidenav %}
-
-
-
     <h2 class="p3"><span class="color-1">Sorting</span> options</h2>
     <ul class="list-1">
-        <li><a href="{{ path('CobaseAppBundle_all_events') }}/title/asc">Events A-Z</a></li>
-        <li><a href="{{ path('CobaseAppBundle_all_events') }}/title/desc">Events Z-A</a></li>
-        <li><a href="{{ path('CobaseAppBundle_all_events') }}/created/desc">Latest events</a></li>
-        <li><a href="{{ path('CobaseAppBundle_all_events') }}/created/asc">Oldest events</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}/desc">Latest Posts</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}/asc">Oldest Posts</a></li>
     </ul>
     <br/>
 
     <h2 class="p3"><span class="color-1">Show</span> me</h2>
     <ul class="list-1">
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <li><a href="{{ path('CobaseAppBundle_highfives_received') }}">Latest for you</a></li>
+            <li><a href="{{ path('CobaseAppBundle_posts_received') }}">Latest for you</a></li>
         {% endif %}
-        <li><a href="{{ path('CobaseAppBundle_all_events') }}">All events</a></li>
-        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}">All high fives</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_groups') }}">All groups</a></li>
+        <li><a href="{{ path('CobaseAppBundle_all_highFives') }}">All posts</a></li>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             <li><a href="{{ path('CobaseAppBundle_all_quickHighFives') }}">All quickies for you</a></li>
         {% endif %}
@@ -51,7 +45,7 @@
         <br/>
         <h2 class="p3"><span class="color-1">Your</span> options</h2>
         <ul class="list-1">
-            <li><a href="{{ path('CobaseAppBundle_event_new') }}">Create new event</a></li>
+            <li><a href="{{ path('CobaseAppBundle_group_new') }}">Create new group</a></li>
             <li><a href="{{ path('CobaseAppBundle_cv') }}">Activity page</a></li>
         </ul>
     {% endif %}
@@ -67,10 +61,10 @@
     -->
 
     <div class="form-search">
-        <h2><span class="color-1 editable">Find </span>an event</h2>
-        <form id="form-event-search" method="post">
-            <input id="search-event-keyword" name="searchWord" type="text" />
-            <input id="event-search-submit" type="submit" class="search_button" value="Search">
+        <h2><span class="color-1 editable">Find </span>a group</h2>
+        <form id="form-group-search" method="post">
+            <input id="search-group-keyword" name="searchWord" type="text" />
+            <input id="group-search-submit" type="submit" class="search_button" value="Search">
         </form>
     </div>
 

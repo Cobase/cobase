@@ -10,7 +10,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\GroupRepository")
- * @ORM\Table(name="cobase_group")
+ * @ORM\Table(name="groups")
  * @ORM\HasLifecycleCallbacks()
  */
 class Group

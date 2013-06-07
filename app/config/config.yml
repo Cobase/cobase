@@ -62,11 +62,11 @@ fos_user:
     
     registration:
         form:
-            type: portal_user_registration
+            type: cobase_user_registration
 
     registration:
             form:
-                type: portal_user_registration
+                type: cobase_user_registration
             confirmation:
                 enabled: false
 

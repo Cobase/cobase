@@ -14,7 +14,7 @@ use Cobase\UserBundle\Entity\User;
  */
 class GroupRepository extends EntityRepository
 {
-    public function getLatestPublicEvents($limit = null)
+    public function getLatestPublicGroups($limit = null)
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')

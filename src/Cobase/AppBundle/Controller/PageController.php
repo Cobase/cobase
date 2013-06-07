@@ -11,21 +11,20 @@ class PageController extends BaseController
     public function indexAction()
     {
         $user  = $this->getCurrentUser();
-        $highfives = array();
+        $posts = array();
 
-        $eventService = $this->getEventService();
-        $maxEventAmount = $this->container->getParameter('cobase_app.comments.max_latest_events');
-        $events = $eventService->getLatestPublicEvents($maxEventAmount);
+        $groupService = $this->getGroupService();
+        $maxLatestGroupAmount = $this->container->getParameter('cobase_app.comments.max_latest_groups');
+        $groups = $groupService->getLatestPublicGroups($maxLatestGroupAmount);
 
         //$events       = $eventService->findAllBySearchWord('Second');
 
-        $highfiveService = $this->getHighfiveService();
-        $maxHighfivesAmount = $this->container->getParameter('cobase_app.comments.max_latest_highfives');
-        $highfives = $highfiveService->getLatestHighfivesforPublicEvents($maxHighfivesAmount);
+        //$highfiveService = $this->getHighfiveService();
+        //$maxHighfivesAmount = $this->container->getParameter('cobase_app.comments.max_latest_highfives');
+        //$highfives = $highfiveService->getLatestHighfivesforPublicEvents($maxHighfivesAmount);
 
         return $this->render('CobaseAppBundle:Page:index.html.twig', array(
-            'events'    => $events,
-            'highfives' => $highfives
+            'groups'    => $groups,
         ));
     }
 

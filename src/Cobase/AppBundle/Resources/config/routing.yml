@@ -3,78 +3,42 @@ CobaseAppBundle_homepage:
     defaults: { _controller: CobaseAppBundle:Page:index }
     requirements:
         _method:  GET
-        
-CobaseAppBundle_about:
-    pattern:  /about
-    defaults: { _controller: CobaseAppBundle:Page:about }
-    requirements:
-        _method:  GET
-        
-CobaseAppBundle_contact:
-    pattern:  /contact
-    defaults: { _controller: CobaseAppBundle:Page:contact }
-    requirements:
-        _method:  GET|POST
 
-CobaseAppBundle_event_new:
-    pattern:  /event/new
-    defaults: { _controller: CobaseAppBundle:Event:new }
+CobaseAppBundle_group_new:
+    pattern:  /group/new
+    defaults: { _controller: CobaseAppBundle:Group:new }
 
-CobaseAppBundle_event_create:
-    pattern:  /event/create
-    defaults: { _controller: CobaseAppBundle:Event:create }
+CobaseAppBundle_group_create:
+    pattern:  /group/create
+    defaults: { _controller: CobaseAppBundle:Group:create }
 
-CobaseAppBundle_event_view:
-    pattern:  /event/{eventId}
-    defaults: { _controller: CobaseAppBundle:Event:view }
+CobaseAppBundle_group_view:
+    pattern:  /group/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:view }
 
-CobaseAppBundle_event_modify:
-    pattern:  /event/modify/{eventId}
-    defaults: { _controller: CobaseAppBundle:Event:modify }
+CobaseAppBundle_group_modify:
+    pattern:  /group/modify/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:modify }
 
-CobaseAppBundle_event_search:
-    pattern:  /search/event
-    defaults: { _controller: CobaseAppBundle:Event:search }
+CobaseAppBundle_group_search:
+    pattern:  /search/group
+    defaults: { _controller: CobaseAppBundle:Group:search }
 
-CobaseAppBundle_all_events:
-    pattern:  /events
-    defaults: { _controller: CobaseAppBundle:Event:showAll }
+CobaseAppBundle_all_groups:
+    pattern:  /groups
+    defaults: { _controller: CobaseAppBundle:Group:showAll }
 
-CobaseAppBundle_all_events_with_sorting:
-    pattern:  /events/{orderByType}/{orderType}
-    defaults: { _controller: CobaseAppBundle:Event:showAll }
+CobaseAppBundle_all_groups_with_sorting:
+    pattern:  /groups/{orderByType}/{orderType}
+    defaults: { _controller: CobaseAppBundle:Group:showAll }
 
-CobaseAppBundle_highfives_received:
-    pattern:  /received
-    defaults: { _controller: CobaseAppBundle:Page:highFivesReceived }
+CobaseAppBundle_all_posts:
+    pattern:  /posts
+    defaults: { _controller: CobaseAppBundle:Post:showAll }
 
-CobaseAppBundle_all_highFives:
-    pattern:  /highfives
-    defaults: { _controller: CobaseAppBundle:HighFive:showAll }
-
-CobaseAppBundle_all_highFives_with_sorting:
-    pattern:  /highfives/{orderType}
-    defaults: { _controller: CobaseAppBundle:HighFive:showAll }
-
-CobaseAppBundle_all_quickHighFives:
-    pattern:  /quickies
-    defaults: { _controller: CobaseAppBundle:HighFive:showAllQuickHighFives }
-
-CobaseAppBundle_all_quickHighFives_with_sorting:
-    pattern:  /quickies/{orderType}
-    defaults: { _controller: CobaseAppBundle:HighFive:showAllQuickHighFives }
-
-CobaseAppBundle_cv:
-    pattern:  /cv
-    defaults: { _controller: CobaseAppBundle:Cv:view }
-
-CobaseAppBundle_cv_user:
-    pattern:  /cv/{username}
-    defaults: { _controller: CobaseAppBundle:Cv:user }
-
-CobaseAppBundle_quick_highFive:
-    pattern:  /to/{username}
-    defaults: { _controller: CobaseAppBundle:HighFive:quick }
+CobaseAppBundle_all_posts_with_sorting:
+    pattern:  /posts/{orderType}
+    defaults: { _controller: CobaseAppBundle:Post:showAll }
 
 CobaseAppBundle_users:
     pattern:  /users

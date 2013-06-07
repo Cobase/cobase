@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\PostRepository")
- * @ORM\Table(name="cobase_post")
+ * @ORM\Table(name="posts")
  * @ORM\HasLifecycleCallbacks()
  */
 class Post

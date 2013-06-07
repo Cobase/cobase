@@ -49,19 +49,19 @@ class BaseController extends Controller
     }
 
     /**
-     * @return EventService
+     * @return GroupService
      */
-    public function getEventService()
+    public function getGroupService()
     {
-        return $this->container->get('cobase_app.service.event');
+        return $this->container->get('cobase_app.service.group');
     }
 
     /**
-     * @return HighfiveService
+     * @return PostService
      */
-    public function getHighfiveService()
+    public function getPostService()
     {
-        return $this->container->get('cobase_app.service.highfive');
+        return $this->container->get('cobase_app.service.post');
     }
 
     /**
