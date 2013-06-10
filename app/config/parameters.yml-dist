@@ -2,8 +2,8 @@ parameters:
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
-    database_name:     youhighfiveme
-    database_user:     youhighfiveme
+    database_name:     cobase
+    database_user:     cobase
     database_password: secret
 
     mailer_transport:  smtp
