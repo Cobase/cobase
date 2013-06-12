@@ -107,7 +107,6 @@ class GroupController extends BaseController
 
         $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
-        $submitted     = false;
         $allowModify   = false;
 
         if ($user) {
@@ -117,17 +116,19 @@ class GroupController extends BaseController
             }
         }
         
-        if ($request->getMethod() == 'POST' && !$submitted) {
+        if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
                 $postService->savePost($post, $group, $user);
 
-                $this->sendMail("You have received new high five for an group",
+                $emailTitle = "Someone posted to Cobase group '" . $group->getTitle() . "'";
+
+                $this->sendMail($emailTitle,
                                 $group->getUser()->getEmail(),
-                                $this->renderView('CobaseAppBundle:Page:newHighFiveEmail.txt.twig',
+                                $this->renderView('CobaseAppBundle:Page:newPostEmail.txt.twig',
                                     array('group' => $group)
                                 ));
 
-                $this->get('session')->getFlashBag()->add('post.saved', 'Your High Five has been sent, thank you!');
+                $this->get('session')->getFlashBag()->add('post.saved', 'New post has been saved, thank you!');
 
                 return $this->forward('CobaseAppBundle:Group:view', array(
                     'groupId' => $groupId,

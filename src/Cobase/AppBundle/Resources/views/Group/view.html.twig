@@ -5,6 +5,19 @@
         {{ group.title }}
         <span class="info">{{ group.description }}</span>
     </h2>
+
+    <hr/>
+
+    <form id="form" action="{{ path('CobaseAppBundle_group_view') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <div class="control-group">
+        {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.content) }}
+        <div class="controls">
+            {{ form_widget(form.content) }}
+        </div>
+    </div>
+    </form>
+
     <ul class="item-summary">
     {% for post in group.posts %}
         <li>
@@ -14,7 +27,7 @@
             <div class="info">
                 <p id="author">{{ post.user.name }}</p>
                 <p>{{ post.comment }}</p>
-                <p id="date">post.created|date('M d, Y') at {{ post.created|date('h:m') }}</p>
+                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('h:m') }}</p>
                 <p><span class="label label-info">New post</span></p>
             </div>
             <div class="clearfix"></div>

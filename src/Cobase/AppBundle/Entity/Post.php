@@ -28,7 +28,7 @@ class Post
     /**
      * @ORM\Column(type="string")
      */
-    protected $comment;
+    protected $content;
 
     /**
      * @ORM\ManyToOne(targetEntity="Group", inversedBy="posts")
@@ -48,8 +48,8 @@ class Post
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
-        $metadata->addPropertyConstraint('comment', new NotBlank(array(
-            'message' => 'You must enter a comment'
+        $metadata->addPropertyConstraint('content', new NotBlank(array(
+            'message' => 'You must enter a content'
         )));
     }
 
@@ -86,21 +86,21 @@ class Post
     /**
      * Set comment
      *
-     * @param text $comment
+     * @param text $content
      */
-    public function setComment($comment)
+    public function setContent($content)
     {
-        $this->comment = $comment;
+        $this->content = $content;
     }
 
     /**
-     * Get comment
+     * Get content
      *
      * @return text
      */
-    public function getComment()
+    public function getContent()
     {
-        return $this->comment;
+        return $this->content;
     }
 
     /**
