@@ -1,4 +1,4 @@
-Cobase\AppBundle\Entity\Event:
+Cobase\AppBundle\Entity\Group:
     properties:
         title:
             - NotBlank: ~

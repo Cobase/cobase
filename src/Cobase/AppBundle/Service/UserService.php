@@ -5,8 +5,8 @@ namespace Cobase\AppBundle\Service;
 use Doctrine\ORM\EntityManager,
     Doctrine\ORM\EntityRepository,
     Symfony\Component\Security\Core\SecurityContext,
-    Cobase\AppBundle\Entity\Event,
-    Cobase\AppBundle\Entity\Highfive,
+    Cobase\AppBundle\Entity\Group,
+    Cobase\AppBundle\Entity\Post,
     Cobase\AppBundle\Entity\QuickHighfive,
     Cobase\UserBundle\Entity\User;
 

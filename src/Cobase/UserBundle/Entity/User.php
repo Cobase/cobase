@@ -37,15 +37,9 @@ class User extends BaseUser
     protected $gravatar;
     
     /**
-     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Event", mappedBy="user")
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Group", mappedBy="user")
      */
-    protected $events;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\QuickHighfive", mappedBy="user")
-     */
-    protected $quickHighFives;
-
+    protected $groupsFollowed;
 
     public function __construct()
     {
@@ -72,19 +66,9 @@ class User extends BaseUser
         $this->gravatar = $address;
     }
 
-    public function getHighfives()
+    public function getGroupsFollowed()
     {
-        return $this->highFives;
-    }
-
-    public function getEvents()
-    {
-        return $this->events;
-    }
-
-    public function getQuickHighfives()
-    {
-        return $this->quickHighFives;
+        return $this->groupsFollowed;
     }
 
     public function __toString() 

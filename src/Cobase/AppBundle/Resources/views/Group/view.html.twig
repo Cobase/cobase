@@ -8,25 +8,32 @@
 
     <hr/>
 
-    <form id="form" action="{{ path('CobaseAppBundle_group_view') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-    <div class="control-group">
-        {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.content) }}
-        <div class="controls">
-            {{ form_widget(form.content) }}
+    <form id="form" action="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+        <div class="control-group-new-post">
+            {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+            {{ form_errors(form.content) }}
+            <div class="controls-new-post">
+                {{ form_widget(form.content) }}
+            </div>
+            {{ form_widget(form._token) }}
         </div>
-    </div>
+        <div class="control-group-new-post">
+            <label class="control-label-new-post"></label>
+            <div class="controls-new-post">
+                <input class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </div>
     </form>
 
     <ul class="item-summary">
-    {% for post in group.posts %}
+    {% for post in group.posts|reverse %}
         <li>
             <div class="overview">
                 <img src="{{ gravatar(post.user.email) }}"/>
             </div>
             <div class="info">
                 <p id="author">{{ post.user.name }}</p>
-                <p>{{ post.comment }}</p>
+                <p>{{ post.content }}</p>
                 <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('h:m') }}</p>
                 <p><span class="label label-info">New post</span></p>
             </div>

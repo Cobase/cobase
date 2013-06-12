@@ -54,7 +54,15 @@ ul.links, li {
 }
 
 .group-open {
+     margin-top: 5px;
+ }
+
+.group-follow {
     margin-top: 5px;
+}
+
+.new-post {
+    width: 97%;
 }
 
 /* Common */

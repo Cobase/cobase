@@ -5,7 +5,7 @@ namespace Cobase\AppBundle\Service;
 use Doctrine\ORM\EntityManager,
     Doctrine\ORM\EntityRepository,
     Symfony\Component\Security\Core\SecurityContext,
-    Cobase\AppBundle\Entity\Event,
+    Cobase\AppBundle\Entity\Group,
     Cobase\AppBundle\Entity\Post,
     Cobase\UserBundle\Entity\User;
 
@@ -56,22 +56,22 @@ class PostService
      * @param null $limit
      * @return mixed
      */
-    public function getLatestPostsForPublicEvents($limit = null)
+    public function getLatestPostsForPublicGroups($limit = null)
     {
-        return $this->repository->getLatestPostsForPublicEvents($limit);
+        return $this->repository->getLatestPostsForPublicGroups($limit);
     }
 
     /**
      * @return array
      */
-    public function getAllPostsforPublicEvents($limit = null, $order)
+    public function getAllPostsforPublicGroups($limit = null, $order)
     {
-        return $this->repository->getAllPostsforPublicEvents($limit, $order);
+        return $this->repository->getAllPostsforPublicGroups($limit, $order);
     }
 
     /**
      * @param  int $id
-     * @return Event
+     * @return Post
      */
     public function getPostById($id)
     {
@@ -81,16 +81,16 @@ class PostService
     /**
      * Check to see if a user already has given a post for the group
      *
-     * @param \Cobase\AppBundle\Entity\Event $event
+     * @param \Cobase\AppBundle\Entity\Group $group
      * @param \Cobase\UserBundle\Entity\User $user
      * @return bool
      */
-    public function hasUserSubmittedPostForEvent(Event $event, User $user)
+    public function hasUserSubmittedPostForGroup(Group $group, User $user)
     {
         $result = $this->repository->findBy(
             array(
                 'user'  => $user,
-                'event' => $event
+                'group' => $group
             )
         );
 
@@ -101,18 +101,18 @@ class PostService
      * Save a post
      *
      * @param  Post $post
-     * @param  Event $event
+     * @param  Group $group
      * @param  User  $user
-     * @return Event
+     * @return Group
      */
-    public function savePost(Post $post, Event $event, User $user = null)
+    public function savePost(Post $post, Group $group, User $user = null)
     {
         if (!$user) {
             $user = $this->security->getToken()->getUser();
         }
 
         $post->setUser($user);
-        $post->setEvent($event);
+        $post->setGroup($group);
 
         $this->em->persist($post);
         $this->em->flush();

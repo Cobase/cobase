@@ -17,6 +17,8 @@
                     <p class="group-title">{{ group.title }}</p>
                     <p class="group-description">{{ group.description }}</p>
                     <a class="btn btn-mini group-open" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">View {{ group.countPosts }} post(s)</a>
+                    <a class="btn btn-mini group-follow" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">Follow this group</a>
+
                 </div>
                 <div class="clearfix"></div>
             </li>

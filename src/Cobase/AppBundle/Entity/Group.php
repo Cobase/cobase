@@ -159,7 +159,7 @@ class Group
     }
 
     /**
-     * Get event's short URL
+     * Get group's short URL
      *
      * @return string
      */

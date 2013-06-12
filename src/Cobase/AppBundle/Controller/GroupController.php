@@ -122,17 +122,20 @@ class GroupController extends BaseController
 
                 $emailTitle = "Someone posted to Cobase group '" . $group->getTitle() . "'";
 
-                $this->sendMail($emailTitle,
-                                $group->getUser()->getEmail(),
-                                $this->renderView('CobaseAppBundle:Page:newPostEmail.txt.twig',
-                                    array('group' => $group)
-                                ));
+                // @TODO: Enable this feature
+                //$this->sendMail($emailTitle,
+                //                $group->getUser()->getEmail(),
+                //                $this->renderView('CobaseAppBundle:Page:newPostEmail.txt.twig',
+                //                    array('group' => $group)
+                //                ));
 
                 $this->get('session')->getFlashBag()->add('post.saved', 'New post has been saved, thank you!');
 
-                return $this->forward('CobaseAppBundle:Group:view', array(
-                    'groupId' => $groupId,
-                ));
+                return $this->redirect(
+                    $this->generateUrl('CobaseAppBundle_group_view',
+                                       array('groupId' => $groupId)
+                    )
+                );
             }
         }
 
