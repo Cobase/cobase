@@ -8,6 +8,8 @@ use Cobase\AppBundle\Form\GroupType;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
+use Symfony\Component\HttpFoundation\Response;
+
 /**
  * Group controller.
  */
@@ -92,7 +94,7 @@ class GroupController extends BaseController
     public function viewAction($groupId)
     {
         $post = new Post();
-
+        
         $groupService    = $this->getGroupService();
         $postService = $this->getPostService();
 
@@ -106,39 +108,32 @@ class GroupController extends BaseController
         }
 
         $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
-
         $allowModify   = false;
 
         if ($user) {
             if ($group->getUser() === $user) {
                 $allowModify = true;
-            
             }
         }
-        
         if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
                 $postService->savePost($post, $group, $user);
 
-                $emailTitle = "Someone posted to Cobase group '" . $group->getTitle() . "'";
+                #$this->sendMail("You have received new high five for an event",
+                #    $group->getUser()->getEmail(),
+                #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
+                #        array('event' => $event)
+                #    ));
 
-                // @TODO: Enable this feature
-                //$this->sendMail($emailTitle,
-                //                $group->getUser()->getEmail(),
-                //                $this->renderView('CobaseAppBundle:Page:newPostEmail.txt.twig',
-                //                    array('group' => $group)
-                //                ));
+                $this->get('session')->getFlashBag()->add('post.saved', 'Your post has been sent, thank you!');
 
-                $this->get('session')->getFlashBag()->add('post.saved', 'New post has been saved, thank you!');
-
-                return $this->redirect(
-                    $this->generateUrl('CobaseAppBundle_group_view',
-                                       array('groupId' => $groupId)
-                    )
-                );
+                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array(
+                    'groupId' => $groupId,
+                )));
+               
             }
         }
-
+        
         return $this->render('CobaseAppBundle:Group:view.html.twig', array(
             'group'         => $group,
             'latestGroups'  => $latestGroups,
@@ -147,6 +142,8 @@ class GroupController extends BaseController
         ));
     }
 
+  
+    
     /**
      * Modify Group
      *

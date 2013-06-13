@@ -1,29 +1,45 @@
 {% extends '::base.html.twig' %}
 
+{% block javascript %}
+    // Hide the submit button
+    $('#postForm').submit( function(e) {
+        $('#formSubmit').hide();
+    });
+{% endblock %}
+
 {% block content %}
     <h2>
         {{ group.title }}
         <span class="info">{{ group.description }}</span>
     </h2>
 
-    <hr/>
-
-    <form id="form" action="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-        <div class="control-group-new-post">
-            {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
-            {{ form_errors(form.content) }}
-            <div class="controls-new-post">
-                {{ form_widget(form.content) }}
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <hr/>
+    
+        {% for flashMessage in app.session.flashbag.get('post.saved') %}
+            <div class="alert alert-success fade in">
+                {{ flashMessage }}
             </div>
-            {{ form_widget(form._token) }}
-        </div>
-        <div class="control-group-new-post">
-            <label class="control-label-new-post"></label>
-            <div class="controls-new-post">
-                <input class="btn btn-success" type="submit" value="Submit">
+        {% endfor %}
+        
+        <form id="postForm" action="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+            <div class="control-group-new-post">
+                {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+                {{ form_errors(form.content) }}
+                <div class="controls-new-post">
+                    {{ form_widget(form.content) }}
+                </div>
+                {{ form_widget(form._token) }}
             </div>
-        </div>
-    </form>
+            <div class="control-group-new-post">
+                <label class="control-label-new-post"></label>
+                <div class="controls-new-post">
+                    <input id="formSubmit" class="btn btn-success" type="submit" value="Submit">
+                </div>
+            </div>
+            {{ form_rest(form) }}
+        </form>
+    {% endif %}
 
     <ul class="item-summary">
     {% for post in group.posts|reverse %}
@@ -34,7 +50,7 @@
             <div class="info">
                 <p id="author">{{ post.user.name }}</p>
                 <p>{{ post.content }}</p>
-                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('h:m') }}</p>
+                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
                 <p><span class="label label-info">New post</span></p>
             </div>
             <div class="clearfix"></div>

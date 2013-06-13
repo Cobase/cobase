@@ -4,6 +4,7 @@ namespace Cobase\AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\PostRepository")
@@ -26,7 +27,11 @@ class Post
     protected $user;
 
     /**
-     * @ORM\Column(type="string")
+     * @ORM\Column(type="string", length=1250)
+     * @Assert\Length(
+     *      min = "10",
+     *      max = "1250"
+     * )
      */
     protected $content;
 
