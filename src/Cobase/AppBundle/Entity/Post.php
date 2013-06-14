@@ -28,10 +28,6 @@ class Post
 
     /**
      * @ORM\Column(type="string", length=1250)
-     * @Assert\Length(
-     *      min = "10",
-     *      max = "1250"
-     * )
      */
     protected $content;
 

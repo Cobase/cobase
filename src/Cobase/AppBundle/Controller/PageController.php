@@ -28,28 +28,9 @@ class PageController extends BaseController
         ));
     }
 
-    public function highFivesReceivedAction()
-    {
-        $user  = $this->getCurrentUser();
-        $highfives = array();
+    
 
-        $highfiveService = $this->getHighfiveService();
-        $highfives = $highfiveService->getHighfivesForUser($user);
-
-        $eventService = $this->getEventService();
-        $latestEvents = $eventService->getLatestPublicEvents($this->container->getParameter('cobase_app.comments.max_latest_events'));
-
-        return $this->render('CobaseAppBundle:Page:latestForYou.html.twig', array(
-            'highfives' => $highfives,
-            'latestEvents' => $latestEvents,
-            'quickHighfives' => $user->getQuickHighfives(),
-        ));
-    }
-
-    public function aboutAction()
-    {
-        return $this->render('CobaseAppBundle:Page:about.html.twig');
-    }
+    
     
     public function contactAction()
     {
@@ -96,29 +77,5 @@ class PageController extends BaseController
             'form' => $form->createView()
         ));
     }
-
-    public function sidebarAction()
-    {
-        $em = $this->getDoctrine()
-                   ->getManager();
-    
-        $tags = $em->getRepository('CobaseAppBundle:Entry')
-                   ->getTags();
-    
-        $tagWeights = $em->getRepository('CobaseAppBundle:Entry')
-                         ->getTagWeights($tags);
-    
-        $commentLimit   = $this->container
-                               ->getParameter('cobase_app.comments.latest_comment_limit');
-        $latestComments = $em->getRepository('CobaseAppBundle:Comment')
-                             ->getLatestComments($commentLimit);
-    
-        return $this->render('CobaseAppBundle:Page:sidebar.html.twig', array(
-            'latestComments'    => $latestComments,
-            'tags'              => $tagWeights
-        ));
-    }
-
-
 
 }

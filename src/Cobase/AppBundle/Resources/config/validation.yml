@@ -12,3 +12,9 @@ Cobase\AppBundle\Entity\Group:
             - NotBlank: ~
             - MaxLength: 160
             
+Cobase\AppBundle\Entity\Post:
+    properties:
+        content:
+            - NotBlank: ~
+            - MinLength: 10
+            - MaxLength: 1250
