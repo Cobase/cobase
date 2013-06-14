@@ -20,7 +20,7 @@ class DefaultController extends BaseController
         $service    = $this->getCatService();
         $form       = $service->getCatForm(new CatModel() );
 
-        if (!$this->mediateForm($form)) {
+        if (!$this->processForm($form)) {
             return $this->render('CobaseDemoBundle:Default:index.html.twig', array(
                            'form' => $form->createView(),
             ));

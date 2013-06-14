@@ -12,7 +12,7 @@ class BaseController extends Controller
      * @param Form $form
      * @return bool
      */
-    public function mediateForm(Form $form)
+    public function processForm(Form $form)
     {
         $form->bind($this->getRequest() );
 
