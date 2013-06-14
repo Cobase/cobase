@@ -4,6 +4,8 @@ Cobase
 Cobase is a social media portal for corporations. It allows staff to exchange information by creating groups and posting
 new messages to them. It also allows people to exchange private messages.
 
+Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
+
 #Installation
 
 Fork the project into your Github account and then clone it into your development environment.
