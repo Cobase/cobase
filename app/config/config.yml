@@ -82,3 +82,9 @@ ewz_recaptcha:
     private_key:  6LcpWN4SAAAAANy1nu2Awuj1kEVLmbBbx1A6pItI
     secure:       false
     locale_key:   kernel.default_locale
+
+# Url converter
+liip_url_auto_converter:
+    linkclass:
+    target: _blank
+    debugmode: false

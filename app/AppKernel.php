@@ -27,6 +27,7 @@ class AppKernel extends Kernel
             new Cobase\UserBundle\CobaseUserBundle(),
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
+            new Liip\UrlAutoConverterBundle\LiipUrlAutoConverterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

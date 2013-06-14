@@ -23,7 +23,8 @@
         "jms/di-extra-bundle": "1.1.*",
         "friendsofsymfony/user-bundle": "dev-master",
         "ornicar/gravatar-bundle": "dev-master",
-        "excelwebzone/recaptcha-bundle": "dev-master"
+        "excelwebzone/recaptcha-bundle": "dev-master",
+        "liip/url-auto-converter-bundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

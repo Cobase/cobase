@@ -96,8 +96,8 @@ class Post
 
     /**
      * Get content
-     *
-     * @return text
+     * 
+     * @return mixed
      */
     public function getContent()
     {
@@ -143,4 +143,5 @@ class Post
     {
         return $this->group;
     }
+
 }
