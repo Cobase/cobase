@@ -3,14 +3,14 @@ require 'capistrano/ext/multistage'
 
 set :stages, %w(production testing)
 
-set :application, "YouHighFiveMe"
-set :domain,      "youhighfive.me"
+set :application, "Cobase"
+set :domain,      "your_cobase_domain.com"
 set :port,        51510
 set :app_path,    "app"
 
-set :user,        "agajewsk"
+set :user,        "username"
 
-set :repository,  "git://github.com/YouHighFiveMe/youhighfiveme.git"
+set :repository,  "git://github.com/CoBase/cobase.git"
 set :scm,         :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `subversion`, `mercurial`, `perforce`, or `none`
 

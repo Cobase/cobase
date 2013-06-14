@@ -1,1 +1,1 @@
-set :deploy_to,   "/home/agajewsk/www/youhighfiveme"
+set :deploy_to,   "/path/to/your/application"
