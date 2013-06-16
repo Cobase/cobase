@@ -64,6 +64,11 @@ class Group
     protected $posts;
 
     /**
+     * @ORM\OneToMany(targetEntity="Subscription", mappedBy="group")
+     */
+    protected $subscriptions;
+    
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $created;

@@ -3,29 +3,31 @@
 namespace Cobase\AppBundle\Controller;
 
 use Cobase\AppBundle\Controller\BaseController;
-use Cobase\AppBundle\Entity\Enquiry;
-use Cobase\AppBundle\Form\EnquiryType;
 
 class PageController extends BaseController
 {
     public function indexAction()
     {
         $user  = $this->getCurrentUser();
-        $posts = array();
+        
 
         $groupService = $this->getGroupService();
         $maxLatestGroupAmount = $this->container->getParameter('cobase_app.comments.max_latest_groups');
         $groups = $groupService->getLatestPublicGroups($maxLatestGroupAmount);
 
-        //$events       = $eventService->findAllBySearchWord('Second');
-
-        //$highfiveService = $this->getHighfiveService();
-        //$maxHighfivesAmount = $this->container->getParameter('cobase_app.comments.max_latest_highfives');
-        //$highfives = $highfiveService->getLatestHighfivesforPublicEvents($maxHighfivesAmount);
-
-        return $this->render('CobaseAppBundle:Page:index.html.twig', array(
-            'groups'    => $groups,
-        ));
+        $subscriptionService = $this->getSubscriptionService();
+        if ($user) {
+            $subscriptions = $subscriptionService->getSubscriptionsForUser($user);
+        }
+        
+        return $this->render('CobaseAppBundle:Page:index.html.twig', 
+            $this->mergeVariables(
+                array(
+                    'groups'        => $groups,
+                    'subscriptions' => $subscriptions,
+                )
+            )
+        );
     }
 
     
@@ -73,9 +75,13 @@ class PageController extends BaseController
             }
         }
     
-        return $this->render('CobaseAppBundle:Page:contact.html.twig', array(
-            'form' => $form->createView()
-        ));
+        return $this->render('CobaseAppBundle:Page:contact.html.twig',
+            $this->mergeVariables(
+                array(
+                    'form' => $form->createView()
+                )
+            )
+        );
     }
 
 }

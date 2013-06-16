@@ -65,6 +65,14 @@ class BaseController extends Controller
     }
 
     /**
+     * @return SubscriptionService
+     */
+    public function getSubscriptionService()
+    {
+        return $this->container->get('cobase_app.service.subscription');
+    }
+
+    /**
      * @return UserService
      */
     public function getUserService()
@@ -89,6 +97,46 @@ class BaseController extends Controller
             ->setBody($message);
 
         $this->get('mailer')->send($message);
+    }
+
+    /**
+     * Merge page related variables with common variables
+     * 
+     * @param array pageVariables
+     */
+    public function mergeVariables(array $pageVariables)
+    {
+       return array_merge($pageVariables, $this->getCommonVariables()); 
+    }
+
+    /**
+     * Get array of variables
+     * 
+     * @return array
+     */
+    private function getCommonVariables()
+    {
+        return array(
+            'subscriptions' => $this->getSubscriptions(),
+        ); 
+    }
+
+    /**
+     * Get group subscriptions for current user
+     * 
+     * @return array
+     */
+    public function getSubscriptions()
+    {
+        $user  = $this->getCurrentUser();
+        $subscriptionService = $this->getSubscriptionService();
+        $subscriptions = array();
+            
+        if ($user) {
+            $subscriptions = $subscriptionService->getSubscriptionsForUser($user);
+        }
+        
+        return $subscriptions;
     }
 
 }

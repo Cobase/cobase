@@ -19,9 +19,13 @@ class UserController extends BaseController
         $service = $this->getUserService();
         $users = $service->getUsers();
 
-        return $this->render('CobaseAppBundle:User:allUsers.html.twig', array(
-            'users' => $users,
-        ));
+        return $this->render('CobaseAppBundle:User:allUsers.html.twig',
+            $this->mergeVariables(
+                array(
+                    'users' => $users,
+                )
+            )
+        );
     }
 
 }

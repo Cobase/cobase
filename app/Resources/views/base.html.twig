@@ -103,6 +103,9 @@
                     <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                 </li>
                 <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
+                    <a href="#" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
+                </li>
+                <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-folder-open"></i> <span>My Groups</span></a>
                 </li>
                 <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
@@ -122,7 +125,13 @@
                 <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
                     <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                 </li>
-                <li><a href="#"><i class="icon-table"></i> <span>Tables</span></a></li>
+                {% for subscription in subscriptions %}
+                    <li>
+                        <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
+                            <i class="icon-table"></i> <span>{{ subscription.group.title }}</span>
+                        </a>
+                    </li>
+                {% endfor %}
             </ul>
         </div>
         

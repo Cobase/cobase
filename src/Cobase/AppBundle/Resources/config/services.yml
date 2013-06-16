@@ -36,6 +36,16 @@ services:
             factory_service: doctrine.orm.entity_manager
             factory_method:  getRepository
 
+    cobase_app.service.subscription:
+            class:     Cobase\AppBundle\Service\SubscriptionService
+            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.subscription", "@security.context"]
+
+    cobase_app.repository.subscription:
+            class:           Cobase\AppBundle\Entity\Subscription
+            arguments:       [Cobase\AppBundle\Entity\Subscription]
+            factory_service: doctrine.orm.entity_manager
+            factory_method:  getRepository
+
     cobase_app.service.user:
                 class:     Cobase\AppBundle\Service\UserService
                 arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.user", "@security.context"]

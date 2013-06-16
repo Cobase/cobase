@@ -35,11 +35,15 @@ class GroupController extends BaseController
             $gravatarGiven = false;
         }
 
-        return $this->render('CobaseAppBundle:Group:create.html.twig', array(
-            'form'     => $form->createView(),
-            'gravatar' => $gravatarGiven,
-            'latestGroups' => $latestGroups,
-        ));
+        return $this->render('CobaseAppBundle:Group:create.html.twig',
+            $this->mergeVariables(
+                array(
+                    'form'     => $form->createView(),
+                    'gravatar' => $gravatarGiven,
+                    'latestGroups' => $latestGroups,
+                )
+            )
+        );
     }
 
     /**
@@ -63,10 +67,14 @@ class GroupController extends BaseController
         }
 
         if (!$this->processForm($form)) {
-            return $this->render('CobaseAppBundle:Group:create.html.twig', array(
-                'form' => $form->createView(),
-                'latestGroups' => $latestGroups,
-            ));
+            return $this->render('CobaseAppBundle:Group:create.html.twig', 
+                $this->mergeVariables(
+                    array(
+                        'form' => $form->createView(),
+                        'latestGroups' => $latestGroups,
+                    )
+                )
+            );
         }
 
         $groupUrl = $this->container->get('router')
@@ -77,11 +85,15 @@ class GroupController extends BaseController
         if ($group->getIsPublic()) {
             return $this->redirect($this->generateUrl('CobaseAppBundle_homepage'));
         } else {
-            return $this->render('CobaseAppBundle:Group:unlisted-info.html.twig', array(
-                'group'        => $group,
-                'groupUrl'     => $groupUrl,
-                'latestGroups' => $latestGroups,
-            ));
+            return $this->render('CobaseAppBundle:Group:unlisted-info.html.twig',
+                $this->mergeVariables(
+                    array(
+                        'group'        => $group,
+                        'groupUrl'     => $groupUrl,
+                        'latestGroups' => $latestGroups,
+                    )
+                )
+            );
         }
     }
 
@@ -127,19 +139,27 @@ class GroupController extends BaseController
 
                 $this->get('session')->getFlashBag()->add('post.saved', 'Your post has been sent, thank you!');
 
-                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array(
-                    'groupId' => $groupId,
-                )));
+                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', 
+                    $this->mergeVariables(
+                        array(
+                            'groupId' => $groupId,
+                        )
+                    )
+                ));
                
             }
         }
         
-        return $this->render('CobaseAppBundle:Group:view.html.twig', array(
-            'group'         => $group,
-            'latestGroups'  => $latestGroups,
-            'form'          => $form->createView(),
-            'allowModify'   => $allowModify,
-        ));
+        return $this->render('CobaseAppBundle:Group:view.html.twig',
+            $this->mergeVariables(
+                array(
+                    'group'         => $group,
+                    'latestGroups'  => $latestGroups,
+                    'form'          => $form->createView(),
+                    'allowModify'   => $allowModify,
+                )
+            )
+        );
     }
 
   
@@ -162,11 +182,19 @@ class GroupController extends BaseController
         $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
         if (!$group) {
-            return $this->render('CobaseAppBundle:Group:notfound.html.twig', array('latestGroups' => $latestGroups));
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables(
+                    array('latestGroups' => $latestGroups)
+                )
+            );
         }
 
         if ($group->getUser() !== $user) {
-            return $this->render('CobaseAppBundle:Group:noaccess.html.twig', array('latestGroups' => $latestGroups));
+            return $this->render('CobaseAppBundle:Group:noaccess.html.twig',
+                $this->mergeVariables(
+                    array('latestGroups' => $latestGroups)
+                )
+            );
         }
 
         $form = $this->createForm(new GroupType(), $group);
@@ -177,17 +205,25 @@ class GroupController extends BaseController
 
                 $this->get('session')->getFlashBag()->add('group.saved', 'Your changes have been saved!');
 
-                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array(
-                    'groupId' => $groupId,
-                )));
+                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
+                    $this->mergeVariables(
+                        array(
+                            'groupId' => $groupId,
+                        )
+                    )
+                ));
             }
         }
 
-        return $this->render('CobaseAppBundle:Group:modify.html.twig', array(
-            'group'         => $group,
-            'latestGroups'  => $latestGroups,
-            'form'          => $form->createView(),
-        ));
+        return $this->render('CobaseAppBundle:Group:modify.html.twig', 
+            $this->mergeVariables(
+                array(
+                    'group'         => $group,
+                    'latestGroups'  => $latestGroups,
+                    'form'          => $form->createView(),
+                )
+            )
+        );
     }
 
     /**
@@ -201,9 +237,13 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $groups       = $groupService->findAllBySearchWord($searchWord);
 
-        return $this->render('CobaseAppBundle:Group:searchResults.html.twig', array(
-            'groups'    => $groups,
-        ));
+        return $this->render('CobaseAppBundle:Group:searchResults.html.twig',
+            $this->mergeVariables(
+                array(
+                    'groups' => $groups,
+                )
+            )
+        );
     }
 
     /**
@@ -228,9 +268,13 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $groups = $groupService->getAllPublicGroups($limit, $orderBy, $order);
 
-        return $this->render('CobaseAppBundle:Page:allGroups.html.twig', array(
-            'groups'    => $groups
-        ));
+        return $this->render('CobaseAppBundle:Page:allGroups.html.twig',
+            $this->mergeVariables(
+                array(
+                    'groups' => $groups
+                )
+            )
+        );
     }
 
 }

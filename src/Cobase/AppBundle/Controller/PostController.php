@@ -28,9 +28,13 @@ class PostController extends BaseController
         $postService = $this->getPostService();
         $posts = $postService->getAllPostsforPublicGroups($limit, $orderType);
 
-        return $this->render('CobaseAppBundle:Page:allPosts.html.twig', array(
-            'highfives' => $posts,
-        ));
+        return $this->render('CobaseAppBundle:Page:allPosts.html.twig',
+            $this->mergeVariables(
+                array(
+                    'highfives' => $posts,
+                )
+            )
+        );
     }
 
 }
