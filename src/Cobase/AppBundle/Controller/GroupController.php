@@ -249,7 +249,7 @@ class GroupController extends BaseController
 
         $subscriptionService->subscribe($group, $user);
         
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription has been saved!');
+        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been added.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
@@ -279,7 +279,7 @@ class GroupController extends BaseController
 
         $subscriptionService->unsubscribe($group, $user);
 
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription has been removed!');
+        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been removed.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
