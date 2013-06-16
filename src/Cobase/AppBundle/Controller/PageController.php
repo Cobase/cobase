@@ -9,22 +9,15 @@ class PageController extends BaseController
     public function indexAction()
     {
         $user  = $this->getCurrentUser();
-        
 
         $groupService = $this->getGroupService();
         $maxLatestGroupAmount = $this->container->getParameter('cobase_app.comments.max_latest_groups');
         $groups = $groupService->getLatestPublicGroups($maxLatestGroupAmount);
 
-        $subscriptionService = $this->getSubscriptionService();
-        if ($user) {
-            $subscriptions = $subscriptionService->getSubscriptionsForUser($user);
-        }
-        
         return $this->render('CobaseAppBundle:Page:index.html.twig', 
             $this->mergeVariables(
                 array(
                     'groups'        => $groups,
-                    'subscriptions' => $subscriptions,
                 )
             )
         );

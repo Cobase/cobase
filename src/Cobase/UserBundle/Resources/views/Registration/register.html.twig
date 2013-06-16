@@ -11,7 +11,7 @@
                     {{ form_widget(form) }}
                     <input class="button" type="submit" value="{{ 'registration.submit'|trans({}, 'FOSUserBundle') }}">
                     <ul class="links">
-                        <li><a href="{{ path('CobaseAppBundle_homepage') }}">&laquo; Back to main page</a></li>
+                        <li><a href="{{ path('fos_user_security_login') }}">&laquo; {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
                     </ul>
                 </form>
             </div>

@@ -28,7 +28,7 @@
                     </div>
                     <input type="submit" class="login-submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                     <ul class="links">
-                        <li><a href="/">&laquo; Back to main page</a></li>
+                        <li><a href="{{ path('fos_user_registration_register') }}">&laquo; {{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
                     </ul>
                 </form>
             </div>

@@ -128,7 +128,7 @@
                 {% for subscription in subscriptions %}
                     <li>
                         <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
-                            <i class="icon-table"></i> <span>{{ subscription.group.title }}</span>
+                            <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
                         </a>
                     </li>
                 {% endfor %}
