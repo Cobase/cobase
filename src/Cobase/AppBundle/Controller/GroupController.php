@@ -109,17 +109,19 @@ class GroupController extends BaseController
         
         $groupService    = $this->getGroupService();
         $postService = $this->getPostService();
-
+        $subscriptionService = $this->getSubscriptionService();
+        
         $request  = $this->getRequest();
         $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
         $group    = $groupService->getGroupById($groupId);
 
+        $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+        
         if (!$group) {
             return $this->render('CobaseAppBundle:Group:notfound.html.twig', array());
         }
 
-        $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
         $allowModify   = false;
 
         if ($user) {
@@ -154,16 +156,14 @@ class GroupController extends BaseController
             $this->mergeVariables(
                 array(
                     'group'         => $group,
-                    'latestGroups'  => $latestGroups,
                     'form'          => $form->createView(),
+                    'subscribed'    => $isSubscribed,
                     'allowModify'   => $allowModify,
                 )
             )
         );
     }
 
-  
-    
     /**
      * Modify Group
      *
@@ -227,25 +227,65 @@ class GroupController extends BaseController
     }
 
     /**
-     * Search for Groups
-     *
-     * @return \Symfony\Component\HttpFoundation\Response
+     * Subscribe a user to a group
+     * 
+     * @param $groupId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
-    public function searchAction()
+    public function subscribeAction($groupId)
     {
-        $searchWord = $this->getRequest()->get('searchWord');
         $groupService = $this->getGroupService();
-        $groups       = $groupService->findAllBySearchWord($searchWord);
+        $subscriptionService = $this->getSubscriptionService();
+        
+        $group    = $groupService->getGroupById($groupId);
+        $request  = $this->getRequest();
+        $user     = $this->getCurrentUser();
 
-        return $this->render('CobaseAppBundle:Group:searchResults.html.twig',
-            $this->mergeVariables(
-                array(
-                    'groups' => $groups,
-                )
-            )
-        );
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        $subscriptionService->subscribe($group, $user);
+        
+        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription has been saved!');
+
+        return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
+            $this->mergeVariables()
+        ));
     }
 
+    /**
+     * Unsubscribe a user from a group
+     * 
+     * @param $groupId
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
+     */
+    public function unsubscribeAction($groupId)
+    {
+        $groupService = $this->getGroupService();
+        $subscriptionService = $this->getSubscriptionService();
+
+        $group    = $groupService->getGroupById($groupId);
+        $request  = $this->getRequest();
+        $user     = $this->getCurrentUser();
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        $subscriptionService->unsubscribe($group, $user);
+
+        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription has been removed!');
+
+        return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
+            $this->mergeVariables()
+        ));
+    }
+    
     /**
      * Show all groups
      *

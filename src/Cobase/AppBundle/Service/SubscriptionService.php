@@ -46,8 +46,6 @@ class SubscriptionService
         return $this->repository->findAll();
     }
 
-
-
     /**
      * @param  int $id
      * @return Subscription
@@ -89,8 +87,7 @@ class SubscriptionService
             $user = $this->security->getToken()->getUser();
         }
 
-        $subscription = new Subscriotion();
-        
+        $subscription = new Subscription();
         
         $subscription->setUser($user);
         $subscription->setGroup($group);
@@ -99,6 +96,33 @@ class SubscriptionService
         $this->em->flush();
 
         return $subscription;
+    }
+
+    /**
+     * Delete a subscription
+     *
+     * @param  Group $group
+     * @param  User  $user
+     * @return Group
+     */
+    public function unsubscribe(Group $group, User $user = null)
+    {
+        if (!$user) {
+            $user = $this->security->getToken()->getUser();
+        }
+
+        $entities = $this->repository->findBy(
+            array(
+                'user' => $user, 
+                'group' => $group
+            )
+        );
+
+        foreach($entities as $entity) {
+            $this->em->remove($entity);
+        }
+
+        $this->em->flush();
     }
 
     /**

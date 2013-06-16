@@ -104,9 +104,12 @@ class BaseController extends Controller
      * 
      * @param array pageVariables
      */
-    public function mergeVariables(array $pageVariables)
+    public function mergeVariables(array $pageVariables = null)
     {
-       return array_merge($pageVariables, $this->getCommonVariables()); 
+        if ($pageVariables) {
+            return array_merge($pageVariables, $this->getCommonVariables());    
+        }
+        return $this->getCommonVariables();
     }
 
     /**

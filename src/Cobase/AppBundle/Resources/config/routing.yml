@@ -4,6 +4,14 @@ CobaseAppBundle_homepage:
     requirements:
         _method:  GET
 
+CobaseAppBundle_group_subscribe:
+    pattern:  /group/subscribe/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:subscribe }
+
+CobaseAppBundle_group_unsubscribe:
+    pattern:  /group/unsubscribe/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:unsubscribe }
+    
 CobaseAppBundle_group_new:
     pattern:  /group/new
     defaults: { _controller: CobaseAppBundle:Group:new }

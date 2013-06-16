@@ -4,6 +4,13 @@
     <h2>Home
         <span class="info">Overview of latest activity in groups you have subcribed to.</span>
     </h2>
+
+    {% for flashMessage in app.session.flashbag.get('subscription.transaction') %}
+        <div class="alert alert-success fade in">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+    
     <ul class="item-summary">
         
         <li>
