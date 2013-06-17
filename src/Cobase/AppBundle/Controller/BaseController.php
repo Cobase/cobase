@@ -120,7 +120,6 @@ class BaseController extends Controller
     private function getCommonVariables()
     {
         return array(
-            'siteTitle'    => $this->container->getParameter('site_title'),
             'subscriptions' => $this->getSubscriptions(),
         ); 
     }
