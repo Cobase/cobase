@@ -166,7 +166,7 @@
                                         </li>
                                         {% for group in latestGroups %}
                                             <li class="latestGroupItem">
-                                                <p><h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5></p>
+                                                <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
                                                 <p>{{ group.description }}</p>
                                             </li>
                                         {% endfor %}

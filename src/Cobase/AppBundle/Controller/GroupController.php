@@ -114,6 +114,12 @@ class GroupController extends BaseController
         }
         if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
+                
+                // Convert line breaks to BR tag
+                $content = $post->getContent();
+                $content = str_replace("\n", '<br/>', $content);
+                $post->setContent($content);
+                
                 $postService->savePost($post, $group, $user);
 
                 #$this->sendMail("You have received new high five for an event",
