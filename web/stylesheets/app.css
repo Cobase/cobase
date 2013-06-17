@@ -16,7 +16,7 @@
 
 .item-summary .overview {
     margin-right: 1em;
-    margin-bottom: 0.75em;
+    margin-bottom: 0.25em;
     float: left;
     width: 100px;
 }
@@ -25,6 +25,13 @@
     float: left;
     padding-right: 10px;
     padding-bottom: 10px;
+}
+
+.postData {
+    padding-bottom: 10px;
+}
+
+.postContent {
 }
 
 /* Login/Logout/Register related stuff */

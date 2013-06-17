@@ -20,9 +20,8 @@
             </div>
             <div class="info">
                 <p id="author">{{ post.user.name }}</p>
-                <p>{{ post.content|converturls }}</p>
-                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
-                <p><a class="btn btn-mini group-open" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
+                <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }} in <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
+                <p class="postContent">{{ post.content|converturls }}</p>
             </div>
             <div class="clearfix"></div>
         </li>

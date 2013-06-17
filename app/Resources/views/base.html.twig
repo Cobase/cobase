@@ -155,14 +155,13 @@
                             <ul id="myTab" class="nav nav-tabs three-tabs fancy">
                                 <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
                                 <li><a href="#tab2" data-toggle="tab">People</a></li>
-                                <li><a href="#tab3" data-toggle="tab">Stats</a></li>
+                                <li><a href="#tab3" data-toggle="tab">About</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab1">
                                     <ul class="cards">
                                         <li style="padding: 0em 1em;">
                                             <h3>Latest Groups</h3>
-                                            <p>This is a list of groups that have been created lately.</p>
                                         </li>
                                         {% for group in latestGroups %}
                                             <li class="latestGroupItem">
@@ -186,10 +185,11 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
                                     <ul class="cards">
-                                        <li style="padding: 0em 1em;"><h3>Statistics</h3></li>
-                                        <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
-                                        <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
-                                        <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
+                                        <li style="padding: 0em 1em;"><h3>About this application</h3></li>
+                                        <li>This application serves as a social media for corporations. It allows people within a corporation to spread information to collegues in a modern and sophisticated way. No more sending emails to the whole company and problems with messages disappearing in the mass of data pollution.</li>
+                                        <li>A group consists of its own page in which people can write updates about things related to that specific group. All new messages are rendered at the top of group's page.</li>
+                                        <li>To prevent situation of being flooded with information that is not interesting to a particular user, each user can subscribe to a group. Only those posts from the groups that user is subscribed to will be shown on front page from newest post to the oldest..</li>
+                                        <li>User profile photo is maintained by an external service <a href="http://www.gravatar.com" target="BLANK">Gravatar</a>. It allows you to set a specific avatar for your email and can be used in many 3rd party applications such as this and Wordpress. Once you create a gravatar with the email address used in this application, an avatar will appear next to your posts.</li>
                                     </ul>
                                 </div>
                             </div>
@@ -198,7 +198,7 @@
                     </div>
                     <footer>
                         <hr>
-                        <p>&copy; {{ "now"|date("Y") }} Cobase, all rights reserved.</p>
+                        <p>&copy; {{ "now"|date("Y") }} Artur Gajewski, all rights reserved.</p>
                     </footer>
                 </div>
             </div>
