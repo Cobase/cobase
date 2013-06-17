@@ -13,4 +13,23 @@ use Cobase\UserBundle\Entity\User;
  */
 class UserRepository extends EntityRepository
 {
+    /**
+     * Get latest users
+     * 
+     * @param null $limit
+     * @return array
+     */
+    public function getLatestUsers($limit = null)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b')
+            ->addOrderBy('b.id', 'DESC');
+            
+        if ($limit !== null) {
+            $qb->setMaxResults($limit);
+        }
+
+        return $qb->getQuery()
+            ->getResult();
+    }
 }

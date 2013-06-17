@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  */
 class User extends BaseUser

@@ -175,10 +175,13 @@
                                 <div class="tab-pane fade" id="tab2">
                                     <ul class="cards">
                                         <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
-                                        <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
-                                        <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
-                                        <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
-                                        <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
+                                        {% for user in latestUsers %}
+                                        <li>
+                                            <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
+                                            <p>{{ user.name }}</p>
+                                            <p>{{ user.email }}</p>
+                                        </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="tab3">

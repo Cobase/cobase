@@ -48,4 +48,12 @@ class UserService
         return $this->repository->findAll();
     }
 
+    /**
+     * @return array
+     */
+    public function getLatestUsers($limit = null)
+    {
+        return $this->repository->getLatestUsers($limit);
+    }
+
 }

@@ -21,6 +21,12 @@
     width: 100px;
 }
 
+.latest-users-gravatar {
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
 /* Login/Logout/Register related stuff */
 
 #login-errors {
