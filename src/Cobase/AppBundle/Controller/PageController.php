@@ -13,8 +13,6 @@ class PageController extends BaseController
         $subscriptionService = $this->getSubscriptionService();
         $posts = $subscriptionService->findAllSubscribedPostsForUser($user);
 
-        //var_dump($posts);
-        
         return $this->render('CobaseAppBundle:Page:index.html.twig', 
             $this->mergeVariables(
                 array(
