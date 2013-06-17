@@ -92,11 +92,11 @@
                 <select class="selectnav" id="phone-menu">
                     <option value="{{ path('CobaseAppBundle_homepage') }}"
                             {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %} selected="selected"{% endif %}> Home</option>
-                    <option value="#" > Your groups</option>
+                    <!--option value="#" > Your groups</option-->
                     <option value="{{ path('CobaseAppBundle_homepage') }}"
                             {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
-                    <option value="#" > Browse Users</option>
-                    <option value="#" > Messages</option>
+                    <!--option value="#" > Browse Users</option-->
+                    <!--option value="#" > Messages</option-->
                 </select>
             </div>
             <ul class="nav nav-tabs">
@@ -106,18 +106,18 @@
                 <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
                 </li>
-                <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
+                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-folder-open"></i> <span>My Groups</span></a>
-                </li>
+                </li-->
                 <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
                     <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
                 </li>
-                <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
+                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-user"></i> <span>Browse Users</span></a>
-                </li>
-                <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
+                </li-->
+                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-envelope"></i> <span>Messages</span></a>
-                </li>
+                </li-->
             </ul>
         </div>
         
@@ -127,7 +127,7 @@
                     <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                 </li>
                 {% for subscription in subscriptions %}
-                    <li>
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
                             <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
                         </a>

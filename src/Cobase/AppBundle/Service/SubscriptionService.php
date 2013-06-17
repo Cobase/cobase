@@ -134,4 +134,15 @@ class SubscriptionService
     {
         return $this->repository->findAllForUser($user);
     }
+
+    /**
+     * Get all posts related to groups user has subscribed to
+     * 
+     * @param User $user
+     * @return mixed
+     */
+    public function findAllSubscribedPostsForUser(User $user)
+    {
+        return $this->repository->findAllSubscribedPostsForUser($user);
+    }
 }

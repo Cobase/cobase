@@ -29,17 +29,25 @@ class SubscriptionRepository extends EntityRepository
         )->setParameter('user', $user);
 
         return $query->getResult();
-        
-        
-        $qb = $this->createQueryBuilder('b')
-            ->select('b, c')
-            ->leftJoin('b.group', 'c')
-            ->addOrderBy('b.created', 'DESC')
-            ->andWhere('c.user = ?1')
-            ->setParameter('1', $user);
+    }
 
-        echo $qb->getQuery()->getDQL(); exit; 
-        return $qb->getQuery()
-            ->getResult();
+    /**
+     * Find posts related to groups user has subscribed to
+     *
+     * @param \Cobase\UserBundle\Entity\User $user
+     * @return array
+     */
+    public function findAllSubscribedPostsForUser(User $user)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p
+             FROM Cobase\AppBundle\Entity\Subscription s,
+             Cobase\AppBundle\Entity\Post p
+             WHERE p.group = s.group
+             and s.user = :user ORDER BY p.created DESC'
+        )->setParameter('user', $user);
+
+        return $query->getResult();
     }
 }

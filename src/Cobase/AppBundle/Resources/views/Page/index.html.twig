@@ -13,42 +13,20 @@
     
     <ul class="item-summary">
         
+        {% for post in posts %}
         <li>
             <div class="overview">
-                <img src="{{ gravatar("info@arturgajewski.com") }}"/>
+                <img src="{{ gravatar(post.user.email) }}"/>
             </div>
             <div class="info">
-                <p id="author">Artur Gajewski</p>
-                <p>This is a dummy data not from database, implement list of latest posts from groups that logged in user belongs to.</p>
-                <p id="date">January 10th, 2013 at 7:30am</p>
-                <p><span class="label label-info">New post</span></p>
+                <p id="author">{{ post.user.name }}</p>
+                <p>{{ post.content|converturls }}</p>
+                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
+                <p><a class="btn btn-mini group-open" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
             </div>
             <div class="clearfix"></div>
         </li>
-
-        <li>
-            <div class="overview">
-                <img src="{{ gravatar("info@arturgajewski.com") }}"/>
-            </div>
-            <div class="info">
-                <p id="author">Artur Gajewski</p>
-                <p>This is a dummy data not from database, implement list of latest posts from groups that logged in user belongs to.</p>
-                <p id="date">January 10th, 2013 at 7:30am</p>
-            </div>
-            <div class="clearfix"></div>
-        </li>
-
-        <li>
-            <div class="overview">
-                <img src="{{ gravatar("info@arturgajewski.com") }}"/>
-            </div>
-            <div class="info">
-                <p id="author">Artur Gajewski</p>
-                <p>This is a dummy data not from database, implement list of latest posts from that logged in user belongs to.</p>
-                <p id="date">January 10th, 2013 at 7:30am</p>
-            </div>
-            <div class="clearfix"></div>
-        </li>
+        {% endfor %}
 
     </ul>
 {% endblock content %}
