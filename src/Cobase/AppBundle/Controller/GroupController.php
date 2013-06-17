@@ -25,9 +25,6 @@ class GroupController extends BaseController
         $group = new Group();
         $user  = $this->getCurrentUser();
         $form = $this->createForm(new GroupType(), $group);
-        $service = $this->getGroupService();
-
-        $latestGroups = $service->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
 
         $gravatarGiven = true;
         if ($user->getGravatar() == null) {
@@ -40,7 +37,6 @@ class GroupController extends BaseController
                 array(
                     'form'     => $form->createView(),
                     'gravatar' => $gravatarGiven,
-                    'latestGroups' => $latestGroups,
                 )
             )
         );
@@ -60,8 +56,6 @@ class GroupController extends BaseController
         $user    = $this->getCurrentUser();
         $service = $this->getGroupService();
 
-        $latestGroups = $service->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
-
         if ($this->getRequest()->getMethod() != 'POST') {
             return $this->redirect($this->generateUrl('CobaseAppBundle_group_new'));
         }
@@ -71,7 +65,6 @@ class GroupController extends BaseController
                 $this->mergeVariables(
                     array(
                         'form' => $form->createView(),
-                        'latestGroups' => $latestGroups,
                     )
                 )
             );
@@ -81,20 +74,10 @@ class GroupController extends BaseController
             ->generate('CobaseAppBundle_group_view', array('groupId' => $group->getShortUrl()), true);
 
         $service->saveGroup($group, $user);
-  
-        if ($group->getIsPublic()) {
-            return $this->redirect($this->generateUrl('CobaseAppBundle_homepage'));
-        } else {
-            return $this->render('CobaseAppBundle:Group:unlisted-info.html.twig',
-                $this->mergeVariables(
-                    array(
-                        'group'        => $group,
-                        'groupUrl'     => $groupUrl,
-                        'latestGroups' => $latestGroups,
-                    )
-                )
-            );
-        }
+
+        $this->get('session')->getFlashBag()->add('group.created', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
+        
+        return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
     }
 
     /**

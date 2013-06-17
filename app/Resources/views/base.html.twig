@@ -103,8 +103,8 @@
                 <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
                     <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                 </li>
-                <li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
-                    <a href="#" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
+                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %}class="active"{% endif %}>
+                    <a href="{{ path('CobaseAppBundle_group_new') }}" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
                 </li>
                 <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
                     <a href="#" ><i class="icon-folder-open"></i> <span>My Groups</span></a>

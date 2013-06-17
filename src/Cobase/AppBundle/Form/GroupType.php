@@ -10,15 +10,31 @@ class GroupType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title')
-            ->add('description')
+            ->add('title', null,
+                array(
+                    'attr' => array('style' => 'width:90%'),
+                    'required' => true
+                )
+            )
+            ->add('description', null,
+                array(
+                    'attr' => array('style' => 'width:90%'),
+                    'required' => true
+                )
+            )
             ->add('isPublic', null,
                 array(
                     'attr' => array('class' => 'checkbox-field'),
                     'label' => 'Public group',
-                    'required' => false)
+                    'required' => false
                 )
-            ->add('tags');
+            )
+            ->add('tags', null,
+                array(
+                    'attr' => array('style' => 'width:50%'),
+                    'required' => true
+                )
+            );
         ;
     }
 

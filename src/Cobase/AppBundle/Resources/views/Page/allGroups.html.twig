@@ -3,6 +3,12 @@
 {% block content %}
 <div class="row-fluid">
     <h2>Browse all groups</h2>
+
+    {% for flashMessage in app.session.flashbag.get('group.created') %}
+        <div class="alert alert-success fade in">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
     
     <ul class="item-summary">
         {% for group in groups %}
@@ -10,7 +16,7 @@
                 <div class="overview">
                     <p class="main-detail">{{ group.created|date('M d') }}</p>
                     <p class="main-detail">{{ group.created|date('Y') }}</p>
-                    <p class="sub-detail">at {{ group.created|date('h:m') }}</p>
+                    <p class="sub-detail">at {{ group.created|date('H:i') }}</p>
                     <span class="label label-info">New Group</span>
                 </div>
                 <div class="info">
