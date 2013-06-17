@@ -149,98 +149,32 @@
                         </div>
                     </div>
                     <div class="span4 sidebar">
-                        {% block commentsWidget %}
-                        <div class="widget">
-                            <h2>Latest Comments</h2>
-                            <ul class="cards">
-                                <li>
-                                    <p class="title">Ashley Jacobs</p>
-                                    <div class="img">
-                                        <img src="images/faces/1b.png">
-                                        <div class="label label-info">Pro</div>
-                                    </div>
-                                    <p class="info-text">Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.</p>
-                                    <div class="stats">
-                                        <p class="time">5 minutes ago</p>
-                                        <span>15 <i class="icon-pushpin"></i></span>
-                                        <span>27 <i class="icon-comment"></i></span>
-                                        <span>158 <i class="icon-eye-open"></i></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p class="title">Sarah Whitman</p>
-                                    <div class="img">
-                                        <img src="images/faces/2b.png">
-                                        <div class="label label-warning">Free</div>
-                                    </div>
-                                    <p class="info-text">Trust fund seitan letterpress, keytar raw denim keffiyeh etsy art party before they sold out master.</p>
-                                    <div class="stats">
-                                        <p class="time">29 minutes ago</p>
-                                        <span>10 <i class="icon-pushpin"></i></span>
-                                        <span>19 <i class="icon-comment"></i></span>
-                                        <span>58 <i class="icon-eye-open"></i></span>
-                                    </div>
-                                </li>
-                                <li>
-                                    <p class="title">Connor Adams</p>
-                                    <div class="img">
-                                        <img src="images/faces/1a.png">
-                                        <div class="label label-info">Pro</div>
-                                    </div>
-                                    <p class="info-text">Anderson tofu before they sold out mcsweeney's organic lomo retro fanny pack.</p>
-                                    <div class="stats">
-                                        <p class="time">Yesterday</p>
-                                        <span>25 <i class="icon-pushpin"></i></span>
-                                        <span>39 <i class="icon-comment"></i></span>
-                                        <span>252 <i class="icon-eye-open"></i></span>
-                                    </div>
-                                </li>
-                                <li class="more">
-                                    <a href="#">Show All</a>
-                                </li>
-                            </ul>
-                        </div>
-                        {% endblock %}
-                    
+                       
                         {% block tabsWidget %}
                         <div class="widget">
                             <ul id="myTab" class="nav nav-tabs three-tabs fancy">
-                                <li class="active"><a href="#tab1" data-toggle="tab">New Groups</a></li>
-                                <li><a href="#tab2" data-toggle="tab">New People</a></li>
+                                <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
+                                <li><a href="#tab2" data-toggle="tab">People</a></li>
                                 <li><a href="#tab3" data-toggle="tab">Stats</a></li>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane fade in active" id="tab1">
                                     <ul class="cards">
-                                        <li>
-                                            <p class="pull-right text-error">$20,500</p>
-                                            <a href="#"><p class="title">Care Hospital</p></a>
-                                            <p class="info">Sales Rating: 86%</p>
+                                        <li style="padding: 0em 1em;">
+                                            <h3>Latest Groups</h3>
+                                            <p>This is a list of groups that have been created lately.</p>
                                         </li>
-                                        <li>
-                                            <p class="pull-right text-info">$9,400</p>
-                                            <a href="#"><p class="title">New Automotive</p></a>
-                                            <p class="info">Sales Rating: 72%</p>
-                                        </li>
-                                        <li>
-                                            <p class="pull-right text-success">$60,200</p>
-                                            <a href="#"><p class="title">Money Financial</p></a>
-                                            <p class="info">Sales Rating: 92%</p>
-                                        </li>
-                                        <li>
-                                            <p class="pull-right text-important">$8,640</p>
-                                            <a href="#"><p class="title">Custom Insurance</p></a>
-                                            <p class="info">Sales Rating: 84%</p>
-                                        </li>
-                                        <li>
-                                            <p class="pull-right text-warning">$36,700</p>
-                                            <a href="#"><p class="title">New Technology</p></a>
-                                            <p class="info">Sales Rating: 66%</p>
-                                        </li>
+                                        {% for group in latestGroups %}
+                                            <li class="latestGroupItem">
+                                                <p><h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5></p>
+                                                <p>{{ group.description }}</p>
+                                            </li>
+                                        {% endfor %}
                                     </ul>
                                 </div>
                                 <div class="tab-pane fade" id="tab2">
                                     <ul class="cards">
+                                        <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
                                         <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
                                         <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
                                         <li><p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid oranges apples banana.</p><a class="btn btn-mini" href="#">Show me</a></li>
@@ -249,7 +183,7 @@
                                 </div>
                                 <div class="tab-pane fade" id="tab3">
                                     <ul class="cards">
-                                        <li style="padding: 0em 1em;"><h3>This is something interesting.</h3></li>
+                                        <li style="padding: 0em 1em;"><h3>Statistics</h3></li>
                                         <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
                                         <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>
                                         <li>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation labore velit, blog sartorial PBR leggings next level wes anderson artisan.</li>

@@ -121,6 +121,7 @@ class BaseController extends Controller
     {
         return array(
             'subscriptions' => $this->getSubscriptions(),
+            'latestGroups'   => $this->getGroupService()->getLatestPublicGroups(10)
         ); 
     }
 

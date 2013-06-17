@@ -65,6 +65,14 @@ ul.links, li {
     width: 97%;
 }
 
+/* Latest Groups info box related */
+
+.cards li.latestGroupItem {
+    padding: 0px;
+    margin: 0px;
+    padding-left: 1em;
+}
+
 /* Common */
 .strong {
     font-weight: bold;
