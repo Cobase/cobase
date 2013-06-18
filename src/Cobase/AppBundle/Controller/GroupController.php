@@ -131,7 +131,7 @@ class GroupController extends BaseController
                 $this->get('session')->getFlashBag()->add('post.saved', 'Your post has been sent, thank you!');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', 
-                    array(
+               	    array(
                         'groupId' => $groupId,
                     )
                 ));
