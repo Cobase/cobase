@@ -23,7 +23,7 @@
                 <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }} in <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
                 <p class="postContent">{{ post.content|converturls }}</p>
                 {% if is_granted('EDIT', post) %}
-                    <p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p>
+                    <!--p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p-->
                 {% endif %}
             </div>
             <div class="clearfix"></div>

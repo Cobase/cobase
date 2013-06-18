@@ -62,7 +62,7 @@
                 <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
                 <p class="postContent">{{ post.content|converturls }}</p>
                 {% if is_granted('EDIT', post) %}
-                    <p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p>
+                    <!-- p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p-->
                 {% endif %}
                 <!--p><span class="label label-info">New post</span></p-->
             </div>
