@@ -15,9 +15,9 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface
         $user1->setUsernameCanonical('demo1');
         $user1->setPlainPassword('demo1');
         $user1->setName('Morgan Freeman');
-        $user1->setGravatar('dev1@developer.me');
-        $user1->setEmail('dev1@developer.me');
-        $user1->setEmailCanonical('dev1@developer.me');
+        $user1->setGravatar('demo1@developer.me');
+        $user1->setEmail('demo1@developer.me');
+        $user1->setEmailCanonical('demo1@developer.me');
         $user1->setEnabled(true);
         $user1->setLocked(false);
         $user1->setExpired(false);
@@ -28,9 +28,9 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface
         $user2->setUsernameCanonical('demo2');
         $user2->setPlainPassword('demo2');
         $user2->setName('Ray Charles');
-        $user2->setGravatar('dev2@developer.me');
-        $user2->setEmail('dev2@developer.me');
-        $user2->setEmailCanonical('dev2@developer.me');
+        $user2->setGravatar('demo2@developer.me');
+        $user2->setEmail('demo2@developer.me');
+        $user2->setEmailCanonical('demo2@developer.me');
         $user2->setEnabled(true);
         $user2->setLocked(false);
         $user2->setExpired(false);
@@ -41,9 +41,9 @@ class UserFixtures extends AbstractFixture implements OrderedFixtureInterface
         $user3->setUsernameCanonical('demo3');
         $user3->setPlainPassword('demo3');
         $user3->setName('Dave Gahan');
-        $user3->setGravatar('dev3@developer.me');
-        $user3->setEmail('dev3@developer.me');
-        $user3->setEmailCanonical('dev3@developer.me');
+        $user3->setGravatar('demo3@developer.me');
+        $user3->setEmail('demo3@developer.me');
+        $user3->setEmailCanonical('demo3@developer.me');
         $user3->setEnabled(true);
         $user3->setLocked(false);
         $user3->setExpired(false);
