@@ -59,8 +59,11 @@
             </div>
             <div class="info">
                 <p id="author">{{ post.user.name }}</p>
-                <p>{{ post.content|converturls }}</p>
-                <p id="date">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
+                <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
+                <p class="postContent">{{ post.content|converturls }}</p>
+                {% if is_granted('EDIT', post) %}
+                    <p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p>
+                {% endif %}
                 <!--p><span class="label label-info">New post</span></p-->
             </div>
             <div class="clearfix"></div>

@@ -47,6 +47,12 @@ then run the following commands:
 
     $ app/console doctrine:database:create
 
+# Setting up ACL
+
+In order to use ACL, you need to initialize it.
+
+	$ app/console acl:init
+
 #Database migrations
 
 This app comes bundled with Doctrine Migrations bundle, which simplifies the

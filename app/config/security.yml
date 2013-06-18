@@ -19,6 +19,9 @@ security:
             logout:       true
             anonymous:    true
 
+    acl:
+        connection: default
+
     access_control:
         - { path: ^/$,          role: ROLE_USER }
         - { path: ^/login$,     role: IS_AUTHENTICATED_ANONYMOUSLY }

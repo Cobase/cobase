@@ -9,6 +9,10 @@ use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 
 /**
  * Group controller.
@@ -122,6 +126,18 @@ class GroupController extends BaseController
                 
                 $postService->savePost($post, $group, $user);
 
+                // creating the ACL
+                $aclProvider = $this->get('security.acl.provider');
+                $objectIdentity = ObjectIdentity::fromDomainObject($post);
+                $acl = $aclProvider->createAcl($objectIdentity);
+
+                // retrieving the security identity of the currently logged-in user
+                $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+                // grant owner access
+                $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+                $aclProvider->updateAcl($acl);
+                
                 #$this->sendMail("You have received new high five for an event",
                 #    $group->getUser()->getEmail(),
                 #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
