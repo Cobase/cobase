@@ -66,10 +66,8 @@ class GroupController extends BaseController
 
         if (!$this->processForm($form)) {
             return $this->render('CobaseAppBundle:Group:create.html.twig', 
-                $this->mergeVariables(
-                    array(
-                        'form' => $form->createView(),
-                    )
+                array(
+                    'form' => $form->createView(),
                 )
             );
         }
