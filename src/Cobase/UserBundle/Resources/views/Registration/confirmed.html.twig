@@ -1,27 +1,23 @@
-{% extends '::base.html.twig' %}
+{% extends '::blank.html.twig' %}
 
 {% block content %}
-    <h2 class="p3">
-        <span class="color-1">Register</span> an account
-    </h2>
-
-    {% block fos_user_content %}
-        <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
-        {% if app.session is not empty %}
-            {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-            {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">{{ 'registration.back'|trans({}, 'FOSUserBundle') }}</a></p>{% endif %}
-        {% endif %}
-    {% endblock fos_user_content %}
+    <div class="row-fluid login">
+        <div class="dialog">
+            <div class="block" style="padding: 10px">
+                <div class="block-header">
+                    <h2>Register</h2>
+                </div>
+                {% block fos_user_content %}
+                    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}, 'FOSUserBundle') }}</p>
+                    {% if app.session is not empty %}
+                        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
+                        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">&laquo; Go to main page</a></p>{% endif %}
+                    {% endif %}
+                {% endblock fos_user_content %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}
 
-{% block sidenav %}
-    <h2 class="p3"><span class="color-1">Right</span> column</h2>
-    <ul class="list-1">
-        <li><a href="#">Link to something</a></li>
-        <li><a href="#">Link to something</a></li>
-    </ul>
-    <div class="form-search">
-        <h2><span class="color-1 editable">Some </span>text</h2>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-    </div>
-{% endblock sidenav %}
+
+
