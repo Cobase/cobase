@@ -51,7 +51,7 @@ then run the following commands:
 
 In order to use ACL, you need to initialize it.
 
-	$ app/console acl:init
+	$ app/console init:acl
 
 #Database migrations
 
