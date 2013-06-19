@@ -67,6 +67,11 @@ class PostController extends BaseController
             );
         }
 
+        // If not updating, convert BR tags to line breaks
+        if ($request->getMethod() !== 'POST') {
+            $post->setContent(preg_replace('/\<br\/\>/', "\n", $post->getContent()));
+        }
+        
         $form = $this->createForm(new PostType(), $post);
 
         if ($request->getMethod() == 'POST') {
@@ -76,7 +81,8 @@ class PostController extends BaseController
                 $content = $post->getContent();
                 $content = str_replace("\n", '<br/>', $content);
                 $post->setContent($content);
-                
+
+                // Save the posti modifications
                 $postService->savePost($post);
 
                 $this->get('session')->getFlashBag()->add('post.message', 'Your changes to the post have been saved.');
@@ -88,7 +94,7 @@ class PostController extends BaseController
                 ));
             }
         }
-
+ 
         return $this->render('CobaseAppBundle:Post:modify.html.twig',
             $this->mergeVariables(
                 array(
