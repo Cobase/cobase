@@ -107,13 +107,6 @@ class GroupController extends BaseController
             return $this->render('CobaseAppBundle:Group:notfound.html.twig', array());
         }
 
-        $allowModify   = false;
-
-        if ($user) {
-            if ($group->getUser() === $user) {
-                $allowModify = true;
-            }
-        }
         if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
                 
@@ -162,7 +155,6 @@ class GroupController extends BaseController
                     'group'         => $group,
                     'form'          => $form->createView(),
                     'subscribed'    => $isSubscribed,
-                    'allowModify'   => $allowModify,
                 )
             )
         );
