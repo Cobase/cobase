@@ -6,7 +6,7 @@ new messages to them. It also allows people to exchange private messages.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
-Have a look at fully working demo at http://cobase.futurice.com and register yourself an account.
+Have a look at fully working demo at http://cobase.featurice.com and register yourself an account.
 
 #Installation
 
