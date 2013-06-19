@@ -183,21 +183,15 @@ class GroupController extends BaseController
         $request  = $this->getRequest();
         $user     = $this->getCurrentUser();
 
-        $latestGroups = $groupService->getLatestPublicGroups($this->container->getParameter('cobase_app.comments.max_latest_groups'));
-
         if (!$group) {
             return $this->render('CobaseAppBundle:Group:notfound.html.twig',
-                $this->mergeVariables(
-                    array('latestGroups' => $latestGroups)
-                )
+                $this->mergeVariables()
             );
         }
 
         if ($group->getUser() !== $user) {
             return $this->render('CobaseAppBundle:Group:noaccess.html.twig',
-                $this->mergeVariables(
-                    array('latestGroups' => $latestGroups)
-                )
+                $this->mergeVariables()
             );
         }
 
@@ -221,7 +215,6 @@ class GroupController extends BaseController
             $this->mergeVariables(
                 array(
                     'group'         => $group,
-                    'latestGroups'  => $latestGroups,
                     'form'          => $form->createView(),
                 )
             )

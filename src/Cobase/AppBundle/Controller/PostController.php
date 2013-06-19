@@ -53,17 +53,13 @@ class PostController extends BaseController
 
         if (!$post) {
             return $this->render('CobaseAppBundle:Post:notfound.html.twig',
-                $this->mergeVariables(
-                    array()
-                )
+                $this->mergeVariables()
             );
         }
 
         if ($post->getUser() !== $user) {
             return $this->render('CobaseAppBundle:Post:noaccess.html.twig',
-                $this->mergeVariables(
-                    array()
-                )
+                $this->mergeVariables()
             );
         }
 
