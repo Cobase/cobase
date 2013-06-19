@@ -126,12 +126,23 @@
                 <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
                     <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                 </li>
+                
+                <p class="subscriptions-head">Subscriptions:</p>
+                
                 {% for subscription in subscriptions %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
                             <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
                         </a>
                     </li>
+                {% else %}
+                    <p class="subscriptions-info">
+                        You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
+                    </p>
+
+                    <p class="subscriptions-info">
+                        Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
+                    </p>
                 {% endfor %}
             </ul>
         </div>
@@ -167,6 +178,7 @@
                                             <li class="latestGroupItem">
                                                 <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
                                                 <p>{{ group.description }}</p>
+                                                <p>{{ group.posts|length }} post(s)</p>
                                             </li>
                                         {% endfor %}
                                     </ul>

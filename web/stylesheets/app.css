@@ -1,3 +1,16 @@
+/* Navigation related elements */
+
+.subscriptions-head {
+    padding-left: 15px;
+    padding-top: 25px;
+}
+
+.subscriptions-info {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+}
+
 /* Info wall related message elements */
 
 .info p { 

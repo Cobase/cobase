@@ -26,7 +26,7 @@
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <hr/>
     
-        {% for flashMessage in app.session.flashbag.get('post.saved') %}
+        {% for flashMessage in app.session.flashbag.get('group.message') %}
             <div class="alert alert-success fade in">
                 {{ flashMessage }}
             </div>
@@ -62,7 +62,9 @@
                 <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
                 <p class="postContent">{{ post.content|converturls }}</p>
                 {% if is_granted('EDIT', post) %}
-                    <!-- p class="postOptions"><a href="#">Edit</a> | <a href="#">Delete</a></p-->
+                    <p class="postOptions">
+                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
+                    </p>
                 {% endif %}
                 <!--p><span class="label label-info">New post</span></p-->
             </div>

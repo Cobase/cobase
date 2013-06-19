@@ -120,9 +120,12 @@ class GroupController extends BaseController
                 // Convert line breaks to BR tag
                 $content = $post->getContent();
                 $content = str_replace("\n", '<br/>', $content);
-                $post->setContent($content);
                 
-                $postService->savePost($post, $group, $user);
+                $post->setContent($content);
+                $post->setGroup($group);
+                $post->setUser($user);
+                
+                $postService->savePost($post);
 
                 // creating the ACL
                 $aclProvider = $this->get('security.acl.provider');
@@ -142,7 +145,7 @@ class GroupController extends BaseController
                 #        array('event' => $event)
                 #    ));
 
-                $this->get('session')->getFlashBag()->add('post.saved', 'Your post has been sent, thank you!');
+                $this->get('session')->getFlashBag()->add('group.message', 'Your post has been sent, thank you!');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', 
                	    array(
@@ -204,13 +207,11 @@ class GroupController extends BaseController
             if ($this->processForm($form)) {
                 $groupService->saveGroup($group, $user);
 
-                $this->get('session')->getFlashBag()->add('group.saved', 'Your changes have been saved!');
+                $this->get('session')->getFlashBag()->add('group.message', 'Your changes to the group have been saved.');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
-                    $this->mergeVariables(
-                        array(
-                            'groupId' => $groupId,
-                        )
+                    array(
+                        'groupId' => $groupId,
                     )
                 ));
             }

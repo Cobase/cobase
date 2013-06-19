@@ -21,7 +21,7 @@ class Post
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="groups")
+     * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

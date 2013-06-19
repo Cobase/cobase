@@ -105,14 +105,11 @@ class PostService
      * @param  User  $user
      * @return Group
      */
-    public function savePost(Post $post, Group $group, User $user = null)
+    public function savePost(Post $post)
     {
-        if (!$user) {
-            $user = $this->security->getToken()->getUser();
+        if (!$post->getUser()) {
+            $post->setUser($this->security->getToken()->getUser());
         }
-
-        $post->setUser($user);
-        $post->setGroup($group);
 
         $this->em->persist($post);
         $this->em->flush();

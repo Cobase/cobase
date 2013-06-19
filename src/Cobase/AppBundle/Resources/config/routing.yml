@@ -43,10 +43,14 @@ CobaseAppBundle_all_groups_with_sorting:
 CobaseAppBundle_all_posts:
     pattern:  /posts
     defaults: { _controller: CobaseAppBundle:Post:showAll }
-
+    
 CobaseAppBundle_all_posts_with_sorting:
     pattern:  /posts/{orderType}
     defaults: { _controller: CobaseAppBundle:Post:showAll }
+
+CobaseAppBundle_post_modify:
+    pattern:  /post/modify/{postId}
+    defaults: { _controller: CobaseAppBundle:Post:modify }
 
 CobaseAppBundle_users:
     pattern:  /users
