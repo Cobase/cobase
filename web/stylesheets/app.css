@@ -47,6 +47,10 @@
 .postContent {
 }
 
+.noPosts {
+    padding-top: 20px;
+}
+
 /* Login/Logout/Register related stuff */
 
 #login-errors {
