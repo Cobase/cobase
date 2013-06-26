@@ -10,8 +10,7 @@ Have a look at fully working demo at http://cobase.featurice.com and register yo
 
 You are welcome to create an account, but you can user the following account for demo:
 
-Username: demo1
-Password: demo1
+Username and password: demo1 / demo1
 
 You can also checkout screenshots of the application:
 
