@@ -1,3 +1,15 @@
+/* Login/Registration related*/
+
+h1.frontLogo {
+    color: #646475;
+    text-shadow: 1px 1px 0px #fff;
+    font-size: 2em;
+    font-family: sans-serif;
+    line-height: 1em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+}
+
 /* Navigation related elements */
 
 .subscriptions-head {
