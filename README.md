@@ -142,7 +142,11 @@ To run a test, go to your project's folder and run following command:
 
 #Contributing
 
-Anyone is free to join the team and develop Cobase. Let us know what issue from the Github's 
+Anyone is free to join the team and develop Cobase. Let me know what issue from the Github's 
 issue list you are willing to work on.
 
 Enjoy and welcome to the project!
+
+Artur Gajewski
+Email: info@arturgajewski.com
+Skype: artur.t.gajewski
