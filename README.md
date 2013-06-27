@@ -34,13 +34,9 @@ http://cobase.featurice.com/screenshots/screen5.png
 
 #Upcoming features
 
-- Users can delete groups they have created
-- Comprehensive user profiles
-- Allow users to upload own avatars in addition to already implemented Gravatar
-- Allow email notifications to subscribed groups when someone posts to those groups
-- Amount of views per group
-- Post "like/unlike" feature
-- Possibility to move post to another group
+You are more than welcome to join us to make Cobase even better. Please rever to the issues list to see what is coming up and if you would be able to pitch in.
+
+https://github.com/CoBase/cobase/issues
 
 #Installation
 
