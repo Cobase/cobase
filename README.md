@@ -20,6 +20,27 @@ http://cobase.featurice.com/screenshots/screen3.png
 http://cobase.featurice.com/screenshots/screen4.png
 http://cobase.featurice.com/screenshots/screen5.png
 
+#Current features
+
+- User management with FOSUserBundle: Login, Registration, Confirmation, Password retrieval
+- ACL for entities
+- Gravatar implementation for using centralized avatars
+- Users can create groups
+- Users can post to groups
+- Users can modify or delete their own posts
+- Users can subscribe/unsubscribe to groups
+- Each user has their own wall with all posts from the groups they have subscribed to in chronological order
+- Nice user interface with clear visual representation of categories
+
+#Upcoming features
+
+- Comprehensive user profiles
+- Allow users to upload own avatars in addition to already implemented Gravatar
+- Allow email notifications to subscribed groups when someone posts to those groups
+- Amount of views per group
+- Post "like/unlike" feature
+- Possibility to move post to another group
+
 #Installation
 
 Fork the project into your Github account and then clone it into your development environment.
