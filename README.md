@@ -34,6 +34,7 @@ http://cobase.featurice.com/screenshots/screen5.png
 
 #Upcoming features
 
+- Users can delete groups they have created
 - Comprehensive user profiles
 - Allow users to upload own avatars in addition to already implemented Gravatar
 - Allow email notifications to subscribed groups when someone posts to those groups
