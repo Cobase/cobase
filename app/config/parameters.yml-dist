@@ -1,7 +1,12 @@
 parameters:
     
+    # Title of the site
     site_title: "Cobase"
     
+    # Should the registration be enabled?
+    allow_registration: true
+    
+    # Database configurations
     database_driver:   pdo_mysql
     database_host:     127.0.0.1
     database_port:     ~
@@ -9,10 +14,14 @@ parameters:
     database_user:     cobase
     database_password: secret
 
+	# Mail server settings
     mailer_transport:  smtp
     mailer_host:       localhost
     mailer_user:       ~
     mailer_password:   ~
 
+	# Locale of the application
     locale:            en
+    
+    # Secret for the passwords
     secret:            this_is_not_the_secret_modify_this

@@ -20,6 +20,7 @@ twig:
     strict_variables: %kernel.debug%
     globals:
         site_title: %site_title%
+        allow_registration: %allow_registration%
 
 # Assetic Configuration
 assetic:
