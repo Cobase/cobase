@@ -148,5 +148,7 @@ issue list you are willing to work on.
 Enjoy and welcome to the project!
 
 Artur Gajewski
-Email: info@arturgajewski.com
+
+info@arturgajewski.com
+
 Skype: artur.t.gajewski
