@@ -1,8 +1,14 @@
 Cobase
 ======
 
-Cobase is a social media portal for corporations. It allows staff to exchange information by creating groups and posting
-new messages to them. It also allows people to exchange private messages.
+Cobase is an open source alternative to corporate social media portals such as Yammer and Moovia. It allows staff to 
+exchange information by creating groups and posting new messages to them. No more sending mass email to the whole 
+company, instead direct your messages to the group of people that actually are interested in the content.
+
+Each user can subscribe to those groups that are of his or her interest. For example, a developer can subscribe to a group 
+called 'PHP development news'. When someone posts to that group, he/she will receive the same message on the front page's 
+summary section, showing all posts from the groups the user has subscribed to. This way, people won't get distracted by 
+messages not related to their work or interest.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
@@ -19,6 +25,12 @@ http://cobase.featurice.com/screenshots/screen2.png
 http://cobase.featurice.com/screenshots/screen3.png
 http://cobase.featurice.com/screenshots/screen4.png
 http://cobase.featurice.com/screenshots/screen5.png
+
+#Requirements
+
+- PHP 5.3 or later
+- MySQL
+- Symfony 2
 
 #Current features
 
