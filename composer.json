@@ -1,6 +1,6 @@
 {
-    "name": "YouHighFiveMe/youhighfiveme",
-    "description": "The \"YouHighFiveMe\" application",
+    "name": "CoBase/cobase",
+    "description": "Cobase, open source coroprate social media portal",
     "autoload": {
         "psr-0": { "": "src/" }
     },
