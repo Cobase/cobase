@@ -55,3 +55,7 @@ CobaseAppBundle_post_modify:
 CobaseAppBundle_users:
     pattern:  /users
     defaults: { _controller: CobaseAppBundle:User:showAll }
+    
+CobaseAppBundle_user_view:
+    pattern:  /user/{username}
+    defaults: { _controller: CobaseAppBundle:User:view }

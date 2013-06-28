@@ -28,4 +28,29 @@ class UserController extends BaseController
         );
     }
 
+    /**
+     * View user's page, groups and posts created
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function viewAction($username)
+    {
+        $service = $this->getUserService();
+        
+        $user = $service->getUserByUsername($username);
+        
+        $userGroups = $service->findAllGroupsByUser($user);
+        $userPosts = $service->findAllPostsByUser($user);
+        
+        return $this->render('CobaseAppBundle:User:view.html.twig',
+            $this->mergeVariables(
+                array(
+                    'user'       => $user,
+                    'userGroups' => $userGroups,
+                    'userPosts'  => $userPosts,
+                )
+            )
+        );
+    }
+
 }

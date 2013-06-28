@@ -58,7 +58,7 @@
                 <img src="{{ gravatar(post.user.email) }}"/>
             </div>
             <div class="info">
-                <p id="author">{{ post.user.name }}</p>
+                <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
                 <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
                 <p class="postContent">{{ post.content|converturls }}</p>
                 {% if is_granted('EDIT', post) %}

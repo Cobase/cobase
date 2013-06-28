@@ -1,0 +1,57 @@
+{% extends '::base.html.twig' %}
+
+{% block content %}
+    <h2>
+        <div class="overview">
+            <img src="{{ gravatar(user.email) }}"/>
+        </div>
+        {{ user.name }}
+        <span class="info">{{ user.email }}</span>
+    </h2>
+    
+    <ul class="item-summary">
+        <h3>Posts created by {{ user.name }}</h3>
+        {% for post in userPosts|reverse %}
+            <li>
+                <div class="info">
+                    <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }}</p>
+                    <p class="postContent">{{ post.content|converturls }}</p>
+                    {% if is_granted('EDIT', post) %}
+                        <p class="postOptions">
+                            <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
+                        </p>
+                    {% endif %}
+                </div>
+                <div class="clearfix"></div>
+            </li>
+        {% else %}
+            <li>
+                <p class="no-data">Currently there are no posts by this user.</p>
+            </li>
+        {% endfor %}
+
+        <h3>Groups created by {{ user.name }}</h3>
+        {% for group in userGroups|reverse %}
+            <li>
+                <div class="overview">
+                    <p class="main-detail">{{ group.created|date('M d') }}</p>
+                    <p class="main-detail">{{ group.created|date('Y') }}</p>
+                    <p class="sub-detail">at {{ group.created|date('H:i') }}</p>
+                </div>
+                <div class="info">
+                    <p class="group-title">{{ group.title }}</p>
+                    <p class="group-description">{{ group.description }}</p>
+                    <a class="btn btn-mini group-open" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">View {{ group.countPosts }} post(s)</a>
+                </div>
+                <div class="clearfix"></div>
+            </li>
+        {% else %}
+            <li>
+                <p class="no-data">Currently this user has not created any groups.</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock content %}
+
+
+

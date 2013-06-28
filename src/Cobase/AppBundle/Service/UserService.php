@@ -7,9 +7,7 @@ use Doctrine\ORM\EntityManager,
     Symfony\Component\Security\Core\SecurityContext,
     Cobase\AppBundle\Entity\Group,
     Cobase\AppBundle\Entity\Post,
-    Cobase\AppBundle\Entity\QuickHighfive,
     Cobase\UserBundle\Entity\User;
-
 
 class UserService
 {
@@ -54,6 +52,36 @@ class UserService
     public function getLatestUsers($limit = null)
     {
         return $this->repository->getLatestUsers($limit);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function findAllGroupsByUser(User $user)
+    {
+        return $this->repository->findAllGroupsByUser($user);
+    }
+
+    /**
+     * @param User $user
+     * @return mixed
+     */
+    public function findAllPostsByUser(User $user)
+    {
+        return $this->repository->findAllPostsByUser($user);
+    }
+
+    /**
+     * @return array
+     */
+    public function getUserByUsername($username)
+    {
+        return $this->repository->findOneBy(
+            array(
+                'username' => $username,
+            )
+        );
     }
 
 }

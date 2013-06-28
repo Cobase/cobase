@@ -32,4 +32,40 @@ class UserRepository extends EntityRepository
         return $qb->getQuery()
             ->getResult();
     }
+
+    /**
+     * Find groups created by a user
+     *
+     * @param \Cobase\UserBundle\Entity\User $user
+     * @return array
+     */
+    public function findAllGroupsByUser(User $user)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT g
+             FROM Cobase\AppBundle\Entity\Group g 
+             WHERE g.user = :user ORDER BY g.created ASC'
+        )->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
+    /**
+     * Find posts created by a user
+     *
+     * @param \Cobase\UserBundle\Entity\User $user
+     * @return array
+     */
+    public function findAllPostsByUser(User $user)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT p
+             FROM Cobase\AppBundle\Entity\Post p 
+             WHERE p.user = :user ORDER BY p.created ASC'
+        )->setParameter('user', $user);
+
+        return $query->getResult();
+    }
 }
