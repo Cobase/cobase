@@ -104,7 +104,9 @@ class GroupController extends BaseController
         $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
         
         if (!$group) {
-            return $this->render('CobaseAppBundle:Group:notfound.html.twig', array());
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
         }
 
         if ($request->getMethod() == 'POST') {
