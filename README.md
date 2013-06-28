@@ -64,6 +64,11 @@ Copy the distribution file for the parameters to your local file:
 
 Modify the parameters.yml to reflect your database connections and smtp settings.
 
+Create the following directories inside app:
+
+- cache
+- logs
+
 Prepare cache and logs folder permissions by running (double check your apache user on the first one):
 
     $ sudo chmod -Rf +a "daemon allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
@@ -150,7 +155,7 @@ it is crucial that we make sure the application code is working.
 
 To run a test, go to your project's folder and run following command:
 
-    $ phpunit -c app src/Portal
+    $ phpunit -c app src/Cobase
 
 #Contributing
 
