@@ -1809,7 +1809,7 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
-  
+    
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
@@ -1829,7 +1829,6 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 /* Landscape phones and down */
 @media (max-width: 480px) {
-  
   #dropdown-username {
       display: none;
   }

@@ -12,6 +12,10 @@ h1.frontLogo {
 
 /* Navigation related elements */
 
+.sidebar .widget {
+    min-width: 200px !important;
+}
+
 .subscriptions-head {
     padding-left: 15px;
     padding-top: 25px;
@@ -23,6 +27,9 @@ h1.frontLogo {
     padding-right: 15px;
 }
 
+.row-fluid .span4 {
+    smin-width: 200px;
+}
 /* Info wall related message elements */
 
 .info p { 
