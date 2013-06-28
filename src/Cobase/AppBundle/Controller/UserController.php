@@ -39,6 +39,12 @@ class UserController extends BaseController
         
         $user = $service->getUserByUsername($username);
         
+        if (!$user) {
+            return $this->render('CobaseAppBundle:User:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+        
         $userGroups = $service->findAllGroupsByUser($user);
         $userPosts = $service->findAllPostsByUser($user);
         
