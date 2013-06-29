@@ -2,19 +2,23 @@ Cobase\AppBundle\Entity\Group:
     properties:
         title:
             - NotBlank: ~
-            - MinLength: 5
-            - MaxLength: 160
+            - Length:
+                min: 5
+                max: 160
         description:
             - NotBlank: ~
-            - MinLength: 5
-            - MaxLength: 160
+            - Length:
+                min: 5
+                max: 160
         tags:
             - NotBlank: ~
-            - MaxLength: 160
+            - Length:
+                max: 160
             
 Cobase\AppBundle\Entity\Post:
     properties:
         content:
             - NotBlank: ~
-            - MinLength: 10
-            - MaxLength: 1250
+            - Length:
+                min: 10
+                max: 1250
