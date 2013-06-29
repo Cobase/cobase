@@ -6,21 +6,21 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.1.*",
+        "symfony/symfony": "2.3.*",
         "doctrine/orm": ">=2.2.3,<2.4-dev",
-        "doctrine/doctrine-bundle": "1.0.*",
+        "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
-        "symfony/assetic-bundle": "2.1.*",
-        "symfony/swiftmailer-bundle": "2.1.*",
-        "symfony/monolog-bundle": "2.1.*",
+        "symfony/assetic-bundle": "2.3.*",
+        "symfony/swiftmailer-bundle": "2.3.*",
+        "symfony/monolog-bundle": "2.3.*",
         "doctrine/doctrine-fixtures-bundle": "dev-master",
         "doctrine/migrations": "dev-master",
         "doctrine/doctrine-migrations-bundle": "dev-master",
-        "sensio/distribution-bundle": "2.1.*",
-        "sensio/framework-extra-bundle": "2.1.*",
-        "sensio/generator-bundle": "2.1.*",
-        "jms/security-extra-bundle": "1.2.*",
-        "jms/di-extra-bundle": "1.1.*",
+        "sensio/distribution-bundle": "2.3.*",
+        "sensio/framework-extra-bundle": "2.3.*",
+        "sensio/generator-bundle": "2.3.*",
+        "jms/security-extra-bundle": "1.5.*",
+        "jms/di-extra-bundle": "1.4.*",
         "friendsofsymfony/user-bundle": "dev-master",
         "ornicar/gravatar-bundle": "dev-master",
         "excelwebzone/recaptcha-bundle": "dev-master",
@@ -28,21 +28,32 @@
     },
     "scripts": {
         "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ],
         "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
         ]
     },
+    "config": {
+        "bin-dir": "bin"
+    },
     "minimum-stability": "dev",
     "extra": {
         "symfony-app-dir": "app",
-        "symfony-web-dir": "web"
+        "symfony-web-dir": "web",
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        },
+        "branch-alias": {
+            "dev-master": "2.3-dev"
+        }
     }
 }
