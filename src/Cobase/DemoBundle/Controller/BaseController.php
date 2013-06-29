@@ -14,7 +14,7 @@ class BaseController extends Controller
      */
     public function processForm(Form $form)
     {
-        $form->bind($this->getRequest() );
+        $form->submit($this->getRequest() );
 
         return $form->isValid();
     }

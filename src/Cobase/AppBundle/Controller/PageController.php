@@ -45,7 +45,7 @@ class PageController extends BaseController
 
         $request = $this->getRequest();
         if ($request->getMethod() == 'POST') {
-            $form->bind($request);
+            $form->submit($request);
     
             if ($form->isValid()) {
                 $message = \Swift_Message::newInstance()
