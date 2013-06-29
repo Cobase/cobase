@@ -5,6 +5,7 @@ namespace Cobase\AppBundle\Controller;
 use Cobase\AppBundle\Controller\BaseController;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
+use Symfony\Component\HttpFoundation\Response;
 
 /**
  * Post controller.
@@ -96,6 +97,43 @@ class PostController extends BaseController
                 array(
                     'post'          => $post,
                     'form'          => $form->createView(),
+                )
+            )
+        );
+    }
+
+    /**
+     * @param $postId
+     */
+    public function moveAction()
+    {
+        $postService = $this->getPostService();
+        $groupService = $this->getGroupService();
+
+        $groupId = $this->getRequest()->get('groupId');
+        $postId = $this->getRequest()->get('postId');
+
+        $url = $this->generateUrl(
+            'CobaseAppBundle_group_view',
+            array(
+                'groupId' => $groupId,
+            ),
+            true
+        );
+        
+        $group = $groupService->getGroupById($groupId);
+        $post = $postService->getPostById($postId);
+        
+        $post->setGroup($group);
+        $postService->savePost($post);
+
+        $this->get('session')->getFlashBag()->add('post.message', 'Post has been successfully moved.');
+
+        return new Response(
+            json_encode(
+                array(
+                    "success" => true,
+                    "url"     => $url,
                 )
             )
         );
