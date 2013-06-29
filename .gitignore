@@ -18,3 +18,4 @@ app/bootstrap.php.cache
 app/SymfonyRequirements.php
 app/logs/*
 app/config/parameters.yml
+/bin

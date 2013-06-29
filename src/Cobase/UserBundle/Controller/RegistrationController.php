@@ -46,7 +46,7 @@ class RegistrationController extends BaseController
         $form->setData($user);
 
         if ('POST' === $request->getMethod()) {
-            $form->bind($request);
+            $form->submit($request);
 
             if ($form->isValid()) {
                 $event = new FormEvent($form, $request);
