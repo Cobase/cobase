@@ -127,7 +127,7 @@
                 
                 <p class="subscriptions-head">Subscriptions:</p>
                 
-                {% for subscription in subscriptions %}
+                {% for subscription in subscriptions if subscriptions != null %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
                             <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
