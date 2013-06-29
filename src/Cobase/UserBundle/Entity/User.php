@@ -3,6 +3,8 @@
 
 namespace Cobase\UserBundle\Entity;
 
+use Cobase\AppBundle\Entity\Like;
+use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -49,9 +51,18 @@ class User extends BaseUser
      */
     protected $groupsFollowed;
 
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="Like")
+     */
+    protected $likes;
+
     public function __construct()
     {
         parent::__construct();
+
+        $this->likes = new ArrayCollection();
     }
     
     public function getName()
@@ -77,6 +88,37 @@ class User extends BaseUser
     public function getGroupsFollowed()
     {
         return $this->groupsFollowed;
+    }
+
+    public function addLike(Like $like)
+    {
+        if (!$this->likes->contains($like)) {
+            $this->likes->add($like);
+            $like->setCreator($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Like $like
+     * @return User
+     */
+    public function removeLike(Like $like)
+    {
+        if ($this->likes->contains($like)) {
+            $this->likes->removeElement($like);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLikes()
+    {
+        return $this->likes;
     }
 
     public function __toString() 
