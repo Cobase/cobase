@@ -172,7 +172,7 @@
                                         <li style="padding: 0em 1em;">
                                             <h3>Latest Groups</h3>
                                         </li>
-                                        {% for group in latestGroups %}
+                                        {% for group in latestGroups if latestGroups != null %}
                                             <li class="latestGroupItem">
                                                 <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
                                                 <p>{{ group.description }}</p>
@@ -184,7 +184,7 @@
                                 <div class="tab-pane fade" id="tab2">
                                     <ul class="cards">
                                         <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
-                                        {% for user in latestUsers %}
+                                        {% for user in latestUsers if latestUsers != null %}
                                         <li>
                                             <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
                                             <p><a href="{{ path('CobaseAppBundle_user_view', { 'username': user.username }) }}">{{ user.name }}</a></p>

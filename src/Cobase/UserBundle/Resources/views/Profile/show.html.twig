@@ -11,16 +11,3 @@
     <h2 class="p3"><span class="color-1">Your</span> gravatar</h2>
     <img src="{{ gravatar(user.email) }}"/>
 {% endblock content %}
-
-{% block sidenav %}
-    <h2 class="p3"><span class="color-1">Your</span> options</h2>
-    <ul class="list-1">
-        <li>
-            <a href="{{ path('fos_user_profile_edit') }}">Edit profile</a>
-        </li>
-    </ul>
-    <div class="form-search">
-        <h2><span class="color-1 editable">About </span>Gravatar</h2>
-        Your email address will be used to fetch a profile image from the Gravatar service. Once you update your email, your profile image will be automatically updated to that of the Gravatar account of the given email address.
-    </div>
-{% endblock sidenav %}
