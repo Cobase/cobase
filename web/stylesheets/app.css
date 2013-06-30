@@ -151,6 +151,11 @@ div.jqi button:hover {
     background-color: #f0f0f2 !important;
 }
 
+div.jqi .jqiclose:hover {
+    cursor: pointer;
+    cursor:hand;
+}
+
 /* Common */
 .strong {
     font-weight: bold;
