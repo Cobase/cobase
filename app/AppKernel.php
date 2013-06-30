@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new Liip\UrlAutoConverterBundle\LiipUrlAutoConverterBundle(),
+            new AntiMattr\GoogleBundle\GoogleBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

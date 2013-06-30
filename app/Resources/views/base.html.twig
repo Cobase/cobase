@@ -225,7 +225,10 @@
                 $('.demo-cancel-click').click(function(){return false;});
             });
         </script>
-    
+
+        {% if enable_google_analytics %}
+            {% include "GoogleBundle:Analytics:async.html.twig" %}
+        {% endif %}
     </body>
 </html>
 
