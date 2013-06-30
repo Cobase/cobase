@@ -17,7 +17,7 @@
             html:'<label>Move post to</label>'+
                 '<select name="groupId">'+
                 {% for group in groups %}
-                    '<option value="{{ group.shortUrl }}" selected>{{ group.title }}</option>'+
+                    '<option value="{{ group.shortUrl }}">{{ group.title }}</option>'+
                 {% endfor %}
                 '</select>',
             buttons: { Submit: 1 },
