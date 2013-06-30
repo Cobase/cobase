@@ -135,7 +135,30 @@ ul.links, li {
     margin: 0px;
 }
 
+/* Modal related overrides*/
+
+div.jqi button {
+    padding: 3px 10px;
+    margin: 0 10px;
+    background-color: #2F6073;
+    border: solid 1px #888888;
+    color: #888888;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+div.jqi button:hover {
+    background-color: #f0f0f2 !important;
+}
+
+div.jqi .jqiclose:hover {
+    cursor: pointer;
+    cursor:hand;
+}
+
 /* Common */
 .strong {
     font-weight: bold;
 }
+
+
