@@ -1,16 +1,12 @@
 {% extends '::base.html.twig' %}
 
+{% block javascript_files %}
+    <script src="{{ asset('javascripts/app/group_view.js') }}" type="text/javascript"></script>
+{% endblock %}
+
 {% block javascript %}
-    // Hide the submit button
-    $('#postForm').submit( function(e) {
-        $('#formSubmit').hide();
-    });
-
-    // Make the submission textarea autosize on text input
-    $('#cobase_appbundle_posttype_content').autosize();
-
     var postId = null;
-    
+
     var groups = {
         state0: {
             title: 'Post',
@@ -59,7 +55,6 @@
             postId = $(this).attr("data-id");
             $.prompt(groups);
     });
-
 {% endblock %}
 
 {% block content %}
