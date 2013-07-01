@@ -10,10 +10,10 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\LikeRepository")
  * @ORM\Table(name="likes")
  */
-class Like 
+class Like
 {
     /**
      * @var int
@@ -37,6 +37,11 @@ class Like
      * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="likes")
      */
     protected $user;
+
+    /**
+     * @ORM\OneToMany(targetEntity="CoBase\AppBundle\Entity\Liking", mappedBy="like", fetch="EAGER")
+     */
+    protected $liking;
 
     public function __construct()
     {
