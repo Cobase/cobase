@@ -94,7 +94,7 @@ class GroupController extends BaseController
     {
         $post = new Post();
         
-        $groupService    = $this->getGroupService();
+        $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
         
@@ -102,7 +102,8 @@ class GroupController extends BaseController
         $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
         $group    = $groupService->getGroupById($groupId);
-
+        $groups   = $groupService->getGroups();
+        
         $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
         
         if (!$group) {
@@ -157,6 +158,7 @@ class GroupController extends BaseController
             $this->mergeVariables(
                 array(
                     'group'         => $group,
+                    'groups'        => $groups,
                     'form'          => $form->createView(),
                     'subscribed'    => $isSubscribed,
                 )

@@ -1,13 +1,60 @@
 {% extends '::base.html.twig' %}
 
-{% block javascript %}
-    // Hide the submit button
-    $('#postForm').submit( function(e) {
-        $('#formSubmit').hide();
-    });
+{% block javascript_files %}
+    <script src="{{ asset('javascripts/app/group_view.js') }}" type="text/javascript"></script>
+{% endblock %}
 
-    // Make the submission textarea autosize on text input
-    $('#cobase_appbundle_posttype_content').autosize();
+{% block javascript %}
+    var postId = null;
+
+    var groups = {
+        state0: {
+            title: 'Post',
+            html:'<label>Move post to</label>'+
+                '<select name="groupId">'+
+                {% for group in groups %}
+                    '<option value="{{ group.shortUrl }}">{{ group.title }}</option>'+
+                {% endfor %}
+                '</select>',
+            buttons: { Submit: 1 },
+            focus: 1,
+            submit:function(e,v,m,f){
+                e.preventDefault();
+
+                var data = {};
+                data["postId"] = postId;
+                data["groupId"] = f.groupId;
+
+                // fire off the request
+                request = $.ajax({
+                    url: "{{ path('CobaseAppBundle_post_move')}}",
+                    type: "post",
+                    data: data
+                });
+            
+                // callback handler that will be called on success
+                request.done(function (response, textStatus, jqXHR){
+                    var data = jQuery.parseJSON(response);
+                    window.location.href = data.url;
+                });
+            
+                // callback handler that will be called on failure
+                request.fail(function (jqXHR, textStatus, errorThrown){
+                    alert("An error occured. Could not move post to selected group.");
+                });
+    
+                if(v==1) $.prompt.close();
+                if(v==-1) $.prompt.goToState('state0');
+            }
+        },
+    };
+
+    $( ".move-post-link" )
+        .click(function(e) {
+            e.preventDefault();
+            postId = $(this).attr("data-id");
+            $.prompt(groups);
+    });
 {% endblock %}
 
 {% block content %}
@@ -27,6 +74,12 @@
         <hr/>
     
         {% for flashMessage in app.session.flashbag.get('group.message') %}
+            <div class="alert alert-success fade in">
+                {{ flashMessage }}
+            </div>
+        {% endfor %}
+
+        {% for flashMessage in app.session.flashbag.get('post.message') %}
             <div class="alert alert-success fade in">
                 {{ flashMessage }}
             </div>
@@ -63,7 +116,7 @@
                 <p class="postContent">{{ post.content|converturls }}</p>
                 {% if is_granted('EDIT', post) %}
                     <p class="postOptions">
-                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
+                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a> | <a data-id="{{ post.id }}" href="#" class="move-post-link">Move</a>
                     </p>
                 {% endif %}
                 <!--p><span class="label label-info">New post</span></p-->
