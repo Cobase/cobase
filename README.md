@@ -136,6 +136,15 @@ you run fixtures, always run the Doctrine migrations tool.
 Loading fixtures as described earlier, three user account are created: dev1, dev2 and dev3.
 Passwords for these users are the same as the usernames respectively.
 
+#Google Analytics
+
+This application comes bundled with Google Bundle by antimattr/GoogleBundle. You can configure
+your Google Analytics parameters in app/config/google.yml file. By default, Google Analytics is
+disabled. You need to enable it by changing enable_google_analytics parameter to true in 
+app/config/parameters.yml file.
+
+For more features of Google Bundle, refer to https://github.com/antimattr/GoogleBundle
+
 #Architecture
 
 Application has a DemoBundle, which is a first revision of suggestion for the
