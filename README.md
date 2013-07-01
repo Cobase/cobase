@@ -43,6 +43,8 @@ http://cobase.featurice.com/screenshots/screen5.png
 - Users can subscribe/unsubscribe to groups
 - Each user has their own wall with all posts from the groups they have subscribed to in chronological order
 - Nice user interface with clear visual representation of categories
+- Creator of a post can edit or move the post
+- Google Analytics implementation
 
 #Upcoming features
 
