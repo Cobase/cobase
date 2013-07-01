@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: google.yml }
     - { resource: @CobaseAppBundle/Resources/config/config.yml }
 
 framework:
@@ -21,6 +22,7 @@ twig:
     globals:
         site_title: %site_title%
         allow_registration: %allow_registration%
+        enable_google_analytics: %enable_google_analytics%
 
 # Assetic Configuration
 assetic:
