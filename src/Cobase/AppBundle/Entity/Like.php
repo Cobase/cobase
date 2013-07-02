@@ -4,6 +4,7 @@ namespace Cobase\AppBundle\Entity;
 use Cobase\UserBundle\Entity\User;
 use DateTime;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -38,13 +39,16 @@ class Like
     protected $user;
 
     /**
-     * @ORM\OneToMany(targetEntity="CoBase\AppBundle\Entity\Liking", mappedBy="like", fetch="EAGER")
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Liking", mappedBy="like", fetch="EAGER")
      */
-    protected $liking;
+    protected $likings;
 
     public function __construct()
     {
         $this->setLikedAt(new DateTime());
+        $this->likings = new ArrayCollection();
     }
 
     /**
@@ -83,7 +87,9 @@ class Like
     public function setUser(User $user)
     {
         if ($this->user !== $user) {
+
             $this->user = $user;
+
             $user->addLike($this);
         }
 
@@ -96,5 +102,47 @@ class Like
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * @param $likings
+     *
+     * @return Like
+     */
+    public function setLikings($likings)
+    {
+        $this->likings = $likings;
+
+        return $this;
+    }
+
+    /**
+     * @param Liking $liking
+     * @return Like
+     */
+    public function addLiking(Liking $liking)
+    {
+        if (!$this->likings->contains($liking)) {
+            $this->likings->add($liking);
+            $liking->setLike($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLikings()
+    {
+        return $this->likings;
+    }
+
+    /**
+     * @return Liking
+     */
+    public function getLiking()
+    {
+        return count($this->likings) > 0 ? $this->likings[0] : null;
     }
 }

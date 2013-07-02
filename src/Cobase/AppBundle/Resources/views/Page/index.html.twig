@@ -27,6 +27,8 @@
                         <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
                     </p>
                 {% endif %}
+
+                {{ cobase_like(post) }}
             </div>
             <div class="clearfix"></div>
         </li>

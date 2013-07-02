@@ -2,8 +2,14 @@
 
 namespace Cobase\AppBundle\Controller;
 
+use Cobase\AppBundle\Service\GroupService;
+use Cobase\AppBundle\Service\LikeService;
+use Cobase\AppBundle\Service\PostService;
+use Cobase\AppBundle\Service\SubscriptionService;
+use Cobase\AppBundle\Service\UserService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Form;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 /**
  * Base controller.
@@ -28,11 +34,7 @@ class BaseController extends Controller
      * @return null|App/UserBundle/Entity/User
      */
     public function getCurrentUser() {
-        $user = $this->container->get('security.context')->getToken()->getUser();
-        if ($user === 'anon.') {
-            return null;
-        }
-        return $user;
+        return $this->getUserService()->getCurrentUser();
     }
 
     /**
@@ -78,6 +80,14 @@ class BaseController extends Controller
     public function getUserService()
     {
         return $this->container->get('cobase_app.service.user');
+    }
+
+    /**
+     * @return LikeService
+     */
+    public function getLikeService()
+    {
+        return $this->container->get('cobase_app.service.like');
     }
 
     /**
@@ -144,4 +154,43 @@ class BaseController extends Controller
         return $subscriptions;
     }
 
+    /**
+     * @param array $data
+     *
+     * @return JsonResponse
+     */
+    public function getJsonResponse(array $data = array() )
+    {
+        return new JsonResponse($data);
+    }
+
+    /**
+     * @param mixed $response
+     * @return array
+     */
+    public function createJsonSuccessResponse($response = null)
+    {
+        return $this->createResponseFor('success', $response);
+    }
+
+    /**
+     * @param mixed $response
+     * @return array
+     */
+    public function createJsonFailureResponse($response = null)
+    {
+        return $this->createResponseFor('failure', $response);
+    }
+
+    /**
+     * @param string $what
+     * @param mixed $response
+     * @return array
+     */
+    private function createResponseFor($what, $response = null)
+    {
+        return new JsonResponse(array(
+            $what => $response === null ? true : $response,
+        ) );
+    }
 }

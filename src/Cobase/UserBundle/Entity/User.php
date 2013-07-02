@@ -4,6 +4,7 @@
 namespace Cobase\UserBundle\Entity;
 
 use Cobase\AppBundle\Entity\Like;
+use Cobase\AppBundle\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
@@ -54,17 +55,10 @@ class User extends BaseUser
     /**
      * @var ArrayCollection
      *
-     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="Like")
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="user")
      */
-    protected $likes;
+    protected $likes = null;
 
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->likes = new ArrayCollection();
-    }
-    
     public function getName()
     {
         return $this->name;
@@ -92,12 +86,51 @@ class User extends BaseUser
 
     public function addLike(Like $like)
     {
-        if (!$this->likes->contains($like)) {
+        if (!$this->getLikes()->contains($like)) {
+
             $this->likes->add($like);
-            $like->setCreator($this);
+            $like->setUser($this);
         }
 
         return $this;
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return boolean
+     */
+    public function likesPost(Post $post)
+    {
+        foreach ($this->likes as $like) {
+            $liking = $like->getLiking();
+
+            if ($liking) {
+                if ($liking->getResourceType() == 'post' && $liking->getResourceId() == $post->getId()) {
+                    if ($like->getUser() === $this) {
+                       return true;
+                    }
+                }
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @return array
+     */
+    public function getPostLikes()
+    {
+        return array_filter($this->getLikes()->toArray(), function($like) {
+            $liking = $like->getLiking();
+
+            if (null !== $liking) {
+                if ($liking->getResourceType() == 'post') {
+                   return $like;
+                }
+            }
+        });
     }
 
     /**
@@ -106,7 +139,7 @@ class User extends BaseUser
      */
     public function removeLike(Like $like)
     {
-        if ($this->likes->contains($like)) {
+        if ($this->getLikes()->contains($like)) {
             $this->likes->removeElement($like);
         }
 
@@ -118,6 +151,10 @@ class User extends BaseUser
      */
     public function getLikes()
     {
+        if (null == $this->likes) {
+            $this->likes = new ArrayCollection();
+        }
+
         return $this->likes;
     }
 

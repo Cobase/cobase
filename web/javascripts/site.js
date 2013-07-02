@@ -5,6 +5,19 @@ $(function(){
             window.location = url;
         }
     });
+
+    $(document).on('click', 'a.like-link', function(e) {
+        e.preventDefault();
+
+        var postId = $(this).data('postid');
+
+        $.ajax({
+            url: 'post/' + postId + '/like',
+            success: function(data) {
+                alert(JSON.stringify(data));
+            }
+        });
+    });
 });
 
 var fancyFilter = function(filterListSelector, gallerySelector) {

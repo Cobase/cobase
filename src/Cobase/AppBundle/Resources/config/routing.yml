@@ -52,6 +52,10 @@ CobaseAppBundle_post_modify:
     pattern:  /post/modify/{postId}
     defaults: { _controller: CobaseAppBundle:Post:modify }
 
+CobaseAppBundle_like_post:
+    pattern:  /post/{postId}/like
+    defaults: { _controller: CobaseAppBundle:Like:likePost }
+
 CobaseAppBundle_users:
     pattern:  /users
     defaults: { _controller: CobaseAppBundle:User:showAll }

@@ -22,7 +22,7 @@ class Liking
 
     /**
      * @var Like
-     * @ORM\ManyToOne(targetEntity="CoBase\AppBundle\Entity\Like", inversedBy="liking")
+     * @ORM\ManyToOne(targetEntity="Cobase\AppBundle\Entity\Like", inversedBy="liking")
      * @ORM\JoinColumn(name="like_id", referencedColumnName="id")
      */
     protected $like;
@@ -46,6 +46,10 @@ class Liking
         if (null !== $like) {
             $this->setLike($like);
         }
+
+        if (null !== $resource) {
+            $this->setResource($resource);
+        }
     }
 
     /**
@@ -63,7 +67,10 @@ class Liking
      */
     public function setLike(Like $like)
     {
-        $this->like = $like;
+        if ($like !== $this->like) {
+            $this->like = $like;
+            $this->like->addLiking($this);
+        }
 
         return $this;
     }

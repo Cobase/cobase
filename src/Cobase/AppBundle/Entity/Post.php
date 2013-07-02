@@ -1,6 +1,7 @@
 <?php
 namespace Cobase\AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -11,7 +12,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="posts")
  * @ORM\HasLifecycleCallbacks()
  */
-class Post
+class Post implements Likeable
 {
     /**
      * @ORM\Id
@@ -42,9 +43,16 @@ class Post
      */
     protected $created;
 
+    /**
+     * @var ArrayCollection
+     */
+    protected $likes;
+
     public function __construct()
     {
         $this->setCreated(new \DateTime());
+
+        $this->likes = new ArrayCollection();
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -144,4 +152,55 @@ class Post
         return $this->group;
     }
 
+    /**
+     * @return string
+     */
+    public function getLikeableType()
+    {
+        return 'post';
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLikeableId()
+    {
+        return $this->getId();
+    }
+
+    /**
+     * @param ArrayCollection $likes
+     *
+     * @return Post
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * @return Post
+     */
+    public function removeLikes()
+    {
+        foreach($this->getLikes() as $likea)
+        {
+            //$tag->removeBook($this);
+            if ($this->getLikes()->contains($likea)) {
+                $this->getLikes()->removeElement($likea);
+            }
+        }
+
+        return $this;
+    }
 }
