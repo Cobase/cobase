@@ -6,9 +6,6 @@ Cobase.LikesManager = function(el) {
 
 Cobase.LikesManager.prototype = (function() {
 
-    var foo = function() {
-    };
-
     return {
         bindEvents: function() {
             var self = this;
@@ -16,10 +13,10 @@ Cobase.LikesManager.prototype = (function() {
                 e.preventDefault();
 
                 if (self.isLiked($(this))) {
-                    self.onUnlike();
+                    self.onUnlike($(this));
                 }
                 else {
-                    self.onLike();
+                    self.onLike($(this));
                 }
             });
         },
@@ -34,21 +31,40 @@ Cobase.LikesManager.prototype = (function() {
             $.ajax({
                 url: Routing.generate('CobaseAppBundle_like_post', {'postId': postId}),
                 success: function(data) {
-                    alert(JSON.stringify(data));
+                    if (data.success) {
+                        self.renderUnlikeMode(el);
+                    }
+                    else {
+                        alert(data.failure.message);
+                    }
                 }
             });
         },
 
         onUnlike: function(el) {
-
+            var postId = $(el).data('postid');
+            var self = this;
+            $.ajax({
+                url: Routing.generate('CobaseAppBundle_unlike_post', {'postId': postId}),
+                success: function(data) {
+                    if (data.success) {
+                        self.renderLikeMode(el);
+                    }
+                    else {
+                        alert(data.failure.message);
+                    }
+                }
+            });
         },
 
-        renderLikeMode: function() {
-
+        renderLikeMode: function(el) {
+            $(el).html("Like");
+            $(el).data('liked', false);
         },
 
-        renderUnlikeMode: function() {
-
+        renderUnlikeMode: function(el) {
+            $(el).html("Unlike");
+            $(el).data('liked', true);
         }
     }
 })();

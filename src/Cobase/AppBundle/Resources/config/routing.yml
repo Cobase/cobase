@@ -54,7 +54,11 @@ CobaseAppBundle_post_modify:
 
 CobaseAppBundle_like_post:
     pattern:  /post/{postId}/like
-    defaults: { _controller: CobaseAppBundle:Like:likePost }
+    defaults: { _controller: CobaseAppBundle:Post:likePost }
+
+CobaseAppBundle_unlike_post:
+    pattern:  /post/{postId}/unlike
+    defaults: { _controller: CobaseAppBundle:Post:unlikePost }
 
 CobaseAppBundle_post_move:
     pattern:  /post/move

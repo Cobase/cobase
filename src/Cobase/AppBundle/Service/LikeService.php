@@ -10,6 +10,7 @@ use Cobase\UserBundle\Entity\User;
 use Doctrine\ORM\EntityManager;
 
 use \Exception;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 class LikeService
 {
@@ -60,18 +61,30 @@ class LikeService
 
         $this->em->getConnection()->commit();
 
-        echo count($user->getPostLikes());
-
         return $like;
     }
 
-    public function likesPost(Post $post, User $user)
+    /**
+     * @param Post $post
+     * @param User $user
+     * @throws \Exception
+     */
+    public function unlikePost(Post $post, User $user)
     {
+        if (!$user->likesPost($post)) {
+            throw new Exception("You don't like this post");
+        }
 
-    }
+        $like = $this->likeRepository->getPostSpecificLikeByUser($post, $user);
 
-    public function unlikePost()
-    {
+        if (null === $like) {
+            throw new ResourceNotFoundException('No like found for this post');
+        }
 
+        $this->em->getConnection()->beginTransaction();
+        $this->em->remove($like->getLiking());
+        $this->em->remove($like);
+        $this->em->flush();
+        $this->em->getConnection()->commit();
     }
 }

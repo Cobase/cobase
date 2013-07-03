@@ -139,4 +139,35 @@ class PostController extends BaseController
         );
     }
 
+    public function likePostAction($postId)
+    {
+        $post = $this->getPostService()->getPostById($postId);
+        $user = $this->getCurrentUser();
+
+        if ($user->likesPost($post)) {
+            return $this->createJsonFailureResponse(array(
+                'message' => 'You already like this post',
+            ));
+        }
+
+        $this->getLikeService()->likePost($post, $user);
+
+        return $this->getJsonResponse(array('success' => true, 'message' => 'You now like this post'));
+    }
+
+    public function unlikePostAction($postId)
+    {
+        $post = $this->getPostService()->getPostById($postId);
+        $user = $this->getCurrentUser();
+
+        if (!$user->likesPost($post)) {
+            return $this->createJsonFailureResponse(array(
+                'message' => "You didn't like this post previously",
+            ));
+        }
+
+        $this->getLikeService()->unlikePost($post, $user);
+
+        return $this->getJsonResponse(array('success' => true, 'message' => "You don't like this post anymore"));
+    }
 }
