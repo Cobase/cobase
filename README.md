@@ -136,6 +136,23 @@ you run fixtures, always run the Doctrine migrations tool.
 Loading fixtures as described earlier, three user account are created: dev1, dev2 and dev3.
 Passwords for these users are the same as the usernames respectively.
 
+#Assets
+
+Cobase uses asset management and thus, you must dump the assets.
+
+    $ app/console assetic:dump
+
+During development it might be useful to use this version so that it actively listens for ny changes and builds the assets
+automatically:
+
+    $ app/console assetic:dump --watch (--force)
+
+#JavaScript routes:
+
+Available routes needs to be provided for the frontend too:
+
+    $ app/console fos:js-routing:dump
+
 #Architecture
 
 Application has a DemoBundle, which is a first revision of suggestion for the

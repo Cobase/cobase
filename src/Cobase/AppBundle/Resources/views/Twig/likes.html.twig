@@ -1,6 +1,8 @@
+<div class="likes">
 
+</div>
 {% if user.likesPost(post) %}
-    <a class="like-link" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
+    <a class="like-link" data-liked="true" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
 {% else %}
-    <a class="like-link" data-postId="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
+    <a class="like-link" data-liked="false" data-postId="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
 {%  endif %}

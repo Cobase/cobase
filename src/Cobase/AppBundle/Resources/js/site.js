@@ -5,19 +5,20 @@ $(function(){
             window.location = url;
         }
     });
-
+/*
     $(document).on('click', 'a.like-link', function(e) {
         e.preventDefault();
 
         var postId = $(this).data('postid');
 
         $.ajax({
-            url: 'post/' + postId + '/like',
+            url: Routing.generate('CobaseAppBundle_like_post', {'postId': postId}),
             success: function(data) {
                 alert(JSON.stringify(data));
             }
         });
     });
+    */
 });
 
 var fancyFilter = function(filterListSelector, gallerySelector) {
@@ -36,4 +37,6 @@ var fancyFilter = function(filterListSelector, gallerySelector) {
         return false;
     });
 };
+
+
 

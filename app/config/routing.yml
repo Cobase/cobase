@@ -3,9 +3,13 @@
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
 
+
 CobaseAppBundle:
     resource: "@CobaseAppBundle/Resources/config/routing.yml"
     prefix:   /
 
 _user_bundle:
     resource: "@CobaseUserBundle/Resources/config/routing.yml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
