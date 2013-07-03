@@ -3,6 +3,11 @@ services:
         class: Cobase\AppBundle\Twig\Extensions\CobaseAppExtension
         tags:
             - { name: twig.extension }
+    
+    aga_dateconverter.twig.extension:
+        class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
+        tags:
+            - { name: twig.extension }
            
     portal_user.registration.form.type:
         class: Cobase\UserBundle\Form\Type\RegistrationFormType
