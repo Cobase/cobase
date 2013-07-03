@@ -3,7 +3,6 @@
 #    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
 #    prefix:   /_internal
 
-
 CobaseAppBundle:
     resource: "@CobaseAppBundle/Resources/config/routing.yml"
     prefix:   /
