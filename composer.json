@@ -26,7 +26,9 @@
         "excelwebzone/recaptcha-bundle": "dev-master",
         "liip/url-auto-converter-bundle": "1.0.*@dev",
         "xi/fixtures": "dev-master",
-        "friendsofsymfony/jsrouting-bundle": "~1.1"
+        "friendsofsymfony/jsrouting-bundle": "~1.1",
+        "antimattr/google-bundle": "dev-master",
+        "artur-gajewski/date-converter-bundle": "1.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [

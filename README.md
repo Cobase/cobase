@@ -43,6 +43,8 @@ http://cobase.featurice.com/screenshots/screen5.png
 - Users can subscribe/unsubscribe to groups
 - Each user has their own wall with all posts from the groups they have subscribed to in chronological order
 - Nice user interface with clear visual representation of categories
+- Creator of a post can edit or move the post
+- Google Analytics implementation
 
 #Upcoming features
 
@@ -152,6 +154,15 @@ automatically:
 Available routes needs to be provided for the frontend too:
 
     $ app/console fos:js-routing:dump
+
+#Google Analytics
+
+This application comes bundled with Google Bundle by antimattr/GoogleBundle. You can configure
+your Google Analytics parameters in app/config/google.yml file. By default, Google Analytics is
+disabled. You need to enable it by changing enable_google_analytics parameter to true in 
+app/config/parameters.yml file.
+
+For more features of Google Bundle, refer to https://github.com/antimattr/GoogleBundle
 
 #Architecture
 

@@ -29,6 +29,8 @@ class AppKernel extends Kernel
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new Liip\UrlAutoConverterBundle\LiipUrlAutoConverterBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new AntiMattr\GoogleBundle\GoogleBundle(),
+            new Aga\DateConverterBundle\DateConverterBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

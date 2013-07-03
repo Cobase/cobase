@@ -1,0 +1,8 @@
+google:
+    analytics:
+        trackers:
+            default:
+                name:      MyJavaScriptCompatibleVariableNameWithNoSpaces
+                accountId: UA-xxxx-x
+                domain:    .mydomain.com
+                trackPageLoadTime: true

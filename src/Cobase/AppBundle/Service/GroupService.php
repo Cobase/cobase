@@ -42,7 +42,12 @@ class GroupService
      */
     public function getGroups()
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy(
+            array(), 
+            array(
+                'title' => 'ASC'
+            )
+        );
     }
 
     /**

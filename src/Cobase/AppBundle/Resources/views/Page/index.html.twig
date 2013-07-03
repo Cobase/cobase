@@ -1,5 +1,58 @@
 {% extends 'CobaseAppBundle::layout.html.twig' %}
 
+{% block javascript %}
+    var postId = null;
+
+    var groups = {
+        state0: {
+            title: 'Post',
+            html:'<label>Move post to</label>'+
+                '<select name="groupId">'+
+                {% for group in groups %}
+                    '<option value="{{ group.shortUrl }}">{{ group.title }}</option>'+
+                {% endfor %}
+                '</select>',
+            buttons: { Submit: 1 },
+            focus: 1,
+            submit:function(e,v,m,f){
+                e.preventDefault();
+            
+                var data = {};
+                data["postId"] = postId;
+                data["groupId"] = f.groupId;
+            
+                // fire off the request
+                request = $.ajax({
+                    url: "{{ path('CobaseAppBundle_post_move')}}",
+                    type: "post",
+                    data: data
+                });
+        
+                // callback handler that will be called on success
+                request.done(function (response, textStatus, jqXHR){
+                    var data = jQuery.parseJSON(response);
+                    window.location.href = data.url;
+                });
+        
+                // callback handler that will be called on failure
+                request.fail(function (jqXHR, textStatus, errorThrown){
+                    alert("An error occured. Could not move post to selected group.");
+                });
+        
+                if(v==1) $.prompt.close();
+                if(v==-1) $.prompt.goToState('state0');
+            }
+        },
+    };
+
+    $( ".move-post-link" )
+        .click(function(e) {
+            e.preventDefault();
+            postId = $(this).attr("data-id");
+            $.prompt(groups);
+    });
+{% endblock %}
+
 {% block content %}
     <h2>Home
         <span class="info">Overview of latest activity in groups you have subcribed to.</span>
@@ -20,11 +73,11 @@
             </div>
             <div class="info">
                 <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
-                <p class="postData">{{ post.created|date('M d, Y') }} at {{ post.created|date('H:i') }} in <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
-                <p class="postContent">{{ post.content|converturls }}</p>
+                <p class="postData">{{ post.created | ago }} in <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
+                <p class="postContent">{{ post.content | converturls }}</p>
                 {% if is_granted('EDIT', post) %}
                     <p class="postOptions">
-                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
+                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a> | <a data-id="{{ post.id }}" href="#" class="move-post-link">Move</a>
                     </p>
                 {% endif %}
 

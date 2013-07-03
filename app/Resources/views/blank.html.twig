@@ -60,6 +60,10 @@
     });
 </script>
 
+{% if enable_google_analytics %}
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
+{% endif %}
+
 </body>
 </html>
 
