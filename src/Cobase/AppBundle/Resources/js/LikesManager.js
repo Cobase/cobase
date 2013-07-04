@@ -60,11 +60,19 @@ Cobase.LikesManager.prototype = (function() {
         renderLikeMode: function(el) {
             $(el).html("Like");
             $(el).data('liked', false);
+
+            var likeCount = parseInt($(el).next('span.like-count').html());
+
+            $(el).next('span.like-count').html((likeCount - 1));
         },
 
         renderUnlikeMode: function(el) {
             $(el).html("Unlike");
             $(el).data('liked', true);
+
+            var likeCount = parseInt($(el).next('span.like-count').html());
+
+            $(el).next('span.like-count').html((likeCount + 1));
         }
     }
 })();

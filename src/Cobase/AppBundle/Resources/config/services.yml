@@ -6,7 +6,7 @@ services:
 
     cobase_app.twig.like:
         class: Cobase\AppBundle\Twig\Extensions\Like
-        arguments: ["@twig", "@cobase_app.service.user"]
+        arguments: ["@twig", "@cobase_app.service.user", "@cobase_app.service.post"]
         tags:
             - { name: twig.extension }
 

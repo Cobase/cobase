@@ -190,4 +190,14 @@ class PostService
         $this->em->flush();
         $this->em->getConnection()->commit();
     }
+
+    /**
+     * @param Post $post
+     *
+     * @return integer
+     */
+    public function getLikeCount(Post $post)
+    {
+        return $this->repository->getLikeCount($post);
+    }
 }
