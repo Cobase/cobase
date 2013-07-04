@@ -10,13 +10,13 @@ class GroupRepositoryTest extends WebTestCase
     /**
      * @var \Cobase\AppBundle\Repository\GroupRepository
      */
-    private $eventRepository;
+    private $groupRepository;
 
     public function setUp()
     {
         $kernel = static::createKernel();
         $kernel->boot();
-        $this->eventRepository = $kernel->getContainer()
+        $this->groupRepository = $kernel->getContainer()
                                        ->get('doctrine.orm.entity_manager')
                                        ->getRepository('CobaseAppBundle:Group');
     }
