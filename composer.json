@@ -1,5 +1,5 @@
 {
-    "name": "Cobase/cobase",
+    "name": "cobase/cobase",
     "type": "symfony-application",
     "description": "Open source alternative to Yammer and Moovia, corporate social media portal.",
     "homepage": "https://github.com/CoBase/cobase",
