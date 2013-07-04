@@ -14,7 +14,7 @@
         {
             "name": "Contributors",
             "homepage": "https://github.com/CoBase/cobase/graphs/contributors"
-        },
+        }
     ],
     "autoload": {
         "psr-0": { "": "src/" }
