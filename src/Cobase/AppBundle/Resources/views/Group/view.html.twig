@@ -106,25 +106,7 @@
 
     <ul class="item-summary">
     {% for post in group.posts|reverse %}
-        <li>
-            <div class="overview">
-                <img src="{{ gravatar(post.user.email) }}"/>
-            </div>
-            <div class="info">
-                <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
-                <p class="postData">{{ post.created | ago }}</p>
-                <p class="postContent">{{ post.content | converturls }}</p>
-                <p class="postOptions">
-                    {{ cobase_like(post) }}
-                    {% if is_granted('EDIT', post) %}
-                        <i class="icon-edit"></i><a class="postOptionLink" href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
-                        <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink"">Move</a>
-                    {% endif %}
-                </p>
-                <!--p><span class="label label-info">New post</span></p-->
-            </div>
-            <div class="clearfix"></div>
-        </li>
+        {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
     {% else %}
         <li>
             <p class="no-data">Currently there are no posts in this group. Perhaps you would like to post something to this group?</p>
