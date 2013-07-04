@@ -1,6 +1,21 @@
 {
-    "name": "CoBase/cobase",
-    "description": "Cobase, open source coroprate social media portal",
+    "name": "Cobase/cobase",
+    "type": "symfony-application",
+    "description": "Open source alternative to Yammer and Moovia, corporate social media portal.",
+    "homepage": "https://github.com/CoBase/cobase",
+    "keywords": ["corporate, social, media"],
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Artur Gajewski",
+            "homepage": "https://github.com/artur-gajewski"
+        },
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/CoBase/cobase/graphs/contributors"
+        },
+    ],
     "autoload": {
         "psr-0": { "": "src/" }
     },
