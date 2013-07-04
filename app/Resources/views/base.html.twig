@@ -22,6 +22,7 @@
         <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
+        <!-- javascript file includes -->
         {% javascripts output="/js/app.js" filter="?yui_js"
         '@CobaseAppBundle/Resources/js/site.js'
             '@CobaseAppBundle/Resources/js/LikesManager.js'
@@ -29,6 +30,14 @@
             <script type="text/javascript" src="{{ asset_url }}"></script>
         {% endjavascripts %}
 
+        <!-- page specific dynamic javascripts -->
+        <script type="text/javascript">
+            $(document).ready(function () {
+                {% block dynamic_javascripts %}{% endblock %}
+            });
+        </script>
+
+        <!-- page specific javascript file includes -->
         {% block javascript_files %}{% endblock %}
 
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
