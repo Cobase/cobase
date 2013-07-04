@@ -150,7 +150,7 @@ class PostController extends BaseController
             ));
         }
 
-        $this->getLikeService()->likePost($post, $user);
+        $this->getPostService()->likePost($post, $user);
 
         return $this->getJsonResponse(array('success' => true, 'message' => 'You now like this post'));
     }
@@ -166,7 +166,7 @@ class PostController extends BaseController
             ));
         }
 
-        $this->getLikeService()->unlikePost($post, $user);
+        $this->getPostService()->unlikePost($post, $user);
 
         return $this->getJsonResponse(array('success' => true, 'message' => "You don't like this post anymore"));
     }

@@ -2,12 +2,17 @@
 
 namespace Cobase\AppBundle\Service;
 
-use Doctrine\ORM\EntityManager,
-    Doctrine\ORM\EntityRepository,
-    Symfony\Component\Security\Core\SecurityContext,
-    Cobase\AppBundle\Entity\Group,
-    Cobase\AppBundle\Entity\Post,
-    Cobase\UserBundle\Entity\User;
+use Cobase\AppBundle\Entity\Like;
+
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityRepository;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
+use Symfony\Component\Security\Core\SecurityContext;
+use Cobase\AppBundle\Entity\Group;
+use Cobase\AppBundle\Entity\Post;
+use Cobase\UserBundle\Entity\User;
+
+use Exception;
 
 class PostService
 {
@@ -27,15 +32,26 @@ class PostService
     protected $security;
 
     /**
-     * @param EntityManager    $em
-     * @param EntityRepository $repository
-     * @param SecurityContext  $security
+     * @var LikeService
      */
-    public function __construct(EntityManager $em, EntityRepository $repository, SecurityContext $security)
+    protected $likeService;
+
+    /**
+     * @param EntityManager     $em
+     * @param EntityRepository  $repository
+     * @param SecurityContext   $security
+     * @param LikeService       $likeService
+     */
+    public function __construct(
+        EntityManager       $em,
+        EntityRepository    $repository,
+        SecurityContext     $security,
+        LikeService         $likeService)
     {
         $this->em               = $em;
         $this->repository       = $repository;
         $this->security         = $security;
+        $this->likeService      = $likeService;
     }
 
     /**
@@ -125,5 +141,53 @@ class PostService
     public function getPostsForUser($user)
     {
         return $this->repository->findAllForUser($user);
+    }
+
+    /**
+     * @param Post $post
+     * @param User $user
+     *
+     * @return Like
+     */
+    public function likePost(Post $post, User $user)
+    {
+        if ($user->likesPost($post)) {
+            throw new Exception('You already like this post');
+        }
+
+        $like = new Like($post);
+
+        $like->setUser($user);
+
+        $this->em->getConnection()->beginTransaction();
+        $this->em->persist($like);
+        $this->em->flush();
+
+        $this->em->getConnection()->commit();
+
+        return $like;
+    }
+
+    /**
+     * @param Post $post
+     * @param User $user
+     * @throws \Exception
+     */
+    public function unlikePost(Post $post, User $user)
+    {
+        if (!$user->likesPost($post)) {
+            throw new Exception("You don't like this post");
+        }
+
+        $like = $this->likeService->getPostSpecificLikeByUser($post, $user);
+
+        if (null === $like) {
+            throw new ResourceNotFoundException('No like found for this post');
+        }
+
+        $this->em->getConnection()->beginTransaction();
+        $this->em->remove($like);
+        $this->em->flush();
+        $this->em->getConnection()->commit();
     }
 }

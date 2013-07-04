@@ -39,7 +39,7 @@ services:
 
     cobase_app.service.post:
             class:     Cobase\AppBundle\Service\PostService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context"]
+            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
 
     cobase_app.repository.post:
             class:           Cobase\AppBundle\Entity\Post
