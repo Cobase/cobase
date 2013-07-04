@@ -28,6 +28,7 @@ class AppKernel extends Kernel
             new Ornicar\GravatarBundle\OrnicarGravatarBundle(),
             new EWZ\Bundle\RecaptchaBundle\EWZRecaptchaBundle(),
             new Liip\UrlAutoConverterBundle\LiipUrlAutoConverterBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AntiMattr\GoogleBundle\GoogleBundle(),
             new Aga\DateConverterBundle\DateConverterBundle(),
         );
