@@ -156,6 +156,31 @@ div.jqi .jqiclose:hover {
     cursor:hand;
 }
 
+/* Post listings */
+
+.info {
+    display:inline-block;
+    width: 80%;
+    zoom: 1;
+    *display:inline;
+}
+
+.postContent {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+    background-color: #f9f9f9;
+    padding: 5px;
+}
+
+.postOptions {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.postOptionLink {
+    margin-right: 5px;
+}
+
 /* Common */
 .strong {
     font-weight: bold;
