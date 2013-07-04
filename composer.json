@@ -7,7 +7,7 @@
     "require": {
         "php": ">=5.3.3",
         "symfony/symfony": "2.3.*",
-        "doctrine/orm": ">=2.2.3,<2.4-dev",
+        "doctrine/orm": "~2.2,>=2.2.3",
         "doctrine/doctrine-bundle": "1.2.*",
         "twig/extensions": "1.0.*",
         "symfony/assetic-bundle": "2.3.*",
@@ -25,6 +25,8 @@
         "ornicar/gravatar-bundle": "dev-master",
         "excelwebzone/recaptcha-bundle": "dev-master",
         "liip/url-auto-converter-bundle": "1.0.*@dev",
+        "xi/fixtures": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "~1.1",
         "antimattr/google-bundle": "dev-master",
         "artur-gajewski/date-converter-bundle": "1.0.*@dev"
     },

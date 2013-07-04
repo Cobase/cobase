@@ -3,7 +3,13 @@ services:
         class: Cobase\AppBundle\Twig\Extensions\CobaseAppExtension
         tags:
             - { name: twig.extension }
-    
+
+    cobase_app.twig.like:
+        class: Cobase\AppBundle\Twig\Extensions\Like
+        arguments: ["@twig", "@cobase_app.service.user"]
+        tags:
+            - { name: twig.extension }
+
     aga_dateconverter.twig.extension:
         class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
         tags:
@@ -60,3 +66,13 @@ services:
                 arguments:       [Cobase\UserBundle\Entity\User]
                 factory_service: doctrine.orm.entity_manager
                 factory_method:  getRepository
+
+    cobase_app.service.like:
+        class:     Cobase\AppBundle\Service\LikeService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.like"]
+
+    cobase_app.repository.like:
+        class:           Cobase\AppBundle\Repository\Like
+        arguments:       [Cobase\AppBundle\Entity\Like]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository

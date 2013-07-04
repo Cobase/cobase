@@ -11,6 +11,7 @@ src/Portal/.DS_Store
 src/Portal/AppBundle/.DS_Store
 src/Portal/AppBundle/Resources/.DS_Store
 web/.DS_Store
+web/js
 web/bundles/
 app/cache/*
 app/bootstrap.php.cache

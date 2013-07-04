@@ -16,12 +16,21 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
         <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('javascripts/site.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery.autosize-min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery-impromptu.js') }}" type="text/javascript"></script>
-    
+
+        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+
+        {% javascripts output="/js/app.js" filter="?yui_js"
+        '@CobaseAppBundle/Resources/js/site.js'
+            '@CobaseAppBundle/Resources/js/LikesManager.js'
+        %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+
         {% block javascript_files %}{% endblock %}
-        
+
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/jquery-impromptu.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
@@ -40,9 +49,12 @@
 
         <script>
             $(document).ready(function () {
-                {% block javascript %}{% endblock %}
+                var likesManager = new Cobase.LikesManager('a.like-link');
+                likesManager.bindEvents();
             });
         </script>
+
+        {% block javascripts %}{% endblock %}
 
     </head>
     

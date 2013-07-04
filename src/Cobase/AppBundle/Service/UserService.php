@@ -39,6 +39,21 @@ class UserService
     }
 
     /**
+     * Return current user's entity or null if not logged in
+     *
+     * @return null|App/UserBundle/Entity/User
+     */
+    public function getCurrentUser() {
+        $user = $this->security->getToken()->getUser();
+
+        if ($user === 'anon.') {
+            return null;
+        }
+
+        return $user;
+    }
+
+    /**
      * @return array
      */
     public function getUsers()
