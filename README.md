@@ -12,14 +12,6 @@ messages not related to their work or interest.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
-Have a look at fully working demo at http://cobase.featurice.com and register yourself an account.
-
-You are welcome to create an account, but you can user the following account for demo:
-
-Username and password: demo1 / demo1
-
-You can also checkout screenshots of the application:
-
 http://cobase.featurice.com/screenshots/screen1.png
 http://cobase.featurice.com/screenshots/screen2.png
 http://cobase.featurice.com/screenshots/screen3.png
