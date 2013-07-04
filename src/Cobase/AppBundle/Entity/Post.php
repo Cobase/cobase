@@ -45,8 +45,6 @@ class Post implements Likeable
 
     /**
      * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="user")
      */
     protected $likes;
 
