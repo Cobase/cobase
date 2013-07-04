@@ -39,16 +39,29 @@ class Like
     protected $user;
 
     /**
-     * @var ArrayCollection
+     * @var string
      *
-     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Liking", mappedBy="like", fetch="EAGER")
+     * @ORM\Column(name="resource_id", type="string", length=50)
      */
-    protected $likings;
+    protected $resourceId;
 
-    public function __construct()
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="resource_type", type="string", length=50)
+     */
+    protected $resourceType;
+
+    /**
+     * @param Likeable $resource
+     */
+    public function __construct(Likeable $resource = null)
     {
+        if (null !== $resource) {
+            $this->setResource($resource);
+        }
+
         $this->setLikedAt(new DateTime());
-        $this->likings = new ArrayCollection();
     }
 
     /**
@@ -105,44 +118,31 @@ class Like
     }
 
     /**
-     * @param $likings
+     * @param Likeable $resource
      *
-     * @return Like
-     */
-    public function setLikings($likings)
-    {
-        $this->likings = $likings;
-
-        return $this;
-    }
-
-    /**
-     * @param Liking $liking
-     * @return Like
-     */
-    public function addLiking(Liking $liking)
-    {
-        if (!$this->likings->contains($liking)) {
-            $this->likings->add($liking);
-            $liking->setLike($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return ArrayCollection
-     */
-    public function getLikings()
-    {
-        return $this->likings;
-    }
-
-    /**
      * @return Liking
      */
-    public function getLiking()
+    public function setResource(Likeable $resource)
     {
-        return count($this->likings) > 0 ? $this->likings[0] : null;
+        $this->resourceId = $resource->getLikeableId();
+        $this->resourceType = $resource->getLikeableType();
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceId()
+    {
+        return $this->resourceId;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResourceType()
+    {
+        return $this->resourceType;
     }
 }

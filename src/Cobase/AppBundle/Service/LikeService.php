@@ -46,17 +46,12 @@ class LikeService
             throw new Exception('You already like this post');
         }
 
-        $like = new Like();
+        $like = new Like($post);
 
         $like->setUser($user);
 
         $this->em->getConnection()->beginTransaction();
-
         $this->em->persist($like);
-
-        $liking = new Liking($like, $post);
-
-        $this->em->persist($liking);
         $this->em->flush();
 
         $this->em->getConnection()->commit();
@@ -82,7 +77,6 @@ class LikeService
         }
 
         $this->em->getConnection()->beginTransaction();
-        $this->em->remove($like->getLiking());
         $this->em->remove($like);
         $this->em->flush();
         $this->em->getConnection()->commit();

@@ -6,3 +6,5 @@
 {% else %}
     <a class="like-link" data-liked="false" data-postId="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
 {%  endif %}
+
+{{ post.likes | length }}

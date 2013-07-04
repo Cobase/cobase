@@ -21,10 +21,7 @@ class LikeRepository extends EntityRepository
 
         $qb->select('l')
             ->from('Cobase\AppBundle\Entity\Like', 'l')
-            ->leftJoin('l.likings', 'lk')
-            ->where('lk.resourceId = :id')
-            ->setParameter('id', $post->getId())
-            ->andWhere('lk.resourceType = :type')
+            ->andWhere('l.resourceType = :type')
             ->setParameter('type', 'post')
             ->andWhere('l.user = :user')
             ->setParameter('user', $user);
