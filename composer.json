@@ -3,7 +3,7 @@
     "type": "symfony-application",
     "description": "Open source alternative to Yammer and Moovia, corporate social media portal.",
     "homepage": "https://github.com/CoBase/cobase",
-    "keywords": ["corporate, social, media"],
+    "keywords": ["corporate","social","media"],
     "license": "MIT",
     "minimum-stability": "dev",
     "authors": [
