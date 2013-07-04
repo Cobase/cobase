@@ -52,6 +52,10 @@ You are more than welcome to join us to make Cobase even better. Please rever to
 
 https://github.com/CoBase/cobase/issues
 
+# Travis CI status
+
+[![Build Status](https://secure.travis-ci.org/CoBase/cobase.png)](https://travis-ci.org/CoBase/cobase)
+
 #Installation
 
 Fork the project into your Github account and then clone it into your development environment.
