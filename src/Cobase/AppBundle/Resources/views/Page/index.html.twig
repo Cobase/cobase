@@ -65,30 +65,11 @@
     {% endfor %}
     
     <ul class="item-summary">
-        
         {% for post in posts %}
-        <li>
-            <div class="overview">
-                <img src="{{ gravatar(post.user.email) }}"/>
-            </div>
-            <div class="info">
-                <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
-                <p class="postData">{{ post.created | ago }} in <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a></p>
-                <p class="postContent">{{ post.content | converturls }}</p>
-                {% if is_granted('EDIT', post) %}
-                    <p class="postOptions">
-                        <a href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a> | <a data-id="{{ post.id }}" href="#" class="move-post-link">Move</a>
-                    </p>
-                {% endif %}
-
-                {{ cobase_like(post) }}
-            </div>
-            <div class="clearfix"></div>
-        </li>
+            {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
         {% else %}
             <p class="noPosts">There are currently no posts to be displayed. Perhaps you might want to subscribe to more groups?</p>
         {% endfor %}
-
     </ul>
 {% endblock content %}
 
