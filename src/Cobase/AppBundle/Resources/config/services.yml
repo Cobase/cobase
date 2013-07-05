@@ -6,7 +6,7 @@ services:
 
     cobase_app.twig.like:
         class: Cobase\AppBundle\Twig\Extensions\Like
-        arguments: ["@twig", "@cobase_app.service.user"]
+        arguments: ["@twig", "@cobase_app.service.user", "@cobase_app.service.post"]
         tags:
             - { name: twig.extension }
 
@@ -39,7 +39,7 @@ services:
 
     cobase_app.service.post:
             class:     Cobase\AppBundle\Service\PostService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context"]
+            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
 
     cobase_app.repository.post:
             class:           Cobase\AppBundle\Entity\Post
