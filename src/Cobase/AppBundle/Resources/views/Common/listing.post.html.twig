@@ -7,7 +7,7 @@
         <p class="postData">{{ post.created | ago }}</p>
         <p class="postContent">{{ post.content | converturls }}</p>
         <p class="postOptions">
-            {{ cobase_like(post) }}
+            {{ cobase_likes(post) }}
             {% if is_granted('EDIT', post) %}
                 <i class="icon-edit"></i><a class="postOptionLink" href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
                 <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink">Move</a>

@@ -3,6 +3,7 @@ namespace Cobase\AppBundle\Twig\Extensions;
 
 use Cobase\AppBundle\Entity\Post;
 
+use Cobase\AppBundle\Service\PostService;
 use Cobase\AppBundle\Service\UserService;
 use Twig_Extension;
 use Twig_Environment;
@@ -20,13 +21,20 @@ class Like extends Twig_Extension
     private $userService;
 
     /**
-     * @param Twig_Environment $twig
-     * @param UserService $userService
+     * @var PostService
      */
-    public function __construct(Twig_Environment $twig, UserService $userService)
+    private $postService;
+
+    /**
+     * @param Twig_Environment  $twig
+     * @param UserService       $userService
+     * @param PostService       $postService
+     */
+    public function __construct(Twig_Environment $twig, UserService $userService, PostService $postService)
     {
         $this->twig         = $twig;
         $this->userService  = $userService;
+        $this->postService  = $postService;
     }
 
     /**
@@ -35,8 +43,8 @@ class Like extends Twig_Extension
     public function getFunctions()
     {
         return array(
-            'cobase_like' => new \Twig_Function_Method(
-                $this, 'like', array('is_safe' => array('html') )
+            'cobase_likes' => new \Twig_Function_Method(
+                $this, 'likes', array('is_safe' => array('html') )
             ),
         );
     }
@@ -46,11 +54,12 @@ class Like extends Twig_Extension
      *
      * @return string
      */
-    public function like(Post $post)
+    public function likes(Post $post)
     {
         return $this->twig->render('CobaseAppBundle:Twig:likes.html.twig', array(
-            'user' => $this->userService->getCurrentUser(),
-            'post' => $post,
+            'user'      => $this->userService->getCurrentUser(),
+            'post'      => $post,
+            'likeCount' => $this->postService->getLikeCount($post),
         ) );
     }
 

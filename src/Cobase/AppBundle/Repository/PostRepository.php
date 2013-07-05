@@ -2,6 +2,7 @@
 
 namespace Cobase\AppBundle\Repository;
 
+use Cobase\AppBundle\Entity\Post;
 use Doctrine\ORM\EntityRepository;
 use Cobase\UserBundle\Entity\User;
 
@@ -96,5 +97,28 @@ class PostRepository extends EntityRepository
             ->setParameter('1', $user);
 
         return $query->getResult();
+    }
+
+    /**
+     * @param Post $post
+     *
+     * @return integer
+     */
+    public function getLikeCount(Post $post)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('count(l)')
+            ->from('Cobase\AppBundle\Entity\Like', 'l')
+            ->where('l.resourceId = :id')
+            ->setParameter('id', $post->getId())
+            ->andWhere('l.resourceType = :type')
+            ->setParameter('type', 'post');
+
+        try {
+            return $qb->getQuery()->getSingleScalarResult();
+        } catch(NoResultException $e) {
+            return 0;
+        }
     }
 }

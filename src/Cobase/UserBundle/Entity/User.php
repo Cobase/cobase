@@ -103,13 +103,9 @@ class User extends BaseUser
     public function likesPost(Post $post)
     {
         foreach ($this->likes as $like) {
-            $liking = $like->getLiking();
-
-            if ($liking) {
-                if ($liking->getResourceType() == 'post' && $liking->getResourceId() == $post->getId()) {
-                    if ($like->getUser() === $this) {
-                       return true;
-                    }
+            if ($like->getResourceType() == 'post' && $like->getResourceId() == $post->getId()) {
+                if ($like->getUser() === $this) {
+                   return true;
                 }
             }
         }
@@ -123,12 +119,8 @@ class User extends BaseUser
     public function getPostLikes()
     {
         return array_filter($this->getLikes()->toArray(), function($like) {
-            $liking = $like->getLiking();
-
-            if (null !== $liking) {
-                if ($liking->getResourceType() == 'post') {
+            if ($like->getResourceType() == 'post') {
                    return $like;
-                }
             }
         });
     }

@@ -1,9 +1,9 @@
-<div class="likes">
 
-</div>
-<i class="icon-thumbs-up"></i><i class="icon-thumbs-down"></i>
 {% if user.likesPost(post) %}
-    <a class="like-link postOptionLink" data-liked="true" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
+    <i class="thumb icon-thumbs-down"></i>
+    <a class="like-link" data-liked="true" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
 {% else %}
-    <a class="like-link postOptionLink" data-liked="false" data-postId="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
+    <i class="thumb icon-thumbs-up"></i>
+    <a class="like-link" data-liked="false" data-postid="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
 {%  endif %}
+<span class="like-container">(<span class="like-count">{{ likeCount }}</span>)</span>
