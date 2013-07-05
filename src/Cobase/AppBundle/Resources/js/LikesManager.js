@@ -63,6 +63,11 @@ Cobase.LikesManager.prototype = (function() {
 
             var likeCount = parseInt($(el).next().find('span.like-count').html());
             $(el).next().find('span.like-count').html((likeCount - 1));
+
+            var $thumb = $(el).parent().find('i.thumb');
+
+            $($thumb).removeClass('icon-thumbs-down');
+            $($thumb).addClass('icon-thumbs-up');
         },
 
         renderUnlikeMode: function(el) {
@@ -71,6 +76,12 @@ Cobase.LikesManager.prototype = (function() {
 
             var likeCount = parseInt($(el).next().find('span.like-count').html());
             $(el).next().find('span.like-count').html((likeCount + 1));
+
+            var $thumb = $(el).parent().find('i.thumb');
+
+            $($thumb).removeClass('icon-thumbs-up');
+            $($thumb).addClass('icon-thumbs-down');
+
         }
     }
 })();
