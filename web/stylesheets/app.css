@@ -1,0 +1,192 @@
+/* Login/Registration related*/
+
+h1.frontLogo {
+    color: #646475;
+    text-shadow: 1px 1px 0px #fff;
+    font-size: 2em;
+    font-family: sans-serif;
+    line-height: 1em;
+    margin-bottom: 0.5em;
+    font-weight: normal;
+}
+
+/* Navigation related elements */
+
+.sidebar .widget {
+    min-width: 200px !important;
+}
+
+.subscriptions-head {
+    padding-left: 15px;
+    padding-top: 25px;
+}
+
+.subscriptions-info {
+    padding-left: 15px;
+    padding-top: 5px;
+    padding-right: 15px;
+}
+
+.row-fluid .span4 {
+    smin-width: 200px;
+}
+/* Info wall related message elements */
+
+.info p {
+    margin: 0px;
+}
+
+.info p#author {
+    font-weight: bold;
+}
+
+.info p#date {
+    color: #666666;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.item-summary .overview {
+    margin-right: 1em;
+    margin-bottom: 0.25em;
+    float: left;
+    width: 100px;
+}
+
+.latest-users-gravatar {
+    float: left;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+
+.postData {
+    padding-bottom: 10px;
+}
+
+.postContent {
+}
+
+.noPosts {
+    padding-top: 20px;
+}
+
+/* Login/Logout/Register related stuff */
+
+#login-errors {
+    margin-bottom: 10px;
+    color: #AA0000;
+}
+
+ul.links {
+    margin-top: 20px;
+}
+
+ul.links, li {
+    list-style-type: none;
+}
+
+.links li {
+    padding-left: 0px; text-indent: -2em;
+}
+
+.dialog input[type="checkbox"] {
+    float: left;
+    margin-right: 5px !important;
+    position: relative;
+    top: 3px;
+}
+.login-submit {
+    margin-top: 5px;
+}
+
+/* Group listing related */
+
+.group-title {
+    font-size: 1.2em;
+}
+
+.group-description {
+    font-style: italic;
+}
+
+.group-open {
+    margin-top: 5px;
+}
+
+.group-follow {
+    margin-top: 5px;
+}
+
+.new-post {
+    width: 97%;
+}
+
+/* Latest Groups info box related */
+
+.cards li.latestGroupItem {
+    padding: 0px;
+    margin: 0px;
+    padding-left: 1em;
+}
+
+.cards li.latestGroupItem h5 {
+    padding: 0px;
+    padding-top: 7px;
+    margin: 0px;
+}
+
+/* Modal related overrides*/
+
+div.jqi button {
+    padding: 3px 10px;
+    margin: 0 10px;
+    background-color: #2F6073;
+    border: solid 1px #888888;
+    color: #888888;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+div.jqi button:hover {
+    background-color: #f0f0f2 !important;
+}
+
+div.jqi .jqiclose:hover {
+    cursor: pointer;
+    cursor:hand;
+}
+
+/* Post listings */
+
+.info {
+    display:inline-block;
+    width: 80%;
+    zoom: 1;
+    *display:inline;
+}
+
+.postContent {
+    width: 100%;
+    border: 1px solid #EEEEEE;
+    background-color: #f9f9f9;
+    padding: 5px;
+}
+
+.postOptions {
+    width: 100%;
+    padding-top: 10px;
+}
+
+.postOptionLink {
+    margin-right: 5px;
+}
+
+.like-container {
+    margin-right: 5px;
+}
+
+/* Common */
+.strong {
+    font-weight: bold;
+}
+

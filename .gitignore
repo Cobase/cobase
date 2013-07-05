@@ -19,5 +19,4 @@ app/SymfonyRequirements.php
 app/logs/*
 app/config/parameters.yml
 /bin
-web/stylesheets/app.css
 web/stylesheets/app_app_1.css

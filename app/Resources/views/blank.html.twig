@@ -11,15 +11,8 @@
     <!-- STYLESHEETS -->
     <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
-
-    {% stylesheets
-    '@CobaseAppBundle/Resources/css/app.less'
-    filter='?yui_css'
-    output='stylesheets/app.css'
-    %}
-    <link href="{{ asset_url }}" rel="stylesheet" media="screen" />
-    {% endstylesheets %}
-
+    <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
+    
     <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
     
     <!-- JAVASCRIPTS -->
