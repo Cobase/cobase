@@ -17,11 +17,13 @@
     
     <!-- JAVASCRIPTS -->
     <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
-    
-    {% javascripts output="/js/app.js" filter="?yui_js"
-    '@CobaseAppBundle/Resources/js/site.js'
+
+    <!-- javascript file includes -->
+    {% javascripts output="/js/app_compiled.js" filter="?yui_js"
+        '@CobaseAppBundle/Resources/js/site.js'
+        '@CobaseAppBundle/Resources/js/LikesManager.js'
     %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
+        <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
