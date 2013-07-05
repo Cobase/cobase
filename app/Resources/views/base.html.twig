@@ -23,7 +23,7 @@
         <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
         <!-- javascript file includes -->
-        {% javascripts output="/js/app.js" filter="?yui_js"
+        {% javascripts output="/js/app_compiled.js" filter="?yui_js"
             '@CobaseAppBundle/Resources/js/site.js'
             '@CobaseAppBundle/Resources/js/LikesManager.js'
         %}
@@ -236,13 +236,7 @@
         </div>
         
         <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
-        <script type="text/javascript">
-            $("[rel=tooltip]").tooltip();
-            $(function() {
-                $('.demo-cancel-click').click(function(){return false;});
-            });
-        </script>
-
+        
         {% if enable_google_analytics %}
             {% include "GoogleBundle:Analytics:async.html.twig" %}
         {% endif %}

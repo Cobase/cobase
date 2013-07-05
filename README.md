@@ -152,6 +152,10 @@ During development it might be useful to use this version so that it actively li
 automatically:
 
     $ app/console assetic:dump --watch (--force)
+    
+Each time you use your app in the production environment (and therefore, each time you deploy), you should run the following task:
+
+	$ php app/console assetic:dump --env=prod --no-debug
 
 #JavaScript routes:
 

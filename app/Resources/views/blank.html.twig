@@ -17,12 +17,6 @@
     
     <!-- JAVASCRIPTS -->
     <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
-    
-    {% javascripts output="/js/app.js" filter="?yui_js"
-    '@CobaseAppBundle/Resources/js/site.js'
-    %}
-    <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
@@ -50,12 +44,6 @@
 {% block content %}{% endblock %}
 
 <script src="lib/bootstrap/js/bootstrap.js"></script>
-<script type="text/javascript">
-    $("[rel=tooltip]").tooltip();
-    $(function() {
-        $('.demo-cancel-click').click(function(){return false;});
-    });
-</script>
 
 {% if enable_google_analytics %}
     {% include "GoogleBundle:Analytics:async.html.twig" %}
