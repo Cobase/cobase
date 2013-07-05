@@ -44,6 +44,7 @@ http://cobase.featurice.com/screenshots/screen5.png
 - Nice user interface with clear visual representation of categories
 - Creator of a post can edit or move the post
 - Google Analytics implementation
+- Like / Unlike posts
 
 #Upcoming features
 
