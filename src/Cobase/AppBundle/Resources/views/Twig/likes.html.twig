@@ -2,6 +2,6 @@
 {% if user.likesPost(post) %}
     <a class="like-link" data-liked="true" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
 {% else %}
-    <a class="like-link" data-liked="false" data-postId="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
+    <a class="like-link" data-liked="false" data-postid="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
 {%  endif %}
 <span class="like-container">(<span class="like-count">{{ likeCount }}</span>)</span>
