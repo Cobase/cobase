@@ -8,6 +8,13 @@ use Cobase\UserBundle\Entity\User;
 
 class GroupTest extends \PHPUnit_Framework_TestCase
 {
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatGroupEntityHasCorrectClass()
     {
         $group = new Group();
@@ -17,6 +24,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testEntityId()
     {
         $group = new Group();
@@ -26,6 +39,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatShortUrlIsSet()
     {
         $group = new Group();
@@ -34,7 +53,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $group->getShortUrl() 
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatShortUrlIsDifferent()
     {
         $group = new Group();
@@ -52,7 +77,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $url2
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatInitialAmountOfPostsIsZero()
     {
         $group = new Group();
@@ -66,6 +97,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatCreatedDateIsOfCorrectType()
     {
         $group = new Group();
@@ -75,6 +112,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatUpdatedDateIsOfCorrectType()
     {
         $group = new Group();
@@ -84,6 +127,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatInitialStateIsPublic()
     {
         $group = new Group();
@@ -93,6 +142,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testChangingStateToNonPublic()
     {
         $group = new Group();
@@ -103,7 +158,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $group->getIsPublic()
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSettingTags()
     {
         $group = new Group();
@@ -116,6 +177,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testInitialUserIsNotSet()
     {
         $group = new Group();
@@ -124,7 +191,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $group->getUser()
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSettingUser()
     {
         $group = new Group();
@@ -138,6 +211,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatSettingCreatedWorks()
     {
         $group = new Group();
@@ -151,7 +230,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $group->getCreated()
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatSettingUpdatedWorks()
     {
         $group = new Group();
@@ -165,7 +250,13 @@ class GroupTest extends \PHPUnit_Framework_TestCase
             $group->getUpdated()
         );
     }
-    
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSetCreatedValue()
     {
         $group = new Group();
@@ -179,6 +270,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSetUpdatedValue()
     {
         $group = new Group();
@@ -201,6 +298,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatSettingTitleWorks()
     {
         $group = new Group();
@@ -215,6 +318,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testEchoEntity()
     {
         $group = new Group();
@@ -231,6 +340,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSetSlug()
     {
         $group = new Group();
@@ -245,6 +360,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testThatSlugifyWorks()
     {
         $group = new Group();
@@ -268,6 +389,12 @@ class GroupTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testSettingDescription()
     {
         $group = new Group();
