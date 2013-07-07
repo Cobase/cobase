@@ -44,6 +44,11 @@ class Post implements Likeable
     protected $created;
 
     /**
+     * @ORM\Column(type="datetime")
+     */
+    protected $updated;
+    
+    /**
      * @var ArrayCollection
      */
     protected $likes;
@@ -51,6 +56,8 @@ class Post implements Likeable
     public function __construct()
     {
         $this->setCreated(new \DateTime());
+
+        $this->setUpdated(new \DateTime());
 
         $this->likes = new ArrayCollection();
     }
@@ -130,6 +137,26 @@ class Post implements Likeable
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param datetime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return datetime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 
     /**
