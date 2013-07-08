@@ -185,6 +185,10 @@ div.jqi .jqiclose:hover {
     margin-right: 10px;
 }
 
+.like-count {
+    display: inline-block;
+}
+
 /* Common */
 .strong {
     font-weight: bold;

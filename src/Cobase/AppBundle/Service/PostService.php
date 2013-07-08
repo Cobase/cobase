@@ -4,8 +4,8 @@ namespace Cobase\AppBundle\Service;
 
 use Cobase\AppBundle\Entity\Like;
 
+use Cobase\AppBundle\Repository\PostRepository;
 use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Core\SecurityContext;
 use Cobase\AppBundle\Entity\Group;
@@ -38,13 +38,13 @@ class PostService
 
     /**
      * @param EntityManager     $em
-     * @param EntityRepository  $repository
+     * @param PostRepository  $repository
      * @param SecurityContext   $security
      * @param LikeService       $likeService
      */
     public function __construct(
         EntityManager       $em,
-        EntityRepository    $repository,
+        PostRepository      $repository,
         SecurityContext     $security,
         LikeService         $likeService)
     {
@@ -199,5 +199,15 @@ class PostService
     public function getLikeCount(Post $post)
     {
         return $this->repository->getLikeCount($post);
+    }
+
+    /**
+     * @param Post $post
+     *
+     * return @array
+     */
+    public function getLikes(Post $post)
+    {
+        return $this->repository->getLikes($post);
     }
 }

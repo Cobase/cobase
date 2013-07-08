@@ -1,4 +1,4 @@
-
+<span class="like-container">
 {% if user.likesPost(post) %}
     <i class="thumb icon-thumbs-down"></i>
     <a class="like-link" data-liked="true" data-postid="{{ post.id }}" href="">{{ 'Unlike'|trans }}</a>
@@ -6,4 +6,5 @@
     <i class="thumb icon-thumbs-up"></i>
     <a class="like-link" data-liked="false" data-postid="{{ post.id }}" href="">{{ 'Like'|trans }}</a>
 {%  endif %}
-<span class="like-container">(<span class="like-count">{{ likeCount }}</span>)</span>
+<span class="like-container">(<a href="#" rel="tooltip" data-original-title="" class="like-count" data-postid="{{ post.id }}">{{ likeCount }}</a>)</span>
+</span>

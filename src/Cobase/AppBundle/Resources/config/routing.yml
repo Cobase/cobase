@@ -60,6 +60,10 @@ CobaseAppBundle_unlike_post:
     pattern:  /post/{postId}/unlike
     defaults: { _controller: CobaseAppBundle:Post:unlikePost }
 
+CobaseAppBundle_get_post_likes:
+    pattern:  /post/{postId}/likes
+    defaults: { _controller: CobaseAppBundle:Post:getLikes }
+
 CobaseAppBundle_post_move:
     pattern:  /post/move
     defaults: { _controller: CobaseAppBundle:Post:move }

@@ -6,6 +6,7 @@ use Cobase\AppBundle\Controller\BaseController;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 
 /**
  * Post controller.
@@ -169,5 +170,28 @@ class PostController extends BaseController
         $this->getPostService()->unlikePost($post, $user);
 
         return $this->getJsonResponse(array('success' => true, 'message' => "You don't like this post anymore"));
+    }
+
+    public function getLikesAction($postId)
+    {
+        $post = $this->getPostService()->getPostById($postId);
+
+        if (!$post) {
+            throw new ResourceNotFoundException('No such post found.');
+        }
+
+        $likes = $this->getPostService()->getLikes($post);
+
+        $likesArr = array();
+
+        foreach ($likes as $like) {
+            $likesArr[] = array(
+                'userId'    => $like->getUser()->getId(),
+                'username'  => $like->getUser()->getUsernameCanonical(),
+                'name'  => $like->getUser()->getName(),
+            );
+        }
+
+        return $this->getJsonResponse(array('success' => true, 'likes' => $likesArr));
     }
 }
