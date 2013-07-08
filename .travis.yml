@@ -5,9 +5,11 @@ php:
   - 5.4
 
 before_script:
+  - mysql -e 'create database cobase;'
   - cp app/config/parameters.yml-dist app/config/parameters.yml
   - cp app/phpunit.xml.dist app/phpunit.xml
   - composer install
+  - php app/console doctrine:schema:create
   
 script: phpunit -c app --coverage-text
 
