@@ -6,7 +6,7 @@ $(function(){
         }
     });
 
-    $("[rel=tooltip]").popover({'html': true});
+    $(".like-count").popover({'html': true});
 });
 
 var fancyFilter = function(filterListSelector, gallerySelector) {
