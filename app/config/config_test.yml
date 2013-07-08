@@ -12,3 +12,17 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+#doctrine:
+#    dbal:
+#        driver:   pdo_sqlite
+#        host:     # Reset
+#        port:     # Reset
+#        dbname:   # Reset
+#        user:     # Reset
+#        password: # Reset
+#        path:     "%kernel.root_dir%/cache/test/testdb.sqlite"
+
+#    orm:
+#        auto_generate_proxy_classes: true
+#        auto_mapping: true
