@@ -38,5 +38,10 @@ var fancyFilter = function(filterListSelector, gallerySelector) {
     });
 };
 
+$(document).ready(function () {
+    var likesManager = new Cobase.LikesManager('a.like-link');
+    likesManager.bindEvents();
+});
+
 
 
