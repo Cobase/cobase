@@ -17,8 +17,8 @@ parameters:
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     cobase
-    database_user:     cobase
-    database_password: secret
+    database_user:     root
+    database_password: 
 
     # Mail server settings
     mailer_transport:  smtp
