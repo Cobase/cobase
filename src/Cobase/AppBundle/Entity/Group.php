@@ -53,7 +53,7 @@ class Group
     protected $isPublic;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="groups")
+     * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="groupsFollowed")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
     protected $user;

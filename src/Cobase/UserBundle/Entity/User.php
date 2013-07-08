@@ -53,6 +53,16 @@ class User extends BaseUser
     protected $groupsFollowed;
 
     /**
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Subscription", mappedBy="user")
+     */
+    protected $subscriptions;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Post", mappedBy="user")
+     */
+    protected $posts;
+
+    /**
      * @var ArrayCollection
      *
      * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="user")
@@ -79,11 +89,49 @@ class User extends BaseUser
         $this->gravatar = $address;
     }
 
+    /**
+     * @return ArrayCollection|null
+     */
     public function getGroupsFollowed()
     {
         return $this->groupsFollowed;
     }
 
+    /**
+     * @param $groupsFollowed
+     * @return User
+     */
+    public function setGroupsFollowed($groupsFollowed)
+    {
+        $this->groupsFollowed = $groupsFollowed;
+
+        return $this;
+    }
+
+    /**
+     * @param mixed $subscriptions
+     *
+     * @return User
+     */
+    public function setSubscriptions($subscriptions)
+    {
+        $this->subscriptions = $subscriptions;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection|null
+     */
+    public function getSubscriptions()
+    {
+        return $this->subscriptions;
+    }
+
+    /**
+     * @param Like $like
+     * @return User
+     */
     public function addLike(Like $like)
     {
         if (!$this->getLikes()->contains($like)) {
@@ -149,6 +197,27 @@ class User extends BaseUser
 
         return $this->likes;
     }
+
+    /**
+     * @param mixed $posts
+     *
+     * @return User
+     */
+    public function setPosts($posts)
+    {
+        $this->posts = $posts;
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
+
 
     public function __toString() 
     {
