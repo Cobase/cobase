@@ -47,7 +47,7 @@ Cobase.LikesManager.prototype = (function() {
                         var likes = '';
                         var i = 0;
                         for (i = 0; i < data.likes.length; i++) {
-                            likes += '<a href="' + Routing.generate('CobaseAppBundle_user_view', {'username': data.likes[i].username }) + '">' + data.likes[i].username + "</a>";
+                            likes += '<a href="' + Routing.generate('CobaseAppBundle_user_view', {'username': data.likes[i].username }) + '">' + data.likes[i].name + "</a>";
 
                             if (i < data.likes.length - 1) {
                                 likes += ', ';

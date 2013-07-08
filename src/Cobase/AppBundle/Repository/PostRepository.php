@@ -118,7 +118,7 @@ class PostRepository extends EntityRepository
             ->setParameter('id', $post->getId())
             ->andWhere('l.resourceType = :type')
             ->setParameter('type', 'post')
-            ->orderBy('u.username');
+            ->orderBy('u.name');
 
         return $qb->getQuery()->getResult();
     }

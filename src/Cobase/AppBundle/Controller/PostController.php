@@ -187,7 +187,8 @@ class PostController extends BaseController
         foreach ($likes as $like) {
             $likesArr[] = array(
                 'userId'    => $like->getUser()->getId(),
-                'username'  => $like->getUser()->getUsername(),
+                'username'  => $like->getUser()->getUsernameCanonical(),
+                'name'  => $like->getUser()->getName(),
             );
         }
 
