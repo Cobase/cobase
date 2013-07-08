@@ -3,6 +3,7 @@
 namespace Cobase\AppBundle\Repository;
 
 use Cobase\AppBundle\Entity\Post;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Cobase\UserBundle\Entity\User;
 
@@ -61,7 +62,7 @@ class PostRepository extends EntityRepository
     }
 
     /**
-     * Find latest group posts for a given user
+     * Find group posts for a given user
      *
      * @param \Cobase\UserBundle\Entity\User $user
      * @return array
@@ -77,26 +78,6 @@ class PostRepository extends EntityRepository
 
         return $qb->getQuery()
             ->getResult();
-    }
-
-    /**
-     * Get all quick posts for a given user with sort options
-     *
-     * @param \Cobase\UserBundle\Entity\User $user
-     * @param $limit
-     * @param $order
-     * @return array
-     */
-    public function getAllQuickPostsForUser(User $user, $limit, $order)
-    {
-        $query = $this->getEntityManager()
-            ->createQuery('SELECT u
-                           FROM Cobase\AppBundle\Entity\QuickPost u
-                           WHERE u.user = ?1
-                           ORDER BY u.created ' . $order)
-            ->setParameter('1', $user);
-
-        return $query->getResult();
     }
 
     /**
@@ -120,5 +101,25 @@ class PostRepository extends EntityRepository
         } catch(NoResultException $e) {
             return 0;
         }
+    }
+
+    /**
+     * @param Post $post
+     * @return array
+     */
+    public function getLikes(Post $post)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('l')
+            ->from('Cobase\AppBundle\Entity\Like', 'l')
+            ->leftJoin('l.user', 'u')
+            ->where('l.resourceId = :id')
+            ->setParameter('id', $post->getId())
+            ->andWhere('l.resourceType = :type')
+            ->setParameter('type', 'post')
+            ->orderBy('u.name');
+
+        return $qb->getQuery()->getResult();
     }
 }

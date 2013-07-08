@@ -5,20 +5,8 @@ $(function(){
             window.location = url;
         }
     });
-/*
-    $(document).on('click', 'a.like-link', function(e) {
-        e.preventDefault();
 
-        var postId = $(this).data('postid');
-
-        $.ajax({
-            url: Routing.generate('CobaseAppBundle_like_post', {'postId': postId}),
-            success: function(data) {
-                alert(JSON.stringify(data));
-            }
-        });
-    });
-    */
+    $(".like-count").popover({'html': true});
 });
 
 var fancyFilter = function(filterListSelector, gallerySelector) {
@@ -31,7 +19,7 @@ var fancyFilter = function(filterListSelector, gallerySelector) {
 
         $this.closest('li').addClass('active');
         $(gallerySelector).isotope({ 
-            filter: filterType,
+            filter: filterType
         });
 
         return false;
