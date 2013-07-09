@@ -43,7 +43,8 @@
         "xi/fixtures": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "antimattr/google-bundle": "dev-master",
-        "artur-gajewski/date-converter-bundle": "1.0.*@dev"
+        "artur-gajewski/date-converter-bundle": "1.0.*@dev",
+        "eko/feedbundle": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

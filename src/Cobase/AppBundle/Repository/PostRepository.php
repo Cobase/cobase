@@ -2,6 +2,7 @@
 
 namespace Cobase\AppBundle\Repository;
 
+use Cobase\AppBundle\Entity\Group;
 use Cobase\AppBundle\Entity\Post;
 use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
@@ -16,6 +17,29 @@ use Cobase\UserBundle\Entity\User;
 class PostRepository extends EntityRepository
 {
     /**
+     * @param Group $group
+     * @param integer $limit
+     */
+    public function getLatestPublicPostsForGroup(Group $group, $limit = null)
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b, g')
+            ->leftJoin('b.group', 'g')
+            ->addOrderBy('b.created', 'DESC')
+            ->andWhere('g.isPublic = :status')
+            ->setParameter('status', '1')
+            ->andWhere('b.group = :group')
+            ->setParameter('group', $group);
+
+        if (false === is_null($limit))
+            $qb->setMaxResults($limit);
+
+        return $qb->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * @TODO refactor to minimize code duplication, see getAllPostsForPublicGroups()
      * Get given amount of latest posts for public groups for any user
      *
      * @param null $limit
@@ -38,6 +62,8 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * @TODO refactor to minimize code duplication, see getLatestPostsForPublicGroups()
+     *
      * Get all group posts for public groups with given sort options
      *
      * @param null $limit
