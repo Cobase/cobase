@@ -46,7 +46,7 @@ class CobaseAppExtension extends \Twig_Extension
         $newFlagString = "";
         $time = floor($delta / 86400);
         
-        if ($time < 5) {
+        if ($time < 2) {
             $newFlagString = '<span class="label label-info">New</span>';
         }
         
