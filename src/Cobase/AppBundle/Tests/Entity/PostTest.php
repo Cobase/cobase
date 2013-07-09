@@ -280,11 +280,15 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function assertFeedTitleIsNotShortened()
     {
+        $user = new User();
+        $user->setName("John");
+
         $post = new Post();
+        $post->setUser($user);
         $post->setMaxFeedTitleLength(42);
         $post->setContent('The hyperactive horse walked into a saloon');
 
-        $expectedTitle = 'The hyperactive horse walked into a saloon';
+        $expectedTitle = 'The hyperactive horse walked into a saloon (John)';
 
         $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
     }
@@ -297,11 +301,15 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function assertFeedTitleIsShortenedProperly()
     {
+        $user = new User();
+        $user->setName("John");
+
         $post = new Post();
+        $post->setUser($user);
         $post->setMaxFeedTitleLength(20);
         $post->setContent('The hyperactive horse walked into a saloon');
 
-        $expectedTitle = 'The hyperactive...';
+        $expectedTitle = 'The hyperactive... (John)';
 
         $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
     }
@@ -314,11 +322,15 @@ class PostTest extends \PHPUnit_Framework_TestCase
      */
     public function assertFeedTitleIsShortenedProperlyWhenLastCharIsSpace()
     {
+        $user = new User();
+        $user->setName("John");
+
         $post = new Post();
+        $post->setUser($user);
         $post->setMaxFeedTitleLength(21);
         $post->setContent('The hyperactive horse walked into a saloon');
 
-        $expectedTitle = 'The hyperactive horse...';
+        $expectedTitle = 'The hyperactive horse... (John)';
 
         $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
     }
