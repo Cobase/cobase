@@ -29,7 +29,7 @@ CobaseAppBundle_group_modify:
     defaults: { _controller: CobaseAppBundle:Group:modify }
 
 CobaseAppBundle_group_feed:
-    pattern:  /groups/rss/{groupId}
+    pattern:  /group/{groupId}/rss
     defaults: { _controller: CobaseAppBundle:Group:feed }
 
 CobaseAppBundle_group_search:
