@@ -78,6 +78,16 @@ class PostService
     }
 
     /**
+     * @param Group $group
+     * @param integer $limit
+     * @return array
+     */
+    public function getLatestPublicPostsForGroup(Group $group, $limit = null)
+    {
+        return $this->repository->getLatestPublicPostsForGroup($group, $limit);
+    }
+
+    /**
      * @return array
      */
     public function getAllPostsforPublicGroups($limit = null, $order)
