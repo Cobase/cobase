@@ -52,6 +52,10 @@ doctrine:
         charset:  UTF8
 
     orm:
+        filters:
+            softdeleteable:
+                class: Gedmo\SoftDeleteable\Filter\SoftDeleteableFilter
+                enabled: true
         auto_generate_proxy_classes: %kernel.debug%
         auto_mapping: true
 

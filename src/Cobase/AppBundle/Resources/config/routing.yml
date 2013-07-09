@@ -52,6 +52,14 @@ CobaseAppBundle_post_modify:
     pattern:  /post/modify/{postId}
     defaults: { _controller: CobaseAppBundle:Post:modify }
 
+CobaseAppBundle_post_move:
+    pattern:  /post/move
+    defaults: { _controller: CobaseAppBundle:Post:move }
+
+CobaseAppBundle_post_delete:
+    pattern:  /post/delete
+    defaults: { _controller: CobaseAppBundle:Post:delete }
+
 CobaseAppBundle_like_post:
     pattern:  /post/{postId}/like
     defaults: { _controller: CobaseAppBundle:Post:likePost }
@@ -63,10 +71,6 @@ CobaseAppBundle_unlike_post:
 CobaseAppBundle_get_post_likes:
     pattern:  /post/{postId}/likes
     defaults: { _controller: CobaseAppBundle:Post:getLikes }
-
-CobaseAppBundle_post_move:
-    pattern:  /post/move
-    defaults: { _controller: CobaseAppBundle:Post:move }
 
 CobaseAppBundle_users:
     pattern:  /users

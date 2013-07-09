@@ -150,6 +150,48 @@ class PostController extends BaseController
         );
     }
 
+    /**
+     * @param $postId
+     */
+    public function deleteAction()
+    {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+
+        $postService = $this->getPostService();
+        $groupService = $this->getGroupService();
+
+        $groupId = $this->getRequest()->get('groupId');
+        $postId = $this->getRequest()->get('postId');
+
+        $url = $this->generateUrl(
+            'CobaseAppBundle_group_view',
+            array(
+                'groupId' => $groupId,
+            ),
+            true
+        );
+
+        $group = $groupService->getGroupById($groupId);
+        $post = $postService->getPostById($postId);
+
+        $post->setDeleted(new \DateTime());
+        $postService->savePost($post);
+
+        $this->get('session')->getFlashBag()->add('post.message', 'Post has been successfully deleted.');
+
+        return new Response(
+            json_encode(
+                array(
+                    "success" => true,
+                    "url"     => $url,
+                )
+            )
+        );
+    }
+    
     public function likePostAction($postId)
     {
         $post = $this->getPostService()->getPostById($postId);

@@ -43,7 +43,9 @@
         "xi/fixtures": "dev-master",
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "antimattr/google-bundle": "dev-master",
-        "artur-gajewski/date-converter-bundle": "1.0.*@dev"
+        "artur-gajewski/date-converter-bundle": "1.0.*@dev",
+        "gedmo/doctrine-extensions": "dev-wip-v2.4.0"
+        
     },
     "scripts": {
         "post-install-cmd": [
