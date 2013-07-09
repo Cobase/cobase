@@ -39,7 +39,7 @@ security:
             - { path: ^/group/create,       role: ROLE_USER }
             - { path: ^/group/modify,       role: ROLE_USER }
             - { path: ^/group/delete,       role: ROLE_USER }
-            - { path: ^/group/subscrbe,     role: ROLE_USER }
+            - { path: ^/group/subscribe,    role: ROLE_USER }
             - { path: ^/group/unsubscribe,  role: ROLE_USER }
             
     role_hierarchy:
