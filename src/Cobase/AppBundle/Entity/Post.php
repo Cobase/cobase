@@ -56,6 +56,11 @@ class Post implements Likeable, RoutedItemInterface
      */
     protected $likes;
 
+    /**
+     * @var integer
+     */
+    protected $maxFeedTitleLength;
+
     public function __construct()
     {
         $this->setCreated(new \DateTime());
@@ -63,6 +68,8 @@ class Post implements Likeable, RoutedItemInterface
         $this->setUpdated(new \DateTime());
 
         $this->likes = new ArrayCollection();
+
+        $this->maxFeedTitleLength = 400;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -235,17 +242,28 @@ class Post implements Likeable, RoutedItemInterface
     }
 
     /**
-     * This method returns feed item title
+     * This method returns feed item title. The title is shortened if required.
      *
+     * You can set the maximum length of the title using setMaxFeedTitleLength().
      *
      * @return string
      */
     public function getFeedItemTitle()
     {
-        $content = $this->getContent();
+        $content = trim($this->getContent());
 
-        // @TODO replace naive substring with proper logic
-        return substr($content, 0, 250);
+        if (mb_strlen($content) <= $this->getMaxFeedTitleLength()) {
+           return $content;
+        }
+
+        $content = mb_substr($content, 0, $this->getMaxFeedTitleLength() + 1);
+        $lastSpacePos = strrpos($content, ' ');
+
+        if ($lastSpacePos !== false) {
+            $content = mb_substr($content, 0, $lastSpacePos);
+        }
+
+        return trim($content) . '...';
     }
 
     /**
@@ -301,5 +319,25 @@ class Post implements Likeable, RoutedItemInterface
     public function getFeedItemPubDate()
     {
         return $this->getCreated();
+    }
+
+    /**
+     * @param int $maxFeedTitleLength
+     *
+     * @return Post
+     */
+    public function setMaxFeedTitleLength($maxFeedTitleLength)
+    {
+        $this->maxFeedTitleLength = $maxFeedTitleLength;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxFeedTitleLength()
+    {
+        return $this->maxFeedTitleLength;
     }
 }

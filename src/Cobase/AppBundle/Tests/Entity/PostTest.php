@@ -272,6 +272,57 @@ class PostTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsNotShortened()
+    {
+        $post = new Post();
+        $post->setMaxFeedTitleLength(42);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive horse walked into a saloon';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsShortenedProperly()
+    {
+        $post = new Post();
+        $post->setMaxFeedTitleLength(20);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive...';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsShortenedProperlyWhenLastCharIsSpace()
+    {
+        $post = new Post();
+        $post->setMaxFeedTitleLength(21);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive horse...';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
     /*
     Tests yet to be implemented:
     - public function setLikes($likes)
