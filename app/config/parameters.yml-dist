@@ -12,6 +12,9 @@ parameters:
     # Should Google Analytics be enabled?
     enable_google_analytics: false
 
+	#Should user login be required?
+    login_required: false
+    
     # Database configurations
     database_driver:   pdo_mysql
     database_host:     127.0.0.1

@@ -62,13 +62,15 @@
         {{ group.title }}
         <span class="info">{{ group.description }}</span>
     </h2>
-    <p>
-        {% if subscribed %}
-            <a class="btn btn-mini group-unsubscribe" href="{{ path('CobaseAppBundle_group_unsubscribe', { 'groupId': group.shortUrl }) }}">Unsubscribe</a>
-        {% else %}
-            <a class="btn btn-mini group-subscribe" href="{{ path('CobaseAppBundle_group_subscribe', { 'groupId': group.shortUrl }) }}">Subscribe</a>    
-        {% endif %}
-    </p>
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <p>
+            {% if subscribed %}
+                <a class="btn btn-mini group-unsubscribe" href="{{ path('CobaseAppBundle_group_unsubscribe', { 'groupId': group.shortUrl }) }}">Unsubscribe</a>
+            {% else %}
+                <a class="btn btn-mini group-subscribe" href="{{ path('CobaseAppBundle_group_subscribe', { 'groupId': group.shortUrl }) }}">Subscribe</a>    
+            {% endif %}
+        </p>
+    {% endif %}
     
     {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
         <hr/>
@@ -95,7 +97,7 @@
                 {{ form_widget(form._token) }}
             </div>
             <div class="control-group-new-post">
-                <label class="control-label-new-post"></label>
+                <!-- label class="control-label-new-post"></label -->
                 <div class="controls-new-post">
                     <input id="formSubmit" class="btn btn-success" type="submit" value="Submit">
                 </div>
