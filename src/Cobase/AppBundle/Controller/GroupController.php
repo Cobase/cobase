@@ -87,7 +87,7 @@ class GroupController extends BaseController
     /**
      * View Group
      *
-     * @param $groupId
+     * @param $shortUrl
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction($groupId)
@@ -97,11 +97,10 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
-        
         $request  = $this->getRequest();
         $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
-        $group    = $groupService->getGroupById($groupId);
+        $group    = $groupService->getGroupByShortUrl($groupId);
         $groups   = $groupService->getGroups();
         
         $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
