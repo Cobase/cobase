@@ -43,6 +43,14 @@ CobaseAppBundle_all_groups_with_sorting:
 CobaseAppBundle_all_posts:
     pattern:  /posts
     defaults: { _controller: CobaseAppBundle:Post:showAll }
+
+CobaseAppBundle_post_view:
+    pattern:  /post/{postId}
+    defaults: { _controller: CobaseAppBundle:Post:view }
+
+CobaseAppBundle_post_feed:
+    pattern:  /posts/rss
+    defaults: { _controller: CobaseAppBundle:Post:feed }
     
 CobaseAppBundle_all_posts_with_sorting:
     pattern:  /posts/{orderType}

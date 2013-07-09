@@ -98,3 +98,11 @@ liip_url_auto_converter:
     linkclass:
     target: _blank
     debugmode: false
+
+eko_feed:
+    feeds:
+        post:
+            title: 'Posts'
+            description: 'Latest posts'
+            link: 'cobase.featurice.com'
+            encoding: 'utf-8'

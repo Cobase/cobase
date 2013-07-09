@@ -3,6 +3,9 @@ namespace Cobase\AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
+
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -12,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * @ORM\Table(name="posts")
  * @ORM\HasLifecycleCallbacks()
  */
-class Post implements Likeable
+class Post implements Likeable, RoutedItemInterface
 {
     /**
      * @ORM\Id
@@ -229,5 +232,74 @@ class Post implements Likeable
         }
 
         return $this;
+    }
+
+    /**
+     * This method returns feed item title
+     *
+     *
+     * @return string
+     */
+    public function getFeedItemTitle()
+    {
+        $content = $this->getContent();
+
+        // @TODO replace naive substring with proper logic
+        return substr($content, 0, 250);
+    }
+
+    /**
+     * This method returns feed item description (or content)
+     *
+     *
+     * @return string
+     */
+    public function getFeedItemDescription()
+    {
+        return $this->getContent();
+    }
+
+    /**
+     * This method returns the name of the route
+     *
+     *
+     * @return string
+     */
+    public function getFeedItemRouteName()
+    {
+        return 'CobaseAppBundle_post_view';
+    }
+
+    /**
+     * This method returns the parameters for the route.
+     *
+     *
+     * @return array
+     */
+    public function getFeedItemRouteParameters()
+    {
+        return array('postId' => $this->getId());
+    }
+
+    /**
+     * This method returns the anchor to be appended on this item's url
+     *
+     *
+     * @return string The anchor, without the "#"
+     */
+    public function getFeedItemUrlAnchor()
+    {
+        return '';
+    }
+
+    /**
+     * This method returns item publication date
+     *
+     *
+     * @return \DateTime
+     */
+    public function getFeedItemPubDate()
+    {
+        return $this->getCreated();
     }
 }

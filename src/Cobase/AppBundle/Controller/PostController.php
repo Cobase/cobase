@@ -13,6 +13,25 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
  */
 class PostController extends BaseController
 {
+    public function viewAction($postId)
+    {
+        $post = $this->getPostService()->getPostById($postId);
+
+        if (!$post) {
+            return $this->render('CobaseAppBundle:Post:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        return $this->render('CobaseAppBundle:Post:view.html.twig',
+            $this->mergeVariables(
+                array(
+                    'post' => $post,
+                )
+            )
+        );
+    }
+
     /**
      * Show all Posts
      *
@@ -193,5 +212,20 @@ class PostController extends BaseController
         }
 
         return $this->getJsonResponse(array('success' => true, 'likes' => $likesArr));
+    }
+
+    /**
+     * Generate the article feed
+     *
+     * @return Response XML Feed
+     */
+    public function feedAction()
+    {
+        $posts = $this->getPostService()->getPosts();
+
+        $feed = $this->get('eko_feed.feed.manager')->get('post');
+        $feed->addFromArray($posts);
+
+        return new Response($feed->render('rss')); // or 'atom'
     }
 }
