@@ -26,6 +26,11 @@ class GroupController extends BaseController
      */
     public function newAction()
     {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        
         $group = new Group();
         $user  = $this->getCurrentUser();
         $form = $this->createForm(new GroupType(), $group);
@@ -55,6 +60,11 @@ class GroupController extends BaseController
      */
     public function createAction()
     {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        
         $group   = new Group();
         $form    = $this->createForm(new GroupType(), $group);
         $user    = $this->getCurrentUser();
@@ -93,18 +103,21 @@ class GroupController extends BaseController
     public function viewAction($groupId)
     {
         $post = new Post();
-        
+ 
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
-        
+
         $request  = $this->getRequest();
-        $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
+        $form     = $this->createForm(new PostType(), $post);
         $group    = $groupService->getGroupById($groupId);
         $groups   = $groupService->getGroups();
-        
-        $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+
+        $isSubscribed = false;
+        if ($user) {
+            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);    
+        }
         
         if (!$group) {
             return $this->render('CobaseAppBundle:Group:notfound.html.twig',
@@ -174,6 +187,11 @@ class GroupController extends BaseController
      */
     public function modifyAction($groupId)
     {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        
         $groupService    = $this->getGroupService();
         $postService = $this->getPostService();
 
@@ -227,6 +245,11 @@ class GroupController extends BaseController
      */
     public function subscribeAction($groupId)
     {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        
         $groupService = $this->getGroupService();
         $subscriptionService = $this->getSubscriptionService();
         
@@ -257,6 +280,11 @@ class GroupController extends BaseController
      */
     public function unsubscribeAction($groupId)
     {
+        // Check if user is logged in. If not, redirect to login page
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirect($this->generateUrl('fos_user_security_login'));
+        }
+        
         $groupService = $this->getGroupService();
         $subscriptionService = $this->getSubscriptionService();
 

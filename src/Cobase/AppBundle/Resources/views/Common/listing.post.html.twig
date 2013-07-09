@@ -4,7 +4,16 @@
     </div>
     <div class="info">
         <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
-        <p class="postData">{{ post.created | ago }}</p>
+        <p class="postData">
+            {{ post.created | ago }}
+            {% if group is defined %}
+                {% if post.group.id != group.id %}
+                    in <a class="postOptionLink" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a>
+                {% endif %}
+            {% else %}
+                in <a class="postOptionLink" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a>
+            {% endif %}
+        </p>
         <p class="postContent">{{ post.content | converturls }}</p>
         <p class="postOptions">
             {{ cobase_likes(post) }}
