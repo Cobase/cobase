@@ -66,7 +66,7 @@ class Post implements Likeable, RoutedItemInterface
     /**
      * @var integer
      */
-    protected $maxFeedTitleLength;
+    protected $maxFeedTitleLength = 400;
 
     public function __construct()
     {
@@ -75,8 +75,6 @@ class Post implements Likeable, RoutedItemInterface
         $this->setUpdated(new \DateTime());
 
         $this->likes = new ArrayCollection();
-
-        $this->maxFeedTitleLength = 400;
     }
 
     public static function loadValidatorMetadata(ClassMetadata $metadata)
@@ -255,10 +253,11 @@ class Post implements Likeable, RoutedItemInterface
         $lastSpacePos = strrpos($content, ' ');
 
         if ($lastSpacePos !== false) {
+
             $content = mb_substr($content, 0, $lastSpacePos);
         }
 
-        return trim($content) . "... (" . $this->getUser()->getName() . ")";;
+        return trim($content) . "... (" . $this->getUser()->getName() . ")";
     }
 
     /**

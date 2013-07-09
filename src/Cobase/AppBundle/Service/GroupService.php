@@ -82,7 +82,7 @@ class GroupService
     {
         return $this->repository->findOneBy(
             array(
-                'shortUrl' => $id
+                'id' => $id
             )
         );
     }

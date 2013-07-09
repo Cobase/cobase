@@ -226,6 +226,6 @@ class PostController extends BaseController
         $feed = $this->get('eko_feed.feed.manager')->get('post');
         $feed->addFromArray($posts);
 
-        return new Response($feed->render('rss')); // or 'atom'
+        return new Response($feed->render('rss'));
     }
 }
