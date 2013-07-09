@@ -47,11 +47,6 @@ class PostController extends BaseController
      */
     public function modifyAction($postId)
     {
-        // Check if user is logged in. If not, redirect to login page
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirect($this->generateUrl('fos_user_security_login'));
-        }
-        
         $postService = $this->getPostService();
 
         $post    = $postService->getPostById($postId);
@@ -113,11 +108,6 @@ class PostController extends BaseController
      */
     public function moveAction()
     {
-        // Check if user is logged in. If not, redirect to login page
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirect($this->generateUrl('fos_user_security_login'));
-        }
-        
         $postService = $this->getPostService();
         $groupService = $this->getGroupService();
 
@@ -155,11 +145,6 @@ class PostController extends BaseController
      */
     public function deleteAction()
     {
-        // Check if user is logged in. If not, redirect to login page
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            return $this->redirect($this->generateUrl('fos_user_security_login'));
-        }
-
         $postService = $this->getPostService();
         $groupService = $this->getGroupService();
 
