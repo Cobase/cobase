@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new AntiMattr\GoogleBundle\GoogleBundle(),
             new Aga\DateConverterBundle\DateConverterBundle(),
+            new Eko\FeedBundle\EkoFeedBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
