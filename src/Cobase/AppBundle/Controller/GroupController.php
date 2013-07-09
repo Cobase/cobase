@@ -100,7 +100,7 @@ class GroupController extends BaseController
         $request  = $this->getRequest();
         $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
-        $group    = $groupService->getGroupByShortUrl($groupId);
+        $group    = $groupService->getGroupById($groupId);
         $groups   = $groupService->getGroups();
         
         $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
