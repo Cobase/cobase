@@ -16,6 +16,7 @@ use Cobase\UserBundle\Entity\User;
 class PostRepository extends EntityRepository
 {
     /**
+     * @TODO refactor to minimize code duplication, see getAllPostsForPublicGroups()
      * Get given amount of latest posts for public groups for any user
      *
      * @param null $limit
@@ -38,6 +39,8 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * @TODO refactor to minimize code duplication, see getLatestPostsForPublicGroups()
+     *
      * Get all group posts for public groups with given sort options
      *
      * @param null $limit

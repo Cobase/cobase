@@ -221,7 +221,7 @@ class PostController extends BaseController
      */
     public function feedAction()
     {
-        $posts = $this->getPostService()->getPosts();
+        $posts = $this->getPostService()->getLatestPostsForPublicGroups(50);
 
         $feed = $this->get('eko_feed.feed.manager')->get('post');
         $feed->addFromArray($posts);
