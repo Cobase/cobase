@@ -347,6 +347,26 @@ class Group
     }
 
     /**
+     * Set deleted
+     *
+     * @param datetime $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return datetime
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+    
+    /**
      * Set slug
      *
      * @param string $slug

@@ -237,6 +237,36 @@ class GroupController extends BaseController
     }
 
     /**
+     * @param $postId
+     */
+    public function deleteAction()
+    { 
+        $groupService = $this->getGroupService();
+
+        $groupId = $this->getRequest()->get('groupId');
+    
+        $url = $this->generateUrl(
+            'CobaseAppBundle_all_groups'
+        );
+
+        $group = $groupService->getGroupById($groupId);
+        
+        $group->setDeleted(new \DateTime());
+        $groupService->saveGroup($group);
+
+        $this->get('session')->getFlashBag()->add('group.message', 'Group has been successfully deleted.');
+
+        return new Response(
+            json_encode(
+                array(
+                    "success" => true,
+                    "url"     => $url,
+                )
+            )
+        );
+    }
+    
+    /**
      * Subscribe a user to a group
      * 
      * @param $groupId
