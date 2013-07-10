@@ -10,13 +10,17 @@
     {%  endif %}    
     
     <span class="like-container">
-        <a href="#" rel="tooltip" data-original-title="" class="like-count" data-postid="{{ post.id }}">
-            {% if user == null %}
-                {{ likeCount }} like(s)
-            {% else %}
-                {{ likeCount }}
-            {% endif %}        
-        </a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <a href="#" rel="tooltip" data-original-title="" class="like-count" data-postid="{{ post.id }}">
+        {% endif %}
+        {% if user == null %}
+            {{ likeCount }} like(s)
+        {% else %}
+            {{ likeCount }}
+        {% endif %}
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            </a>
+        {% endif %}
     </span>
 
 </span>
