@@ -8,6 +8,7 @@ use Cobase\AppBundle\Form\GroupType;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
+use Eko\FeedBundle\Feed\Feed;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
@@ -315,8 +316,26 @@ class GroupController extends BaseController
 
     public function feedAction($groupId)
     {
-        $group  = $this->getGroupService()->getGroupById($groupId);
         $feed   = $this->get('eko_feed.feed.manager')->get('post');
+
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            if ($this->container->getParameter('login_required')) {
+                return new Response($feed->render('rss'));
+            }
+        }
+
+        return $this->getFeedPosts($groupId);
+    }
+
+    /**
+     * @param int $groupId
+     * @return Response
+     */
+    protected function getFeedPosts($groupId)
+    {
+        $feed   = $this->get('eko_feed.feed.manager')->get('post');
+
+        $group  = $this->getGroupService()->getGroupById($groupId);
 
         if ($group) {
             $posts = $this->getPostService()->getLatestPublicPostsForGroup($group, 50);
