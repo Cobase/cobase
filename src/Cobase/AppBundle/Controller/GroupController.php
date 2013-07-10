@@ -9,6 +9,7 @@ use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
@@ -92,6 +93,10 @@ class GroupController extends BaseController
      */
     public function viewAction($groupId)
     {
+        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+            return $redirect;
+        }
+        
         $post = new Post();
  
         $groupService = $this->getGroupService();
@@ -289,6 +294,10 @@ class GroupController extends BaseController
      */
     public function showAllAction($orderByType = 'b.title', $orderType = 'asc')
     {
+        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+            return $redirect;
+        }
+        
         $orderBy = 'b.title';
         if ($orderByType == 'created') {
             $orderBy = 'b.created';

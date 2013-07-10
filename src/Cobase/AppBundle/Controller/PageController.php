@@ -8,14 +8,9 @@ class PageController extends BaseController
 {
     public function indexAction()
     {
-        // Check if login is required. If so, redirect to login page
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            if ($this->container->getParameter('login_required')) {
-                return $this->redirect($this->generateUrl('fos_user_security_login'));
-            } else {
-                return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
-            }    
-        } 
+        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+            return $redirect;
+        }
         
         $user  = $this->getCurrentUser();
 
