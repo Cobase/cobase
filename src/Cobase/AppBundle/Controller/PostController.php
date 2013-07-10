@@ -270,6 +270,14 @@ class PostController extends BaseController
      */
     public function feedAction()
     {
+        $feed = $this->get('eko_feed.feed.manager')->get('post');
+
+        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            if ($this->container->getParameter('login_required')) {
+                return new Response($feed->render('rss'));
+            }
+        }
+
         $posts = $this->getPostService()->getLatestPostsForPublicGroups(50);
 
         $feed = $this->get('eko_feed.feed.manager')->get('post');
