@@ -28,8 +28,8 @@ http://cobase.featurice.com/screenshots/screen5.png
 #Requirements
 
 - PHP 5.3 or later
+- Symfony2
 - MySQL
-- Symfony 2
 
 #Current features
 
@@ -38,13 +38,14 @@ http://cobase.featurice.com/screenshots/screen5.png
 - Gravatar implementation for using centralized avatars
 - Users can create groups
 - Users can post to groups
-- Users can modify or delete their own posts
+- Users can modify, move or delete their own posts
 - Users can subscribe/unsubscribe to groups
-- Each user has their own wall with all posts from the groups they have subscribed to in chronological order
+- Each user has their own wall with all posts from the groups they have subscribed to
 - Nice user interface with clear visual representation of categories
-- Creator of a post can edit or move the post
-- Google Analytics implementation
 - Like / Unlike posts
+- Each group has an RSS feed
+- Option to allow users to browse groups and posts without logging in
+- Google Analytics implementation
 
 #Upcoming features
 
@@ -70,7 +71,7 @@ Copy the distribution file for the parameters to your local file:
 
 Modify the parameters.yml to reflect your database connections and smtp settings.
 
-Create the following directories inside app:
+Create the following directories inside app folder:
 
 - cache
 - logs
@@ -185,12 +186,13 @@ it is crucial that we make sure the application code is working.
 
 To run a test, go to your project's folder and run following command:
 
-    $ phpunit -c app src/Cobase
+    $ phpunit -c app --coverage-text
 
 #Contributing
 
-Anyone is free to join the team and develop Cobase. Let me know what issue from the Github's 
-issue list you are willing to work on.
+We welcome any developers with various skills and background. Anyone is free to join the team and develop Cobase.
+
+If you want to join the team, please contact me and provide me with your github account ID so that I can add you to the team.
 
 Enjoy and welcome to the project!
 
