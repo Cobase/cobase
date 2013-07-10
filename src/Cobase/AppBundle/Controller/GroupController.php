@@ -103,7 +103,7 @@ class GroupController extends BaseController
         $user     = $this->getCurrentUser();
         $form     = $this->createForm(new PostType(), $post);
         $group    = $groupService->getGroupById($groupId);
-        $groups   = $groupService->getGroups();
+        $groups   = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
 
         $isSubscribed = false;
         if ($user) {
