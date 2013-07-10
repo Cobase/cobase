@@ -76,3 +76,10 @@ services:
         arguments:       [Cobase\AppBundle\Entity\Like]
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
+
+    gedmo.listener.softdeleteable:
+        class: Gedmo\SoftDeleteable\SoftDeleteableListener
+        tags:
+            - { name: doctrine.event_subscriber, connection: default }
+        calls:
+            - [ setAnnotationReader, [ @annotation_reader ] ]

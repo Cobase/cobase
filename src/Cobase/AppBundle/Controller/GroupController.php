@@ -93,17 +93,21 @@ class GroupController extends BaseController
     public function viewAction($groupId)
     {
         $post = new Post();
-        
+ 
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
+
         $request  = $this->getRequest();
-        $form     = $this->createForm(new PostType(), $post);
         $user     = $this->getCurrentUser();
+        $form     = $this->createForm(new PostType(), $post);
         $group    = $groupService->getGroupById($groupId);
         $groups   = $groupService->getGroups();
-        
-        $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+
+        $isSubscribed = false;
+        if ($user) {
+            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);    
+        }
         
         if (!$group) {
             return $this->render('CobaseAppBundle:Group:notfound.html.twig',
