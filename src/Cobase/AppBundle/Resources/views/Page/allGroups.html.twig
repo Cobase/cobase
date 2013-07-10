@@ -17,7 +17,7 @@
                     <p class="main-detail">{{ group.created|date('M d') }}</p>
                     <p class="main-detail">{{ group.created|date('Y') }}</p>
                     <p class="sub-detail">at {{ group.created|date('H:i') }}</p>
-                    <span class="label label-info">New Group</span>
+                    {{ group.created|show_newflag|raw }}
                 </div>
                 <div class="info">
                     <p class="group-title">{{ group.title }}</p>

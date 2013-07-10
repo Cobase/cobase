@@ -37,11 +37,13 @@ class PostTest extends \PHPUnit_Framework_TestCase
             $post->getCreated()
         );
 
+        $this->assertNull(
+            $post->getDeleted()
+        );
+        
         $this->assertNotNull(
             $post->getLikes()
         );
-        
-        
     }
 
     /**

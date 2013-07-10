@@ -159,11 +159,54 @@ class PostController extends BaseController
         );
     }
 
+    /**
+     * @param $postId
+     */
+    public function deleteAction()
+    {
+        $postService = $this->getPostService();
+        $groupService = $this->getGroupService();
+
+        $groupId = $this->getRequest()->get('groupId');
+        $postId = $this->getRequest()->get('postId');
+
+        $url = $this->generateUrl(
+            'CobaseAppBundle_group_view',
+            array(
+                'groupId' => $groupId,
+            ),
+            true
+        );
+
+        $group = $groupService->getGroupById($groupId);
+        $post = $postService->getPostById($postId);
+
+        $post->setDeleted(new \DateTime());
+        $postService->savePost($post);
+
+        $this->get('session')->getFlashBag()->add('post.message', 'Post has been successfully deleted.');
+
+        return new Response(
+            json_encode(
+                array(
+                    "success" => true,
+                    "url"     => $url,
+                )
+            )
+        );
+    }
+    
     public function likePostAction($postId)
     {
         $post = $this->getPostService()->getPostById($postId);
         $user = $this->getCurrentUser();
 
+        if (!$user) {
+            return $this->createJsonFailureResponse(array(
+                'message' => "You need to be logged in to do this action.",
+            ));
+        }
+            
         if ($user->likesPost($post)) {
             return $this->createJsonFailureResponse(array(
                 'message' => 'You already like this post',
@@ -180,6 +223,12 @@ class PostController extends BaseController
         $post = $this->getPostService()->getPostById($postId);
         $user = $this->getCurrentUser();
 
+        if (!$user) {
+            return $this->createJsonFailureResponse(array(
+                'message' => "You need to be logged in to do this action.",
+            ));
+        }
+        
         if (!$user->likesPost($post)) {
             return $this->createJsonFailureResponse(array(
                 'message' => "You didn't like this post previously",

@@ -78,7 +78,7 @@
                                 <i class="icon-caret-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <!--li><a tabindex="-1" href="{{ path('fos_user_profile_show') }}">My Profile</a></li-->
+                                <li><a tabindex="-1" href="{{ path('fos_user_profile_show') }}">My Profile</a></li>
                                 <li class="divider visible-phone"></li>
                                 <li><a tabindex="-2" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
                             </ul>
@@ -112,50 +112,64 @@
                 </select>
             </div>
             <ul class="nav nav-tabs">
-                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
-                    <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
-                </li>
-                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %}class="active"{% endif %}>
-                    <a href="{{ path('CobaseAppBundle_group_new') }}" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
-                </li>
-                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
-                    <a href="#" ><i class="icon-folder-open"></i> <span>My Groups</span></a>
-                </li-->
-                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
-                    <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
-                </li>
-                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
-                    <a href="#" ><i class="icon-user"></i> <span>Browse Users</span></a>
-                </li-->
-                <!--li {% if app.request.attributes.get('_route') == 'my_route' %}class="active"{% endif %}>
-                    <a href="#" ><i class="icon-envelope"></i> <span>Messages</span></a>
-                </li-->
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
+                    </li>
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_group_new') }}" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
+                    </li>
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+                    </li>
+                {% else %}
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+                    </li>
+                {% endif %}
             </ul>
         </div>
         
         <div id="sidebar-nav">
             <ul id="dashboard-menu" class="nav nav-list">
-                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
-                    <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
-                </li>
-                
-                <p class="subscriptions-head">Subscriptions:</p>
-                
-                {% for subscription in subscriptions if subscriptions != null %}
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
-                            <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
-                        </a>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                     </li>
+                
+                    <p class="subscriptions-head">Subscriptions:</p>
+                    
+                    {% for subscription in subscriptions if subscriptions != null %}
+                        <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
+                            <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
+                                <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
+                            </a>
+                        </li>
+                    {% else %}
+                        <p class="subscriptions-info">
+                            You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
+                        </p>
+    
+                        <p class="subscriptions-info">
+                            Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
+                        </p>
+                    {% endfor %}
                 {% else %}
+                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+                    </li>
+                    
+                    <p class="subscriptions-head">Welcome!</p>
+
                     <p class="subscriptions-info">
-                        You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
+                        It seems you have not created an account with us yet. You are free to use this service as a guest, but by <a href="{{ path('fos_user_registration_register') }}">registering</a> you will obtain lots of nice features.
                     </p>
 
                     <p class="subscriptions-info">
-                        Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
+                        By <a href="{{ path('fos_user_registration_register') }}">registering</a> an account with us, you will be able to subscribe to different groups of your interest, submit a 'like' to a post, see all interesting posts from different groups in one glance, and many more useful features.
                     </p>
-                {% endfor %}
+                    
+                {% endif %}
             </ul>
         </div>
         

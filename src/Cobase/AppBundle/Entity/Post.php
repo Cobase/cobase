@@ -12,11 +12,13 @@ use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
 class Post implements Likeable, RoutedItemInterface
 {
@@ -57,6 +59,11 @@ class Post implements Likeable, RoutedItemInterface
      * @ORM\Column(type="datetime")
      */
     protected $updated;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $deleted;
     
     /**
      * @var ArrayCollection
@@ -162,6 +169,26 @@ class Post implements Likeable, RoutedItemInterface
         return $this->updated;
     }
 
+    /**
+     * Set deleted
+     *
+     * @param datetime $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return datetime
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
+    }
+    
     /**
      * Set group
      *
