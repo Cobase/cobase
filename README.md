@@ -173,6 +173,20 @@ app/config/parameters.yml file.
 
 For more features of Google Bundle, refer to https://github.com/antimattr/GoogleBundle
 
+#Admin users
+
+When you register yourself a user, it's role is as ROLE_USER. In order to create administrators, you need to promote a user with the console:
+
+	$ php app/console fos:user:promote [username]
+	
+Enter ROLE_ADMIN for the user when console prompts for a role. Now login with that user and access to edit/move/delete options are available for groups and posts. 
+
+To remove admin rights from a user, you need to do similar task to demote a user:
+
+	$ php app/console fos:user:demote [username]
+	
+This time type ROLE_ADMIN to remove that role from this specific username.
+
 #Architecture
 
 Application has a DemoBundle, which is a first revision of suggestion for the

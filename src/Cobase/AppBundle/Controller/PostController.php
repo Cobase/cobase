@@ -78,7 +78,7 @@ class PostController extends BaseController
             );
         }
 
-        if ($post->getUser() !== $user) {
+        if ($post->getUser() !== $user && !$this->get('security.context')->isGranted('ROLE_ADMIN') ) {
             return $this->render('CobaseAppBundle:Post:noaccess.html.twig',
                 $this->mergeVariables()
             );

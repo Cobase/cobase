@@ -191,7 +191,7 @@ class GroupController extends BaseController
             );
         }
 
-        if ($group->getUser() !== $user) {
+        if ($group->getUser() !== $user && !$this->get('security.context')->isGranted('ROLE_ADMIN') ) {
             return $this->render('CobaseAppBundle:Group:noaccess.html.twig',
                 $this->mergeVariables()
             );
