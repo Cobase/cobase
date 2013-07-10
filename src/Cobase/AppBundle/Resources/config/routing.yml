@@ -48,10 +48,6 @@ CobaseAppBundle_all_posts:
     pattern:  /posts
     defaults: { _controller: CobaseAppBundle:Post:showAll }
 
-CobaseAppBundle_post_view:
-    pattern:  /post/{postId}
-    defaults: { _controller: CobaseAppBundle:Post:view }
-
 CobaseAppBundle_post_feed:
     pattern:  /posts/rss
     defaults: { _controller: CobaseAppBundle:Post:feed }
@@ -71,6 +67,10 @@ CobaseAppBundle_post_move:
 CobaseAppBundle_post_delete:
     pattern:  /post/delete
     defaults: { _controller: CobaseAppBundle:Post:delete }
+
+CobaseAppBundle_post_view:
+    pattern:  /post/{postId}
+    defaults: { _controller: CobaseAppBundle:Post:view }
 
 CobaseAppBundle_like_post:
     pattern:  /post/{postId}/like
