@@ -4,7 +4,7 @@
     var postId = null;
     var groupId = null;
 
-    var groups = {
+    var moves = {
         state0: {
             title: 'Move Post',
             html:'<label>Move post to</label>'+
@@ -87,7 +87,7 @@
         .click(function(e) {
             e.preventDefault();
             postId = $(this).attr("data-id");
-            $.prompt(groups);
+            $.prompt(moves);
     });
 
     $( ".delete-post-link" )
