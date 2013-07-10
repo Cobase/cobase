@@ -8,10 +8,13 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\GroupRepository")
  * @ORM\Table(name="groups")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
 class Group
 {
@@ -77,6 +80,11 @@ class Group
      * @ORM\Column(type="datetime")
      */
     protected $updated;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $deleted;
 
 
     public function __construct()

@@ -22,7 +22,13 @@
                 <div class="info">
                     <p class="group-title">{{ group.title }}</p>
                     <p class="group-description">{{ group.description }}</p>
-                    <a class="btn btn-mini group-open" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">View {{ group.countPosts }} post(s)</a>
+                    <p class="group-option-links">
+                        <a class="btn btn-mini group-subscribe" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}"><i class="icon-eye-open"></i> View {{ group.countPosts }} post(s)</a>
+                        {% if is_granted('EDIT', group) or is_granted('ROLE_ADMIN') %}
+                            <a class="btn btn-mini group-edit" href="{{ path('CobaseAppBundle_group_modify', { 'groupId': group.shortUrl }) }}"><i class="icon-edit"></i> Edit</a>
+                            <a class="btn btn-mini group-delete" href="{{ path('CobaseAppBundle_group_delete') }}"><i class="icon-remove"></i> Delete</a>
+                        {% endif %}
+                    </p>
                 </div>
                 <div class="clearfix"></div>
             </li>

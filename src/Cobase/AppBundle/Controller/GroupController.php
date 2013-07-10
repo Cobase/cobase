@@ -78,7 +78,20 @@ class GroupController extends BaseController
         $groupUrl = $this->container->get('router')
             ->generate('CobaseAppBundle_group_view', array('groupId' => $group->getShortUrl()), true);
 
+        // Create group
         $service->saveGroup($group, $user);
+
+        // creating the ACL
+        $aclProvider = $this->get('security.acl.provider');
+        $objectIdentity = ObjectIdentity::fromDomainObject($group);
+        $acl = $aclProvider->createAcl($objectIdentity);
+
+        // retrieving the security identity of the currently logged-in user
+        $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+        // grant owner access
+        $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+        $aclProvider->updateAcl($acl);
 
         $this->get('session')->getFlashBag()->add('group.created', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
         

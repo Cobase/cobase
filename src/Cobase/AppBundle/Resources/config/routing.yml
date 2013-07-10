@@ -27,6 +27,10 @@ CobaseAppBundle_group_view:
 CobaseAppBundle_group_modify:
     pattern:  /group/modify/{groupId}
     defaults: { _controller: CobaseAppBundle:Group:modify }
+    
+CobaseAppBundle_group_delete:
+    pattern:  /group/delete
+    defaults: { _controller: CobaseAppBundle:Group:delete }
 
 CobaseAppBundle_group_feed:
     pattern:  /group/{groupId}/rss
