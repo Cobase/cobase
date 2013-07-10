@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d8e0798d428cdd9cf4b2eff4ad0035f0",
+    "hash": "ee0448f642b826330b49c3d91064750d",
     "packages": [
         {
             "name": "antimattr/google-bundle",
@@ -939,6 +939,59 @@
                 "orm"
             ],
             "time": "2013-07-07 19:37:55"
+        },
+        {
+            "name": "eko/feedbundle",
+            "version": "dev-master",
+            "target-dir": "Eko/FeedBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/eko/FeedBundle.git",
+                "reference": "1.0.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/eko/FeedBundle/zipball/1.0.1",
+                "reference": "1.0.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.2",
+                "symfony/framework-bundle": ">=2.0,<2.4-dev",
+                "zendframework/zend-feed": ">=2.0",
+                "zendframework/zend-http": ">=2.0",
+                "zendframework/zend-servicemanager": ">=2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Eko\\FeedBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Vincent Composieux",
+                    "email": "vincent.composieux@gmail.com"
+                }
+            ],
+            "description": "A Symfony bundle to build RSS feeds from entities",
+            "homepage": "http://github.com/eko/FeedBundle",
+            "keywords": [
+                "atom",
+                "bundle",
+                "feed",
+                "rss"
+            ],
+            "time": "2013-06-08 08:30:49"
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
@@ -2545,6 +2598,366 @@
                 "test"
             ],
             "time": "2013-05-17 10:25:10"
+        },
+        {
+            "name": "zendframework/zend-escaper",
+            "version": "dev-master",
+            "target-dir": "Zend/Escaper",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendEscaper.git",
+                "reference": "release-2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendEscaper/zipball/release-2.2.1",
+                "reference": "release-2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Escaper\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "escaper",
+                "zf2"
+            ],
+            "time": "2013-05-01 21:53:03"
+        },
+        {
+            "name": "zendframework/zend-feed",
+            "version": "dev-master",
+            "target-dir": "Zend/Feed",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendFeed.git",
+                "reference": "8fd74c4c166fb46246abc2b70d65c024439a9798"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendFeed/zipball/8fd74c4c166fb46246abc2b70d65c024439a9798",
+                "reference": "8fd74c4c166fb46246abc2b70d65c024439a9798",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-escaper": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-http": "Zend\\Http for PubSubHubbub, and optionally for use with Zend\\Feed\\Reader",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component, for default/recommended ExtensionManager implementations",
+                "zendframework/zend-validator": "Zend\\Validator component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Feed\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides functionality for consuming RSS and Atom feeds",
+            "keywords": [
+                "feed",
+                "zf2"
+            ],
+            "time": "2013-06-28 17:00:15"
+        },
+        {
+            "name": "zendframework/zend-http",
+            "version": "dev-master",
+            "target-dir": "Zend/Http",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendHttp.git",
+                "reference": "5f0ff25f040123a7047db95134bae0556dd55480"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendHttp/zipball/5f0ff25f040123a7047db95134bae0556dd55480",
+                "reference": "5f0ff25f040123a7047db95134bae0556dd55480",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-loader": "self.version",
+                "zendframework/zend-stdlib": "self.version",
+                "zendframework/zend-uri": "self.version",
+                "zendframework/zend-validator": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Http\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides an easy interface for performing Hyper-Text Transfer Protocol (HTTP) requests",
+            "keywords": [
+                "http",
+                "zf2"
+            ],
+            "time": "2013-06-20 18:01:06"
+        },
+        {
+            "name": "zendframework/zend-loader",
+            "version": "dev-master",
+            "target-dir": "Zend/Loader",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendLoader.git",
+                "reference": "release-2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendLoader/zipball/release-2.2.1",
+                "reference": "release-2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-stdlib": "Zend\\Stdlib component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Loader\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "loader",
+                "zf2"
+            ],
+            "time": "2013-05-01 21:53:24"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "dev-master",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "release-2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendServiceManager/zipball/release-2.2.1",
+                "reference": "release-2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "time": "2013-05-08 18:00:17"
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "dev-master",
+            "target-dir": "Zend/Stdlib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendStdlib.git",
+                "reference": "049c34f3dfc7a74d524db27d4ff3f60e8e97d1aa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/049c34f3dfc7a74d524db27d4ff3f60e8e97d1aa",
+                "reference": "049c34f3dfc7a74d524db27d4ff3f60e8e97d1aa",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "stdlib",
+                "zf2"
+            ],
+            "time": "2013-06-20 18:01:22"
+        },
+        {
+            "name": "zendframework/zend-uri",
+            "version": "dev-master",
+            "target-dir": "Zend/Uri",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendUri.git",
+                "reference": "release-2.2.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendUri/zipball/release-2.2.1",
+                "reference": "release-2.2.1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-escaper": "self.version",
+                "zendframework/zend-validator": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Uri\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "a component that aids in manipulating and validating » Uniform Resource Identifiers (URIs)",
+            "keywords": [
+                "uri",
+                "zf2"
+            ],
+            "time": "2013-06-12 19:46:02"
+        },
+        {
+            "name": "zendframework/zend-validator",
+            "version": "dev-master",
+            "target-dir": "Zend/Validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendValidator.git",
+                "reference": "4f3e40694ed54124cde8c73a8054a96a94ef6826"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/4f3e40694ed54124cde8c73a8054a96a94ef6826",
+                "reference": "4f3e40694ed54124cde8c73a8054a96a94ef6826",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-math": "self.version",
+                "zendframework/zend-servicemanager": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-i18n": "Zend\\I18n component to allow translation of validation error messages as well as to use the various Date validators",
+                "zendframework/zend-math": "Zend\\Math component",
+                "zendframework/zend-resources": "Translations of validator messages",
+                "zendframework/zend-servicemanager": "Zend\\ServiceManager component to allow using the ValidatorPluginManager and validator chains"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed validators",
+            "keywords": [
+                "validator",
+                "zf2"
+            ],
+            "time": "2013-06-21 15:00:13"
         }
     ],
     "packages-dev": [
@@ -2565,7 +2978,8 @@
         "xi/fixtures": 20,
         "antimattr/google-bundle": 20,
         "artur-gajewski/date-converter-bundle": 20,
-        "gedmo/doctrine-extensions": 20
+        "gedmo/doctrine-extensions": 20,
+        "eko/feedbundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

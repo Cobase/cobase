@@ -274,6 +274,69 @@ class PostTest extends \PHPUnit_Framework_TestCase
         );
     }
 
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsNotShortened()
+    {
+        $user = new User();
+        $user->setName("John");
+
+        $post = new Post();
+        $post->setUser($user);
+        $post->setMaxFeedTitleLength(42);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive horse walked into a saloon (John)';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsShortenedProperly()
+    {
+        $user = new User();
+        $user->setName("John");
+
+        $post = new Post();
+        $post->setUser($user);
+        $post->setMaxFeedTitleLength(20);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive... (John)';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group post-entity
+     */
+    public function assertFeedTitleIsShortenedProperlyWhenLastCharIsSpace()
+    {
+        $user = new User();
+        $user->setName("John");
+
+        $post = new Post();
+        $post->setUser($user);
+        $post->setMaxFeedTitleLength(21);
+        $post->setContent('The hyperactive horse walked into a saloon');
+
+        $expectedTitle = 'The hyperactive horse... (John)';
+
+        $this->assertEquals($expectedTitle, $post->getFeedItemTitle());
+    }
+
     /*
     Tests yet to be implemented:
     - public function setLikes($likes)

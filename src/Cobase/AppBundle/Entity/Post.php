@@ -1,8 +1,14 @@
 <?php
 namespace Cobase\AppBundle\Entity;
 
+use Cobase\UserBundle\Entity\User;
+use Cobase\AppBundle\Entity\Group;
+
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Eko\FeedBundle\Item\Writer\RoutedItemInterface;
+
 use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -14,7 +20,7 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * @ORM\HasLifecycleCallbacks()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
-class Post implements Likeable
+class Post implements Likeable, RoutedItemInterface
 {
     /**
      * @ORM\Id
@@ -24,6 +30,7 @@ class Post implements Likeable
     protected $id;
 
     /**
+     * @var User
      * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
@@ -35,17 +42,20 @@ class Post implements Likeable
     protected $content;
 
     /**
+     * @var Group
      * @ORM\ManyToOne(targetEntity="Group", inversedBy="posts")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
      */
     protected $group;
 
     /**
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     protected $created;
 
     /**
+     * @var \DateTime
      * @ORM\Column(type="datetime")
      */
     protected $updated;
@@ -59,6 +69,11 @@ class Post implements Likeable
      * @var ArrayCollection
      */
     protected $likes;
+
+    /**
+     * @var integer
+     */
+    protected $maxFeedTitleLength = 400;
 
     public function __construct()
     {
@@ -77,8 +92,6 @@ class Post implements Likeable
     }
 
     /**
-     * Get id
-     *
      * @return integer
      */
     public function getId()
@@ -87,19 +100,19 @@ class Post implements Likeable
     }
 
     /**
-     * Set user
+     * @param User $user
      *
-     * @param string $user
+     * @return Post
      */
-    public function setUser($user)
+    public function setUser(User $user)
     {
         $this->user = $user;
+
+        return $this;
     }
 
     /**
-     * Get user
-     *
-     * @return string
+     * @return User
      */
     public function getUser()
     {
@@ -107,8 +120,6 @@ class Post implements Likeable
     }
 
     /**
-     * Set comment
-     *
      * @param text $content
      */
     public function setContent($content)
@@ -117,8 +128,6 @@ class Post implements Likeable
     }
 
     /**
-     * Get content
-     * 
      * @return mixed
      */
     public function getContent()
@@ -127,9 +136,7 @@ class Post implements Likeable
     }
 
     /**
-     * Set created
-     *
-     * @param datetime $created
+     * @param \DateTime $created
      */
     public function setCreated($created)
     {
@@ -137,9 +144,7 @@ class Post implements Likeable
     }
 
     /**
-     * Get created
-     *
-     * @return datetime
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -147,8 +152,6 @@ class Post implements Likeable
     }
 
     /**
-     * Set updated
-     *
      * @param datetime $updated
      */
     public function setUpdated($updated)
@@ -189,9 +192,9 @@ class Post implements Likeable
     /**
      * Set group
      *
-     * @param Cobase\AppBundle\Entity\Group $group
+     * @param Group $group
      */
-    public function setGroup(\Cobase\AppBundle\Entity\Group $group)
+    public function setGroup(Group $group)
     {
         $this->group = $group;
     }
@@ -199,7 +202,7 @@ class Post implements Likeable
     /**
      * Get group
      *
-     * @return Cobase\AppBundle\Entity\Group
+     * @return Group
      */
     public function getGroup()
     {
@@ -256,5 +259,106 @@ class Post implements Likeable
         }
 
         return $this;
+    }
+
+    /**
+     * This method returns feed item title. The title is shortened if required.
+     *
+     * You can set the maximum length of the title using setMaxFeedTitleLength().
+     *
+     * @return string
+     */
+    public function getFeedItemTitle()
+    {
+        $content = trim($this->getContent());
+
+        if (mb_strlen($content) <= $this->getMaxFeedTitleLength()) {
+           return $content . " (" . $this->getUser()->getName() . ")";
+        }
+
+        $content = mb_substr($content, 0, $this->getMaxFeedTitleLength() + 1);
+        $lastSpacePos = strrpos($content, ' ');
+
+        if ($lastSpacePos !== false) {
+
+            $content = mb_substr($content, 0, $lastSpacePos);
+        }
+
+        return trim($content) . "... (" . $this->getUser()->getName() . ")";
+    }
+
+    /**
+     * This method returns feed item description (or content)
+     *
+     *
+     * @return string
+     */
+    public function getFeedItemDescription()
+    {
+        return $this->getContent();
+    }
+
+    /**
+     * This method returns the name of the route
+     *
+     *
+     * @return string
+     */
+    public function getFeedItemRouteName()
+    {
+        return 'CobaseAppBundle_post_view';
+    }
+
+    /**
+     * This method returns the parameters for the route.
+     *
+     *
+     * @return array
+     */
+    public function getFeedItemRouteParameters()
+    {
+        return array('postId' => $this->getId());
+    }
+
+    /**
+     * This method returns the anchor to be appended on this item's url
+     *
+     *
+     * @return string The anchor, without the "#"
+     */
+    public function getFeedItemUrlAnchor()
+    {
+        return '';
+    }
+
+    /**
+     * This method returns item publication date
+     *
+     *
+     * @return \DateTime
+     */
+    public function getFeedItemPubDate()
+    {
+        return $this->getCreated();
+    }
+
+    /**
+     * @param int $maxFeedTitleLength
+     *
+     * @return Post
+     */
+    public function setMaxFeedTitleLength($maxFeedTitleLength)
+    {
+        $this->maxFeedTitleLength = $maxFeedTitleLength;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxFeedTitleLength()
+    {
+        return $this->maxFeedTitleLength;
     }
 }

@@ -28,6 +28,10 @@ CobaseAppBundle_group_modify:
     pattern:  /group/modify/{groupId}
     defaults: { _controller: CobaseAppBundle:Group:modify }
 
+CobaseAppBundle_group_feed:
+    pattern:  /group/{groupId}/rss
+    defaults: { _controller: CobaseAppBundle:Group:feed }
+
 CobaseAppBundle_group_search:
     pattern:  /search/group
     defaults: { _controller: CobaseAppBundle:Group:search }
@@ -43,6 +47,14 @@ CobaseAppBundle_all_groups_with_sorting:
 CobaseAppBundle_all_posts:
     pattern:  /posts
     defaults: { _controller: CobaseAppBundle:Post:showAll }
+
+CobaseAppBundle_post_view:
+    pattern:  /post/{postId}
+    defaults: { _controller: CobaseAppBundle:Post:view }
+
+CobaseAppBundle_post_feed:
+    pattern:  /posts/rss
+    defaults: { _controller: CobaseAppBundle:Post:feed }
     
 CobaseAppBundle_all_posts_with_sorting:
     pattern:  /posts/{orderType}

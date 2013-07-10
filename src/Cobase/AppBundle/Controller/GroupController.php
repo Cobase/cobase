@@ -87,7 +87,7 @@ class GroupController extends BaseController
     /**
      * View Group
      *
-     * @param $groupId
+     * @param $shortUrl
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction($groupId)
@@ -313,4 +313,16 @@ class GroupController extends BaseController
         );
     }
 
+    public function feedAction($groupId)
+    {
+        $group  = $this->getGroupService()->getGroupById($groupId);
+        $feed   = $this->get('eko_feed.feed.manager')->get('post');
+
+        if ($group) {
+            $posts = $this->getPostService()->getLatestPublicPostsForGroup($group, 50);
+            $feed->addFromArray($posts);
+        }
+
+        return new Response($feed->render('rss'));
+    }
 }
