@@ -187,17 +187,21 @@ class BaseController extends Controller
      * 
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
-    public function checkLoginRequirement($routeName)
+    public function checkLoginRequirement($routeName, $doRedirect = true)
     {
-        // Check if user is logged in
-        if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
-            // Check if login is required
-            if ($this->container->getParameter('login_required')) {
+        // Check if login is required
+        if ($this->container->getParameter('login_required')) {
+            // Check if user is logged in
+            if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 // Forward to login page
                 return $this->redirect($this->generateUrl('fos_user_security_login'));
-            } else {
-                // Forward to given route based on route name
-                return $this->redirect($this->generateUrl($routeName));
+            }
+        } else {
+            if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+                if ($doRedirect) {
+                    // Forward to given route based on route name
+                    return $this->redirect($this->generateUrl($routeName));    
+                }
             }
         }
         return null;

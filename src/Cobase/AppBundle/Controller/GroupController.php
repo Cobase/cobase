@@ -92,7 +92,7 @@ class GroupController extends BaseController
      */
     public function viewAction($groupId)
     {
-        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+        if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }
         
@@ -293,7 +293,7 @@ class GroupController extends BaseController
      */
     public function showAllAction($orderByType = 'b.title', $orderType = 'asc')
     {
-        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+        if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }
         

@@ -8,7 +8,7 @@ class PageController extends BaseController
 {
     public function indexAction()
     {
-        if (!$redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
+        if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups')) {
             return $redirect;
         }
         
