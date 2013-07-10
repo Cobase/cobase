@@ -8,98 +8,98 @@
     var postId = null;
     var groupId = null;
 
-    var groups = {
-    state0: {
-    title: 'Move Post',
-    html:'<label>Move post to</label>'+
-    '<select name="groupId">'+
-    {% for group in groups %}
-        '<option value="{{ group.shortUrl }}">{{ group.title }}</option>'+
-    {% endfor %}
-    '</select>',
-    buttons: { Submit: 1 },
-    focus: 1,
-    submit:function(e,v,m,f){
-    e.preventDefault();
-
-    var data = {};
-    data["postId"] = postId;
-    data["groupId"] = f.groupId;
-
-    // fire off the request
-    request = $.ajax({
-    url: "{{ path('CobaseAppBundle_post_move')}}",
-    type: "post",
-    data: data
-    });
-
-    // callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-    var data = jQuery.parseJSON(response);
-    window.location.href = data.url;
-    });
-
-    // callback handler that will be called on failure
-    request.fail(function (jqXHR, textStatus, errorThrown){
-    alert("An error occured. Could not move post to selected group.");
-    });
-
-    if(v==1) $.prompt.close();
-    if(v==-1) $.prompt.goToState('state0');
-    }
-    },
+    var moves = {
+        state0: {
+            title: 'Move Post',
+            html:'<label>Move post to</label>'+
+            '<select name="groupId">'+
+            {% for group in groups %}
+                '<option value="{{ group.shortUrl }}">{{ group.title }}</option>'+
+            {% endfor %}
+            '</select>',
+            buttons: { Submit: 1 },
+            focus: 1,
+            submit:function(e,v,m,f){
+                e.preventDefault();
+            
+                var data = {};
+                data["postId"] = postId;
+                data["groupId"] = f.groupId;
+            
+                // fire off the request
+                request = $.ajax({
+                    url: "{{ path('CobaseAppBundle_post_move')}}",
+                    type: "post",
+                    data: data
+                });
+            
+                // callback handler that will be called on success
+                request.done(function (response, textStatus, jqXHR){
+                    var data = jQuery.parseJSON(response);
+                    window.location.href = data.url;
+                });
+            
+                // callback handler that will be called on failure
+                request.fail(function (jqXHR, textStatus, errorThrown){
+                    alert("An error occured. Could not move post to selected group.");
+                });
+            
+                if(v==1) $.prompt.close();
+                if(v==-1) $.prompt.goToState('state0');
+            }
+        },
     };
 
     var deletes = {
-    state0: {
-    title: 'Delete Post ',
-    html:'<label>Are you sure you want to delete this post?</label>',
-    buttons: { OK: 1 },
-    focus: 1,
-    submit:function(e,v,m,f){
-    e.preventDefault();
-
-    var data = {};
-    data["postId"] = postId;
-    data["groupId"] = groupId;
-
-    // fire off the request
-    request = $.ajax({
-    url: "{{ path('CobaseAppBundle_post_delete')}}",
-    type: "post",
-    data: data
-    });
-
-    // callback handler that will be called on success
-    request.done(function (response, textStatus, jqXHR){
-    var data = jQuery.parseJSON(response);
-    window.location.href = data.url;
-    });
-
-    // callback handler that will be called on failure
-    request.fail(function (jqXHR, textStatus, errorThrown){
-    alert("An error occured. Could not delete post.");
-    });
-
-    if(v==1) $.prompt.close();
-    if(v==-1) $.prompt.goToState('state0');
-    }
-    },
+        state0: {
+            title: 'Delete Post ',
+            html:'<label>Are you sure you want to delete this post?</label>',
+            buttons: { OK: 1 },
+            focus: 1,
+            submit:function(e,v,m,f){
+                e.preventDefault();
+            
+                var data = {};
+                data["postId"] = postId;
+                data["groupId"] = groupId;
+            
+                // fire off the request
+                request = $.ajax({
+                    url: "{{ path('CobaseAppBundle_post_delete')}}",
+                    type: "post",
+                    data: data
+                });
+            
+                // callback handler that will be called on success
+                request.done(function (response, textStatus, jqXHR){
+                    var data = jQuery.parseJSON(response);
+                    window.location.href = data.url;
+                });
+            
+                // callback handler that will be called on failure
+                request.fail(function (jqXHR, textStatus, errorThrown){
+                    alert("An error occured. Could not delete post.");
+                });
+            
+                if(v==1) $.prompt.close();
+                if(v==-1) $.prompt.goToState('state0');
+            }
+        },
     };
 
     $( ".move-post-link" )
-    .click(function(e) {
-    e.preventDefault();
-    postId = $(this).attr("data-id");
-    $.prompt(groups);
+        .click(function(e) {
+            e.preventDefault();
+            postId = $(this).attr("data-id");
+            $.prompt(moves);
     });
 
     $( ".delete-post-link" )
-    .click(function(e) {
-    e.preventDefault();
-    postId = $(this).attr("data-id");
-    groupId = $(this).attr("data-group-id");
-    $.prompt(deletes);
+        .click(function(e) {
+            e.preventDefault();
+            postId = $(this).attr("data-id");
+            groupId = $(this).attr("data-group-id");
+            $.prompt(deletes);
     });
 {% endblock %}
 
@@ -109,10 +109,12 @@
         <span class="info">{{ group.description }}</span>
     </h2>
     <p>
-        {% if subscribed %}
-            <a class="btn btn-mini group-unsubscribe icon-eye-close" href="{{ path('CobaseAppBundle_group_unsubscribe', { 'groupId': group.shortUrl }) }}"> Unsubscribe</a>
-        {% else %}
-            <a class="btn btn-mini group-subscribe icon-eye-open" href="{{ path('CobaseAppBundle_group_subscribe', { 'groupId': group.shortUrl }) }}"> Subscribe</a>
+        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            {% if subscribed %}
+                <a class="btn btn-mini group-unsubscribe icon-eye-close" href="{{ path('CobaseAppBundle_group_unsubscribe', { 'groupId': group.shortUrl }) }}"> Unsubscribe</a>
+            {% else %}
+                <a class="btn btn-mini group-subscribe icon-eye-open" href="{{ path('CobaseAppBundle_group_subscribe', { 'groupId': group.shortUrl }) }}"> Subscribe</a>
+            {% endif %}
         {% endif %}
 
         <a class="btn btn-mini icon-rss" href="{{ path('CobaseAppBundle_group_feed', { 'groupId': group.shortUrl }) }}"> Rss feed</a>
