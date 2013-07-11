@@ -175,7 +175,7 @@ For more features of Google Bundle, refer to https://github.com/antimattr/Google
 
 #Admin users
 
-When you register yourself a user, it's role is as ROLE_USER. In order to create administrators, you need to promote a user with the console:
+When you register yourself a user, its role is as ROLE_USER. In order to create administrators, you need to promote a user with the console:
 
 	$ php app/console fos:user:promote [username]
 	
