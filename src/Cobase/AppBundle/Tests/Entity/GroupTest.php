@@ -148,6 +148,38 @@ class GroupTest extends \PHPUnit_Framework_TestCase
      * @group entity
      * @group group-entity
      */
+    public function testThatInitialDeletedIsPublic()
+    {
+        $group = new Group();
+
+        $this->assertNull(
+            $group->getDeleted()
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
+    public function testThatSettingDeletedWorks()
+    {
+        $group = new Group();
+
+        $group->setDeleted(new \DateTime());
+        
+        $this->assertNotNull(
+            $group->getDeleted()
+        );
+    }
+
+    /**
+     * @test
+     *
+     * @group entity
+     * @group group-entity
+     */
     public function testChangingStateToNonPublic()
     {
         $group = new Group();

@@ -78,9 +78,22 @@ class GroupController extends BaseController
         $groupUrl = $this->container->get('router')
             ->generate('CobaseAppBundle_group_view', array('groupId' => $group->getShortUrl()), true);
 
+        // Create group
         $service->saveGroup($group, $user);
 
-        $this->get('session')->getFlashBag()->add('group.created', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
+        // creating the ACL
+        $aclProvider = $this->get('security.acl.provider');
+        $objectIdentity = ObjectIdentity::fromDomainObject($group);
+        $acl = $aclProvider->createAcl($objectIdentity);
+
+        // retrieving the security identity of the currently logged-in user
+        $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+        // grant owner access
+        $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+        $aclProvider->updateAcl($acl);
+
+        $this->get('session')->getFlashBag()->add('group.message', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
         
         return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
     }
@@ -223,6 +236,44 @@ class GroupController extends BaseController
         );
     }
 
+    /**
+     * @param $postId
+     */
+    public function deleteAction()
+    { 
+        $groupService = $this->getGroupService();
+        $subscriptionService = $this->getSubscriptionService();
+
+        $user = $this->getCurrentUser();
+        $groupId = $this->getRequest()->get('groupId');
+    
+        $url = $this->generateUrl(
+            'CobaseAppBundle_all_groups'
+        );
+
+        $group = $groupService->getGroupById($groupId);
+        
+        $group->setDeleted(new \DateTime());
+        $groupService->saveGroup($group);
+
+        $subscriptions = $subscriptionService->getSubscriptionsForGroup($group);
+        foreach ($subscriptions as $subscription) {
+            $subscription->setDeleted(new \DateTime());
+            $subscriptionService->updateSubscription($subscription);
+        }
+        
+        $this->get('session')->getFlashBag()->add('group.message', 'Group has been successfully deleted.');
+
+        return new Response(
+            json_encode(
+                array(
+                    "success" => true,
+                    "url"     => $url,
+                )
+            )
+        );
+    }
+    
     /**
      * Subscribe a user to a group
      * 

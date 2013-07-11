@@ -6,10 +6,13 @@ use Symfony\Component\Validator\Mapping\ClassMetadata;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 
+use Gedmo\Mapping\Annotation as Gedmo;
+
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\SubscriptionRepository")
  * @ORM\Table(name="subscriptions")
  * @ORM\HasLifecycleCallbacks()
+ * @Gedmo\SoftDeleteable(fieldName="deleted")
  */
 class Subscription
 {
@@ -36,6 +39,11 @@ class Subscription
      * @ORM\Column(type="datetime")
      */
     protected $created;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    protected $deleted;
 
     public function __construct()
     {
@@ -90,6 +98,26 @@ class Subscription
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Set deleted
+     *
+     * @param datetime $deleted
+     */
+    public function setDeleted($deleted)
+    {
+        $this->deleted = $deleted;
+    }
+
+    /**
+     * Get deleted
+     *
+     * @return datetime
+     */
+    public function getDeleted()
+    {
+        return $this->deleted;
     }
 
     /**

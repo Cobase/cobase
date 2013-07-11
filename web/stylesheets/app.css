@@ -121,6 +121,10 @@ ul.links, li {
     width: 97%;
 }
 
+.info p.group-option-links {
+    margin-top: 10px;
+}
+
 /* Latest Groups info box related */
 
 .cards li.latestGroupItem {
