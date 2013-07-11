@@ -114,7 +114,14 @@
         {% for post in posts %}
             {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
         {% else %}
-            <p class="noPosts">There are currently no posts to be displayed. Perhaps you might want to subscribe to more groups?</p>
+            <p class="noPosts">
+                There are currently no posts in this group.
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Subscribe to this group and receive updates when someone posts to this group.
+                {% else %}
+                    Please login to subscribe to this group and receive updates when someone posts to this group.
+                {% endif %}
+            </p>
         {% endfor %}
     </ul>
 {% endblock content %}

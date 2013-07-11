@@ -80,7 +80,14 @@
                 <div class="clearfix"></div>
             </li>
         {% else %}
-            <p class="no-data">Currently there are no groups. Perhaps you could create a group?</p>
+            <p class="no-data">
+                Currently there are no groups created.
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Perhaps you could create one now?
+                {% else %}
+                    Please login and come back to create one.
+                {% endif %}
+            </p>
         {% endfor %}
     </ul>
 </div>

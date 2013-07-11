@@ -158,7 +158,14 @@
         {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
     {% else %}
         <li>
-            <p class="no-data">Currently there are no posts in this group. Perhaps you would like to post something to this group?</p>
+            <p class="no-data">
+                Currently there are no posts in this group.
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    Perhaps you would like to post something?
+                {% else %}
+                    Please login to post a new update.
+                {% endif %}
+            </p>
         </li>
     {% endfor %}
     </ul>
