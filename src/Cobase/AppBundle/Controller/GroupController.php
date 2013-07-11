@@ -106,6 +106,10 @@ class GroupController extends BaseController
      */
     public function viewAction($groupId)
     {
+        if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
+            return $redirect;
+        }
+        
         $post = new Post();
  
         $groupService = $this->getGroupService();
@@ -341,6 +345,10 @@ class GroupController extends BaseController
      */
     public function showAllAction($orderByType = 'b.title', $orderType = 'asc')
     {
+        if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
+            return $redirect;
+        }
+        
         $orderBy = 'b.title';
         if ($orderByType == 'created') {
             $orderBy = 'b.created';
