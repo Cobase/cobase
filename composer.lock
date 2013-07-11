@@ -385,12 +385,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/data-fixtures.git",
-                "reference": "6924952026b77ff492da559b04ad166d25c611cb"
+                "reference": "b4a135c7db56ecc4602b54a2184368f440cac33e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/6924952026b77ff492da559b04ad166d25c611cb",
-                "reference": "6924952026b77ff492da559b04ad166d25c611cb",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/b4a135c7db56ecc4602b54a2184368f440cac33e",
+                "reference": "b4a135c7db56ecc4602b54a2184368f440cac33e",
                 "shasum": ""
             },
             "require": {
@@ -432,7 +432,7 @@
             "keywords": [
                 "database"
             ],
-            "time": "2013-04-11 23:14:04"
+            "time": "2013-07-10 17:04:07"
         },
         {
             "name": "doctrine/dbal",
@@ -639,12 +639,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineMigrationsBundle.git",
-                "reference": "d950535e30434dc2521e5e434c19d666f4917245"
+                "reference": "a9796ce33152754e4dbc7d251da5c1c0a739189c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/d950535e30434dc2521e5e434c19d666f4917245",
-                "reference": "d950535e30434dc2521e5e434c19d666f4917245",
+                "url": "https://api.github.com/repos/doctrine/DoctrineMigrationsBundle/zipball/a9796ce33152754e4dbc7d251da5c1c0a739189c",
+                "reference": "a9796ce33152754e4dbc7d251da5c1c0a739189c",
                 "shasum": ""
             },
             "require": {
@@ -684,7 +684,7 @@
                 "migrations",
                 "schema"
             ],
-            "time": "2013-07-05 09:22:36"
+            "time": "2013-07-10 12:55:18"
         },
         {
             "name": "doctrine/inflector",
@@ -947,12 +947,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/eko/FeedBundle.git",
-                "reference": "1.0.1"
+                "reference": "efca7d6a5d7af2a340f1534b9aaa17f7eebd6798"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/eko/FeedBundle/zipball/1.0.1",
-                "reference": "1.0.1",
+                "url": "https://api.github.com/repos/eko/FeedBundle/zipball/efca7d6a5d7af2a340f1534b9aaa17f7eebd6798",
+                "reference": "efca7d6a5d7af2a340f1534b9aaa17f7eebd6798",
                 "shasum": ""
             },
             "require": {
@@ -991,7 +991,7 @@
                 "feed",
                 "rss"
             ],
-            "time": "2013-06-08 08:30:49"
+            "time": "2013-07-10 08:51:07"
         },
         {
             "name": "excelwebzone/recaptcha-bundle",
@@ -1164,12 +1164,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/l3pp4rd/DoctrineExtensions.git",
-                "reference": "1267ea5e6adffcf10d5e67a7775806e16c7cbc1e"
+                "reference": "85a28d1d20445b39276f3db2a446d1440fdfcd40"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/1267ea5e6adffcf10d5e67a7775806e16c7cbc1e",
-                "reference": "1267ea5e6adffcf10d5e67a7775806e16c7cbc1e",
+                "url": "https://api.github.com/repos/l3pp4rd/DoctrineExtensions/zipball/85a28d1d20445b39276f3db2a446d1440fdfcd40",
+                "reference": "85a28d1d20445b39276f3db2a446d1440fdfcd40",
                 "shasum": ""
             },
             "require": {
@@ -1236,7 +1236,7 @@
                 "tree",
                 "uploadable"
             ],
-            "time": "2013-07-05 05:40:29"
+            "time": "2013-07-10 19:05:50"
         },
         {
             "name": "jdorn/sql-formatter",
