@@ -14,5 +14,9 @@ before_script:
 script: phpunit -c app --coverage-text
 
 notifications:
-  email:
-    - info@arturgajewski.com
+  irc:
+    channels:
+      - "chat.freenode.net#cobase"
+    template:
+      - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Build details: %{build_url}"
