@@ -67,7 +67,7 @@
                     {{ group.created|show_newflag|raw }}
                 </div>
                 <div class="info">
-                    <p class="group-title">{{ group.title }}</p>
+                    <p class="group-title"><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></p>
                     <p class="group-description">{{ group.description }}</p>
                     <p class="group-option-links">
                         <a class="btn btn-mini group-subscribe" href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}"><i class="icon-eye-open"></i> View {{ group.countPosts }} post(s)</a>
