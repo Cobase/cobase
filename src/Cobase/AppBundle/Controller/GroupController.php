@@ -93,7 +93,7 @@ class GroupController extends BaseController
         $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
         $aclProvider->updateAcl($acl);
 
-        $this->get('session')->getFlashBag()->add('group.created', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
+        $this->get('session')->getFlashBag()->add('group.message', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
         
         return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
     }
@@ -242,7 +242,9 @@ class GroupController extends BaseController
     public function deleteAction()
     { 
         $groupService = $this->getGroupService();
+        $subscriptionService = $this->getSubscriptionService();
 
+        $user = $this->getCurrentUser();
         $groupId = $this->getRequest()->get('groupId');
     
         $url = $this->generateUrl(
@@ -254,6 +256,12 @@ class GroupController extends BaseController
         $group->setDeleted(new \DateTime());
         $groupService->saveGroup($group);
 
+        $subscriptions = $subscriptionService->getSubscriptionsForGroup($group);
+        foreach ($subscriptions as $subscription) {
+            $subscription->setDeleted(new \DateTime());
+            $subscriptionService->updateSubscription($subscription);
+        }
+        
         $this->get('session')->getFlashBag()->add('group.message', 'Group has been successfully deleted.');
 
         return new Response(

@@ -75,7 +75,7 @@ class SubscriptionService
     }
 
     /**
-     * Save a subscription
+     * Subscribe to a group
      *
      * @param  Group $group
      * @param  User  $user
@@ -99,7 +99,7 @@ class SubscriptionService
     }
 
     /**
-     * Delete a subscription
+     * Unsubscribe from a group
      *
      * @param  Group $group
      * @param  User  $user
@@ -126,6 +126,19 @@ class SubscriptionService
     }
 
     /**
+     * Update subscription
+     *
+     * @param  Subscription $subscription
+     */
+    public function updateSubscription(Subscription $subscription)
+    {
+        $this->em->persist($subscription);
+        $this->em->flush();
+
+        return $subscription;
+    }
+    
+    /**
      * Get all subscriptions for current user
      *
      * @return array
@@ -133,6 +146,16 @@ class SubscriptionService
     public function getSubscriptionsForUser($user)
     {
         return $this->repository->findAllForUser($user);
+    }
+
+    /**
+     * Get all subscriptions for given group
+     *
+     * @return array
+     */
+    public function getSubscriptionsForGroup(Group $group)
+    {
+        return $this->repository->findAllForGroup($group);
     }
 
     /**

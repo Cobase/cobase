@@ -51,7 +51,7 @@
 <div class="row-fluid">
     <h2>Browse all groups</h2>
 
-    {% for flashMessage in app.session.flashbag.get('group.created') %}
+    {% for flashMessage in app.session.flashbag.get('group.message') %}
         <div class="alert alert-success fade in">
             {{ flashMessage }}
         </div>

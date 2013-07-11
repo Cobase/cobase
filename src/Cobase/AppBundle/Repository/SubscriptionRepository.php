@@ -4,6 +4,7 @@ namespace Cobase\AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 use Cobase\UserBundle\Entity\User;
+use Cobase\AppBundle\Entity\Group;
 
 /**
  * SubscriptionRepository
@@ -47,6 +48,24 @@ class SubscriptionRepository extends EntityRepository
              WHERE p.group = s.group
              and s.user = :user ORDER BY p.created DESC'
         )->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
+    /**
+     * Find group subscriptions for a given group
+     *
+     * @param \Cobase\UserBundle\Entity\Group $group
+     * @return array
+     */
+    public function findAllForGroup(Group $group)
+    {
+        $em = $this->getEntityManager();
+        $query = $em->createQuery(
+            'SELECT s
+             FROM Cobase\AppBundle\Entity\Subscription s 
+             WHERE s.group = :group ORDER BY s.created ASC'
+        )->setParameter('group', $group);
 
         return $query->getResult();
     }
