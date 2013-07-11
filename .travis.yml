@@ -19,4 +19,6 @@ notifications:
       - "chat.freenode.net#cobase"
     template:
       - "%{repository} (%{commit}) : %{message} %{foo} "
+      - "Author: %{author}"
       - "Build details: %{build_url}"
+      - "Change view : %{compare_url}"
