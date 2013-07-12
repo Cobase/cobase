@@ -208,7 +208,11 @@ We welcome any developers with various skills and background. Anyone is free to 
 
 If you want to join the team, please contact me and provide me with your github account ID so that I can add you to the team.
 
+#IRC
+
 We have our own IRC channel created on freenode.net called #cobase, so you are more than welcome to join the discussion if you have any concerns or interest toward the project.
+
+#Welcome
 
 Enjoy and welcome to the project!
 
