@@ -25,8 +25,6 @@ The following is a step-by-step checklist of things you need to do when initiall
 
 	$ php composer.phar install
 
-	$ app/console doctrine:database:create
-
 	$ mysql
 
 	CREATE USER 'cobase'@'localhost' IDENTIFIED BY 'secret';
