@@ -34,7 +34,9 @@ class NewPostType extends AbstractType
                         return $er->createQueryBuilder('g')
                             ->where('g.id IN (:groupIds)')
                             ->setParameter('groupIds', $groupIds);
-                        }
+                        },
+                    'required' => true,
+                    'label' => 'Choose a group:'
                 )
             );
     }

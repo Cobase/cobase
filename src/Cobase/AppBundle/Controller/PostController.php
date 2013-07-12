@@ -203,9 +203,46 @@ class PostController extends BaseController
      */
     public function newAction()
     {
-        $post = new Post;
-        $form = $this->createForm(new NewPostType($this->getSubscriptions()), $post);
+        /**
+         * if there is an url variable in the request someone is using the bookmarklet
+         */
         $request = $this->getRequest();
+        if($request->query->has('url')) {
+            $url = $request->query->get('url');
+            $metadata = get_meta_tags($url);
+
+            // adding title of the page in metadata
+            $titleRegex = "/<title>(.+)<\/title>/i";
+            preg_match_all($titleRegex, file_get_contents($url), $title, PREG_PATTERN_ORDER);
+            $metadata['title'] = $title[1][0];
+
+            // adding facebook metas in metadata
+            $facebookRegex = "/<meta property='og:(.+)' content='(.+)'\/>/i";
+            preg_match_all($facebookRegex, file_get_contents($url), $facebookMetas, PREG_PATTERN_ORDER);
+
+            $metadata['facebook'] = array_combine($facebookMetas[1], $facebookMetas[2]);
+        }
+
+        $post = new Post;
+
+        /**
+         * Someone was using bookmarklet
+         */
+        if(isset($metadata)) {
+            $content = $metadata['title']."\n\n";
+            if(isset($metadata['facebook']['description'])) {
+                $content .= $metadata['facebook']['description']."\n\n";
+            }
+            if(isset($metadata['facebook']['site_name'])) {
+                $content .= 'On <a href="'.$url.'" target="_blank">'.$metadata['facebook']['site_name'].'</a>';
+            } else {
+                $content .= 'On <a href="'.$url.'" target="_blank">'.$url.'</a>';
+            }
+            $post->setContent($content);
+        }
+
+        $form = $this->createForm(new NewPostType($this->getSubscriptions()), $post);
+
         $postService = $this->getPostService();
 
         if ($request->getMethod() == 'POST') {
