@@ -11,7 +11,7 @@ CobaseAppBundle_group_subscribe:
 CobaseAppBundle_group_unsubscribe:
     pattern:  /group/unsubscribe/{groupId}
     defaults: { _controller: CobaseAppBundle:Group:unsubscribe }
-    
+
 CobaseAppBundle_group_new:
     pattern:  /group/new
     defaults: { _controller: CobaseAppBundle:Group:new }
@@ -31,7 +31,7 @@ CobaseAppBundle_group_view:
 CobaseAppBundle_group_modify:
     pattern:  /group/modify/{groupId}
     defaults: { _controller: CobaseAppBundle:Group:modify }
-    
+
 CobaseAppBundle_group_feed:
     pattern:  /group/{groupId}/rss
     defaults: { _controller: CobaseAppBundle:Group:feed }
@@ -55,7 +55,7 @@ CobaseAppBundle_all_posts:
 CobaseAppBundle_post_feed:
     pattern:  /posts/rss
     defaults: { _controller: CobaseAppBundle:Post:feed }
-    
+
 CobaseAppBundle_all_posts_with_sorting:
     pattern:  /posts/{orderType}
     defaults: { _controller: CobaseAppBundle:Post:showAll }
@@ -71,6 +71,10 @@ CobaseAppBundle_post_move:
 CobaseAppBundle_post_delete:
     pattern:  /post/delete
     defaults: { _controller: CobaseAppBundle:Post:delete }
+
+CobaseAppBundle_post_new:
+    pattern:  /post/new
+    defaults: { _controller: CobaseAppBundle:Post:new }
 
 CobaseAppBundle_post_view:
     pattern:  /post/{postId}
@@ -91,7 +95,7 @@ CobaseAppBundle_get_post_likes:
 CobaseAppBundle_users:
     pattern:  /users
     defaults: { _controller: CobaseAppBundle:User:showAll }
-    
+
 CobaseAppBundle_user_view:
     pattern:  /user/{username}
     defaults: { _controller: CobaseAppBundle:User:view }
