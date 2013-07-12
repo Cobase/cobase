@@ -194,6 +194,8 @@ We welcome any developers with various skills and background. Anyone is free to 
 
 If you want to join the team, please contact me and provide me with your github account ID so that I can add you to the team.
 
+Current contributors: https://github.com/CoBase/cobase/graphs/contributors 
+
 Enjoy and welcome to the project!
 
 Artur Gajewski
