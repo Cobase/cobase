@@ -206,6 +206,8 @@ To run a test, go to your project's folder and run following command:
 
 We welcome any developers with various skills and background. Anyone is free to join the team and develop Cobase.
 
+Current contributors: https://github.com/CoBase/cobase/graphs/contributors 
+
 If you want to join the team, please contact me and provide me with your github account ID so that I can add you to the team.
 
 #IRC
