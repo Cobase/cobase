@@ -1,20 +1,39 @@
+// TODO : create a link somewhere in Cobase to allow users to easily bookmark the bookmarklet
+// adapt the url to your development environment and copy this code in a bookmark to launch the bookmarklet
+// javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('src','http://cobase.localhost/javascripts/bookmarklet.js');document.body.appendChild(jsCode);})();
+//
+
 if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
     script = document.createElement( 'script' );
     script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
-    script.onload=loadCobase;
+    script.onload=loadFancybox;
     document.body.appendChild(script);
+} else {
+    loadFancybox();
 }
-else {
-    loadCobase();
+
+function loadFancybox() {
+    // fancybox plugin (js and css)
+    $('head').append('<link rel="stylesheet" type="text/css" href="http://cobase.localhost/stylesheets/jquery.fancybox.css">');
+    fancybox = document.createElement( 'script' );
+    fancybox.src = 'http://cobase.localhost/javascripts/jquery.fancybox.pack.js';
+    fancybox.onload=loadCobase;
+    document.body.appendChild(fancybox);
 }
 
 function loadCobase() {
-    var pageWidth = $(window).width();
-    var pageHeight = $(window).height();
-    var width = (pageWidth / 2) - 250;
-    var height = (pageHeight / 2) - 200;
-    $('html, body').animate({ scrollTop: 0 }, 'slow');
-    $('body').prepend('<div id="cobase" style="z-index: 1000; width: 500px; height: 400px; margin: 0px auto; top: '+height+'px; position: absolute; left: '+width+'px;"><iframe id="cobaseIframe" width="100%" height="100%"></iframe></div>');
-    var cobaseIframe = $('#cobaseIframe');
-    cobaseIframe.attr('src', 'http://cobase.localhost/app_dev.php/post/new?url='+encodeURIComponent(document.location));
+    // loading cobase in popin
+    console.log('ici');
+    $.fancybox({
+        'width': '50%',
+        'height': '50%',
+        'scrolling': 'no',
+        'maxWidth': '500px',
+        'maxHeight': '400px',
+        // 'autoScale': true,
+        'transitionIn': 'fade',
+        'transitionOut': 'fade',
+        'type': 'iframe',
+        'href': 'http://cobase.localhost/app_dev.php/post/new?url='+encodeURIComponent(document.location)
+    });
 }
