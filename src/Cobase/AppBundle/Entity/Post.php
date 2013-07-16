@@ -64,7 +64,7 @@ class Post implements Likeable, RoutedItemInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $deleted;
-    
+
     /**
      * @var ArrayCollection
      */
@@ -188,7 +188,7 @@ class Post implements Likeable, RoutedItemInterface
     {
         return $this->deleted;
     }
-    
+
     /**
      * Set group
      *
@@ -360,5 +360,19 @@ class Post implements Likeable, RoutedItemInterface
     public function getMaxFeedTitleLength()
     {
         return $this->maxFeedTitleLength;
+    }
+
+    public function setContentFromMetadataAndUrl(array $metadata, $url)
+    {
+        $content = $metadata['title']."\n\n";
+        if(isset($metadata['facebook']['description'])) {
+            $content .= $metadata['facebook']['description']."\n\n";
+        }
+        if(isset($metadata['facebook']['site_name'])) {
+            $content .= 'On <a href="'.$url.'" target="_blank">'.$metadata['facebook']['site_name'].'</a>';
+        } else {
+            $content .= 'On <a href="'.$url.'" target="_blank">'.$url.'</a>';
+        }
+        $this->setContent($content);
     }
 }

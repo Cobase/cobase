@@ -76,6 +76,10 @@ CobaseAppBundle_post_new:
     pattern:  /post/new
     defaults: { _controller: CobaseAppBundle:Post:new }
 
+CobaseAppBundle_post_bookmarklet:
+    pattern:  /javascripts/bookmarklet.js
+    defaults: { _controller: CobaseAppBundle:Post:bookmarklet }
+
 CobaseAppBundle_post_view:
     pattern:  /post/{postId}
     defaults: { _controller: CobaseAppBundle:Post:view }

@@ -14,16 +14,15 @@ if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
 
 function loadFancybox() {
     // fancybox plugin (js and css)
-    $('head').append('<link rel="stylesheet" type="text/css" href="http://cobase.localhost/stylesheets/jquery.fancybox.css">');
+    $('head').append('<link rel="stylesheet" type="text/css" href="http://{{ app.request.getHost }}/stylesheets/jquery.fancybox.css">');
     fancybox = document.createElement( 'script' );
-    fancybox.src = 'http://cobase.localhost/javascripts/jquery.fancybox.pack.js';
+    fancybox.src = 'http://{{ app.request.getHost }}/javascripts/jquery.fancybox.pack.js';
     fancybox.onload=loadCobase;
     document.body.appendChild(fancybox);
 }
 
 function loadCobase() {
     // loading cobase in popin
-    console.log('ici');
     $.fancybox({
         'width': '50%',
         'height': '50%',
@@ -34,6 +33,6 @@ function loadCobase() {
         'transitionIn': 'fade',
         'transitionOut': 'fade',
         'type': 'iframe',
-        'href': 'http://cobase.localhost/app_dev.php/post/new?url='+encodeURIComponent(document.location)
+        'href': 'http://{{ app.request.getHost }}/post/new?url='+encodeURIComponent(document.location)
     });
 }
