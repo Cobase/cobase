@@ -219,7 +219,7 @@
                                         <li>
                                             <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
                                             <p><a href="{{ path('CobaseAppBundle_user_view', { 'username': user.username }) }}">{{ user.name }}</a></p>
-                                            <p>{{ user.email }}</p>
+                                            <p>{% if user.emailVisible %}{{ user.email }}{% endif %}</p>
                                         </li>
                                         {% endfor %}
                                     </ul>

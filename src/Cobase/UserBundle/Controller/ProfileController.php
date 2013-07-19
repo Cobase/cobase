@@ -40,7 +40,7 @@ class ProfileController extends BaseController
         }
 
         return $this->container->get('templating')->renderResponse(
-            'FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'), 
+            'FOSUserBundle:Profile:show.html.'.$this->container->getParameter('fos_user.template.engine'),
             array(
                 'user'          => $user,
                 'subscriptions' => $this->getSubscriptions(),
@@ -101,7 +101,13 @@ class ProfileController extends BaseController
 
         return $this->container->get('templating')->renderResponse(
             'FOSUserBundle:Profile:edit.html.'.$this->container->getParameter('fos_user.template.engine'),
-            array('form' => $form->createView())
+            array(
+                'form' => $form->createView(),
+                'user'          => $user,
+                'subscriptions' => $this->getSubscriptions(),
+                'latestGroups'  => $this->getGroupService()->getLatestPublicGroups(10),
+                'latestUsers'   => $this->getUserService()->getLatestUsers(10),
+            )
         );
     }
 }
