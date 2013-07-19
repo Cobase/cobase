@@ -364,15 +364,24 @@ class Post implements Likeable, RoutedItemInterface
 
     public function setContentFromMetadataAndUrl(array $metadata, $url)
     {
+        // parsing the url
+        $parsedUrl = parse_url($url);
+        $host = $parsedUrl['host'];
+
         $content = $metadata['title']."\n\n";
-        if(isset($metadata['facebook']['description'])) {
+
+        if(isset($metadata['description'])) {
+            $content .= $metadata['description']."\n\n";
+        } else if(isset($metadata['facebook']['description'])) {
             $content .= $metadata['facebook']['description']."\n\n";
         }
+
         if(isset($metadata['facebook']['site_name'])) {
             $content .= 'On <a href="'.$url.'" target="_blank">'.$metadata['facebook']['site_name'].'</a>';
         } else {
-            $content .= 'On <a href="'.$url.'" target="_blank">'.$url.'</a>';
+            $content .= 'On <a href="'.$url.'" target="_blank">'.$host.'</a>';
         }
+
         $this->setContent($content);
     }
 }
