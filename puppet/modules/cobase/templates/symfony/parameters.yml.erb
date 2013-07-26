@@ -1,0 +1,32 @@
+parameters:
+    # Title of the site
+    # This will be as windows title as well as the title logo text
+    site_title: "<%= @site_title %>"
+
+    # Should the registration be enabled?
+    # If this setting is set to false, user's can be created
+    # through the use of app/console
+    allow_registration: <%= @allow_registration %>
+
+    # Should Google Analytics be enabled?
+    enable_google_analytics: <%= @enable_analytics %>
+
+    # Database configurations
+    database_driver:   <%= @db_driver %>
+    database_host:     <%= @db_host %>
+    database_port:     <%= @db_port %>
+    database_name:     <%= @db_name %>
+    database_user:     <%= @db_user %>
+    database_password: <%= @db_pass %>
+
+    # Mail Server settings
+    mailer_transport:  <%= @mailer %>
+    mailer_host:       <%= @mailer_host %>
+    mailer_user:       <%= @mailer_user %>
+    mailer_password:   <%= @mailer_pass %>
+
+    # Locale of the application
+    locale:            <%= @locale %>
+
+    # Secret for the passwords
+    secret:            <%= @secret %>
