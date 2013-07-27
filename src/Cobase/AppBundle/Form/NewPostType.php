@@ -8,18 +8,8 @@ use Doctrine\ORM\EntityRepository;
 
 class NewPostType extends AbstractType
 {
-    private $subscriptions;
-
-    public function __construct($subscriptions)
-    {
-        $this->subscriptions = $subscriptions;
-    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        foreach ($this->subscriptions as $subscription) {
-            $groupIds[] = $subscription->getGroup()->getId();
-        }
         $builder->add('content', 'textarea',
             array(
                 'attr' => array('class' => 'new-post'),
@@ -30,10 +20,9 @@ class NewPostType extends AbstractType
                 array(
                     'class' => 'CobaseAppBundle:Group',
                     'property' => 'title',
-                    'query_builder' => function(EntityRepository $er) use ($groupIds) {
+                    'query_builder' => function(EntityRepository $er) {
                         return $er->createQueryBuilder('g')
-                            ->where('g.id IN (:groupIds)')
-                            ->setParameter('groupIds', $groupIds);
+                            ->orderBy('g.title', 'ASC');
                         },
                     'required' => true,
                     'label' => 'Choose a group:'

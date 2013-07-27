@@ -223,7 +223,7 @@ class PostController extends BaseController
             $post->setContentFromHighlightedTextAndMetadataAndUrl($content, $metadata, $url);
         }
 
-        $form = $this->createForm(new NewPostType($this->getSubscriptions()), $post);
+        $form = $this->createForm(new NewPostType($post));
 
         $postService = $this->getPostService();
 
