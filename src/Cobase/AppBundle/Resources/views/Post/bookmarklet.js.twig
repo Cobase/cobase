@@ -17,17 +17,24 @@ function loadFancybox() {
 }
 
 function loadCobase() {
+    // setting the url
+    var url = 'http://{{ app.request.getHost }}/post/new?url='+encodeURIComponent(document.location);
+
+    if(content = window.getSelection?window.getSelection().toString():document.selection.createRange().text) {
+        url = url+'&content='+encodeURIComponent(content);
+    }
+
     // loading cobase in popin
     $.fancybox({
         'width': '50%',
         'height': '50%',
         'scrolling': 'no',
-        'maxWidth': '500px',
-        'maxHeight': '400px',
+        'maxWidth': '600px',
+        'maxHeight': '500px',
         // 'autoScale': true,
         'transitionIn': 'fade',
         'transitionOut': 'fade',
         'type': 'iframe',
-        'href': 'http://{{ app.request.getHost }}/post/new?url='+encodeURIComponent(document.location)
+        'href': url
     });
 }

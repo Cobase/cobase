@@ -223,19 +223,23 @@ class PostService
 
     public function fetchMetadataFromUrl($url)
     {
-        $metadata = get_meta_tags($url);
+        $metadata = @get_meta_tags($url);
 
-        // adding title of the page in metadata
-        $titleRegex = "/<title>(.+)<\/title>/i";
-        preg_match_all($titleRegex, file_get_contents($url), $title, PREG_PATTERN_ORDER);
-        $metadata['title'] = $title[1][0];
+        if($metadata) {
+            // adding title of the page in metadata
+            $titleRegex = "/<title>(.+)<\/title>/i";
+            preg_match_all($titleRegex, file_get_contents($url), $title, PREG_PATTERN_ORDER);
+            $metadata['title'] = $title[1][0];
 
-        // adding facebook metas in metadata
-        $facebookRegex = "/<meta property='og:(.+)' content='(.+)'\/>/i";
-        preg_match_all($facebookRegex, file_get_contents($url), $facebookMetas, PREG_PATTERN_ORDER);
+            // adding facebook metas in metadata
+            $facebookRegex = "/<meta property='og:(.+)' content='(.+)'\/>/i";
+            preg_match_all($facebookRegex, file_get_contents($url), $facebookMetas, PREG_PATTERN_ORDER);
 
-        $metadata['facebook'] = array_combine($facebookMetas[1], $facebookMetas[2]);
+            $metadata['facebook'] = array_combine($facebookMetas[1], $facebookMetas[2]);
 
-        return $metadata;
+            return $metadata;
+        } else {
+            return false;
+        }
     }
 }

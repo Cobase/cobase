@@ -213,9 +213,14 @@ class PostController extends BaseController
         if($request->query->has('url')) {
             $url = $request->query->get('url');
 
+            $content = false;
+            if($request->query->has('content')) {
+                $content = $request->query->get('content');
+            }
+
             $metadata = $postService->fetchMetadataFromUrl($url);
 
-            $post->setContentFromMetadataAndUrl($metadata, $url);
+            $post->setContentFromHighlightedTextAndMetadataAndUrl($content, $metadata, $url);
         }
 
         $form = $this->createForm(new NewPostType($this->getSubscriptions()), $post);
