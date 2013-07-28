@@ -13,8 +13,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Security\Core\Validator\Constraints\UserPassword;
+use FOS\UserBundle\Form\Type\ProfileFormType as BaseType;
 
-class ProfileFormType extends AbstractType
+class ProfileFormType extends BaseType
 {
     /**
      * @var string
@@ -61,7 +62,7 @@ class ProfileFormType extends AbstractType
      */
     public function getName()
     {
-        return 'portal_user_profile';
+        return 'cobase_user_profile';
     }
 
     /**
@@ -76,6 +77,7 @@ class ProfileFormType extends AbstractType
             ->add('username', null, array('label' => 'form.username', 'translation_domain' => 'FOSUserBundle'))
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('name', null, array('label' => 'form.name', 'translation_domain' => 'FOSUserBundle'))
+            ->add('emailVisible', null, array('required' => false, 'label' => 'form.emailVisible', 'translation_domain' => 'FOSUserBundle'))
         ;
     }
 }

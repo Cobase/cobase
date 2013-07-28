@@ -6,9 +6,9 @@
             <img src="{{ gravatar(user.email) }}"/>
         </div>
         {{ user.name }}
-        <span class="info">{{ user.email }}</span>
+        {% if user.emailVisible %}<span class="info">{{ user.email }}</span>{% endif %}
     </h2>
-    
+
     <ul class="item-summary">
         <h3>Posts created by {{ user.name }}</h3>
         {% for post in userPosts|reverse %}

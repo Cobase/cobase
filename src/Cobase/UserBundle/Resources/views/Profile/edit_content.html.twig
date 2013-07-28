@@ -1,5 +1,8 @@
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="post" id="form" class="blogger">
+    {{ form_row(form.username) }}
+    {{ form_row(form.name) }}
     {{ form_row(form.email) }}
+    {{ form_row(form.emailVisible) }}
     {{ form_row(form.current_password) }}
     {{ form_widget(form._token) }}
 
