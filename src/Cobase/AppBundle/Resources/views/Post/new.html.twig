@@ -1,0 +1,44 @@
+{% extends '::newpost.base.html.twig' %}
+
+{% block dynamic_javascripts %}
+    // Hide the submit button
+    $('#postForm').submit( function(e) {
+    $('#formSubmit').hide();
+    });
+
+    // Make the submission textarea autosize on text input
+    $('#cobase_appbundle_newposttype_content').autosize();
+{% endblock %}
+
+{% block content %}
+    <h2 class="p3">
+        <span class="color-1">Creating</span> a post
+    </h2>
+
+    <form id="postForm" action="{{ path('CobaseAppBundle_post_new') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+        <div class="control-group">
+            {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+            {{ form_errors(form.content) }}
+            <div class="controls-new-post">
+                {{ form_widget(form.content) }}
+            </div>
+        </div>
+        <div class="control-group">
+            {{ form_label(form.group, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+            {{ form_errors(form.group) }}
+            <div class="controls-new-post">
+                {{ form_widget(form.group) }}
+            </div>
+            {{ form_widget(form._token) }}
+        </div>
+        <div class="control-group">
+            <label class="control-label-new-post"></label>
+            <div class="controls-new-post">
+                <input id="formSubmit" class="btn btn-success" type="submit" value="Submit">
+            </div>
+        </div>
+        {{ form_rest(form) }}
+    </form>
+
+{% endblock content %}
+

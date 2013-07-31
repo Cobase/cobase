@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="description" content="">
         <meta name="author" content="">
-    
+
         <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
 
@@ -44,7 +44,7 @@
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-    
+
         <!-- Le fav and touch icons -->
         <link rel="shortcut icon" href="../assets/ico/favicon.ico">
         <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
@@ -55,7 +55,7 @@
         {% block javascripts %}{% endblock %}
 
     </head>
-    
+
     <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
     <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
     <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
@@ -63,11 +63,11 @@
     <!--[if (gt IE 9)|!(IE)]><!-->
     <body class="">
     <!--<![endif]-->
-        
+
         <div class="navbar">
             <div class="navbar-inner">
                 <ul class="nav pull-right">
-                    <!-- 
+                    <!--
                     <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
                     -->
                     <li id="fat-menu" class="dropdown">
@@ -98,7 +98,7 @@
                 <a class="brand" href="{{ path('CobaseAppBundle_homepage') }}">{{ site_title }}</a>
             </div>
         </div>
-        
+
         <div id="main-menu">
             <div id="phone-navigation">
                 <select class="selectnav" id="phone-menu">
@@ -122,6 +122,9 @@
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
                     </li>
+                    <li class="pull-right">
+                        <a title="Drag and drop this bookmarklet to your favorites bar" href="javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('src','{{ url('CobaseAppBundle_post_bookmarklet') }}');document.body.appendChild(jsCode);})();" ><i class="icon-globe"></i> <span>Cobase Bookmarklet</span></a>
+                    </li>
                 {% else %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
@@ -129,16 +132,16 @@
                 {% endif %}
             </ul>
         </div>
-        
+
         <div id="sidebar-nav">
             <ul id="dashboard-menu" class="nav nav-list">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
                     </li>
-                
+
                     <p class="subscriptions-head">Subscriptions:</p>
-                    
+
                     {% for subscription in subscriptions if subscriptions != null %}
                         <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
                             <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
@@ -149,7 +152,7 @@
                         <p class="subscriptions-info">
                             You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
                         </p>
-    
+
                         <p class="subscriptions-info">
                             Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
                         </p>
@@ -158,7 +161,7 @@
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
                         <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
                     </li>
-                    
+
                     <p class="subscriptions-head">Welcome!</p>
 
                     <p class="subscriptions-info">
@@ -168,11 +171,11 @@
                     <p class="subscriptions-info">
                         By <a href="{{ path('fos_user_registration_register') }}">registering</a> an account with us, you will be able to subscribe to different groups of your interest, submit a 'like' to a post, see all interesting posts from different groups in one glance, and many more useful features.
                     </p>
-                    
+
                 {% endif %}
             </ul>
         </div>
-        
+
         <div class="content">
             <div class="container-fluid">
                 <div class="row-fluid">
@@ -186,7 +189,7 @@
                         </div>
                     </div>
                     <div class="span4 sidebar">
-                       
+
                         {% block tabsWidget %}
                         <div class="widget">
                             <ul id="myTab" class="nav nav-tabs three-tabs fancy">
@@ -241,9 +244,9 @@
                 </div>
             </div>
         </div>
-        
+
         <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
-        
+
         {% if enable_google_analytics %}
             {% include "GoogleBundle:Analytics:async.html.twig" %}
         {% endif %}

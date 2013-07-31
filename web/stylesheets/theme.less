@@ -16,7 +16,7 @@ a:hover {
     text-decoration: none;
 }
 
-h1 { 
+h1 {
     color: @headerColor;
     margin-top: 0px;
     color: #eee;
@@ -47,12 +47,12 @@ hr {
 }
 
 /*Navbar*/
-.brand, .navbar .brand { 
+.brand, .navbar .brand {
     color: darken(@navbarBackgroundColor, 45%);
     text-shadow: 1px 1px 0px #fff;
     font-size: 2em;
     margin-left: .5em;
-    padding-left: 0px; 
+    padding-left: 0px;
 
     /*For fake logo only, remove if change*/
     font-family: 'Aguafina Script', sans-serif;
@@ -91,6 +91,14 @@ hr {
             background-color: transparent;
         }
     }
+    #user-name {
+        color: #ffffff;
+        text-shadow: none;
+        float: none;
+        padding: 10px 15px;
+        text-decoration: none;
+        display: block;
+    }
 }
 
 /*Nav Tabs*/
@@ -101,13 +109,13 @@ hr {
 
     background: @tabBackgroundColor;
     border-bottom: 0px;
-    position: relative; 
+    position: relative;
     border-top: 1px solid #fff;
     border-bottom: 1px solid darken(@tabBackgroundColor, 20%);
     z-index:1;
 
     .nav-tabs {
-        padding: .5em 0em .5em .5em;
+        padding: .5em;
         margin-bottom: 0px;
         border-bottom: 0px;
 
@@ -137,13 +145,13 @@ hr {
                 &:hover { background: none; }
             }
 
-            &.active { 
+            &.active {
                 margin-bottom: 0px;
                 border: 0px;
                 border-bottom: 1px solid #fff;
                 overflow: hidden;
 
-                & > a { 
+                & > a {
                     @buttonColor: @tabActiveColor;
                     .gradient(@buttonColor, darken(@buttonColor, 10%), lighten(@buttonColor, 16%);
                     .box-shadow(inset 0px 1px 3px fade(darken(@buttonColor, 30%), 60%);
@@ -173,14 +181,14 @@ hr {
     }
 }
 
-.tab-content { 
+.tab-content {
     background: #fff;
     .rounded(5px);
 }
 
 .content {
     min-width: 400px;
-    position: relative; 
+    position: relative;
     background: #fff;
     margin-left:200px;
     border-left: 1px solid darken(@navbarBackgroundColor, 5%);
@@ -192,7 +200,7 @@ hr {
     padding: 1em 1.5em;
     margin: 0em -1.5em 1em -1.5em;
     border-bottom: 1px solid darken(@navbarBackgroundColor, 5%);
-    
+
     a {
         border-left: 1px solid #ccc;
         padding-left: 1em;
@@ -517,20 +525,20 @@ background: lighten(@navbarBackgroundColor, 5%);
         .rounded(0px);
     }
     .image-data {
-        
+
         i, span { height: 1.5em; }
         background: white;
         line-height: 1.5em;
         border-top: 0px;
         padding: 0em 5px;
         .title {
-            font-size: .75em; 
+            font-size: .75em;
         }
     }
 
     img {
         display: block;
-        
+
         -webkit-transition: all 0.25s linear;
            -moz-transition: all 0.25s linear;
             -ms-transition: all 0.25s linear;
@@ -563,7 +571,7 @@ background: lighten(@navbarBackgroundColor, 5%);
         margin-bottom: 1em;
     }
 
-    form { 
+    form {
         margin-bottom: 0px;
     }
 
@@ -600,7 +608,7 @@ input[type="text"], input[type="password"] {
         right: -.25em;
     }
 
-    
+
     &.alert-error {
         .alert(lighten(@button-danger-color1, 5%));
         color: white;
@@ -713,8 +721,8 @@ body .http-error {
 /*Search*/
 .search-well {
     form { margin: 1em 0em 1.5em 0em; }
-    label { 
-        margin-bottom: 0px; 
+    label {
+        margin-bottom: 0px;
         vertical-align: middle;
     }
 }
@@ -723,13 +731,13 @@ body .http-error {
 .toc {
     margin-top: 1.5em;
     margin-bottom: 2em;
-    h3 { 
+    h3 {
         font-size: 1em;
         margin-top: 0em;
         padding-top: 0em;
         line-height: 1.4em;
     }
-    h4 { 
+    h4 {
         color: #555;
         font-size: 1em;
         margin-top: 0em;
@@ -867,7 +875,7 @@ ul.nav.nav-tabs.fancy {
                 .box-shadow(none);
                 border-left: 0px solid #fff;
                 margin-left: 0px;
-                border-bottom: 1px solid transparent; 
+                border-bottom: 1px solid transparent;
             }
         }
     }
@@ -886,7 +894,7 @@ ul.nav.nav-tabs.fancy {
   .box-shadow(none);
 }
 
-.table 
+.table
 {
     @tabBorderColor: darken(@navbarBackgroundColor, 5%);
 
@@ -970,14 +978,14 @@ ul.nav.nav-tabs.fancy {
     }
 }
 
-.paginate_enabled_next, 
+.paginate_enabled_next,
 .paginate_enabled_previous {
     cursor: pointer;
 }
 
-.paginate_disabled_next, 
-.paginate_disabled_previous, 
-.paginate_disabled_previous:hover, 
+.paginate_disabled_next,
+.paginate_disabled_previous,
+.paginate_disabled_previous:hover,
 .paginate_disabled_next:hover {
     color: #333;
 }
@@ -1044,7 +1052,7 @@ ul.nav.nav-tabs.fancy {
         border-bottom: 1px solid @navbarBackgroundColor;
         margin-bottom: 1em;
     }
-    .title { 
+    .title {
         text-transform: uppercase;
         text-shadow: 1px 1px 0px #fff;
         line-height: 1.2em;
@@ -1084,7 +1092,7 @@ ul.nav.nav-tabs.fancy {
     .stats {
         padding-top: .75em;
         margin-bottom: 0em;
-        span { 
+        span {
             margin-right: .75em;
         }
     }
@@ -1106,7 +1114,7 @@ ul.nav.nav-tabs.fancy {
         line-height: 1em;
         li { padding: 0px; }
         .label {
-           margin-top: 1.25em; 
+           margin-top: 1.25em;
            margin-right: 1.25em;
         }
         i {
@@ -1171,7 +1179,7 @@ ul.nav.nav-tabs.fancy {
         }
     }
 
-    .icons { 
+    .icons {
         text-align: center;
         @borderColor: darken(@navbarBackgroundColor, 3%);
         i {
@@ -1296,7 +1304,7 @@ ul.nav.nav-tabs.fancy {
         border: 1px solid darken(@navbarBackgroundColor, 15%);
         .box-shadow(0px 0px 5px fade(#000, 15%));
         form {
-            margin: 0em 1em; 
+            margin: 0em 1em;
         }
     }
     .brand {
@@ -1327,7 +1335,7 @@ ul.nav.nav-tabs.fancy {
 }
 
 .top-link {
-    float: right; 
+    float: right;
     line-height: 1.25em;
     display: inline-block;
     padding: .75em 0em;
@@ -1345,9 +1353,9 @@ ul.nav.nav-tabs.fancy {
 
 /* Large desktop */
 @media (min-width: 1200px) {}
- 
+
 @media (max-width: 1020px) {
-    .content { 
+    .content {
         margin-left: 50px;
     }
     #sidebar-nav .nav {
@@ -1388,7 +1396,7 @@ ul.nav.nav-tabs.fancy {
         display: none;
     }
     .content {
-         margin-left: 0em; 
+         margin-left: 0em;
          border-left-width: 0px;
     }
     body {
@@ -1398,7 +1406,7 @@ ul.nav.nav-tabs.fancy {
 
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {}
- 
+
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
     .content {
@@ -1415,9 +1423,9 @@ ul.nav.nav-tabs.fancy {
         margin-top: 2em;
     }
 }
- 
+
 /* Landscape phones and down */
-@media (max-width: 480px) { 
+@media (max-width: 480px) {
     .item-summary li {
         padding-left: 0em;
     }
@@ -1449,7 +1457,7 @@ ul.nav.nav-tabs.fancy {
             clear: both;
         }
     }
-} 
+}
 
 /*Theme specific settings, remove for your own project*/
 .ie .theme-mobile-hack { display: none; }
