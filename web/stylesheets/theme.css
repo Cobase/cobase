@@ -104,6 +104,14 @@ hr {
 .navbar .nav  > li.dropdown.open > .dropdown-toggle {
   background-color: transparent;
 }
+.navbar #user-name {
+  color: #ffffff;
+  text-shadow: none;
+  float: none;
+  padding: 10px 15px;
+  text-decoration: none;
+  display: block;
+}
 
 /*Nav Tabs*/
 #main-menu {

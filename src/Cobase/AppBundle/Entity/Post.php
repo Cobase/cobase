@@ -362,7 +362,7 @@ class Post implements Likeable, RoutedItemInterface
         return $this->maxFeedTitleLength;
     }
 
-    public function setContentFromHighlightedTextAndMetadataAndUrl($content = false, $metadata, $url)
+    public function setBookmarkletContent($content = false, $metadata, $url)
     {
         // parsing the url
         $parsedUrl = parse_url($url);
@@ -371,20 +371,20 @@ class Post implements Likeable, RoutedItemInterface
         $postContent = '';
 
         if($content) {
-            $postContent = '"'.$content.'"'."\n\n";
+            $postContent .= '"'.utf8_encode($content).'"'."\n\n";
         }
 
         if($metadata) {
-            $postContent .= $metadata['title']."\n\n";
+            $postContent .= utf8_encode($metadata['title'])."\n\n";
 
             if(isset($metadata['description'])) {
-                $postContent .= $metadata['description']."\n\n";
+                $postContent .= utf8_encode($metadata['description'])."\n\n";
             } else if(isset($metadata['facebook']['description'])) {
-                $postContent .= $metadata['facebook']['description']."\n\n";
+                $postContent .= utf8_encode($metadata['facebook']['description'])."\n\n";
             }
 
             if(isset($metadata['facebook']['site_name'])) {
-                $postContent .= 'On <a href="'.$url.'" target="_blank">'.$metadata['facebook']['site_name'].'</a>';
+                $postContent .= 'On <a href="'.$url.'" target="_blank">'.utf8_encode($metadata['facebook']['site_name']).'</a>';
             } else {
                 $postContent .= 'On <a href="'.$url.'" target="_blank">'.$host.'</a>';
             }
