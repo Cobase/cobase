@@ -64,7 +64,7 @@ class Post implements Likeable, RoutedItemInterface
      * @ORM\Column(type="datetime", nullable=true)
      */
     protected $deleted;
-    
+
     /**
      * @var ArrayCollection
      */
@@ -188,7 +188,7 @@ class Post implements Likeable, RoutedItemInterface
     {
         return $this->deleted;
     }
-    
+
     /**
      * Set group
      *
@@ -360,5 +360,37 @@ class Post implements Likeable, RoutedItemInterface
     public function getMaxFeedTitleLength()
     {
         return $this->maxFeedTitleLength;
+    }
+
+    public function setContentFromHighlightedTextAndMetadataAndUrl($content = false, $metadata, $url)
+    {
+        // parsing the url
+        $parsedUrl = parse_url($url);
+        $host = $parsedUrl['host'];
+
+        $postContent = '';
+
+        if($content) {
+            $postContent = '"'.$content.'"'."\n\n";
+        }
+
+        if($metadata) {
+            $postContent .= $metadata['title']."\n\n";
+
+            if(isset($metadata['description'])) {
+                $postContent .= $metadata['description']."\n\n";
+            } else if(isset($metadata['facebook']['description'])) {
+                $postContent .= $metadata['facebook']['description']."\n\n";
+            }
+
+            if(isset($metadata['facebook']['site_name'])) {
+                $postContent .= 'On <a href="'.$url.'" target="_blank">'.$metadata['facebook']['site_name'].'</a>';
+            } else {
+                $postContent .= 'On <a href="'.$url.'" target="_blank">'.$host.'</a>';
+            }
+        } else {
+            $postContent = "[IMPOSSIBLE TO PARSE URL SET YOUR OWN CONTENT HERE]\n\n".'On <a href="'.$url.'" target="_blank">'.$host.'</a>';
+        }
+        $this->setContent($postContent);
     }
 }

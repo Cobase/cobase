@@ -1,0 +1,40 @@
+if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
+    script = document.createElement( 'script' );
+    script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+    script.onload=loadFancybox;
+    document.body.appendChild(script);
+} else {
+    loadFancybox();
+}
+
+function loadFancybox() {
+    // fancybox plugin (js and css)
+    $('head').append('<link rel="stylesheet" type="text/css" href="http://{{ app.request.getHost }}/stylesheets/jquery.fancybox.css">');
+    fancybox = document.createElement( 'script' );
+    fancybox.src = 'http://{{ app.request.getHost }}/javascripts/jquery.fancybox.pack.js';
+    fancybox.onload=loadCobase;
+    document.body.appendChild(fancybox);
+}
+
+function loadCobase() {
+    // setting the url
+    var url = 'http://{{ app.request.getHost }}/post/new?url='+encodeURIComponent(document.location);
+
+    if(content = window.getSelection?window.getSelection().toString():document.selection.createRange().text) {
+        url = url+'&content='+encodeURIComponent(content);
+    }
+
+    // loading cobase in popin
+    $.fancybox({
+        'width': '50%',
+        'height': '50%',
+        'scrolling': 'no',
+        'maxWidth': '600px',
+        'maxHeight': '500px',
+        // 'autoScale': true,
+        'transitionIn': 'fade',
+        'transitionOut': 'fade',
+        'type': 'iframe',
+        'href': url
+    });
+}

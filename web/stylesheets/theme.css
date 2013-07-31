@@ -115,7 +115,7 @@ hr {
   z-index: 1;
 }
 #main-menu .nav-tabs {
-  padding: .5em 0em .5em .5em;
+  padding: .5em;
   margin-bottom: 0px;
   border-bottom: 0px;
 }
@@ -1757,13 +1757,13 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 /* Large desktop */
 @media (min-width: 1200px) {
-  
+
 }
 @media (max-width: 1020px) {
   .content {
     /* margin-left: 50px; */
   }
-  
+
   #sidebar-nav .nav {
     margin-left: 0em;
   }
@@ -1812,7 +1812,7 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
 }
 /* Portrait tablet to landscape and desktop */
 @media (min-width: 768px) and (max-width: 979px) {
-    
+
 }
 /* Landscape phone to portrait tablet */
 @media (max-width: 767px) {
