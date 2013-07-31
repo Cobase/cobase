@@ -94,7 +94,7 @@ class GroupController extends BaseController
         $aclProvider->updateAcl($acl);
 
         $this->get('session')->getFlashBag()->add('group.message', 'Your new group "' . $group->getTitle() . '" has been created, thank you.');
-        
+
         return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
     }
 
@@ -109,9 +109,9 @@ class GroupController extends BaseController
         if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }
-        
+
         $post = new Post();
- 
+
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
@@ -124,9 +124,9 @@ class GroupController extends BaseController
 
         $isSubscribed = false;
         if ($user) {
-            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);    
+            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
         }
-        
+
         if (!$group) {
             return $this->render('CobaseAppBundle:Group:notfound.html.twig',
                 $this->mergeVariables()
@@ -135,15 +135,15 @@ class GroupController extends BaseController
 
         if ($request->getMethod() == 'POST') {
             if ($this->processForm($form)) {
-                
+
                 // Convert line breaks to BR tag
                 $content = $post->getContent();
                 $content = str_replace("\n", '<br/>', $content);
-                
+
                 $post->setContent($content);
                 $post->setGroup($group);
                 $post->setUser($user);
-                
+
                 $postService->savePost($post);
 
                 // creating the ACL
@@ -157,7 +157,7 @@ class GroupController extends BaseController
                 // grant owner access
                 $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
                 $aclProvider->updateAcl($acl);
-                
+
                 #$this->sendMail("You have received new high five for an event",
                 #    $group->getUser()->getEmail(),
                 #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
@@ -166,15 +166,15 @@ class GroupController extends BaseController
 
                 $this->get('session')->getFlashBag()->add('group.message', 'Your post has been sent, thank you!');
 
-                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', 
+                return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                	    array(
                         'groupId' => $groupId,
                     )
                 ));
-               
+
             }
         }
-        
+
         return $this->render('CobaseAppBundle:Group:view.html.twig',
             $this->mergeVariables(
                 array(
@@ -230,7 +230,7 @@ class GroupController extends BaseController
             }
         }
 
-        return $this->render('CobaseAppBundle:Group:modify.html.twig', 
+        return $this->render('CobaseAppBundle:Group:modify.html.twig',
             $this->mergeVariables(
                 array(
                     'group'         => $group,
@@ -244,19 +244,19 @@ class GroupController extends BaseController
      * @param $postId
      */
     public function deleteAction()
-    { 
+    {
         $groupService = $this->getGroupService();
         $subscriptionService = $this->getSubscriptionService();
 
         $user = $this->getCurrentUser();
         $groupId = $this->getRequest()->get('groupId');
-    
+
         $url = $this->generateUrl(
             'CobaseAppBundle_all_groups'
         );
 
         $group = $groupService->getGroupById($groupId);
-        
+
         $group->setDeleted(new \DateTime());
         $groupService->saveGroup($group);
 
@@ -265,7 +265,7 @@ class GroupController extends BaseController
             $subscription->setDeleted(new \DateTime());
             $subscriptionService->updateSubscription($subscription);
         }
-        
+
         $this->get('session')->getFlashBag()->add('group.message', 'Group has been successfully deleted.');
 
         return new Response(
@@ -277,10 +277,10 @@ class GroupController extends BaseController
             )
         );
     }
-    
+
     /**
      * Subscribe a user to a group
-     * 
+     *
      * @param $groupId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -288,7 +288,7 @@ class GroupController extends BaseController
     {
         $groupService = $this->getGroupService();
         $subscriptionService = $this->getSubscriptionService();
-        
+
         $group    = $groupService->getGroupById($groupId);
         $request  = $this->getRequest();
         $user     = $this->getCurrentUser();
@@ -300,7 +300,7 @@ class GroupController extends BaseController
         }
 
         $subscriptionService->subscribe($group, $user);
-        
+
         $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been added.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
@@ -310,7 +310,7 @@ class GroupController extends BaseController
 
     /**
      * Unsubscribe a user from a group
-     * 
+     *
      * @param $groupId
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|Response
      */
@@ -337,7 +337,7 @@ class GroupController extends BaseController
             $this->mergeVariables()
         ));
     }
-    
+
     /**
      * Show all groups
      *
@@ -348,7 +348,7 @@ class GroupController extends BaseController
         if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }
-        
+
         $orderBy = 'b.title';
         if ($orderByType == 'created') {
             $orderBy = 'b.created';
