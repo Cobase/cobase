@@ -31,10 +31,16 @@ function loadCobase() {
         'scrolling': 'no',
         'maxWidth': '600px',
         'maxHeight': '500px',
-        // 'autoScale': true,
+        'autoScale': true,
         'transitionIn': 'fade',
         'transitionOut': 'fade',
         'type': 'iframe',
         'href': url
     });
+
+    // to allow the close from the iframe
+    function closeFancyBox(){
+        $.fancybox.close();
+    }
+    window.addEventListener("message", closeFancyBox, false);
 }

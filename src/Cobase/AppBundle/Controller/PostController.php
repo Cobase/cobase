@@ -220,10 +220,10 @@ class PostController extends BaseController
 
             $metadata = $postService->fetchMetadataFromUrl($url);
 
-            $post->setContentFromHighlightedTextAndMetadataAndUrl($content, $metadata, $url);
+            $post->setBookmarkletContent($content, $metadata, $url);
         }
 
-        $form = $this->createForm(new NewPostType($post));
+        $form = $this->createForm(new NewPostType(), $post);
 
         $postService = $this->getPostService();
 
@@ -243,6 +243,7 @@ class PostController extends BaseController
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                     array(
                         'groupId' => $post->getGroup()->getShortUrl(),
+                        'closeFancyBox' => true,
                     )
                 ));
             }

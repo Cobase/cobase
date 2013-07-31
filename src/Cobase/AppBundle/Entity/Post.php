@@ -362,7 +362,7 @@ class Post implements Likeable, RoutedItemInterface
         return $this->maxFeedTitleLength;
     }
 
-    public function setContentFromHighlightedTextAndMetadataAndUrl($content = false, $metadata, $url)
+    public function setBookmarkletContent($content = false, $metadata, $url)
     {
         // parsing the url
         $parsedUrl = parse_url($url);
@@ -371,7 +371,7 @@ class Post implements Likeable, RoutedItemInterface
         $postContent = '';
 
         if($content) {
-            $postContent = '"'.$content.'"'."\n\n";
+            $postContent .= '"'.$content.'"'."\n\n";
         }
 
         if($metadata) {
