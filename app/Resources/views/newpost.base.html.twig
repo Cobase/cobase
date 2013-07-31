@@ -71,28 +71,10 @@
                     <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
                     -->
                     <li id="fat-menu" class="dropdown">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <!-- User login/logout -->
-                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> <span id="dropdown-username">{{ app.user.name }}</span>
-                                <i class="icon-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="{{ path('fos_user_profile_show') }}">My Profile</a></li>
-                                <li class="divider visible-phone"></li>
-                                <li><a tabindex="-2" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
-                            </ul>
-                        {% else %}
-                            <!-- User login/logout -->
-                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> Register / Login
-                                <i class="icon-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                                <li><a tabindex="-1" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                            </ul>
-                        {% endif %}
+                        <!-- User login/logout -->
+                        <span id="user-name">
+                            <i class="icon-user"></i> <span id="dropdown-username">{{ app.user.name }}</span>
+                        </span>
                     </li>
                 </ul>
                 <a class="brand" href="{{ path('CobaseAppBundle_homepage') }}">{{ site_title }}</a>

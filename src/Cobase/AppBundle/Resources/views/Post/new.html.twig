@@ -16,24 +16,24 @@
     </h2>
 
     <form id="postForm" action="{{ path('CobaseAppBundle_post_new') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-        <div class="control-group-new-post">
-            {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+        <div class="control-group">
+            {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
             {{ form_errors(form.content) }}
-            <div class="controls-new-post">
+            <div class="controls">
                 {{ form_widget(form.content) }}
             </div>
         </div>
-        <div class="control-group-new-post">
-            {{ form_label(form.group, label|default(null), { 'label_attr': { 'class': 'control-label-new-post' } }) }}
+        <div class="control-group">
+            {{ form_label(form.group, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
             {{ form_errors(form.group) }}
-            <div class="controls-new-post">
+            <div class="controls">
                 {{ form_widget(form.group) }}
             </div>
             {{ form_widget(form._token) }}
         </div>
-        <div class="control-group-new-post">
-            <label class="control-label-new-post"></label>
-            <div class="controls-new-post">
+        <div class="control-group">
+            <label class="control-label"></label>
+            <div class="controls">
                 <input id="formSubmit" class="btn btn-success" type="submit" value="Submit">
             </div>
         </div>
