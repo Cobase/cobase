@@ -1,5 +1,6 @@
 .DS_Store
 .idea
+.vagrant
 
 composer.phar
 composer.bat
