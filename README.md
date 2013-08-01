@@ -180,6 +180,18 @@ To run a test, go to your project's folder and run following command:
 Anyone is free to join the team and develop Cobase. Let me know what issue from the Github's 
 issue list you are willing to work on.
 
+##Using Vagrant
+
+We have a Vagrant development box ready to use. In order to do so, after cloning the repository you need to run:
+
+    $ git submodule init
+    $ git submodule update
+
+Then you will be able to run ``vagrant up``.
+
+The server will run at 192.168.33.101, and PhpMyAdmin will be available at 192.168.33.101:8000 .
+For more information on using Vagrant, see our Wiki.
+
 Enjoy and welcome to the project!
 
 Artur Gajewski
