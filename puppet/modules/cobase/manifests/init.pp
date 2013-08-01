@@ -33,15 +33,11 @@ class cobase(
   # change cache and log permissions
   file { "${root_dir}/app/cache":
     ensure  => 'directory',
-    owner   => "vagrant",
-    group   => "vagrant",
     mode    => 777,
   }
 
   file { "${root_dir}/app/logs":
     ensure  => 'directory',
-    owner   => "vagrant",
-    group   => "vagrant",
     mode    => 777,
   }
 
@@ -54,8 +50,6 @@ class cobase(
   #define the parameters.yml file if it doesnt exists yet
   file { "${root_dir}/app/config/parameters.yml" :
     ensure => 'file',
-    owner  => 'vagrant',
-    group  => 'vagrant',
     content => template($template)
   }
 }

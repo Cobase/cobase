@@ -115,7 +115,7 @@ class {'cobase':
 }
 
 cobase::console { 'doctrine:migrations:migrate':
-  require => Composer::Install['cobase']
+  require => [ Composer::Install['cobase'], Mysql::Grant[$mysql_db] ]
 }
 
 cobase::console { 'doctrine:fixtures:load':
@@ -123,7 +123,6 @@ cobase::console { 'doctrine:fixtures:load':
 }
 
 cobase::console { 'assetic:dump':
-  options => '--watch',
   require => Composer::Install['cobase']
 }
 
