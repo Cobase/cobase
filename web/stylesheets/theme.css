@@ -1755,6 +1755,18 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
   display: inline-block;
   padding: .75em 0em;
 }
+
+/* profile edit form */
+#fos_user_profile_form_emailVisible {
+  border-radius: 4px;
+  color: #555555;
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 4px 6px;
+  vertical-align: middle;
+}
+/* end profile edit form */
+
 /* Tweaks for mobile */
 #phone-navigation {
   display: none;
