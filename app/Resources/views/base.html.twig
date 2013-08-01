@@ -100,17 +100,25 @@
         </div>
 
         <div id="main-menu">
+            
+            <!-- SMALL SCREEN NAVIGATION -->
             <div id="phone-navigation">
                 <select class="selectnav" id="phone-menu">
-                    <option value="{{ path('CobaseAppBundle_homepage') }}"
-                            {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %} selected="selected"{% endif %}> Home</option>
-                    <!--option value="#" > Your groups</option-->
-                    <option value="{{ path('CobaseAppBundle_homepage') }}"
-                            {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
-                    <!--option value="#" > Browse Users</option-->
-                    <!--option value="#" > Messages</option-->
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        <option value="{{ path('CobaseAppBundle_homepage') }}"
+                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %} selected="selected"{% endif %}> Home</option>
+                        <option value="{{ path('CobaseAppBundle_group_new') }}"
+                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %} selected="selected"{% endif %}> Create a Group</option>
+                        <option value="{{ path('CobaseAppBundle_all_groups') }}"
+                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
+                    {% else %}
+                        <option value="{{ path('CobaseAppBundle_all_groups') }}"
+                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
+                    {% endif %}
                 </select>
             </div>
+            
+            <!-- LARGE SCREEN NAVIGATION -->
             <ul class="nav nav-tabs">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
@@ -131,6 +139,7 @@
                     </li>
                 {% endif %}
             </ul>
+            
         </div>
 
         <div id="sidebar-nav">
