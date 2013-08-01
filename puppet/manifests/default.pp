@@ -45,8 +45,6 @@ apache::vhost { 'default':
 #}
 
 class { 'php':
-  debug         => true,
-  #config_dir    => '/etc/php5/apache2',
   package_devel => 'php5-dev'
 }
 
@@ -63,13 +61,6 @@ php::module { 'apc':
 php::ini { 'php':
   value  => ['date.timezone = "UTC"','upload_max_filesize = 8M', 'short_open_tag = 0'],
   target => 'php.ini'
-}
-
-#upgrade
-exec { 'apt-upgrade':
-  command => 'apt-get upgrade -y',
-  before  => Class[ 'php' ],
-  #require => [Apt::Ppa['ppa:ondrej/php5-oldstable']]
 }
 
 php::pear::module { 'phpunit':

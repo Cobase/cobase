@@ -14,8 +14,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox do |v|
     v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
-    v.customize ["modifyvm", :id, "--memory", 1024]
-    v.customize ["modifyvm", :id, "--name", "oss-storm"]
+    v.customize ["modifyvm", :id, "--memory", 2048]
+    v.customize ["modifyvm", :id, "--name", "cobase"]
   end
 
   config.vm.synced_folder "./", "/vagrant", id: "vagrant-root", :nfs => true
