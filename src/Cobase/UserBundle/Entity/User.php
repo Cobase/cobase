@@ -48,7 +48,7 @@ class User extends BaseUser
     protected $gravatar;
 
     /**
-     * @ORM\Column(type="boolean", nullable=false)
+     * @ORM\Column(name="email_visible", type="boolean", nullable=false)
      *
      * @Assert\Type(type="bool", groups={"Profile"})
      */
