@@ -216,6 +216,18 @@ We have our own IRC channel created on freenode.net called #cobase, so you are m
 
 #Welcome
 
+##Using Vagrant
+
+We have a Vagrant development box ready to use. In order to do so, after cloning the repository you need to run:
+
+    $ git submodule init
+    $ git submodule update
+
+Then you will be able to run ``vagrant up``.
+
+The server will run at 192.168.33.101, and PhpMyAdmin will be available at 192.168.33.101:8000 .
+For more information on using Vagrant, see our Wiki.
+
 Enjoy and welcome to the project!
 
 Artur Gajewski
