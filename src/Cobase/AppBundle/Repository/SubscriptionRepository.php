@@ -25,8 +25,11 @@ class SubscriptionRepository extends EntityRepository
         $em = $this->getEntityManager();
         $query = $em->createQuery(
             'SELECT s
-             FROM Cobase\AppBundle\Entity\Subscription s 
-             WHERE s.user = :user ORDER BY s.created ASC'
+             FROM Cobase\AppBundle\Entity\Subscription s,
+             Cobase\AppBundle\Entity\Group g
+             WHERE s.group = g
+             AND s.user = :user 
+             ORDER BY g.title ASC'
         )->setParameter('user', $user);
 
         return $query->getResult();
@@ -46,7 +49,8 @@ class SubscriptionRepository extends EntityRepository
              FROM Cobase\AppBundle\Entity\Subscription s,
              Cobase\AppBundle\Entity\Post p
              WHERE p.group = s.group
-             and s.user = :user ORDER BY p.created DESC'
+             AND s.user = :user 
+             ORDER BY p.created DESC'
         )->setParameter('user', $user);
 
         return $query->getResult();
@@ -64,7 +68,8 @@ class SubscriptionRepository extends EntityRepository
         $query = $em->createQuery(
             'SELECT s
              FROM Cobase\AppBundle\Entity\Subscription s 
-             WHERE s.group = :group ORDER BY s.created ASC'
+             WHERE s.group = :group 
+             ORDER BY s.created ASC'
         )->setParameter('group', $group);
 
         return $query->getResult();
