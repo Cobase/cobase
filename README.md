@@ -46,10 +46,12 @@ http://cobase.featurice.com/screenshots/screen5.png
 - Each group has an RSS feed
 - Option to allow users to browse groups and posts without logging in
 - Google Analytics implementation
+- Bookmarklet to allow copy main content from any site with just few clicks of a mouse
+- Vagrant intergation for setting up development environment in a snap
 
 #Upcoming features
 
-You are more than welcome to join us to make Cobase even better. Please rever to the issues list to see what is coming up and if you would be able to pitch in.
+You are more than welcome to join us to make Cobase even better. Please refer to the issues list to see what is coming up and if you would be able to pitch in.
 
 https://github.com/CoBase/cobase/issues
 
