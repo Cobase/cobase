@@ -7,6 +7,7 @@
 class cobase(
   $site_title         = "Cobase",
   $allow_registration = true,
+  $login_required     = false,
   $enable_analytics   = false,
   $root_dir           = '/vagrant',
   $template           = 'cobase/parameters.yml.erb',
@@ -28,6 +29,14 @@ class cobase(
   exec { 'ApacheUserGroup':
     command => "sed -i 's/www-data/vagrant/' /etc/apache2/envvars",
     onlyif  => "grep -c 'www-data' /etc/apache2/envvars"
+  }
+
+  # change /var/lock/apache2 user and group
+  file { "/var/lock/apache2" :
+    ensure  => 'directory',
+    owner   => "vagrant",
+    group   => "vagrant",
+    mode    => 0770
   }
 
   # change cache and log permissions
