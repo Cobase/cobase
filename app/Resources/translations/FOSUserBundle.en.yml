@@ -1,3 +1,5 @@
 form:
     password_confirmation: "Repeat password:"
     new_password_confirmation: "Repeat password:"
+    name: "Your name:"
+    emailVisible: "Email visible by others:"

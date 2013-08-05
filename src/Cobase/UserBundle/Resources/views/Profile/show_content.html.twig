@@ -1,4 +1,5 @@
 <div class="fos_user_user_show">
     <p><strong>{{ 'profile.show.username'|trans({}, 'FOSUserBundle') }}:</strong> {{ user.username }}</p>
     <p><strong>{{ 'profile.show.email'|trans({}, 'FOSUserBundle') }}:</strong> {{ user.email }}</p>
+    <p><strong>{{ 'profile.show.emailVisible'|trans({}, 'FOSUserBundle') }}:</strong> {% if user.emailVisible %}{{ 'Visible'|trans }}{% else %}{{ 'Not visible'|trans }}{% endif %}</p>
 </div>
