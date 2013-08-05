@@ -1,0 +1,40 @@
+{% extends '::blank.html.twig' %}
+
+{% block content %}
+    <div class="row-fluid login">
+        <div class="dialog">
+
+            <h1 class="frontLogo">{{ site_title }}</h1>
+
+            <div class="block" style="padding: 10px">
+                <div class="block-header">
+                    <h2>Login</h2>
+                </div>
+                <form action="{{ path("cobase_api_login_check") }}" method="POST">
+                    {% if error %}
+                        <div class="alert alert-error fade in">{{ error|trans }}</div>
+                    {% endif %}
+                    <div id="fos_user_login_form">
+                        <div>
+                            <label for="username">{{ 'security.login.username'|trans }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+                        </div>
+                        <div>
+                            <label for="password">{{ 'security.login.password'|trans }}</label>
+                            <input type="password" id="password" name="_password" required="required" />
+                        </div>
+                        <div>
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    </div>
+                    <input type="submit" class="login-submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
+
+
+

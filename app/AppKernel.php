@@ -32,6 +32,10 @@ class AppKernel extends Kernel
             new AntiMattr\GoogleBundle\GoogleBundle(),
             new Aga\DateConverterBundle\DateConverterBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new FOS\RestBundle\FOSRestBundle(),
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Cobase\ApiBundle\CobaseApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
