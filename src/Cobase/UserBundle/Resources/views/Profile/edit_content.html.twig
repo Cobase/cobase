@@ -1,12 +1,51 @@
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="post" id="form" class="blogger">
-    {{ form_row(form.username) }}
-    {{ form_row(form.name) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.emailVisible) }}
-    {{ form_row(form.current_password) }}
+<form id="form" action="{{ path('fos_user_profile_edit') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <div class="control-group">
+        {{ form_label(form.username, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.username) }}
+        <div class="controls">
+            {{ form_widget(form.username) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        {{ form_label(form.name, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.name) }}
+        <div class="controls">
+            {{ form_widget(form.name) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        {{ form_label(form.email, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.email) }}
+        <div class="controls">
+            {{ form_widget(form.email) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        {{ form_label(form.emailVisible, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.emailVisible) }}
+        <div class="controls">
+            {{ form_widget(form.emailVisible) }}
+        </div>
+    </div>
+
+    <div class="control-group">
+        {{ form_label(form.current_password, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+        {{ form_errors(form.current_password) }}
+        <div class="controls">
+            {{ form_widget(form.current_password) }}
+        </div>
+    </div>
+
     {{ form_widget(form._token) }}
 
-    <div class="btns">
-        <input class="button" type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}">
+
+    <div class="control-group">
+        <label class="control-label"></label>
+        <div class="controls">
+            <input class="btn btn-success" type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}">
+        </div>
     </div>
 </form>
