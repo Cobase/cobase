@@ -1431,6 +1431,7 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
   margin-bottom: 2em 0em;
   padding: 1em;
   border-top: 1px solid #dddde2;
+  overflow: hidden;
 }
 .cards li:first-child {
   border-top: none;
@@ -1754,6 +1755,7 @@ ul.nav.nav-tabs.fancy  > li.active  > a:hover {
   display: inline-block;
   padding: .75em 0em;
 }
+
 /* Tweaks for mobile */
 #phone-navigation {
   display: none;

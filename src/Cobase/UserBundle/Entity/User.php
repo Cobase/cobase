@@ -22,7 +22,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=255)
      *
@@ -36,7 +36,7 @@ class User extends BaseUser
      * )
      */
     protected $name;
-    
+
     /**
      * @ORM\Column(type="string", length=120, nullable=true)
      *
@@ -46,7 +46,14 @@ class User extends BaseUser
      * )
      */
     protected $gravatar;
-    
+
+    /**
+     * @ORM\Column(name="email_visible", type="boolean", nullable=false)
+     *
+     * @Assert\Type(type="bool", groups={"Profile"})
+     */
+    protected $emailVisible = false;
+
     /**
      * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Group", mappedBy="user")
      */
@@ -73,20 +80,30 @@ class User extends BaseUser
     {
         return $this->name;
     }
-    
+
     public function setName($name)
     {
         $this->name = $name;
     }
-    
+
     public function getGravatar()
     {
         return $this->gravatar;
     }
-    
+
     public function setGravatar($address)
     {
         $this->gravatar = $address;
+    }
+
+    public function getEmailVisible()
+    {
+        return $this->emailVisible;
+    }
+
+    public function setEmailVisible($visible)
+    {
+        $this->emailVisible = $visible;
     }
 
     /**
@@ -219,7 +236,7 @@ class User extends BaseUser
     }
 
 
-    public function __toString() 
+    public function __toString()
     {
         return $this->id;
     }
