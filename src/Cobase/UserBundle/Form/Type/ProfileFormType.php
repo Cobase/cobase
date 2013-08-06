@@ -39,10 +39,10 @@ class ProfileFormType extends BaseType
         $this->buildUserForm($builder, $options);
 
         $builder->add('current_password', 'password', array(
-            'label' => 'form.current_password',
+            'label'              => 'form.current_password',
             'translation_domain' => 'FOSUserBundle',
-            'mapped' => false,
-            'constraints' => new UserPassword(),
+            'mapped'             => false,
+            'constraints'        => new UserPassword(),
         ));
     }
 
@@ -78,6 +78,8 @@ class ProfileFormType extends BaseType
             ->add('email', 'email', array('label' => 'form.email', 'translation_domain' => 'FOSUserBundle'))
             ->add('name', null, array('label' => 'form.name', 'translation_domain' => 'FOSUserBundle'))
             ->add('emailVisible', null, array('required' => false, 'label' => 'form.emailVisible', 'translation_domain' => 'FOSUserBundle'))
+            ->add('gravatar', null, array('required' => false, 'label' => 'form.gravatar'))
+            ->add('avatar', 'file', array('required' => false, 'label' => 'form.avatar'))
         ;
     }
 }
