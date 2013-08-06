@@ -48,6 +48,11 @@ class User extends BaseUser
     protected $gravatar;
 
     /**
+     * @ORM\Column(name="avatar", type="string", nullable=true)
+     */
+    protected $avatar;
+
+    /**
      * @ORM\Column(name="email_visible", type="boolean", nullable=false)
      *
      * @Assert\Type(type="bool", groups={"Profile"})
@@ -88,12 +93,27 @@ class User extends BaseUser
 
     public function getGravatar()
     {
-        return $this->gravatar;
+        return !empty($this->gravatar) ? $this->gravatar : $this->email;
     }
 
     public function setGravatar($address)
     {
         $this->gravatar = $address;
+    }
+
+    public function hasAvatar()
+    {
+        return !empty($this->avatar) ? true : false;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($image)
+    {
+        $this->avatar = $image;
     }
 
     public function getEmailVisible()
