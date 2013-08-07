@@ -55,6 +55,11 @@ class User extends BaseUser
 
     /**
      * @Assert\File(maxSize="6000000")
+     * @Assert\Image(
+     *  minWidth = 60,
+     *  minHeight = 60,
+     *  groups={"Profile"}
+     * )
      */
     private $avatarFile;
 
@@ -290,12 +295,13 @@ class User extends BaseUser
      */
     public function saveUploadedAvatar($upload_dir)
     {
-        if (null === $this->getAvatarFile()) {
+        $uploaded = $this->getAvatarFile();
+
+        if (null === $uploaded) {
             return;
         }
-        /* TODO: check file mimetype */
 
-        $filename = md5($this->email);
+        $filename = md5($this->email) . '.' . $uploaded->getClientOriginalExtension();
 
         $this->getAvatarFile()->move(
             $upload_dir,
