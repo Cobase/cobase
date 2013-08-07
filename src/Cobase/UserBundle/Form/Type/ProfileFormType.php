@@ -79,7 +79,7 @@ class ProfileFormType extends BaseType
             ->add('name', null, array('label' => 'form.name', 'translation_domain' => 'FOSUserBundle'))
             ->add('emailVisible', null, array('required' => false, 'label' => 'form.emailVisible', 'translation_domain' => 'FOSUserBundle'))
             ->add('gravatar', null, array('required' => false, 'label' => 'form.gravatar'))
-            ->add('avatar', 'file', array('required' => false, 'label' => 'form.avatar'))
+            ->add('avatarFile', 'file', array('required' => false, 'label' => 'form.avatar'))
         ;
     }
 }
