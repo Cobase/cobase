@@ -12,10 +12,7 @@
                 </div>
                 {% block fos_user_content %}
                     <p>{{ 'registration.confirmed'|trans({'%username%': user.name}, 'FOSUserBundle') }}</p>
-                    {% if app.session is not empty %}
-                        {% set targetUrl = app.session.get('_security.' ~ app.security.token.providerKey ~ '.target_path') %}
-                        {% if targetUrl is not empty %}<p><a href="{{ targetUrl }}">&laquo; Go to main page</a></p>{% endif %}
-                    {% endif %}
+                    <p><a href="{{ path('CobaseAppBundle_homepage') }}">&laquo; Go to main page</a></p>
                 {% endblock fos_user_content %}
             </div>
         </div>
