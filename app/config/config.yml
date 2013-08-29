@@ -119,3 +119,14 @@ fos_oauth_server:
     auth_code_class:     Cobase\ApiBundle\Entity\AuthCode
     service:
         user_provider: fos_user.user_manager
+
+sensio_framework_extra:
+    view:
+        annotations: false
+
+fos_rest:
+    param_fetcher_listener: true
+    body_listener: true
+    format_listener: true
+    view:
+        view_response_listener: 'force'

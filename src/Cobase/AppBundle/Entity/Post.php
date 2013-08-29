@@ -14,11 +14,16 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints as Assert;
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+
 /**
  * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\PostRepository")
  * @ORM\Table(name="posts")
  * @ORM\HasLifecycleCallbacks()
  * @Gedmo\SoftDeleteable(fieldName="deleted")
+ *
+ * @ExclusionPolicy("all")
  */
 class Post implements Likeable, RoutedItemInterface
 {
@@ -33,11 +38,15 @@ class Post implements Likeable, RoutedItemInterface
      * @var User
      * @ORM\ManyToOne(targetEntity="Cobase\UserBundle\Entity\User", inversedBy="posts")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *
+     * @Expose
      */
     protected $user;
 
     /**
      * @ORM\Column(type="string", length=1250)
+     *
+     * @Expose
      */
     protected $content;
 
@@ -45,28 +54,38 @@ class Post implements Likeable, RoutedItemInterface
      * @var Group
      * @ORM\ManyToOne(targetEntity="Group", inversedBy="posts")
      * @ORM\JoinColumn(name="group_id", referencedColumnName="id")
+     *
+     * @Expose
      */
     protected $group;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     *
+     * @Expose
      */
     protected $created;
 
     /**
      * @var \DateTime
      * @ORM\Column(type="datetime")
+     *
+     * @Expose
      */
     protected $updated;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     *
+     * @Expose
      */
     protected $deleted;
 
     /**
      * @var ArrayCollection
+     *
+     * @Expose
      */
     protected $likes;
 

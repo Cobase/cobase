@@ -1,3 +1,13 @@
+fos_oauth_server_token:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
+
+fos_oauth_server_authorize:
+    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
+
+CobaseApiBundle:
+    resource: "@CobaseApiBundle/Resources/config/routing.yml"
+    prefix:   /api/v1
+
 CobaseAppBundle:
     resource: "@CobaseAppBundle/Resources/config/routing.yml"
     prefix:   /
@@ -7,18 +17,6 @@ _user_bundle:
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-fos_oauth_server_token:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/token.xml"
-    prefix:   /api
-
-fos_oauth_server_authorize:
-    resource: "@FOSOAuthServerBundle/Resources/config/routing/authorize.xml"
-    prefix:   /api
-
-cobase_api:
-    resource: "@CobaseApiBundle/Resources/config/routing.yml"
-    prefix:   /api
 
 # Internal routing configuration to handle ESI
 #_internal:
