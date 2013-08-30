@@ -5,5 +5,11 @@
         <span class="color-1">Edit</span> your profile
     </h2>
 
+    {% for flashMessage in app.session.flashbag.get('profile.message') %}
+        <div class="alert alert-success fade in">
+            {{ flashMessage }}
+        </div>
+    {% endfor %}
+
     {% include "CobaseUserBundle:Profile:edit_content.html.twig" %}
 {% endblock content %}
