@@ -373,9 +373,17 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $groups = $groupService->getAllPublicGroups($limit, $orderBy, $order);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $groups,
+            $this->get('request')->query->get('page', 1) /*page number*/,
+            $this->container->getParameter('groups_per_page') /*limit per page*/
+        );
+
         return $this->render('CobaseAppBundle:Page:allGroups.html.twig',
             $this->mergeVariables(
                 array(
+                    'pagination' => $pagination,
                     'groups' => $groups
                 )
             )

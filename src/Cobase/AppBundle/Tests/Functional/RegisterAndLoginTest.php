@@ -93,26 +93,5 @@ class RegisterAndLoginTest extends WebTestCase
             0,
             $crawler->filter('html:contains("your account is now activated")')->count()
         );
-
-        // Test login
-        $crawler = $client->request('GET', '/login');
-        
-        $form = $crawler->selectButton('Login')->form();
-
-        $crawler = $client->submit(
-            $form,
-            array(
-                '_username' => $this->username,
-                '_password' => $this->password,
-            )
-        );
-
-        $crawler = $client->followRedirect();
-
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('html:contains("Overview")')->count()
-        );
     }
-
 }

@@ -40,3 +40,6 @@ parameters:
 
     # How many subscription do we want to see in front page
     subscriptions_per_page: 10
+
+    # How many groups do we want to see in group listing
+    groups_per_page: 20

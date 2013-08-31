@@ -21,7 +21,7 @@ class PageController extends BaseController
         $pagination = $paginator->paginate(
             $posts,
             $this->get('request')->query->get('page', 1) /*page number*/,
-            $this->container->getParameter('subscriptions_per_page') /*limit per page*/
+            $this->container->getParameter('posts_per_page') /*limit per page*/
         );
 
         $groupService = $this->getGroupService();
