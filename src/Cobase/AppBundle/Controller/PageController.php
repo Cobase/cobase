@@ -17,14 +17,22 @@ class PageController extends BaseController
         $subscriptionService = $this->getSubscriptionService();
         $posts = $subscriptionService->findAllSubscribedPostsForUser($user);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $posts,
+            $this->get('request')->query->get('page', 1) /*page number*/,
+            $this->container->getParameter('posts_per_page') /*limit per page*/
+        );
+
         $groupService = $this->getGroupService();
         $groups = $groupService->getGroups();
         
         return $this->render('CobaseAppBundle:Page:index.html.twig', 
             $this->mergeVariables(
                 array(
-                    'groups' => $groups,
-                    'posts'  => $posts,
+                    'pagination' => $pagination,
+                    'groups'     => $groups,
+                    'posts'      => $posts,
                 )
             )
         );
