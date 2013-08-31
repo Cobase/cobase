@@ -34,3 +34,6 @@ parameters:
     
     # Secret for the passwords
     secret:            this_is_not_the_secret_modify_this
+
+    # How many posts do we want to see per page
+    posts_per_page:    20

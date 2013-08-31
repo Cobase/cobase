@@ -121,6 +121,15 @@ class GroupController extends BaseController
         $form     = $this->createForm(new PostType(), $post);
         $group    = $groupService->getGroupById($groupId);
         $groups   = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
+        $posts    = $postService->getLatestPublicPostsForGroupQuery($group);
+
+        $paginator  = $this->get('knp_paginator');
+
+        $pagination = $paginator->paginate(
+            $posts,
+            $this->get('request')->query->get('page', 1) /*page number*/,
+            $this->container->getParameter('posts_per_page') /*limit per page*/
+        );
 
         $isSubscribed = false;
         if ($user) {
@@ -180,6 +189,7 @@ class GroupController extends BaseController
                 array(
                     'group'         => $group,
                     'groups'        => $groups,
+                    'pagination'    => $pagination,
                     'form'          => $form->createView(),
                     'subscribed'    => $isSubscribed,
                 )

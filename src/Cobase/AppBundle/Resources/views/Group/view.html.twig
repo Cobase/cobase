@@ -113,6 +113,7 @@
         {{ group.title }}
         <span class="info">{{ group.description }}</span>
     </h2>
+
     <p>
         {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
             {% if subscribed %}
@@ -159,7 +160,7 @@
     {% endif %}
 
     <ul class="item-summary">
-    {% for post in group.posts|reverse %}
+    {% for post in pagination %}
         {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
     {% else %}
         <li>
@@ -174,4 +175,9 @@
         </li>
     {% endfor %}
     </ul>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination, 'CobaseAppBundle:Common:default.pagination.html.twig') }}
+    </div>
 {% endblock content %}
