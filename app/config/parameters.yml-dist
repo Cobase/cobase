@@ -37,3 +37,4 @@ parameters:
 
     # How many posts do we want to see per page
     posts_per_page:    10
+    
