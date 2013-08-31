@@ -37,4 +37,6 @@ parameters:
 
     # How many posts do we want to see per page
     posts_per_page:    10
-    
+
+    # How many subscription do we want to see in front page
+    subscriptions_per_page: 10

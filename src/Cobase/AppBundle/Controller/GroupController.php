@@ -116,17 +116,16 @@ class GroupController extends BaseController
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
 
-        $request  = $this->getRequest();
-        $user     = $this->getCurrentUser();
-        $form     = $this->createForm(new PostType(), $post);
-        $group    = $groupService->getGroupById($groupId);
-        $groups   = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
-        $posts    = $postService->getLatestPublicPostsForGroupQuery($group);
+        $request    = $this->getRequest();
+        $user       = $this->getCurrentUser();
+        $form       = $this->createForm(new PostType(), $post);
+        $group      = $groupService->getGroupById($groupId);
+        $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
+        $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
 
         $paginator  = $this->get('knp_paginator');
-
         $pagination = $paginator->paginate(
-            $posts,
+            $postsQuery,
             $this->get('request')->query->get('page', 1) /*page number*/,
             $this->container->getParameter('posts_per_page') /*limit per page*/
         );
