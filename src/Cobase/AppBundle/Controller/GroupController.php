@@ -93,9 +93,15 @@ class GroupController extends BaseController
         $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
         $aclProvider->updateAcl($acl);
 
+        $message = sprintf(
+            'Your new group "%s" has been created.<br/>Permalink: <a href="%s">%s</a>',
+            $group->getTitle(),
+            $groupUrl,
+            $groupUrl
+        );
+
         $this->get('session')->getFlashBag()->add(
-            'group.message', 'Your new group "' . $group->getTitle() . '" has been created.<br/>Permalink: ' .
-            '<a href="' . $groupUrl . '">' . $groupUrl . '</a>'
+            'group.message', $message
         );
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_all_groups'));
