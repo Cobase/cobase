@@ -1,13 +1,13 @@
 {% extends '::base.html.twig' %}
 
-{% block javascript %}
+{% block dynamic_javascripts %}
+    // Make the submission textarea autosize on text input
+    $('#cobase_appbundle_posttype_content').autosize();
+
     // Hide the submit button
     $('#postForm').submit( function(e) {
     $('#formSubmit').hide();
     });
-
-    // Make the submission textarea autosize on text input
-    $('#cobase_appbundle_posttype_content').autosize();
 {% endblock %}
 
 {% block content %}
@@ -15,7 +15,7 @@
         <span class="color-1">Modify</span> a post
     </h2>
 
-    <form id="form" action="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
+    <form id="postForm" action="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
 
         <div class="control-group">
             {{ form_label(form.content, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
@@ -30,7 +30,7 @@
         <div class="control-group">
             <label class="control-label"></label>
             <div class="controls">
-                <input class="btn btn-success" type="submit" value="Submit">
+                <input id="formSubmit" class="btn btn-success" type="submit" value="Submit">
             </div>
         </div>
 
