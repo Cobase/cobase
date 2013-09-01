@@ -99,4 +99,54 @@ class UserService
         );
     }
 
+    /**
+     * Filter out groups if group is non-public and user is not the owner of the group
+     *
+     * @param $userGroups
+     * @return array
+     */
+    public function filterUnlistedGroups(Array $userGroups, User $user = null)
+    {
+        $groups = array();
+
+        foreach($userGroups as $group) {
+            if ($group instanceof Group) {
+                if ($group->getIsPublic() === false) {
+                    if ($group->getUser() == $user) {
+                        $groups[] = $group;
+                    }
+                } else {
+                    $groups[] = $group;
+                }
+            }
+        }
+
+        return $groups;
+    }
+
+    /**
+     * Filter out posts of groups if the groups are non-public and user is not the owner of the group
+     *
+     * @param $userPosts
+     * @return array
+     */
+    public function filterUnlistedGroupPosts(Array $userPosts, User $user = null)
+    {
+        $posts = array();
+
+        foreach($userPosts as $post) {
+            if ($post instanceof Post) {
+                if ($post->getGroup()->getIsPublic() === false) {
+                    if ($post->getGroup()->getUser() == $user) {
+                        $posts[] = $post;
+                    }
+                } else {
+                    $posts[] = $post;
+                }
+            }
+        }
+
+        return $posts;
+    }
+
 }
