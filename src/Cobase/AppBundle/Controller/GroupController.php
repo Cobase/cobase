@@ -116,11 +116,19 @@ class GroupController extends BaseController
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
 
-        $request  = $this->getRequest();
-        $user     = $this->getCurrentUser();
-        $form     = $this->createForm(new PostType(), $post);
-        $group    = $groupService->getGroupById($groupId);
-        $groups   = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
+        $request    = $this->getRequest();
+        $user       = $this->getCurrentUser();
+        $form       = $this->createForm(new PostType(), $post);
+        $group      = $groupService->getGroupById($groupId);
+        $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
+        $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $postsQuery,
+            $this->get('request')->query->get('page', 1) /*page number*/,
+            $this->container->getParameter('posts_per_page') /*limit per page*/
+        );
 
         $isSubscribed = false;
         if ($user) {
@@ -180,6 +188,7 @@ class GroupController extends BaseController
                 array(
                     'group'         => $group,
                     'groups'        => $groups,
+                    'pagination'    => $pagination,
                     'form'          => $form->createView(),
                     'subscribed'    => $isSubscribed,
                 )
@@ -364,9 +373,17 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $groups = $groupService->getAllPublicGroups($limit, $orderBy, $order);
 
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $groups,
+            $this->get('request')->query->get('page', 1) /*page number*/,
+            $this->container->getParameter('groups_per_page') /*limit per page*/
+        );
+
         return $this->render('CobaseAppBundle:Page:allGroups.html.twig',
             $this->mergeVariables(
                 array(
+                    'pagination' => $pagination,
                     'groups' => $groups
                 )
             )

@@ -58,7 +58,7 @@
     {% endfor %}
     
     <ul class="item-summary">
-        {% for group in groups %}
+        {% for group in pagination %}
             <li>
                 <div class="overview">
                     <p class="main-detail">{{ group.created|date('M d') }}</p>
@@ -90,6 +90,11 @@
             </p>
         {% endfor %}
     </ul>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination, 'CobaseAppBundle:Common:default.pagination.html.twig') }}
+    </div>
 </div>
 {% endblock content %}
 

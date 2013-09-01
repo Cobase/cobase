@@ -39,6 +39,25 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * @param Group $group
+     * @return \Doctrine\ORM\Query
+     */
+    public function getLatestPublicPostsForGroupQuery(Group $group)
+    {
+        $em = $this->getEntityManager();
+
+        $dql = 'SELECT p FROM Cobase\AppBundle\Entity\Post p
+                JOIN p.user u
+                WHERE p.group = :group
+                ORDER BY p.created DESC';
+
+        return $em->createQuery($dql)
+            ->setParameters(
+                array('group' => $group)
+            );
+    }
+
+    /**
      * @TODO refactor to minimize code duplication, see getAllPostsForPublicGroups()
      * Get given amount of latest posts for public groups for any user
      *

@@ -88,6 +88,15 @@ class PostService
     }
 
     /**
+     * @param Group $group
+     * @return \Doctrine\ORM\Query
+     */
+    public function getLatestPublicPostsForGroupQuery(Group $group)
+    {
+        return $this->repository->getLatestPublicPostsForGroupQuery($group);
+    }
+
+    /**
      * @return array
      */
     public function getAllPostsforPublicGroups($limit = null, $order)
