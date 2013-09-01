@@ -43,3 +43,15 @@ parameters:
 
     # How many groups do we want to see in group listing
     groups_per_page: 20
+
+    # Enable "Fork Me On Github" ribbon pn page
+    show_forkme: true
+
+# twig section
+twig:
+
+    # global variables for twig templates
+    globals:
+
+        # Enable "Fork Me On Github" ribbon pn page
+        show_forkme: true
