@@ -46,3 +46,12 @@ parameters:
 
     # Enable "Fork Me On Github" ribbon pn page
     show_forkme: true
+
+# twig section
+twig:
+
+    # global variables for twig templates
+    globals:
+
+        # Enable "Fork Me On Github" ribbon pn page
+        show_forkme: true
