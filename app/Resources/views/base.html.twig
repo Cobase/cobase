@@ -15,6 +15,13 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/jquery-impromptu.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
 
+        <!-- START COPYING HERE -->
+        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.css') }}" />
+        <!--[if IE]>
+        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.ie.css') }}" />
+        <![endif]-->
+        <!-- END COPYING HERE -->
+
         <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery.autosize-min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery-impromptu.js') }}" type="text/javascript"></script>
@@ -63,6 +70,8 @@
     <!--[if (gt IE 9)|!(IE)]><!-->
     <body class="">
     <!--<![endif]-->
+
+    <a href="https://github.com/protalk/protalk"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
         <div class="navbar">
             <div class="navbar-inner">
@@ -265,6 +274,16 @@
                 </div>
             </div>
         </div>
+
+        {% if show_forkme %}
+        <!-- BOTTOM LEFT RIBBON: START COPYING HERE -->
+        <div class="github-fork-ribbon-wrapper right-bottom">
+            <div class="github-fork-ribbon">
+                <a href="https://github.com/CoBase/cobase">Fork me on GitHub</a>
+            </div>
+        </div>
+        <!-- BOTTOM LEFT RIBBON: END COPYING HERE -->
+        {% endif %}
 
         <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
 
