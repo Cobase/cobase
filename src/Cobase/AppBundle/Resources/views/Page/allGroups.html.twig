@@ -56,6 +56,11 @@
             {{ flashMessage|raw }}
         </div>
     {% endfor %}
+
+    {# total items count #}
+    <div class="count-stats">
+        Total of {{ pagination.getTotalItemCount }} groups found.
+    </div>
     
     <ul class="item-summary">
         {% for group in pagination %}
