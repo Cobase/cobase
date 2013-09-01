@@ -105,7 +105,7 @@ class UserService
      * @param $userGroups
      * @return array
      */
-    public function filterUnlistedGroups($userGroups, User $user = null)
+    public function filterUnlistedGroups(Array $userGroups, User $user = null)
     {
         $groups = array();
 
@@ -130,7 +130,7 @@ class UserService
      * @param $userPosts
      * @return array
      */
-    public function filterUnlistedGroupPosts($userPosts, User $user = null)
+    public function filterUnlistedGroupPosts(Array $userPosts, User $user = null)
     {
         $posts = array();
 
