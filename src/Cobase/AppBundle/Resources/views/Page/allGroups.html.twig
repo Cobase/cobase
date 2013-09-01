@@ -53,7 +53,7 @@
 
     {% for flashMessage in app.session.flashbag.get('group.message') %}
         <div class="alert alert-success fade in">
-            {{ flashMessage }}
+            {{ flashMessage|raw }}
         </div>
     {% endfor %}
     
