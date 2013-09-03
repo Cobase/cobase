@@ -35,25 +35,28 @@ class UserController extends BaseController
      */
     public function viewAction($username)
     {
-        $service = $this->getUserService();
-        
-        $user = $service->getUserByUsername($username);
-        
+        $userService = $this->getUserService();
+
+        $user = $userService->getUserByUsername($username);
+
         if (!$user) {
             return $this->render('CobaseAppBundle:User:notfound.html.twig',
                 $this->mergeVariables()
             );
         }
-        
-        $userGroups = $service->findAllGroupsByUser($user);
-        $userPosts = $service->findAllPostsByUser($user);
-        
+
+        $userGroups = $userService->findAllGroupsByUser($user);
+        $userPosts = $userService->findAllPostsByUser($user);
+
+        $groups = $userService->filterUnlistedGroups($userGroups, $this->getCurrentUser());
+        $posts = $userService->filterUnlistedGroupPosts($userPosts, $this->getCurrentUser());
+
         return $this->render('CobaseAppBundle:User:view.html.twig',
             $this->mergeVariables(
                 array(
                     'user'       => $user,
-                    'userGroups' => $userGroups,
-                    'userPosts'  => $userPosts,
+                    'userGroups' => $groups,
+                    'userPosts'  => $posts,
                 )
             )
         );

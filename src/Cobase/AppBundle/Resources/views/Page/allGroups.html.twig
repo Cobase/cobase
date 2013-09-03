@@ -53,12 +53,17 @@
 
     {% for flashMessage in app.session.flashbag.get('group.message') %}
         <div class="alert alert-success fade in">
-            {{ flashMessage }}
+            {{ flashMessage|raw }}
         </div>
     {% endfor %}
+
+    {# total items count #}
+    <div class="count-stats">
+        Total of {{ pagination.getTotalItemCount }} groups found.
+    </div>
     
     <ul class="item-summary">
-        {% for group in groups %}
+        {% for group in pagination %}
             <li>
                 <div class="overview">
                     <p class="main-detail">{{ group.created|date('M d') }}</p>
@@ -90,6 +95,11 @@
             </p>
         {% endfor %}
     </ul>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination, 'CobaseAppBundle:Common:default.pagination.html.twig') }}
+    </div>
 </div>
 {% endblock content %}
 

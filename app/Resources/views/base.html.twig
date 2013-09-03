@@ -15,6 +15,13 @@
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/jquery-impromptu.css') }}">
         <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
 
+        <!-- FORK ME RIBBON -->
+        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.css') }}" />
+        <!--[if IE]>
+        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.ie.css') }}" />
+        <![endif]-->
+        <!-- END FORK ME RIBBON -->
+
         <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery.autosize-min.js') }}" type="text/javascript"></script>
         <script src="{{ asset('javascripts/jquery-impromptu.js') }}" type="text/javascript"></script>
@@ -63,6 +70,8 @@
     <!--[if (gt IE 9)|!(IE)]><!-->
     <body class="">
     <!--<![endif]-->
+
+    <a href="https://github.com/protalk/protalk"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
         <div class="navbar">
             <div class="navbar-inner">
@@ -248,11 +257,31 @@
                     </div>
                     <footer>
                         <hr>
+                        <p>
+                            <!-- AddThis Button BEGIN -->
+                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="{{ app.request.uriForPath() }}">
+                                <a class="addthis_button_facebook"></a>
+                                <a class="addthis_button_twitter"></a>
+                                <a class="addthis_button_linkedin"></a>
+                                <a class="addthis_button_email"></a>
+                                <a class="addthis_button_stumbleupon"></a>
+                            </div>
+                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=s"></script>
+                            <!-- AddThis Button END -->
+                        </p>
                         <p>&copy; {{ "now"|date("Y") }}, Cobase Open Source Project.</p>
                     </footer>
                 </div>
             </div>
         </div>
+
+        {% if show_forkme %}
+        <div class="github-fork-ribbon-wrapper right-bottom">
+            <div class="github-fork-ribbon">
+                <a href="https://github.com/CoBase/cobase">Fork me on GitHub</a>
+            </div>
+        </div>
+        {% endif %}
 
         <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
 

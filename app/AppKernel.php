@@ -32,6 +32,7 @@ class AppKernel extends Kernel
             new AntiMattr\GoogleBundle\GoogleBundle(),
             new Aga\DateConverterBundle\DateConverterBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

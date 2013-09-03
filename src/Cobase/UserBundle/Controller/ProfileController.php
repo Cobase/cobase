@@ -91,7 +91,10 @@ class ProfileController extends BaseController
                 $userManager->updateUser($user);
 
                 if (null === $response = $event->getResponse()) {
-                    $url = $this->container->get('router')->generate('fos_user_profile_show');
+                    $url = $this->container->get('router')->generate('fos_user_profile_edit');
+
+                    $this->get('session')->getFlashBag()->add('profile.message', 'Your profile has been updated.');
+
                     $response = new RedirectResponse($url);
                 }
 

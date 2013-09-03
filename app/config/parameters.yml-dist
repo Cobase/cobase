@@ -34,3 +34,21 @@ parameters:
     
     # Secret for the passwords
     secret:            this_is_not_the_secret_modify_this
+
+    # How many posts do we want to see per page
+    posts_per_page:    10
+
+    # How many subscription do we want to see in front page
+    subscriptions_per_page: 10
+
+    # How many groups do we want to see in group listing
+    groups_per_page: 20
+
+# twig section
+twig:
+
+    # global variables for twig templates
+    globals:
+
+        # Enable "Fork Me On Github" ribbon pn page
+        show_forkme: true

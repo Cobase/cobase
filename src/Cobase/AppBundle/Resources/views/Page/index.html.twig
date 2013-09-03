@@ -109,16 +109,32 @@
             {{ flashMessage }}
         </div>
     {% endfor %}
-    
+
+    {# total items count #}
+    <div class="count-stats">
+        Total of {{ pagination.getTotalItemCount }} posts found.
+    </div>
+
     <ul class="item-summary">
-        {% for post in posts %}
+        {% for post in pagination %}
             {% include 'CobaseAppBundle:Common:listing.post.html.twig'%}
         {% else %}
-            <p class="noPosts">
-                There are currently no posts in any of the groups you have subscribed. 
-                Go to groups you are interested in and subscribe to them in order to receive updates when someone posts to those groups.
-            </p>
+            <li>
+                <p class="no-data">
+                    Currently there are no posts in this group.
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        Perhaps you would like to post something?
+                    {% else %}
+                        Please login to post a new update.
+                    {% endif %}
+                </p>
+            </li>
         {% endfor %}
     </ul>
+
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination, 'CobaseAppBundle:Common:default.pagination.html.twig') }}
+    </div>
 {% endblock content %}
 
