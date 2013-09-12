@@ -1,31 +1,28 @@
 <li>
-    <div style="width: 100%; float:left;white-space: nowrap;">
-        <div class="overview" style="display: inline-block; width: 100px; height: inherit;">
-            <img src="{{ gravatar(post.user.email) }}"/>
-        </div>
-        <div class="info" style="display: inline-block; width: 85%; height: inherit;">
-            <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
-            <p class="postData">
-                {{ post.created | ago }}
-                {% if group is defined %}
-                    {% if post.group.id != group.id %}
-                        in <a class="postOptionLink" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a>
-                    {% endif %}
-                {% else %}
+    <div class="overview">
+        <img src="{{ gravatar(post.user.email) }}"/>
+    </div>
+    <div class="info">
+        <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
+        <p class="postData">
+            {{ post.created | ago }}
+            {% if group is defined %}
+                {% if post.group.id != group.id %}
                     in <a class="postOptionLink" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a>
                 {% endif %}
-            </p>
-            <p class="postContent">{{ post.content | converturls }}</p>
-            <p class="postOptions">
-                {{ cobase_likes(post) }}
-                {% if is_granted('EDIT', post) or is_granted('ROLE_ADMIN') %}
-                    <i class="icon-edit"></i><a class="postOptionLink" href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
-                    <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink">Move</a>
-                    <i class="icon-remove"></i><a data-id="{{ post.id }}" data-group-id="{{ post.group.shortUrl }}" href="#" class="delete-post-link postOptionLink">Delete</a>
-                {% endif %}
-            </p>
-        </div>
+            {% else %}
+                in <a class="postOptionLink" href="{{ path('CobaseAppBundle_group_view', { 'groupId': post.group.shortUrl }) }}">{{ post.group.title }}</a>
+            {% endif %}
+        </p>
+        <p class="postContent">{{ post.content | converturls }}</p>
+        <p class="postOptions">
+            {{ cobase_likes(post) }}
+            {% if is_granted('EDIT', post) or is_granted('ROLE_ADMIN') %}
+                <i class="icon-edit"></i><a class="postOptionLink" href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
+                <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink">Move</a>
+                <i class="icon-remove"></i><a data-id="{{ post.id }}" data-group-id="{{ post.group.shortUrl }}" href="#" class="delete-post-link postOptionLink">Delete</a>
+            {% endif %}
+        </p>
     </div>
-
     <div class="clearfix"></div>
 </li>
