@@ -18,7 +18,6 @@ app/cache/*
 app/bootstrap.php.cache
 app/SymfonyRequirements.php
 app/logs/*
-app/data/*
 app/config/parameters.yml
 /bin
 web/stylesheets/app_app_1.css
