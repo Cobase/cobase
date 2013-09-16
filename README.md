@@ -12,18 +12,15 @@ messages not related to their work or interest.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
-Have a look at fully working demo at http://cobase.featurice.com and register yourself a test account. If you don't
-want to register, you the following account for demo purposes:
-
-Username and password: demo1 / demo1
-
-You can also checkout screenshots of the application:
+Have a look at the screenshots of the application:
 
 http://cobase.featurice.com/screenshots/screen1.png
 http://cobase.featurice.com/screenshots/screen2.png
 http://cobase.featurice.com/screenshots/screen3.png
 http://cobase.featurice.com/screenshots/screen4.png
 http://cobase.featurice.com/screenshots/screen5.png
+
+The Cobase engine is used to power up informational portal at php-updates.com where people can post PHP related news and links for others to enjoy and learn from.
 
 #Requirements
 
