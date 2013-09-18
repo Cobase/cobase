@@ -9,5 +9,5 @@
     <br/>
 
     <h2 class="p3"><span class="color-1">Your</span> gravatar</h2>
-    <img src="{{ gravatar(user.email) }}"/>
+    <img src="{{ gravatar(user.gravatar|default(user.email)) }}"/>
 {% endblock content %}

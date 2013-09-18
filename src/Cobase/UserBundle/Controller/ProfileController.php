@@ -83,6 +83,8 @@ class ProfileController extends BaseController
                 /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
                 $userManager = $this->container->get('fos_user.user_manager');
 
+                $user->saveUploadedAvatar($this->container->getParameter('upload_avatars'));
+
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 

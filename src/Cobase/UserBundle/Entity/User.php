@@ -8,6 +8,7 @@ use Cobase\AppBundle\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
 use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
@@ -46,6 +47,21 @@ class User extends BaseUser
      * )
      */
     protected $gravatar;
+
+    /**
+     * @ORM\Column(name="avatar", type="string", nullable=true)
+     */
+    protected $avatar;
+
+    /**
+     * @Assert\File(maxSize="6000000")
+     * @Assert\Image(
+     *  minWidth = 60,
+     *  minHeight = 60,
+     *  groups={"Profile"}
+     * )
+     */
+    private $avatarFile;
 
     /**
      * @ORM\Column(name="email_visible", type="boolean", nullable=false)
@@ -88,12 +104,43 @@ class User extends BaseUser
 
     public function getGravatar()
     {
-        return $this->gravatar;
+        return !empty($this->gravatar) ? $this->gravatar : $this->email;
     }
 
     public function setGravatar($address)
     {
         $this->gravatar = $address;
+    }
+
+    public function hasAvatar()
+    {
+        return !empty($this->avatar) ? true : false;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($image)
+    {
+        $this->avatar = $image;
+    }
+
+    /**
+     * @return UploadedFile
+     */
+    public function getAvatarFile()
+    {
+        return $this->avatarFile;
+    }
+
+    /**
+     * @param UploadedFile $image
+     */
+    public function setAvatarFile(UploadedFile $image)
+    {
+        $this->avatarFile = $image;
     }
 
     public function getEmailVisible()
@@ -239,5 +286,30 @@ class User extends BaseUser
     public function __toString()
     {
         return $this->id;
+    }
+
+    /**
+     * Checks for an uploaded file for setting the user avatar image
+     *
+     * @param string $upload_dir
+     */
+    public function saveUploadedAvatar($upload_dir)
+    {
+        $uploaded = $this->getAvatarFile();
+
+        if (null === $uploaded) {
+            return;
+        }
+
+        $filename = md5($this->email) . '.' . $uploaded->getClientOriginalExtension();
+
+        $this->getAvatarFile()->move(
+            $upload_dir,
+            $filename
+        );
+
+        $this->avatar = $filename;
+
+        $this->avatarFile = null;
     }
 }
