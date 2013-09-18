@@ -375,10 +375,12 @@ class Post implements Likeable, RoutedItemInterface
         }
 
         if($metadata) {
-            $postContent .= utf8_encode($metadata['title'])."\n\n";
+            if(isset($metadata['title'])) {
+                $postContent .= utf8_encode($metadata['title'])."\n\n";
+            }
 
             if(isset($metadata['description'])) {
-                $postContent .= utf8_encode($metadata['description'])."\n\n";
+                $postContent .= $metadata['description']."\n\n";
             } else if(isset($metadata['facebook']['description'])) {
                 $postContent .= utf8_encode($metadata['facebook']['description'])."\n\n";
             }
