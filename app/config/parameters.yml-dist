@@ -44,6 +44,9 @@ parameters:
     # How many groups do we want to see in group listing
     groups_per_page: 20
 
+    # Path to save uploaded avatars
+    upload_avatars: "%kernel.root_dir%/data/avatars"
+
 # twig section
 twig:
 

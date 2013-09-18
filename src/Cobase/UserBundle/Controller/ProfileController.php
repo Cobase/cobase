@@ -19,6 +19,7 @@ use FOS\UserBundle\Model\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Cobase\AppBundle\Controller\BaseController;
 
@@ -83,6 +84,8 @@ class ProfileController extends BaseController
                 /** @var $userManager \FOS\UserBundle\Model\UserManagerInterface */
                 $userManager = $this->container->get('fos_user.user_manager');
 
+                $user->saveUploadedAvatar($this->container->getParameter('upload_avatars'));
+
                 $event = new FormEvent($form, $request);
                 $dispatcher->dispatch(FOSUserEvents::PROFILE_EDIT_SUCCESS, $event);
 
@@ -105,12 +108,35 @@ class ProfileController extends BaseController
         return $this->container->get('templating')->renderResponse(
             'FOSUserBundle:Profile:edit.html.'.$this->container->getParameter('fos_user.template.engine'),
             array(
-                'form' => $form->createView(),
+                'form'          => $form->createView(),
                 'user'          => $user,
                 'subscriptions' => $this->getSubscriptions(),
                 'latestGroups'  => $this->getGroupService()->getLatestPublicGroups(10),
                 'latestUsers'   => $this->getUserService()->getLatestUsers(10),
             )
         );
+    }
+
+    /**
+     * Renders uploaded avatars stored in the data directory
+     */
+    public function renderAvatarAction($avatarFile)
+    {
+        $response = new Response();
+        /** TODO: set the correct mime according to image format */
+        $response->headers->set('Content-Type', 'image/jpeg');
+        $response->sendHeaders();
+
+        $avatar_path = $this->container->getParameter('upload_avatars');
+
+        if (is_file($avatar_path . '/' . $avatarFile)) {
+            $content = readfile($avatar_path . '/' . $avatarFile);
+        } else {
+            /** TODO: use a default "blank" or "not found" avatar image */
+            return new Response(404);
+        }
+        $response->setContent($content);
+
+        return $response;
     }
 }
