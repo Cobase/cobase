@@ -16,9 +16,17 @@ class PostController extends BaseController
 {
     public function viewAction($groupId, $postId)
     {
+        $success = true;
+
         $groupService = $this->getGroupService();
 
         $group = $groupService->getGroupById($groupId);
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Post:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
 
         $posts = $this->getPostService()->getPostByGroupAndPostId($group, $postId);
 
