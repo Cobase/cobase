@@ -1,11 +1,11 @@
-if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
+//if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
     script = document.createElement( 'script' );
     script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
     script.onload=loadFancybox;
     document.body.appendChild(script);
-} else {
+//} else {
     loadFancybox();
-}
+//}
 
 function loadFancybox() {
     // fancybox plugin (js and css)
