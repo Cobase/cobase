@@ -52,6 +52,3 @@ twig:
 
         # Enable "Fork Me On Github" ribbon pn page
         show_forkme: true
-
-        # Display flash news on top navigation bar
-        flash_news: ""

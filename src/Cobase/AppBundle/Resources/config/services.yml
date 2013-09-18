@@ -10,6 +10,12 @@ services:
         tags:
             - { name: twig.extension }
 
+    cobase_app.twig.news:
+            class: Cobase\AppBundle\Twig\Extensions\News
+            arguments: ["@twig"]
+            tags:
+                - { name: twig.extension }
+
     aga_dateconverter.twig.extension:
         class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
         tags:
