@@ -151,6 +151,14 @@
             
         </div>
 
+        {% if flash_news is defined and flash_news is not null %}
+            <div id="main-news">
+                {{ flash_news }}
+            </div>
+        {% endif %}
+
+
+
         <div id="sidebar-nav">
             <ul id="dashboard-menu" class="nav nav-list">
                 {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
