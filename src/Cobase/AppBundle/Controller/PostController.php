@@ -14,11 +14,15 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
  */
 class PostController extends BaseController
 {
-    public function viewAction($postId)
+    public function viewAction($groupId, $postId)
     {
-        $post = $this->getPostService()->getPostById($postId);
+        $groupService = $this->getGroupService();
 
-        if (!$post) {
+        $group = $groupService->getGroupById($groupId);
+
+        $posts = $this->getPostService()->getPostByGroupAndPostId($group, $postId);
+
+        if (!$posts) {
             return $this->render('CobaseAppBundle:Post:notfound.html.twig',
                 $this->mergeVariables()
             );
@@ -27,7 +31,7 @@ class PostController extends BaseController
         return $this->render('CobaseAppBundle:Post:view.html.twig',
             $this->mergeVariables(
                 array(
-                    'post' => $post,
+                    'post' => $posts[0],
                 )
             )
         );

@@ -22,6 +22,7 @@
                 <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink">Move</a>
                 <i class="icon-remove"></i><a data-id="{{ post.id }}" data-group-id="{{ post.group.shortUrl }}" href="#" class="delete-post-link postOptionLink">Delete</a>
             {% endif %}
+            <i class="icon-bookmark"></i><a href="{{ path('CobaseAppBundle_post_view', { 'groupId': post.group.getShortUrl(), 'postId': post.id, }) }}">Permalink</a>
         </p>
     </div>
     <div class="clearfix"></div>

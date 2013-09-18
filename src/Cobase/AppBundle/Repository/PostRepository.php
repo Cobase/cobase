@@ -107,6 +107,27 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * Find post by it's groupId and postId
+     *
+     * @param Group $group
+     * @param $postId
+     * @return array
+     */
+    public function findPostByGroupAndPostId(Group $group, $postId)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder();
+
+        $qb->select('p')
+            ->from('Cobase\AppBundle\Entity\Post', 'p')
+            ->where('p.id = :postId')
+            ->setParameter('postId', $postId)
+            ->andWhere('p.group = :group')
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    /**
      * Find group posts for a given user
      *
      * @param \Cobase\UserBundle\Entity\User $user

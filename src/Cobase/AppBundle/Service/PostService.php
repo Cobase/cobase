@@ -114,6 +114,15 @@ class PostService
     }
 
     /**
+     * @param  int $id
+     * @return Post
+     */
+    public function getPostByGroupAndPostId(Group $group, $postId)
+    {
+        return $this->repository->findPostByGroupAndPostId($group, $postId);
+    }
+
+    /**
      * Check to see if a user already has given a post for the group
      *
      * @param \Cobase\AppBundle\Entity\Group $group
