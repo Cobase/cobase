@@ -54,4 +54,4 @@ twig:
         show_forkme: true
 
         # Display flash news on top navigation bar
-        flash_news:
+        flash_news: ""

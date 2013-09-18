@@ -13,12 +13,12 @@ h1.frontLogo {
 /* News related stuff */
 
 #main-news {
-    background: #f3f3f5;
+    background: #ebd047;
     border-bottom: 0px;
     position: relative;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #bcbcc6;
-    padding: 4px;
+    padding: 10px;
     z-index: 1;
 }
 
