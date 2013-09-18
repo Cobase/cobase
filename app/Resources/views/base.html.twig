@@ -123,7 +123,7 @@
                         <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
                     </li>
                     <li class="pull-right">
-                        <a title="Drag and drop this bookmarklet to your favorites bar" href="javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('src','{{ url('CobaseAppBundle_post_bookmarklet') }}');document.body.appendChild(jsCode);})();" ><i class="icon-globe"></i> <span>Cobase Bookmarklet</span></a>
+                        <a title="Drag and drop this bookmarklet to your favorites bar" href="javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('id', 'cobase-bookmarklet');jsCode.setAttribute('src','{{ url('CobaseAppBundle_post_bookmarklet') }}');document.body.appendChild(jsCode);})();" ><i class="icon-globe"></i> <span>Cobase Bookmarklet</span></a>
                     </li>
                 {% else %}
                     <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>

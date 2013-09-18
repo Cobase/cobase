@@ -1,17 +1,15 @@
-//if (!($ = window.jQuery)) { // typeof jQuery=='undefined' works too
-    script = document.createElement( 'script' );
-    script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
-    script.onload=loadFancybox;
-    document.body.appendChild(script);
-//} else {
-    loadFancybox();
-//}
+script = document.createElement( 'script' );
+script.src = 'http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js';
+script.id = 'cobase-jquery';
+script.onload=loadFancybox;
+document.body.appendChild(script);
 
 function loadFancybox() {
     // fancybox plugin (js and css)
-    $('head').append('<link rel="stylesheet" type="text/css" href="http://{{ app.request.getHost }}/stylesheets/jquery.fancybox.css">');
+    $('head').append('<link rel="stylesheet" id="cobase-fancybox-css" type="text/css" href="http://{{ app.request.getHost }}/stylesheets/jquery.fancybox.css">');
     fancybox = document.createElement( 'script' );
     fancybox.src = 'http://{{ app.request.getHost }}/javascripts/jquery.fancybox.pack.js';
+    fancybox.id = 'cobase-fancybox';
     fancybox.onload=loadCobase;
     document.body.appendChild(fancybox);
 }
@@ -40,7 +38,13 @@ function loadCobase() {
 
     // to allow the close from the iframe
     function closeFancyBox(){
-        $.fancybox.close();
+        $.fancybox.close(); // closing fancybox
+
+        // deleting all files from the current website
+        $('#cobase-fancybox-css').remove();
+        $('#cobase-fancybox').remove();
+        $('#cobase-bookmarklet').remove();
+        $('#cobase-jquery').remove();
     }
     window.addEventListener("message", closeFancyBox, false);
 }
