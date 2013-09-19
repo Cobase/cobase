@@ -317,7 +317,10 @@ class Post implements Likeable, RoutedItemInterface
      */
     public function getFeedItemRouteParameters()
     {
-        return array('postId' => $this->getId());
+        return array(
+            'groupId' => $this->getGroup()->getShortUrl(),
+            'postId'  => $this->getId()
+        );
     }
 
     /**
