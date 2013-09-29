@@ -46,7 +46,8 @@
         "artur-gajewski/date-converter-bundle": "1.0.*@dev",
         "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
         "eko/feedbundle": "dev-master",
-        "knplabs/knp-paginator-bundle": "dev-master"
+        "knplabs/knp-paginator-bundle": "dev-master",
+        "friendsofsymfony/comment-bundle": "2.0.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
