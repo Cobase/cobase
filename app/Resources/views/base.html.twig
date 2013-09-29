@@ -8,6 +8,12 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+        {% stylesheets
+            '@FOSCommentBundle/Resources/assets/css/comments.css'
+        %}
+            <link rel="stylesheet" href="{{ asset_url }}" />
+        {% endstylesheets %}
+
         <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
         <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
 
