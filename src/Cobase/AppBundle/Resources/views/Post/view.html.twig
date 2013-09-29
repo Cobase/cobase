@@ -32,6 +32,9 @@
                     {% endif %}
                 </p>
             </div>
+            <div class="post-comments">
+                {% include 'FOSCommentBundle:Thread:async.html.twig' with {'id': post.id} %}
+            </div>
             <div class="clearfix"></div>
         </li>
     </ul>
