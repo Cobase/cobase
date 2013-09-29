@@ -19,4 +19,9 @@ class Thread extends BaseThread
      * @ORM\Column(type="string")
      */
     protected $id;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Post", mappedBy="commentThread")
+     */
+    protected $post;
 }

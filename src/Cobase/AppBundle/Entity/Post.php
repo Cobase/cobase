@@ -71,6 +71,12 @@ class Post implements Likeable, RoutedItemInterface
     protected $likes;
 
     /**
+     * @ORM\OneToOne(targetEntity="Cobase\AppBundle\Entity\Thread", inversedBy="post")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     */
+    protected $commentThread;
+
+    /**
      * @var integer
      */
     protected $maxFeedTitleLength = 400;
@@ -84,6 +90,9 @@ class Post implements Likeable, RoutedItemInterface
         $this->likes = new ArrayCollection();
     }
 
+    /**
+     * @param ClassMetadata $metadata
+     */
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
         $metadata->addPropertyConstraint('content', new NotBlank(array(
@@ -397,5 +406,13 @@ class Post implements Likeable, RoutedItemInterface
             $postContent = "[IMPOSSIBLE TO PARSE URL SET YOUR OWN CONTENT HERE]\n\n".'On <a href="'.$url.'" target="_blank">'.$host.'</a>';
         }
         $this->setContent($postContent);
+    }
+
+    /**
+     * @return \Cobase\AppBundle\Entity\Thread
+     */
+    public function getCommentThread()
+    {
+        return $this->commentThread;
     }
 }
