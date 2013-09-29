@@ -17,6 +17,12 @@
         <p class="postContent">{{ post.content | converturls }}</p>
         <p class="postOptions">
             {{ cobase_likes(post) }}
+            {% if post.getCommentThread() %}
+                {% set commentCount = 0 %}
+            {% else %}
+                {% set commentCount = post.commentThread.getNumComments() %}
+            {% endif %}
+            <i class="icon-comments"></i><a href="{{ path('CobaseAppBundle_post_view', { 'groupId': post.group.getShortUrl(), 'postId': post.id, }) }}">{{ commentCount }} comments</a>
             {% if is_granted('EDIT', post) or is_granted('ROLE_ADMIN') %}
                 <i class="icon-edit"></i><a class="postOptionLink" href="{{ path('CobaseAppBundle_post_modify', { 'postId': post.id }) }}">Edit</a>
                 <i class="icon-move"></i><a data-id="{{ post.id }}" href="#" class="move-post-link postOptionLink">Move</a>
