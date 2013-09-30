@@ -71,8 +71,7 @@ class Post implements Likeable, RoutedItemInterface
     protected $likes;
 
     /**
-     * @ORM\OneToOne(targetEntity="Cobase\AppBundle\Entity\Thread", inversedBy="post")
-     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @var \Cobase\AppBundle\Entity\Thread
      */
     protected $commentThread;
 
@@ -414,5 +413,13 @@ class Post implements Likeable, RoutedItemInterface
     public function getCommentThread()
     {
         return $this->commentThread;
+    }
+
+    /**
+     * @param Thread $thread
+     */
+    public function setCommentThread(Thread $thread)
+    {
+        $this->commentThread = $thread;
     }
 }
