@@ -214,3 +214,7 @@ div.jqi .jqiclose:hover {
     padding-bottom: 10px;
 }
 
+/* comments */
+#fos_comment_comment_body {
+    width: 97%;
+}
