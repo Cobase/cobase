@@ -139,7 +139,7 @@ NOTE: This will erase all data and create new dummy data. However, this process
 will not recreate the structure of the database. If you wish to update schema before
 you run fixtures, always run the Doctrine migrations tool.
 
-Loading fixtures as described earlier, three user account are created: dev1, dev2 and dev3.
+Loading fixtures as described earlier, three user account are created: demo1, demo2 and demo3.
 Passwords for these users are the same as the usernames respectively.
 
 #Assets
