@@ -77,6 +77,10 @@ services:
         class:     Cobase\AppBundle\Service\LikeService
         arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.like"]
 
+    cobase_app.service.comment:
+        class:     Cobase\AppBundle\Service\CommentService
+        arguments: ["@fos_comment.manager.thread.default", "@router"]
+
     cobase_app.repository.like:
         class:           Cobase\AppBundle\Repository\Like
         arguments:       [Cobase\AppBundle\Entity\Like]

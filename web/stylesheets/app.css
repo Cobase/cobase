@@ -214,3 +214,21 @@ div.jqi .jqiclose:hover {
     padding-bottom: 10px;
 }
 
+/* comments */
+#fos_comment_comment_body {
+    width: 97%;
+}
+.fos_comment_comment_body {
+    background: none repeat scroll 0 0 #F9F9F9;
+    border: 1px solid #EEEEEE;
+    border-radius: 5px 5px 5px 5px;
+    line-height: 1.5em;
+    padding: 1em;
+    margin-bottom: 0.5em;
+}
+.fos_comment_comment_metas {
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: none;
+    margin: 0;
+    padding: 0.5em 1em;
+}
