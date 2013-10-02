@@ -26,7 +26,9 @@ class PageController extends BaseController
 
         $groupService = $this->getGroupService();
         $groups = $groupService->getGroups();
-        
+
+        $this->get('cobase_app.service.comment')->initializeCommentThreads($pagination->getItems());
+
         return $this->render('CobaseAppBundle:Page:index.html.twig', 
             $this->mergeVariables(
                 array(

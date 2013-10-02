@@ -8,9 +8,7 @@ use Cobase\AppBundle\Form\GroupType;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
-use Eko\FeedBundle\Feed\Feed;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -191,6 +189,8 @@ class GroupController extends BaseController
 
             }
         }
+
+        $this->get('cobase_app.service.comment')->initializeCommentThreads($pagination->getItems());
 
         return $this->render('CobaseAppBundle:Group:view.html.twig',
             $this->mergeVariables(
