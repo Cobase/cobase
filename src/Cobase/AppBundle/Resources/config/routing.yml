@@ -55,6 +55,9 @@ CobaseAppBundle_all_posts:
 CobaseAppBundle_post_view:
     pattern:  /post/{groupId}/{postId}
     defaults: { _controller: CobaseAppBundle:Post:view }
+    requirements:
+        groupId:  "[a-zA-z0-9]+"
+        postId:  \d+
 
 CobaseAppBundle_post_feed:
     pattern:  /posts/rss
@@ -87,6 +90,8 @@ CobaseAppBundle_post_bookmarklet:
 CobaseAppBundle_like_post:
     pattern:  /post/{postId}/like
     defaults: { _controller: CobaseAppBundle:Post:likePost }
+    requirements:
+        postId:  \d+
 
 CobaseAppBundle_unlike_post:
     pattern:  /post/{postId}/unlike
