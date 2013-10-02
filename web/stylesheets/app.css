@@ -197,6 +197,10 @@ div.jqi .jqiclose:hover {
     margin-right: 5px;
 }
 
+.comments-post-link {
+    margin-left: 3px;
+}
+
 .like-container {
     margin-right: 10px;
 }

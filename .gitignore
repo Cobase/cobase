@@ -22,3 +22,4 @@ app/logs/*
 app/config/parameters.yml
 /bin
 web/stylesheets/app_app_1.css
+web/stylesheets/cobase_app_1.css
