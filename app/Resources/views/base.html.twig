@@ -1,302 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>{{ site_title }}</title>
-        <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="">
-        <meta name="author" content="">
+<head>
+    <meta charset="utf-8">
+    <title>{{ site_title }}</title>
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-        {% stylesheets
-            '@FOSCommentBundle/Resources/assets/css/comments.css'
-        %}
-            <link rel="stylesheet" href="{{ asset_url }}" />
-        {% endstylesheets %}
+    {% stylesheets
+    '@FOSCommentBundle/Resources/assets/css/comments.css'
+    %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
-        <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('lib/bootstrap/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('lib/font-awesome/css/font-awesome.css') }}">
 
-        <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/jquery-impromptu.css') }}">
-        <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/theme.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/jquery-impromptu.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('stylesheets/app.css') }}">
 
-        <!-- FORK ME RIBBON -->
-        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.css') }}" />
-        <!--[if IE]>
-        <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.ie.css') }}" />
-        <![endif]-->
-        <!-- END FORK ME RIBBON -->
+    <!-- FORK ME RIBBON -->
+    <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.css') }}" />
+    <!--[if IE]>
+    <link rel="stylesheet" href="{{ asset('stylesheets/gh-fork-ribbon.ie.css') }}" />
+    <![endif]-->
+    <!-- END FORK ME RIBBON -->
 
-        <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('javascripts/jquery.autosize-min.js') }}" type="text/javascript"></script>
-        <script src="{{ asset('javascripts/jquery-impromptu.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('lib/jquery-1.7.2.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('javascripts/jquery.autosize-min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('javascripts/jquery-impromptu.js') }}" type="text/javascript"></script>
 
-        <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-        <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 
-        <!-- javascript file includes -->
-        {% javascripts output="/js/app_compiled.js" filter="?yui_js"
-            '@CobaseAppBundle/Resources/js/site.js'
-            '@CobaseAppBundle/Resources/js/LikesManager.js'
-        %}
-            <script type="text/javascript" src="{{ asset_url }}"></script>
-        {% endjavascripts %}
+    <!-- javascript file includes -->
+    {% javascripts output="/js/app_compiled.js" filter="?yui_js"
+    '@CobaseAppBundle/Resources/js/site.js'
+    '@CobaseAppBundle/Resources/js/LikesManager.js'
+    %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 
-        <!-- page specific dynamic javascripts -->
-        <script type="text/javascript">
-            $(document).ready(function () {
-                {% block dynamic_javascripts %}{% endblock %}
-            });
-        </script>
+    <!-- page specific dynamic javascripts -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            {% block dynamic_javascripts %}{% endblock %}
+        });
+    </script>
 
-        <!-- page specific javascript file includes -->
-        {% block javascript_files %}{% endblock %}
+    <!-- page specific javascript file includes -->
+    {% block javascript_files %}{% endblock %}
 
-        <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-        <!--[if lt IE 9]>
-        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-        <![endif]-->
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-        <!-- Le fav and touch icons -->
-        <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-        <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
 
-        {% block javascripts %}{% endblock %}
+    {% block javascripts %}{% endblock %}
 
-    </head>
+</head>
 
-    <!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
-    <!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
-    <!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
-    <!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
-    <!--[if (gt IE 9)|!(IE)]><!-->
-    <body class="">
-    <!--<![endif]-->
+<!--[if lt IE 7 ]> <body class="ie ie6"> <![endif]-->
+<!--[if IE 7 ]> <body class="ie ie7 "> <![endif]-->
+<!--[if IE 8 ]> <body class="ie ie8 "> <![endif]-->
+<!--[if IE 9 ]> <body class="ie ie9 "> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<body class="">
+<!--<![endif]-->
 
-    <a href="https://github.com/protalk/protalk"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
+<a href="https://github.com/protalk/protalk"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"></a>
 
-        <div class="navbar">
-            <div class="navbar-inner">
-                <ul class="nav pull-right">
-                    <!--
-                    <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
-                    -->
-                    <li id="fat-menu" class="dropdown">
-                        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                            <!-- User login/logout -->
-                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> <span id="dropdown-username">{{ app.user.name }}</span>
-                                <i class="icon-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-1" href="{{ path('fos_user_profile_edit') }}">My Profile</a></li>
-                                <li class="divider visible-phone"></li>
-                                <li><a tabindex="-2" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
-                            </ul>
-                        {% else %}
-                            <!-- User login/logout -->
-                            <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="icon-user"></i> Register / Login
-                                <i class="icon-caret-down"></i>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a tabindex="-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                                <li><a tabindex="-1" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
-                            </ul>
-                        {% endif %}
-                    </li>
-                </ul>
-                <a class="brand" href="{{ path('CobaseAppBundle_homepage') }}">{{ site_title }}</a>
-            </div>
-        </div>
-
-        <div id="main-menu">
-            
-            <!-- SMALL SCREEN NAVIGATION -->
-            <div id="phone-navigation">
-                <select class="selectnav" id="phone-menu">
-                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                        <option value="{{ path('CobaseAppBundle_homepage') }}"
-                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %} selected="selected"{% endif %}> Home</option>
-                        <option value="{{ path('CobaseAppBundle_group_new') }}"
-                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %} selected="selected"{% endif %}> Create a Group</option>
-                        <option value="{{ path('CobaseAppBundle_all_groups') }}"
-                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
-                    {% else %}
-                        <option value="{{ path('CobaseAppBundle_all_groups') }}"
-                                {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
-                    {% endif %}
-                </select>
-            </div>
-            
-            <!-- LARGE SCREEN NAVIGATION -->
-            <ul class="nav nav-tabs">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
-                    </li>
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_group_new') }}" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
-                    </li>
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
-                    </li>
-                    <li class="pull-right">
-                        <a title="Drag and drop this bookmarklet to your favorites bar" href="javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('id', 'cobase-bookmarklet');jsCode.setAttribute('src','{{ url('CobaseAppBundle_post_bookmarklet') }}');document.body.appendChild(jsCode);})();" ><i class="icon-globe"></i> <span>Cobase Bookmarklet</span></a>
-                    </li>
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav pull-right">
+            <!--
+            <li class="hidden-phone"><a href="#" role="button">Settings</a></li>
+            -->
+            <li id="fat-menu" class="dropdown">
+                {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                    <!-- User login/logout -->
+                    <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> <span id="dropdown-username">{{ app.user.name }}</span>
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-1" href="{{ path('fos_user_profile_edit') }}">My Profile</a></li>
+                        <li class="divider visible-phone"></li>
+                        <li><a tabindex="-2" href="{{ path('fos_user_security_logout') }}">{{ 'layout.logout'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
                 {% else %}
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
-                    </li>
+                    <!-- User login/logout -->
+                    <a href="#" role="button" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-user"></i> Register / Login
+                        <i class="icon-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a tabindex="-2" href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                        <li><a tabindex="-1" href="{{ path('fos_user_registration_register') }}">{{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
                 {% endif %}
-            </ul>
-            
-        </div>
+            </li>
+        </ul>
+        <a class="brand" href="{{ path('CobaseAppBundle_homepage') }}">{{ site_title }}</a>
+    </div>
+</div>
 
-        {{ cobase_news() }}
+<div id="main-menu">
 
-        <div id="sidebar-nav">
-            <ul id="dashboard-menu" class="nav nav-list">
-                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
-                    </li>
+    <!-- SMALL SCREEN NAVIGATION -->
+    <div id="phone-navigation">
+        <select class="selectnav" id="phone-menu">
+            {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <option value="{{ path('CobaseAppBundle_homepage') }}"
+                        {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %} selected="selected"{% endif %}> Home</option>
+                <option value="{{ path('CobaseAppBundle_group_new') }}"
+                        {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %} selected="selected"{% endif %}> Create a Group</option>
+                <option value="{{ path('CobaseAppBundle_all_groups') }}"
+                        {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
+            {% else %}
+                <option value="{{ path('CobaseAppBundle_all_groups') }}"
+                        {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %} selected="selected"{% endif %}> Browse Groups</option>
+            {% endif %}
+        </select>
+    </div>
 
-                    <p class="subscriptions-head">Subscriptions:</p>
+    <!-- LARGE SCREEN NAVIGATION -->
+    <ul class="nav nav-tabs">
+        {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
+            </li>
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_new' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_group_new') }}" ><i class="icon-download-alt"></i> <span>Create a Group</span></a>
+            </li>
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+            </li>
+            <li class="pull-right">
+                <a title="Drag and drop this bookmarklet to your favorites bar" href="javascript:(function(){var jsCode = document.createElement('script');jsCode.setAttribute('id', 'cobase-bookmarklet');jsCode.setAttribute('src','{{ url('CobaseAppBundle_post_bookmarklet') }}');document.body.appendChild(jsCode);})();" ><i class="icon-globe"></i> <span>Cobase Bookmarklet</span></a>
+            </li>
+        {% else %}
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+            </li>
+        {% endif %}
+    </ul>
 
-                    {% for subscription in subscriptions if subscriptions != null %}
-                        <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
-                            <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
-                                <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
-                            </a>
-                        </li>
-                    {% else %}
-                        <p class="subscriptions-info">
-                            You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
-                        </p>
+</div>
 
-                        <p class="subscriptions-info">
-                            Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
-                        </p>
-                    {% endfor %}
-                {% else %}
-                    <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
-                        <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
-                    </li>
+{{ cobase_news() }}
 
-                    <p class="subscriptions-head">Welcome!</p>
+<div id="sidebar-nav">
+    <ul id="dashboard-menu" class="nav nav-list">
+        {% if app.user and is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_homepage' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_homepage') }}"><i class="icon-home"></i> <span>Home</span></a>
+            </li>
 
-                    <p class="subscriptions-info">
-                        It seems you have not created an account with us yet. You are free to use this service as a guest, but by <a href="{{ path('fos_user_registration_register') }}">registering</a> you will obtain lots of nice features.
-                    </p>
+            <p class="subscriptions-head">Subscriptions:</p>
 
-                    <p class="subscriptions-info">
-                        By <a href="{{ path('fos_user_registration_register') }}">registering</a> an account with us, you will be able to subscribe to different groups of your interest, submit a 'like' to a post, see all interesting posts from different groups in one glance, and many more useful features.
-                    </p>
+            {% for subscription in subscriptions if subscriptions != null %}
+                <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_group_view' and app.request.attributes.get('groupId') == subscription.group.shortUrl %}class="active"{% endif %}>
+                    <a href="{{ path('CobaseAppBundle_group_view', { 'groupId': subscription.group.shortUrl }) }}">
+                        <i class="icon-list-alt"></i> <span>{{ subscription.group.title }}</span>
+                    </a>
+                </li>
+        {% else %}
+            <p class="subscriptions-info">
+                You have not subscribed to any of the groups yet. Open the group you are interested in and click on subscribe button.
+            </p>
 
-                {% endif %}
-            </ul>
-        </div>
+            <p class="subscriptions-info">
+                Once you have subscribed to a group, it's link will appear here and all of group's latest posts will appear on the home page from which it is easy to browse through the topics you are interested in.
+            </p>
+        {% endfor %}
+        {% else %}
+            <li {% if app.request.attributes.get('_route') == 'CobaseAppBundle_all_groups' %}class="active"{% endif %}>
+                <a href="{{ path('CobaseAppBundle_all_groups') }}" ><i class="icon-group"></i> <span>Browse Groups</span></a>
+            </li>
 
-        <div class="content">
-            <div class="container-fluid">
+            <p class="subscriptions-head">Welcome!</p>
+
+            <p class="subscriptions-info">
+                It seems you have not created an account with us yet. You are free to use this service as a guest, but by <a href="{{ path('fos_user_registration_register') }}">registering</a> you will obtain lots of nice features.
+            </p>
+
+            <p class="subscriptions-info">
+                By <a href="{{ path('fos_user_registration_register') }}">registering</a> an account with us, you will be able to subscribe to different groups of your interest, submit a 'like' to a post, see all interesting posts from different groups in one glance, and many more useful features.
+            </p>
+
+        {% endif %}
+    </ul>
+</div>
+
+<div class="content">
+    <div class="container-fluid">
+        <div class="row-fluid">
+            <div class="span8 main-content">
                 <div class="row-fluid">
-                    <div class="span8 main-content">
-                        <div class="row-fluid">
-                            <!-- Main Content -->
-                            <div class="row-fluid">
-                                {% block content %}sdfdsfdsfdsf{% endblock %}
-                            </div>
-                            <!-- End of Main Content -->
-                        </div>
+                    <!-- Main Content -->
+                    <div class="row-fluid">
+                        {% block content %}{% endblock %}
                     </div>
-                    <div class="span4 sidebar">
+                    <!-- End of Main Content -->
+                </div>
+            </div>
+            <div class="span4 sidebar">
 
-                        {% block tabsWidget %}
-                        <div class="widget">
-                            <ul id="myTab" class="nav nav-tabs three-tabs fancy">
-                                <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
-                                <li><a href="#tab2" data-toggle="tab">People</a></li>
-                                <li><a href="#tab3" data-toggle="tab">About</a></li>
-                            </ul>
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="tab1">
-                                    <ul class="cards">
-                                        <li style="padding: 0em 1em;">
-                                            <h3>Latest Groups</h3>
+                {% block tabsWidget %}
+                    <div class="widget">
+                        <ul id="myTab" class="nav nav-tabs three-tabs fancy">
+                            <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
+                            <li><a href="#tab2" data-toggle="tab">People</a></li>
+                            <li><a href="#tab3" data-toggle="tab">About</a></li>
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1">
+                                <ul class="cards">
+                                    <li style="padding: 0em 1em;">
+                                        <h3>Latest Groups</h3>
+                                    </li>
+                                    {% for group in latestGroups if latestGroups != null %}
+                                        <li class="latestGroupItem">
+                                            <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
+                                            <p>{{ group.description }}</p>
+                                            <p>{{ group.posts|length }} post(s)</p>
                                         </li>
-                                        {% for group in latestGroups if latestGroups != null %}
-                                            <li class="latestGroupItem">
-                                                <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
-                                                <p>{{ group.description }}</p>
-                                                <p>{{ group.posts|length }} post(s)</p>
-                                            </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="tab2">
-                                    <ul class="cards">
-                                        <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
-                                        {% for user in latestUsers if latestUsers != null %}
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="tab2">
+                                <ul class="cards">
+                                    <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
+                                    {% for user in latestUsers if latestUsers != null %}
                                         <li>
                                             <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
                                             <p><a href="{{ path('CobaseAppBundle_user_view', { 'username': user.username }) }}">{{ user.name }}</a></p>
                                             <p>{% if user.emailVisible %}{{ user.email }}{% endif %}</p>
                                         </li>
-                                        {% endfor %}
-                                    </ul>
-                                </div>
-                                <div class="tab-pane fade" id="tab3">
-                                    <ul class="cards">
-                                        <li style="padding: 0em 1em;"><h3>About this application</h3></li>
-                                        <li>This application serves as a social media for corporations. It allows people within a corporation to spread information to collegues in a modern and sophisticated way. No more sending emails to the whole company and problems with messages disappearing in the mass of data pollution.</li>
-                                        <li>A group consists of its own page in which people can write updates about things related to that specific group. All new messages are rendered at the top of group's page.</li>
-                                        <li>To prevent situation of being flooded with information that is not interesting to a particular user, each user can subscribe to a group. Only those posts from the groups that user is subscribed to will be shown on front page from newest post to the oldest..</li>
-                                        <li>User profile photo is maintained by an external service <a href="http://www.gravatar.com" target="BLANK">Gravatar</a>. It allows you to set a specific avatar for your email and can be used in many 3rd party applications such as this and Wordpress. Once you create a gravatar with the email address used in this application, an avatar will appear next to your posts.</li>
-                                    </ul>
-                                </div>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            <div class="tab-pane fade" id="tab3">
+                                <ul class="cards">
+                                    <li style="padding: 0em 1em;"><h3>About this application</h3></li>
+                                    <li>This application serves as a social media for corporations. It allows people within a corporation to spread information to collegues in a modern and sophisticated way. No more sending emails to the whole company and problems with messages disappearing in the mass of data pollution.</li>
+                                    <li>A group consists of its own page in which people can write updates about things related to that specific group. All new messages are rendered at the top of group's page.</li>
+                                    <li>To prevent situation of being flooded with information that is not interesting to a particular user, each user can subscribe to a group. Only those posts from the groups that user is subscribed to will be shown on front page from newest post to the oldest..</li>
+                                    <li>User profile photo is maintained by an external service <a href="http://www.gravatar.com" target="BLANK">Gravatar</a>. It allows you to set a specific avatar for your email and can be used in many 3rd party applications such as this and Wordpress. Once you create a gravatar with the email address used in this application, an avatar will appear next to your posts.</li>
+                                </ul>
                             </div>
                         </div>
-                        {% endblock %}
                     </div>
-                    <footer>
-                        <hr>
-                        <p>
-                            <!-- AddThis Button BEGIN -->
-                            <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="{{ url('CobaseAppBundle_homepage') }}">
-                                <a class="addthis_button_facebook"></a>
-                                <a class="addthis_button_twitter"></a>
-                                <a class="addthis_button_linkedin"></a>
-                                <a class="addthis_button_email"></a>
-                                <a class="addthis_button_stumbleupon"></a>
-                            </div>
-                            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=s"></script>
-                            <!-- AddThis Button END -->
-                        </p>
-                        <p>&copy; {{ "now"|date("Y") }}, Cobase Open Source Project.</p>
-                    </footer>
+                {% endblock %}
+            </div>
+            <footer>
+                <hr>
+                <p>
+                    <!-- AddThis Button BEGIN -->
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style" addthis:url="{{ url('CobaseAppBundle_homepage') }}">
+                    <a class="addthis_button_facebook"></a>
+                    <a class="addthis_button_twitter"></a>
+                    <a class="addthis_button_linkedin"></a>
+                    <a class="addthis_button_email"></a>
+                    <a class="addthis_button_stumbleupon"></a>
                 </div>
-            </div>
+                <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=s"></script>
+                <!-- AddThis Button END -->
+                </p>
+                <p>&copy; {{ "now"|date("Y") }}, Cobase Open Source Project.</p>
+            </footer>
         </div>
+    </div>
+</div>
 
-        {% if show_forkme %}
-        <div class="github-fork-ribbon-wrapper right-bottom">
-            <div class="github-fork-ribbon">
-                <a href="https://github.com/CoBase/cobase">Fork me on GitHub</a>
-            </div>
+{% if show_forkme %}
+    <div class="github-fork-ribbon-wrapper right-bottom">
+        <div class="github-fork-ribbon">
+            <a href="https://github.com/CoBase/cobase">Fork me on GitHub</a>
         </div>
-        {% endif %}
+    </div>
+{% endif %}
 
-        <script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
+<script src="{{ asset('lib/bootstrap/js/bootstrap.js') }}"></script>
 
-        {% if enable_google_analytics %}
-            {% include "GoogleBundle:Analytics:async.html.twig" %}
-        {% endif %}
-    </body>
+{% if enable_google_analytics %}
+    {% include "GoogleBundle:Analytics:async.html.twig" %}
+{% endif %}
+</body>
 </html>
 
 
