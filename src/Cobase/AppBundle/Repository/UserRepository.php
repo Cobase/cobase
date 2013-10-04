@@ -23,6 +23,7 @@ class UserRepository extends EntityRepository
     {
         $qb = $this->createQueryBuilder('b')
             ->select('b')
+            ->where('b.enabled = 1')
             ->addOrderBy('b.id', 'DESC');
             
         if ($limit !== null) {
