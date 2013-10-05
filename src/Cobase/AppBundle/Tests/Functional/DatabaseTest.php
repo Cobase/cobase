@@ -2,7 +2,7 @@
 namespace Cobase\AppBundle\Tests\Functional;
 
 use Cobase\AppBundle\Entity\Post;
-use CoBase\Component\Test\ServiceTestCase;
+use Cobase\Component\Test\ServiceTestCase;
 use Cobase\UserBundle\Entity\User;
 
 /**
