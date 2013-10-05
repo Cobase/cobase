@@ -216,6 +216,28 @@
             </div>
             <div class="span4 sidebar">
 
+                {% if groupTweets is defined and groupTweets|length > 0 %}
+                    {% block twitterWidget %}
+                        <div class="widget">
+                            <div class="tab-content">
+                                <div class="tab-pane fade in active" id="tab1">
+                                    <ul class="cards">
+                                        <li style="padding: 0em 1em 0em 1em;">
+                                            <h3>Latest Group Related Tweets</h3>
+                                            <p>{{ groupTweetHashTags | join(', ') }}</p>
+                                        </li>
+                                        {% for tweet in groupTweets if groupTweets|length > 0 %}
+                                            <li class="latestGroupTweetItem">
+                                                <p>{{ tweet | converturls }}</p>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    {% endblock %}
+                {% endif %}
+
                 {% block tabsWidget %}
                     <div class="widget">
                         <ul id="myTab" class="nav nav-tabs three-tabs fancy">

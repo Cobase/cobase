@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use TwitterAPIExchange;
 
 /**
  * Group controller.
@@ -122,6 +123,7 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
+        $twitterService = $this->getTwitterService();
 
         $request    = $this->getRequest();
         $user       = $this->getCurrentUser();
@@ -129,6 +131,15 @@ class GroupController extends BaseController
         $group      = $groupService->getGroupById($groupId);
         $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
         $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
+
+        $processedTags = $this->processTags($group->getTags());
+        $groupTweets = array();
+
+        if ($group->getTags()) {
+            $groupTweets = $twitterService->getTweetsByHashKeys(
+                $processedTags
+            );
+        }
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -183,7 +194,7 @@ class GroupController extends BaseController
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                	    array(
-                        'groupId' => $groupId,
+                        'groupId'    => $groupId,
                     )
                 ));
 
@@ -195,11 +206,13 @@ class GroupController extends BaseController
         return $this->render('CobaseAppBundle:Group:view.html.twig',
             $this->mergeVariables(
                 array(
-                    'group'         => $group,
-                    'groups'        => $groups,
-                    'pagination'    => $pagination,
-                    'form'          => $form->createView(),
-                    'subscribed'    => $isSubscribed,
+                    'group'              => $group,
+                    'groups'             => $groups,
+                    'pagination'         => $pagination,
+                    'form'               => $form->createView(),
+                    'subscribed'         => $isSubscribed,
+                    'groupTweets'        => $groupTweets,
+                    'groupTweetHashTags' => $processedTags
                 )
             )
         );
@@ -428,5 +441,24 @@ class GroupController extends BaseController
         }
 
         return new Response($feed->render('rss'));
+    }
+
+    /**
+     * @param string $tags
+     * @return array
+     */
+    protected function processTags($tags)
+    {
+        $processedArray = array();
+        $rawTags = explode(',', $tags);
+
+        foreach($rawTags as $tag) {
+            $tag = trim($tag);
+            $tag = str_replace(' ', '_', $tag);
+            $tag = '#' . $tag;
+            $processedArray[] = $tag;
+        }
+
+        return $processedArray;
     }
 }

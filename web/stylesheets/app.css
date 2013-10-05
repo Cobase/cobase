@@ -151,6 +151,15 @@ ul.links, li {
     margin: 0px;
 }
 
+/* Latest Group tweets info box related */
+
+li.latestGroupTweetItem {
+    padding-top: 8px !important;
+    padding-bottom: 2px !important;
+    margin: 0px;
+    padding-left: 1em;
+}
+
 /* Modal related overrides*/
 
 div.jqi button {
