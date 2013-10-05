@@ -13,7 +13,6 @@ use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
-use TwitterAPIExchange;
 
 /**
  * Group controller.
