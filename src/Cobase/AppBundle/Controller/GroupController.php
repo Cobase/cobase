@@ -463,7 +463,9 @@ class GroupController extends BaseController
         foreach($rawTags as $tag) {
             $tag = trim($tag);
             $tag = str_replace(' ', '_', $tag);
-            $tag = '#' . $tag;
+            if (substr($tag, 0, 1) !== '#') {
+                $tag = '#' . $tag;
+            }
             $processedArray[] = $tag;
         }
 
