@@ -12,15 +12,12 @@ messages not related to their work or interest.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
-Have a look at the screenshots of the application:
+A site at <http://www.php-updates.com> is built on top of Cobase engine and is meant for PHP developers from around the
+the world to share news and updates about PHP related things. Feel free to register an account and share what you
+know.
 
-http://cobase.featurice.com/screenshots/screen1.png
-http://cobase.featurice.com/screenshots/screen2.png
-http://cobase.featurice.com/screenshots/screen3.png
-http://cobase.featurice.com/screenshots/screen4.png
-http://cobase.featurice.com/screenshots/screen5.png
-
-The Cobase engine is used to power up informational portal at php-updates.com where people can post PHP related news and links for others to enjoy and learn from.
+Need to have a private Cobase app hosted on your server? You are quite welcome to do so. Just download the source code
+and follow few easy steps to have it up and running in no time.
 
 #Requirements
 
@@ -40,17 +37,19 @@ The Cobase engine is used to power up informational portal at php-updates.com wh
 - Each user has their own wall with all posts from the groups they have subscribed to
 - Nice user interface with clear visual representation of categories
 - Like / Unlike posts
+- Commenting on posts
 - Each group has an RSS feed
 - Option to allow users to browse groups and posts without logging in
 - Google Analytics implementation
-- Bookmarklet to allow copy main content from any site with just few clicks of a mouse
+- Bookmarklet to allow copy main content from any site with just two clicks of a mouse, no more copy/paste.
 - Vagrant intergation for setting up development environment in a snap
 
 #Upcoming features
 
 You are more than welcome to join us to make Cobase even better. Please refer to the issues list to see what is coming up and if you would be able to pitch in.
+We also welcome new ideas as they are essential to make Cobase what you need it to be.
 
-https://github.com/CoBase/cobase/issues
+Current issue list: https://github.com/CoBase/cobase/issues
 
 # Travis CI status
 
@@ -111,17 +110,22 @@ production environment.
 Migrations bundle checks the structure of your entities and does it's magic
 based on that information.
 
-After you have created the database as stated in previous section, you need to create schema into
-the database. Since we are using Doctrine migrations, we use the console tool to create the schema.
+First let's create database based on the values in app/config/parameters.yml file.
+
+    $ app/console doctrine:database:create
+
+After you have created the database, you need to create schema into it. Since we are
+using Doctrine migrations, we use the console tool to create the schema from the
+migrations files.
 
     $ app/console doctrine:migrations:migrate
 
 New migration scripts appear when you pull new code from Github. To see if there
-are any new migrations available, you need to check the status.
+are any new migrations required for you to run in your current code version, you need to check the status.
 
     $ app/console doctrine:migrations:status
 
-If you see new migrations available, all you have to do is run the migrations.
+If you see new migrations available, all you have to do is run the migrations again.
 
     $ app/console doctrine:migrations:migrate
 
@@ -185,11 +189,6 @@ To remove admin rights from a user, you need to do similar task to demote a user
 	$ php app/console fos:user:demote [username]
 	
 This time type ROLE_ADMIN to remove that role from this specific username.
-
-#Architecture
-
-Application has a DemoBundle, which is a first revision of suggestion for the
-application's architecture.
 
 #Testing
 
