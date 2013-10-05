@@ -9,6 +9,7 @@ use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -129,6 +130,14 @@ class GroupController extends BaseController
         $user       = $this->getCurrentUser();
         $form       = $this->createForm(new PostType(), $post);
         $group      = $groupService->getGroupById($groupId);
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+
         $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
         $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
 
