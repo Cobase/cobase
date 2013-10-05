@@ -26,11 +26,15 @@ class TwitterService
      */
     public function getTweetsByHashKeys(Array $hashKeys)
     {
+        if ($this->container->getParameter('twitter_enabled') === false) {
+            return array();
+        }
+
         $settings = array(
-            'oauth_access_token' => $this->container->getParameter('oauth_access_token'),
-            'oauth_access_token_secret' => $this->container->getParameter('oauth_access_token_secret'),
-            'consumer_key' => $this->container->getParameter('consumer_key'),
-            'consumer_secret' => $this->container->getParameter('consumer_secret')
+            'oauth_access_token' => $this->container->getParameter('twitter_oauth_access_token'),
+            'oauth_access_token_secret' => $this->container->getParameter('twitter_oauth_access_token_secret'),
+            'consumer_key' => $this->container->getParameter('twitter_consumer_key'),
+            'consumer_secret' => $this->container->getParameter('twitter_consumer_secret')
         );
 
         $hashQuery = implode('+OR+', $hashKeys);

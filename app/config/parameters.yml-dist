@@ -30,10 +30,11 @@ parameters:
     mailer_password:   ~
 
     # Twitter API
-    oauth_access_token: ~
-    oauth_access_token_secret: ~
-    consumer_key: ~
-    consumer_secret: ~
+    twitter_enabled: false
+    twitter_oauth_access_token: ~
+    twitter_oauth_access_token_secret: ~
+    twitter_consumer_key: ~
+    twitter_consumer_secret: ~
 
     # Locale of the application
     locale:            en
