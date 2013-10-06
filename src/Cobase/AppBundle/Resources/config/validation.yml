@@ -10,11 +10,7 @@ Cobase\AppBundle\Entity\Group:
             - Length:
                 min: 5
                 max: 160
-        tags:
-            - NotBlank: ~
-            - Length:
-                max: 160
-            
+
 Cobase\AppBundle\Entity\Post:
     properties:
         content:

@@ -47,7 +47,8 @@
         "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
         "eko/feedbundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "friendsofsymfony/comment-bundle": "2.0.*@dev"
+        "friendsofsymfony/comment-bundle": "2.0.*@dev",
+        "j7mbo/twitter-api-php": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
