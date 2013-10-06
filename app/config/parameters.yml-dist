@@ -29,6 +29,13 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
+    # Twitter API
+    twitter_enabled: false
+    twitter_oauth_access_token: ~
+    twitter_oauth_access_token_secret: ~
+    twitter_consumer_key: ~
+    twitter_consumer_secret: ~
+
     # Locale of the application
     locale:            en
     
