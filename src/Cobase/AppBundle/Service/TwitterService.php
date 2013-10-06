@@ -56,6 +56,11 @@ class TwitterService
         return $settings;
     }
 
+    /**
+     * @param array $hashKeys
+     * @param array $settings
+     * @return string
+     */
     private function getTweets(Array $hashKeys, Array $settings)
     {
         $hashQuery = implode('+OR+', $hashKeys);
