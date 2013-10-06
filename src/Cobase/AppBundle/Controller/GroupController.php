@@ -136,7 +136,6 @@ class GroupController extends BaseController
             );
         }
 
-
         $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
         $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
 
