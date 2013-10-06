@@ -123,7 +123,6 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
-        $twitterService = $this->getTwitterService();
 
         $request    = $this->getRequest();
         $user       = $this->getCurrentUser();
@@ -140,13 +139,7 @@ class GroupController extends BaseController
         $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
 
         $processedTags = $this->processTags($group->getTags());
-        $groupTweets = array();
-
-        if ($group->getTags()) {
-            $groupTweets = $twitterService->getTweetsByHashKeys(
-                $processedTags
-            );
-        }
+        $groupTweets = $this->getGroupTweets($group, $processedTags);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -442,6 +435,43 @@ class GroupController extends BaseController
         }
 
         return new Response($feed->render('rss'));
+    }
+
+    /**
+     * @param Group $group
+     * @param array $processedTags
+     * @return array
+     */
+    private function getGroupTweets(Group $group, Array $processedTags)
+    {
+        $settings = $this->getTwitterApiSettings();
+        $twitterService = $this->getTwitterService();
+
+        $groupTweets = array();
+
+        if ($group->getTags()) {
+            $groupTweets = $twitterService->getTweetsByHashKeys(
+                $processedTags,
+                $settings
+            );
+        }
+
+        return $groupTweets;
+    }
+
+    /**
+     * @return array
+     */
+    private function getTwitterApiSettings() {
+       $settings = array(
+            'twitter_enabled'           => $this->container->getParameter('twitter_enabled'),
+            'oauth_access_token'        => $this->container->getParameter('twitter_oauth_access_token'),
+            'oauth_access_token_secret' => $this->container->getParameter('twitter_oauth_access_token_secret'),
+            'consumer_key'              => $this->container->getParameter('twitter_consumer_key'),
+            'consumer_secret'           => $this->container->getParameter('twitter_consumer_secret')
+        );
+
+        return $settings;
     }
 
     /**

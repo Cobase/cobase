@@ -8,30 +8,17 @@ use TwitterAPIExchange;
 class TwitterService
 {
     /**
-     * @var
-     */
-    protected $container;
-
-    /**
-     * @param ContainerInterface $container
-     */
-    public function __construct(ContainerInterface $container)
-    {
-        $this->container = $container;
-    }
-
-    /**
      * @param array $hashKeys
      * @return array
      */
     public function getTweetsByHashKeys(Array $hashKeys, Array $settings = null)
     {
-        if ($this->container->getParameter('twitter_enabled') === false) {
+        if ($settings['twitter_enabled'] === false) {
             return array();
         }
 
         if ($settings === null) {
-            $settings = $this->getDefaultSettings();
+            return array();
         }
 
         $tweets = $this->getTweets($hashKeys, $settings);
@@ -39,21 +26,6 @@ class TwitterService
         $tweetsArray = $this->processTweetList($tweets);
 
         return $tweetsArray;
-    }
-
-    /**
-     * @return array
-     */
-    private function getDefaultSettings()
-    {
-        $settings = array(
-            'oauth_access_token' => $this->container->getParameter('twitter_oauth_access_token'),
-            'oauth_access_token_secret' => $this->container->getParameter('twitter_oauth_access_token_secret'),
-            'consumer_key' => $this->container->getParameter('twitter_consumer_key'),
-            'consumer_secret' => $this->container->getParameter('twitter_consumer_secret')
-        );
-
-        return $settings;
     }
 
     /**

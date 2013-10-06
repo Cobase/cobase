@@ -89,7 +89,6 @@ services:
 
     cobase_app.service.twitter:
         class:     Cobase\AppBundle\Service\TwitterService
-        arguments: [@service_container]
 
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
