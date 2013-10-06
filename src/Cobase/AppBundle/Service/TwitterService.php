@@ -24,12 +24,28 @@ class TwitterService
      * @param array $hashKeys
      * @return array
      */
-    public function getTweetsByHashKeys(Array $hashKeys)
+    public function getTweetsByHashKeys(Array $hashKeys, Array $settings = null)
     {
         if ($this->container->getParameter('twitter_enabled') === false) {
             return array();
         }
 
+        if ($settings === null) {
+            $settings = $this->getDefaultSettings();
+        }
+
+        $tweets = $this->getTweets($hashKeys, $settings);
+
+        $tweetsArray = $this->processTweetList($tweets);
+
+        return $tweetsArray;
+    }
+
+    /**
+     * @return array
+     */
+    private function getDefaultSettings()
+    {
         $settings = array(
             'oauth_access_token' => $this->container->getParameter('twitter_oauth_access_token'),
             'oauth_access_token_secret' => $this->container->getParameter('twitter_oauth_access_token_secret'),
@@ -37,6 +53,11 @@ class TwitterService
             'consumer_secret' => $this->container->getParameter('twitter_consumer_secret')
         );
 
+        return $settings;
+    }
+
+    private function getTweets(Array $hashKeys, Array $settings)
+    {
         $hashQuery = implode('+OR+', $hashKeys);
 
         $url = 'https://api.twitter.com/1.1/search/tweets.json';
@@ -48,7 +69,15 @@ class TwitterService
             ->buildOauth($url, $requestMethod)
             ->performRequest();
 
+        return $tweets;
+    }
 
+    /**
+     * @param $tweets
+     * @return array
+     */
+    private function processTweetList($tweets)
+    {
         $tweetList = array();
         $tweetArray = json_decode($tweets);
 
