@@ -47,7 +47,8 @@
         "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
         "eko/feedbundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
-        "friendsofsymfony/comment-bundle": "2.0.*@dev"
+        "friendsofsymfony/comment-bundle": "2.0.*@dev",
+        "incenteev/composer-parameter-handler": "2.1.*@dev"
     },
     "scripts": {
         "post-install-cmd": [
@@ -73,7 +74,9 @@
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "incenteev-parameters": {
-            "file": "app/config/parameters.yml"
+            "file": "app/config/parameters.yml",
+            "dist-file": "app/config/parameters.yml-dist",
+            "keep-outdated": true
         },
         "branch-alias": {
             "dev-master": "2.3-dev"
