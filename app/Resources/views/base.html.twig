@@ -233,7 +233,10 @@
                             <div class="tab-pane fade in active" id="tab1">
                                 {% if groupTweets is defined and groupTweets|length > 0 %}
                                     <ul class="cards">
-                                        <li style="padding: 0em 1em;"><h3>Group Related Tweets</h3></li>
+                                        <li style="padding: 0em 1em;">
+                                            <h3>Group Related Tweets</h3>
+                                            <p style="padding-bottom: 0.5em;"><b>Tags:</b> {{ groupTweetHashTags | join(', ') }}</p>
+                                        </li>
                                         {% for tweet in groupTweets if groupTweets|length > 0 %}
                                             <li class="latestGroupTweetItem">
                                                 <p>{{ tweet | converturls }}</p>
