@@ -39,9 +39,10 @@ and follow few easy steps to have it up and running in no time.
 - Like / Unlike posts
 - Commenting on posts
 - Each group has an RSS feed
+- Each group can follow multiple Twitter hash tags at once, all tweets displayed on the group page if tags set
 - Option to allow users to browse groups and posts without logging in
 - Google Analytics implementation
-- Bookmarklet to allow copy main content from any site with just two clicks of a mouse, no more copy/paste.
+- Bookmarklet to allow copy main content from any site with just two clicks of a mouse, no more copy/paste
 - Vagrant intergation for setting up development environment in a snap
 
 #Upcoming features
