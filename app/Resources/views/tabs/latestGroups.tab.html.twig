@@ -1,0 +1,12 @@
+<ul class="cards">
+    <li style="padding: 0em 1em;">
+        <h3>Latest Groups</h3>
+    </li>
+    {% for group in latestGroups if latestGroups != null %}
+        <li class="latestGroupItem">
+            <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
+            <p>{{ group.description }}</p>
+            <p>{{ group.posts|length }} post(s)</p>
+        </li>
+    {% endfor %}
+</ul>

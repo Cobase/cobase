@@ -216,70 +216,48 @@
             </div>
             <div class="span4 sidebar">
 
-                {% if groupTweets is defined and groupTweets|length > 0 %}
-                    {% block twitterWidget %}
-                        <div class="widget">
-                            <div class="tab-content">
-                                <div class="tab-pane fade in active" id="tab1">
+                {% block tabsWidget %}
+                    <div class="widget">
+                        <ul id="myTab" class="nav nav-tabs three-tabs fancy">
+                            {% if groupTweets is defined and groupTweets|length > 0 %}
+                                <li class="active"><a href="#tab1" data-toggle="tab">Tweets</a></li>
+                                <li><a href="#tab2" data-toggle="tab">Groups</a></li>
+                                <li><a href="#tab3" data-toggle="tab">People</a></li>
+                            {% else %}
+                                <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
+                                <li><a href="#tab2" data-toggle="tab">People</a></li>
+                                <li><a href="#tab3" data-toggle="tab">About</a></li>
+                            {% endif %}
+                        </ul>
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="tab1">
+                                {% if groupTweets is defined and groupTweets|length > 0 %}
                                     <ul class="cards">
-                                        <li class="latestTweetsTitle">
-                                            <h3>Latest Group Related Tweets</h3>
-                                            <p>{{ groupTweetHashTags | join(', ') }}</p>
-                                        </li>
+                                        <li style="padding: 0em 1em;"><h3>Group Related Tweets</h3></li>
                                         {% for tweet in groupTweets if groupTweets|length > 0 %}
                                             <li class="latestGroupTweetItem">
                                                 <p>{{ tweet | converturls }}</p>
                                             </li>
                                         {% endfor %}
                                     </ul>
-                                </div>
-                            </div>
-                        </div>
-                    {% endblock %}
-                {% endif %}
-
-                {% block tabsWidget %}
-                    <div class="widget">
-                        <ul id="myTab" class="nav nav-tabs three-tabs fancy">
-                            <li class="active"><a href="#tab1" data-toggle="tab">Groups</a></li>
-                            <li><a href="#tab2" data-toggle="tab">People</a></li>
-                            <li><a href="#tab3" data-toggle="tab">About</a></li>
-                        </ul>
-                        <div class="tab-content">
-                            <div class="tab-pane fade in active" id="tab1">
-                                <ul class="cards">
-                                    <li style="padding: 0em 1em;">
-                                        <h3>Latest Groups</h3>
-                                    </li>
-                                    {% for group in latestGroups if latestGroups != null %}
-                                        <li class="latestGroupItem">
-                                            <h5><a href="{{ path('CobaseAppBundle_group_view', { 'groupId': group.shortUrl }) }}">{{ group.title }}</a></h5>
-                                            <p>{{ group.description }}</p>
-                                            <p>{{ group.posts|length }} post(s)</p>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% else %}
+                                    {% include "CobaseAppBundle:Page:latestGroups.tab.html.twig" %}
+                                {% endif %}
                             </div>
                             <div class="tab-pane fade" id="tab2">
-                                <ul class="cards">
-                                    <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
-                                    {% for user in latestUsers if latestUsers != null %}
-                                        <li>
-                                            <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
-                                            <p><a href="{{ path('CobaseAppBundle_user_view', { 'username': user.username }) }}">{{ user.name }}</a></p>
-                                            <p>{% if user.emailVisible %}{{ user.email }}{% endif %}</p>
-                                        </li>
-                                    {% endfor %}
-                                </ul>
+                                {% if groupTweets is defined and groupTweets|length > 0 %}
+                                    {% include "CobaseAppBundle:Page:latestGroups.tab.html.twig" %}
+                                {% else %}
+                                    {% include "CobaseAppBundle:Page:latestUsers.tab.html.twig" %}
+                                {% endif %}
                             </div>
                             <div class="tab-pane fade" id="tab3">
-                                <ul class="cards">
-                                    <li style="padding: 0em 1em;"><h3>About this application</h3></li>
-                                    <li>This application serves as a social media for corporations. It allows people within a corporation to spread information to collegues in a modern and sophisticated way. No more sending emails to the whole company and problems with messages disappearing in the mass of data pollution.</li>
-                                    <li>A group consists of its own page in which people can write updates about things related to that specific group. All new messages are rendered at the top of group's page.</li>
-                                    <li>To prevent situation of being flooded with information that is not interesting to a particular user, each user can subscribe to a group. Only those posts from the groups that user is subscribed to will be shown on front page from newest post to the oldest..</li>
-                                    <li>User profile photo is maintained by an external service <a href="http://www.gravatar.com" target="BLANK">Gravatar</a>. It allows you to set a specific avatar for your email and can be used in many 3rd party applications such as this and Wordpress. Once you create a gravatar with the email address used in this application, an avatar will appear next to your posts.</li>
-                                </ul>
+                                {% if groupTweets is defined and groupTweets|length > 0 %}
+                                    {% include "CobaseAppBundle:Page:latestUsers.tab.html.twig" %}
+                                {% else %}
+                                    {% include "CobaseAppBundle:Page:about.tab.html.twig" %}
+                                {% endif %}
+
                             </div>
                         </div>
                     </div>
