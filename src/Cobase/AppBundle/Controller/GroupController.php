@@ -442,7 +442,7 @@ class GroupController extends BaseController
      * @param array $processedTags
      * @return array
      */
-    private function getGroupTweets(Group $group, Array $processedTags)
+    private function getGroupTweets(Group $group, array $processedTags)
     {
         $settings = $this->getTwitterApiSettings();
         $twitterService = $this->getTwitterService();
