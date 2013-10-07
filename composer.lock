@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a54f784db3f6b3bd45548e103bcc0094",
+    "hash": "b1c727006454fe13807399c41fdfd7a6",
     "packages": [
         {
             "name": "antimattr/google-bundle",
@@ -1432,6 +1432,58 @@
                 "uploadable"
             ],
             "time": "2013-09-28 18:53:04"
+        },
+        {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "dev-master",
+            "target-dir": "Incenteev/ParameterHandler",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Incenteev/ParameterHandler.git",
+                "reference": "bc06242a63298affc72d2089f93d8986a6217c4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/bc06242a63298affc72d2089f93d8986a6217c4c",
+                "reference": "bc06242a63298affc72d2089f93d8986a6217c4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": "~2.0"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpspec/prophecy-phpunit": "~1.0",
+                "symfony/filesystem": "~2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Incenteev\\ParameterHandler": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Composer script handling your ignored parameter file",
+            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "keywords": [
+                "parameters management"
+            ],
+            "time": "2013-09-03 08:29:03"
         },
         {
             "name": "j7mbo/twitter-api-php",
@@ -3581,7 +3633,8 @@
         "eko/feedbundle": 20,
         "knplabs/knp-paginator-bundle": 20,
         "friendsofsymfony/comment-bundle": 20,
-        "j7mbo/twitter-api-php": 20
+        "j7mbo/twitter-api-php": 20,
+        "incenteev/composer-parameter-handler": 20
     },
     "platform": {
         "php": ">=5.3.3"
