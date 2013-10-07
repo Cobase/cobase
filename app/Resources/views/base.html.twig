@@ -239,7 +239,7 @@
                                         </li>
                                         {% for tweet in groupTweets if groupTweets|length > 0 %}
                                             <li class="latestGroupTweetItem">
-                                                <p>{{ tweet | converturls }}</p>
+                                                <p>{{ tweet.author }} - {{ tweet.content | converturls }}</p>
                                             </li>
                                         {% endfor %}
                                     </ul>

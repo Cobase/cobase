@@ -60,7 +60,10 @@ class TwitterService
 
         if ($tweetArray) {
             foreach($tweetArray->statuses as $tweet) {
-                $tweetList[] = $tweet->text;
+                $tweetList[] = array(
+                    'author'  => $tweet->user->name,
+                    'content' => $tweet->text
+                );
             }
         }
 
