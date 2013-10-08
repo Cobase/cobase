@@ -1,0 +1,19 @@
+{% extends '::blank.html.twig' %}
+
+{% block content %}
+    <div class="row-fluid login">
+        <div class="dialog">
+
+            <h1 class="frontLogo">{{ site_title }}</h1>
+
+            <div class="block" style="padding: 10px">
+                <div class="block-header">
+                    <h2>Reset Password</h2>
+                </div>
+
+                <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
+
+            </div>
+        </div>
+    </div>
+{% endblock content %}
