@@ -12,4 +12,5 @@ security:
       reset: "Forgot password?"
 
 resetting:
-    check_email: "Please check your email for further steps."
+    check_email: "Please check your email!"
+    password_already_requested: "Reset already requested!"
