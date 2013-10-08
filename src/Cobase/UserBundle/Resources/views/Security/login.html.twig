@@ -31,9 +31,11 @@
                     </div>
                     <input type="submit" class="login-submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
                     <ul class="links">
-                        {% if allow_registration %} 
+                        <li><a href="{{ path('fos_user_resetting_request') }}">&laquo; {{ 'security.login.reset'|trans }}</a></li>
+                        {% if allow_registration %}
                             <li><a href="{{ path('fos_user_registration_register') }}">&laquo; {{ 'layout.register'|trans({}, 'FOSUserBundle') }}</a></li>
                         {% endif %}
+                        </ul>
                     </ul>
                 </form>
             </div>
