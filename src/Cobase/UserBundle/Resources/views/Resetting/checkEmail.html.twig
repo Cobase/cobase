@@ -10,12 +10,13 @@
                 <div class="block-header">
                     <h2>Reset Password</h2>
                 </div>
+                <div class="box-pads">
+                    <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
 
-                <p>{{ 'resetting.check_email'|trans({'%email%': email}) }}</p>
-
-                <ul class="links">
-                    <li><a href="{{ path('fos_user_security_login') }}">&laquo; {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
-                </ul>
+                    <ul class="links">
+                        <li><a href="{{ path('fos_user_security_login') }}">&laquo; {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
