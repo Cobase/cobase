@@ -250,3 +250,9 @@ div.jqi .jqiclose:hover {
     margin: 0;
     padding: 0.5em 1em;
 }
+
+/* Form additions */
+
+.box-pads {
+    margin: 0em 1em;
+}
