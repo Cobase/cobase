@@ -22,3 +22,5 @@ notifications:
       - "Author: %{author}"
       - "Build details: %{build_url}"
       - "Change view : %{compare_url}"
+    on_success: "never"
+    on_failure: "always"
