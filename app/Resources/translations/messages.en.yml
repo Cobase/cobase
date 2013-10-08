@@ -9,4 +9,5 @@ security:
       password: "Password:"
       remember_me: "Remember me"
       submit: "Login"
+      reset: "Forgot password?"
       
