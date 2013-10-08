@@ -10,4 +10,6 @@ security:
       remember_me: "Remember me"
       submit: "Login"
       reset: "Forgot password?"
-      
+
+resetting:
+    check_email: "Please check your email for further steps."

@@ -3,6 +3,3 @@ form:
     new_password_confirmation: "Repeat password:"
     name: "Your name:"
     emailVisible: "Email visible by others:"
-
-resetting:
-    check_email: "Please check your email for further steps."
