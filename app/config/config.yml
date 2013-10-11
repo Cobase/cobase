@@ -68,6 +68,11 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
 
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
+
 jms_security_extra:
     secure_all_services: false
 

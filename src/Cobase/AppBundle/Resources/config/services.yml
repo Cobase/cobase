@@ -17,10 +17,10 @@ services:
                 - { name: twig.extension }
 
     aga_dateconverter.twig.extension:
-        class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
+        class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension
         tags:
             - { name: twig.extension }
-           
+
     portal_user.registration.form.type:
         class: Cobase\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%, @translator]
@@ -44,18 +44,22 @@ services:
         factory_method:  getRepository
 
     cobase_app.service.post:
-            class:     Cobase\AppBundle\Service\PostService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
+        class:     Cobase\AppBundle\Service\PostService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
 
     cobase_app.repository.post:
-            class:           Cobase\AppBundle\Entity\Post
-            arguments:       [Cobase\AppBundle\Entity\Post]
-            factory_service: doctrine.orm.entity_manager
-            factory_method:  getRepository
+        class:           Cobase\AppBundle\Entity\Post
+        arguments:       [Cobase\AppBundle\Entity\Post]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
 
     cobase_app.service.subscription:
-            class:     Cobase\AppBundle\Service\SubscriptionService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.subscription", "@security.context"]
+        class:     Cobase\AppBundle\Service\SubscriptionService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.subscription", "@security.context"]
+
+    cobase.app.service.email:
+        class:      Cobase\AppBundle\Service\EmailService
+        arguments:  ["@mailer"]
 
     cobase_app.repository.subscription:
             class:           Cobase\AppBundle\Entity\Subscription

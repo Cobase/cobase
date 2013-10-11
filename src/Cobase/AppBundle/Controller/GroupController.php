@@ -138,8 +138,10 @@ class GroupController extends BaseController
         );
 
         $isSubscribed = false;
+        $isNotified = false;
         if ($user) {
-            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+            $isSubscribed   = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+            //$isNotified     = $subscriptionService->isUserUserNotifiedOfNewGroupPosts($group, $user);
         }
 
         if (!$group) {
@@ -173,6 +175,17 @@ class GroupController extends BaseController
                 $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
                 $aclProvider->updateAcl($acl);
 
+
+                $emailService = $this->getEmailService();
+                $emailService->sendMail("You have received new high five for an event",
+                    $group->getUser()->getEmail(),
+                    $this->container->getParameter('cobase_app.emails.contact_email'),
+                    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
+                        array('event' => $event)
+                ));
+
+                // $this->container->getParameter('cobase_app.emails.contact_email')
+
                 #$this->sendMail("You have received new high five for an event",
                 #    $group->getUser()->getEmail(),
                 #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
@@ -200,6 +213,7 @@ class GroupController extends BaseController
                     'pagination'    => $pagination,
                     'form'          => $form->createView(),
                     'subscribed'    => $isSubscribed,
+                    'notified'      => $isNotified,
                 )
             )
         );
@@ -410,6 +424,28 @@ class GroupController extends BaseController
         }
 
         return $this->getFeedPosts($groupId);
+    }
+
+    public function notifyAction($groupId)
+    {
+        $groupService = $this->getGroupService();
+        $subscriptionService = $this->getSubscriptionService();
+
+        $group    = $groupService->getGroupById($groupId);
+        $request  = $this->getRequest();
+        $user     = $this->getCurrentUser();
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        $subscriptionService->notifyUserOfNewGroupPosts($group, $user);
+
+        $this->get('session')->getFlashBag()->add('notification.transaction', 'You will be notified when a new post is made to the group "' . $group->getTitle() . '"');
+
+        return $this->viewAction($groupId);
     }
 
     /**

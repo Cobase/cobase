@@ -2,6 +2,7 @@
 
 namespace Cobase\AppBundle\Controller;
 
+use Cobase\AppBundle\Service\EmailService;
 use Cobase\AppBundle\Service\GroupService;
 use Cobase\AppBundle\Service\LikeService;
 use Cobase\AppBundle\Service\PostService;
@@ -91,40 +92,29 @@ class BaseController extends Controller
     }
 
     /**
-     * Send email
-     *
-     * @param $subject
-     * @param $emailFrom
-     * @param $emailTo
-     * @param $message
+     * @return EmailService
      */
-    public function sendMail($subject, $emailTo, $message)
+    public function getEmailService()
     {
-        $message = \Swift_Message::newInstance()
-            ->setSubject($subject)
-            ->setFrom($this->container->getParameter('cobase_app.emails.contact_email'))
-            ->setTo($emailTo)
-            ->setBody($message);
-
-        $this->get('mailer')->send($message);
+        return $this->container->get('cobase.app.service.email');
     }
 
     /**
      * Merge page related variables with common variables
-     * 
+     *
      * @param array pageVariables
      */
     public function mergeVariables(array $pageVariables = null)
     {
         if ($pageVariables) {
-            return array_merge($pageVariables, $this->getCommonVariables());    
+            return array_merge($pageVariables, $this->getCommonVariables());
         }
         return $this->getCommonVariables();
     }
 
     /**
      * Get array of variables
-     * 
+     *
      * @return array
      */
     private function getCommonVariables()
@@ -133,12 +123,12 @@ class BaseController extends Controller
             'subscriptions' => $this->getSubscriptions(),
             'latestGroups'  => $this->getGroupService()->getLatestPublicGroups(10),
             'latestUsers'   => $this->getUserService()->getLatestUsers(10),
-        ); 
+        );
     }
 
     /**
      * Get group subscriptions for current user
-     * 
+     *
      * @return array
      */
     public function getSubscriptions()
@@ -146,11 +136,11 @@ class BaseController extends Controller
         $user  = $this->getCurrentUser();
         $subscriptionService = $this->getSubscriptionService();
         $subscriptions = array();
-            
+
         if ($user) {
             $subscriptions = $subscriptionService->getSubscriptionsForUser($user);
         }
-        
+
         return $subscriptions;
     }
 
@@ -184,7 +174,7 @@ class BaseController extends Controller
 
     /**
      * Check if login is required and if user is logged in and redirect accordingly
-     * 
+     *
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
     public function checkLoginRequirement($routeName, $doRedirect = true)
@@ -200,13 +190,13 @@ class BaseController extends Controller
             if (!$this->container->get('security.context')->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
                 if ($doRedirect) {
                     // Forward to given route based on route name
-                    return $this->redirect($this->generateUrl($routeName));    
+                    return $this->redirect($this->generateUrl($routeName));
                 }
             }
         }
         return null;
     }
-    
+
     /**
      * @param string $what
      * @param mixed $response

@@ -3,6 +3,7 @@
 
 namespace Cobase\UserBundle\Entity;
 
+use Cobase\AppBundle\Entity\Notification;
 use Cobase\AppBundle\Entity\Like;
 use Cobase\AppBundle\Entity\Post;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -65,6 +66,13 @@ class User extends BaseUser
     protected $subscriptions;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Notification", mappedBy="user")
+     */
+    protected $notifications;
+
+    /**
      * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Post", mappedBy="user")
      */
     protected $posts;
@@ -75,6 +83,13 @@ class User extends BaseUser
      * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Like", mappedBy="user")
      */
     protected $likes = null;
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->notifications = new ArrayCollection();
+    }
 
     public function getName()
     {
@@ -239,5 +254,41 @@ class User extends BaseUser
     public function __toString()
     {
         return $this->id;
+    }
+
+    /**
+     * @param Notification $notification
+     * @return Group
+     */
+    public function addNotification(Notification $notification)
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setUser($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Notification $notification
+     * @return Group
+     */
+    public function removeNotification(Notification $notification)
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            $notification->setUser(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
     }
 }
