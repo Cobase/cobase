@@ -2,7 +2,7 @@
 form:
     realname: "Your real name:"
     gravatar: "Gravatar email:"
-    avatar: "Upload an Image:"
+    avatar: "Upload an image:"
     
 security:
     login:
