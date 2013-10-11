@@ -20,7 +20,7 @@ services:
         class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
         tags:
             - { name: twig.extension }
-           
+
     portal_user.registration.form.type:
         class: Cobase\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%, @translator]

@@ -108,3 +108,7 @@ CobaseAppBundle_users:
 CobaseAppBundle_user_view:
     pattern:  /user/{username}
     defaults: { _controller: CobaseAppBundle:User:view }
+
+CobaseAppBundle_avatar:
+    pattern:  /avatar/{avatarFile}
+    defaults: { _controller: CobaseUserBundle:Profile:renderAvatar }

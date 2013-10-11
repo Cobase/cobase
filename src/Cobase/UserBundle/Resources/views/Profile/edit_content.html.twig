@@ -46,13 +46,19 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="row-fluid">
         <div class="span6">
             <h4>Your profile image</h4>
 
             <div class="control-group">
                 <div class="controls">
-                    <img src="{{ gravatar(user.gravatar|default(user.email)) }}" class="img-rounded"/>
+                    {% if user.avatar %}
+                        <img src="{{ path('CobaseAppBundle_avatar', {'avatarFile': user.avatar}) }}"/>
+                    {% else %}
+                        <img src="{{ gravatar(user.gravatar|default(user.email)) }}"/>
+                    {% endif %}
                 </div>
             </div>
 
@@ -76,6 +82,7 @@
         </div>
 
     </div>
+
 
     {{ form_widget(form._token) }}
     <div class="control-group">
