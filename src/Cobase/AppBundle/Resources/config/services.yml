@@ -91,9 +91,13 @@ services:
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
 
+    cobase_app.service.twitter:
+        class:     Cobase\AppBundle\Service\TwitterService
+
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
         tags:
             - { name: doctrine.event_subscriber, connection: default }
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
+

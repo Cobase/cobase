@@ -1,11 +1,13 @@
 <?php
 namespace CoBase\Component\Test;
 
-use Appkernel;
+use AppKernel;
 
 use PHPUnit_Framework_TestCase;
 
 use Symfony\Component\DependencyInjection\Container;
+
+require_once($_SERVER['KERNEL_DIR'] . "/AppKernel.php");
 
 class ContainerTestCase extends PHPUnit_Framework_TestCase
 {

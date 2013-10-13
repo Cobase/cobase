@@ -92,6 +92,14 @@ class BaseController extends Controller
     }
 
     /**
+     * @return TwitterService
+     */
+    public function getTwitterService()
+    {
+        return $this->container->get('cobase_app.service.twitter');
+    }
+
+    /**
      * @return EmailService
      */
     public function getEmailService()

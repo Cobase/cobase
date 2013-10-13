@@ -1,5 +1,5 @@
 <?php
-namespace CoBase\Component\Test;
+namespace Cobase\Component\Test;
 
 use Cobase\Component\Test\Fixture\FixtureFactory;
 use Doctrine\ORM\EntityManager;

@@ -32,7 +32,7 @@ class GroupType extends AbstractType
             ->add('tags', null,
                 array(
                     'attr' => array('style' => 'width:50%'),
-                    'required' => true
+                    'required' => false
                 )
             );
         ;

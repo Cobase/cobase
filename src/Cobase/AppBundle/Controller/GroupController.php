@@ -9,6 +9,7 @@ use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Form\PostType;
 
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Exception\ResourceNotFoundException;
 use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
 use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
@@ -127,8 +128,18 @@ class GroupController extends BaseController
         $user       = $this->getCurrentUser();
         $form       = $this->createForm(new PostType(), $post);
         $group      = $groupService->getGroupById($groupId);
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
         $groups     = $groupService->getAllPublicGroups(null, 'b.title', 'ASC');
         $postsQuery  = $postService->getLatestPublicPostsForGroupQuery($group);
+
+        $processedTags = $this->processTags($group->getTags());
+        $groupTweets = $this->getGroupTweets($group, $processedTags);
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -142,12 +153,6 @@ class GroupController extends BaseController
         if ($user) {
             $isSubscribed   = $subscriptionService->hasUserSubscribedToGroup($group, $user);
             //$isNotified     = $subscriptionService->isUserUserNotifiedOfNewGroupPosts($group, $user);
-        }
-
-        if (!$group) {
-            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
-                $this->mergeVariables()
-            );
         }
 
         if ($request->getMethod() == 'POST') {
@@ -196,7 +201,7 @@ class GroupController extends BaseController
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                	    array(
-                        'groupId' => $groupId,
+                        'groupId'    => $groupId,
                     )
                 ));
 
@@ -208,12 +213,15 @@ class GroupController extends BaseController
         return $this->render('CobaseAppBundle:Group:view.html.twig',
             $this->mergeVariables(
                 array(
-                    'group'         => $group,
-                    'groups'        => $groups,
-                    'pagination'    => $pagination,
-                    'form'          => $form->createView(),
-                    'subscribed'    => $isSubscribed,
+
+                    'group'              => $group,
+                    'groups'             => $groups,
+                    'pagination'         => $pagination,
+                    'form'               => $form->createView(),
+                    'subscribed'         => $isSubscribed,
                     'notified'      => $isNotified,
+                    'groupTweets'        => $groupTweets,
+                    'groupTweetHashTags' => $processedTags
                 )
             )
         );
@@ -464,5 +472,63 @@ class GroupController extends BaseController
         }
 
         return new Response($feed->render('rss'));
+    }
+
+    /**
+     * @param Group $group
+     * @param array $processedTags
+     * @return array
+     */
+    private function getGroupTweets(Group $group, array $processedTags)
+    {
+        $settings = $this->getTwitterApiSettings();
+        $twitterService = $this->getTwitterService();
+
+        $groupTweets = array();
+
+        if ($group->getTags()) {
+            $groupTweets = $twitterService->getTweetsByHashKeys(
+                $processedTags,
+                $settings
+            );
+        }
+
+        return $groupTweets;
+    }
+
+    /**
+     * @return array
+     */
+    private function getTwitterApiSettings() {
+       $settings = array(
+            'twitter_enabled'           => $this->container->getParameter('twitter_enabled'),
+            'oauth_access_token'        => $this->container->getParameter('twitter_oauth_access_token'),
+            'oauth_access_token_secret' => $this->container->getParameter('twitter_oauth_access_token_secret'),
+            'consumer_key'              => $this->container->getParameter('twitter_consumer_key'),
+            'consumer_secret'           => $this->container->getParameter('twitter_consumer_secret')
+        );
+
+        return $settings;
+    }
+
+    /**
+     * @param string $tags
+     * @return array
+     */
+    protected function processTags($tags)
+    {
+        $processedArray = array();
+        $rawTags = explode(',', $tags);
+
+        foreach($rawTags as $tag) {
+            $tag = trim($tag);
+            $tag = str_replace(' ', '_', $tag);
+            if (substr($tag, 0, 1) !== '#') {
+                $tag = '#' . $tag;
+            }
+            $processedArray[] = $tag;
+        }
+
+        return $processedArray;
     }
 }

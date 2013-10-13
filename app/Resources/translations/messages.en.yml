@@ -9,4 +9,8 @@ security:
       password: "Password:"
       remember_me: "Remember me"
       submit: "Login"
-      
+      reset: "Forgot password?"
+
+resetting:
+    check_email: "Please check your email!"
+    password_already_requested: "Reset already requested!"

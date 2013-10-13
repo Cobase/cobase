@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9b6e5d5216393e6a6c08e1ff78665efe",
+    "hash": "eca95a19c0e1e5c740fa0a0d8c2855f3",
     "packages": [
         {
             "name": "antimattr/google-bundle",
@@ -272,7 +272,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/"
                 },
@@ -506,12 +506,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/DoctrineBundle.git",
-                "reference": "a41322d452354ee1e01b1e0f25c4f2ae3ca77ed3"
+                "reference": "ef6c4381a1d182f78b83bc3890cfab0fa08a89f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/a41322d452354ee1e01b1e0f25c4f2ae3ca77ed3",
-                "reference": "a41322d452354ee1e01b1e0f25c4f2ae3ca77ed3",
+                "url": "https://api.github.com/repos/doctrine/DoctrineBundle/zipball/ef6c4381a1d182f78b83bc3890cfab0fa08a89f9",
+                "reference": "ef6c4381a1d182f78b83bc3890cfab0fa08a89f9",
                 "shasum": ""
             },
             "require": {
@@ -567,7 +567,7 @@
                 "orm",
                 "persistence"
             ],
-            "time": "2013-09-18 11:44:15"
+            "time": "2013-10-12 16:02:36"
         },
         {
             "name": "doctrine/doctrine-fixtures-bundle",
@@ -1437,6 +1437,97 @@
             "time": "2013-10-10 07:21:45"
         },
         {
+            "name": "incenteev/composer-parameter-handler",
+            "version": "dev-master",
+            "target-dir": "Incenteev/ParameterHandler",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Incenteev/ParameterHandler.git",
+                "reference": "bc06242a63298affc72d2089f93d8986a6217c4c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Incenteev/ParameterHandler/zipball/bc06242a63298affc72d2089f93d8986a6217c4c",
+                "reference": "bc06242a63298affc72d2089f93d8986a6217c4c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "symfony/yaml": "~2.0"
+            },
+            "require-dev": {
+                "composer/composer": "1.0.*@dev",
+                "phpspec/prophecy-phpunit": "~1.0",
+                "symfony/filesystem": "~2.2"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Incenteev\\ParameterHandler": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Christophe Coevoet",
+                    "email": "stof@notk.org"
+                }
+            ],
+            "description": "Composer script handling your ignored parameter file",
+            "homepage": "https://github.com/Incenteev/ParameterHandler",
+            "keywords": [
+                "parameters management"
+            ],
+            "time": "2013-09-03 08:29:03"
+        },
+        {
+            "name": "j7mbo/twitter-api-php",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/J7mbo/twitter-api-php.git",
+                "reference": "ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/J7mbo/twitter-api-php/zipball/ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f",
+                "reference": "ab76f1c1e6bf83f0a257216cbaf9932b7cc19a3f",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "TwitterAPIExchange.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GNU Public License"
+            ],
+            "authors": [
+                {
+                    "name": "James Mallison",
+                    "homepage": "https://github.com/j7mbo/twitter-api-php"
+                }
+            ],
+            "description": "Simple PHP Wrapper for Twitter API v1.1 calls",
+            "homepage": "https://github.com/j7mbo/twitter-api-php",
+            "keywords": [
+                "api",
+                "php",
+                "twitter"
+            ],
+            "time": "2013-10-03 10:04:59"
+        },
+        {
             "name": "jdorn/sql-formatter",
             "version": "dev-master",
             "source": {
@@ -1812,12 +1903,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/serializer.git",
-                "reference": "82ba81e1299a196f563763b22551e66b7594fe94"
+                "reference": "a53384ff91a383c8fc12ff47eb1dd49a249a0be7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/82ba81e1299a196f563763b22551e66b7594fe94",
-                "reference": "82ba81e1299a196f563763b22551e66b7594fe94",
+                "url": "https://api.github.com/repos/schmittjoh/serializer/zipball/a53384ff91a383c8fc12ff47eb1dd49a249a0be7",
+                "reference": "a53384ff91a383c8fc12ff47eb1dd49a249a0be7",
                 "shasum": ""
             },
             "require": {
@@ -1871,21 +1962,21 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2013-10-10 08:29:58"
+            "time": "2013-10-11 19:10:14"
         },
         {
             "name": "jms/serializer-bundle",
-            "version": "0.12.0",
+            "version": "dev-master",
             "target-dir": "JMS/SerializerBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/schmittjoh/JMSSerializerBundle.git",
-                "reference": "5531198a73c4adee669a8a2d1452999349822771"
+                "reference": "0c98dc74502b729ce473d387cf72fd294dae5b0e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/5531198a73c4adee669a8a2d1452999349822771",
-                "reference": "5531198a73c4adee669a8a2d1452999349822771",
+                "url": "https://api.github.com/repos/schmittjoh/JMSSerializerBundle/zipball/0c98dc74502b729ce473d387cf72fd294dae5b0e",
+                "reference": "0c98dc74502b729ce473d387cf72fd294dae5b0e",
                 "shasum": ""
             },
             "require": {
@@ -1912,7 +2003,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "0.12-dev"
+                    "dev-master": "0.13-dev"
                 }
             },
             "autoload": {
@@ -1941,7 +2032,7 @@
                 "serialization",
                 "xml"
             ],
-            "time": "2013-07-29 12:36:36"
+            "time": "2013-09-09 07:25:33"
         },
         {
             "name": "knplabs/knp-components",
@@ -2192,12 +2283,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "79cafca80094f9a3718a0cf7dc979ca34ea14a8c"
+                "reference": "8e5a671eef6e1096d764e6f3524e6f732afa53b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/79cafca80094f9a3718a0cf7dc979ca34ea14a8c",
-                "reference": "79cafca80094f9a3718a0cf7dc979ca34ea14a8c",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/8e5a671eef6e1096d764e6f3524e6f732afa53b4",
+                "reference": "8e5a671eef6e1096d764e6f3524e6f732afa53b4",
                 "shasum": ""
             },
             "require": {
@@ -2247,7 +2338,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2013-10-11 03:31:42"
+            "time": "2013-10-11 16:18:40"
         },
         {
             "name": "ornicar/gravatar-bundle",
@@ -2924,12 +3015,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "e219481579f5058b6ccaa29efa76b32b119d8792"
+                "reference": "90b483aa440a0968d82ca7b84b13d4feac6be46b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/e219481579f5058b6ccaa29efa76b32b119d8792",
-                "reference": "e219481579f5058b6ccaa29efa76b32b119d8792",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/90b483aa440a0968d82ca7b84b13d4feac6be46b",
+                "reference": "90b483aa440a0968d82ca7b84b13d4feac6be46b",
                 "shasum": ""
             },
             "require": {
@@ -3024,7 +3115,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-10-11 11:59:44"
+            "time": "2013-10-13 06:32:10"
         },
         {
             "name": "twig/extensions",
@@ -3606,7 +3697,9 @@
         "eko/feedbundle": 20,
         "knplabs/knp-paginator-bundle": 20,
         "friendsofsymfony/comment-bundle": 20,
-        "stof/doctrine-extensions-bundle": 20
+        "stof/doctrine-extensions-bundle": 20,
+        "j7mbo/twitter-api-php": 20,
+        "incenteev/composer-parameter-handler": 20
     },
     "platform": {
         "php": ">=5.3.3"
