@@ -180,23 +180,6 @@ class GroupController extends BaseController
                 $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
                 $aclProvider->updateAcl($acl);
 
-
-                $emailService = $this->getEmailService();
-                $emailService->sendMail("You have received new high five for an event",
-                    $group->getUser()->getEmail(),
-                    $this->container->getParameter('cobase_app.emails.contact_email'),
-                    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
-                        array('event' => $event)
-                ));
-
-                // $this->container->getParameter('cobase_app.emails.contact_email')
-
-                #$this->sendMail("You have received new high five for an event",
-                #    $group->getUser()->getEmail(),
-                #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
-                #        array('event' => $event)
-                #    ));
-
                 $this->get('session')->getFlashBag()->add('group.message', 'Your post has been sent, thank you!');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
