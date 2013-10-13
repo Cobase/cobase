@@ -76,33 +76,6 @@ class SubscriptionService
     }
 
     /**
-     * @param Group $group
-     * @param User $user
-     *
-     * return $bool
-     */
-    public function isUserUserNotifiedOfNewGroupPosts(Group $group, User $user)
-    {
-
-    }
-
-    /**
-     * @param Group $group
-     * @param User $user
-     *
-     * @return Notification
-     */
-    public function notifyUserOfNewGroupPosts(Group $group, User $user)
-    {
-        $notification = new Notification($user, $group);
-
-        $this->em->persist($notification);
-        $this->em->flush();
-
-        return $notification;
-    }
-
-    /**
      * Subscribe to a group
      *
      * @param  Group $group

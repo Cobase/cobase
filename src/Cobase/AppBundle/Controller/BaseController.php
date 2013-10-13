@@ -5,6 +5,7 @@ namespace Cobase\AppBundle\Controller;
 use Cobase\AppBundle\Service\EmailService;
 use Cobase\AppBundle\Service\GroupService;
 use Cobase\AppBundle\Service\LikeService;
+use Cobase\AppBundle\Service\NotificationService;
 use Cobase\AppBundle\Service\PostService;
 use Cobase\AppBundle\Service\SubscriptionService;
 use Cobase\AppBundle\Service\UserService;
@@ -73,6 +74,14 @@ class BaseController extends Controller
     public function getSubscriptionService()
     {
         return $this->container->get('cobase_app.service.subscription');
+    }
+
+    /**
+     * @return NotificationService
+     */
+    public function getNotificationService()
+    {
+        return $this->container->get('cobase_app.service.notification');
     }
 
     /**

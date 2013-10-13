@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity()
+ * @ORM\Entity(repositoryClass="Cobase\AppBundle\Repository\NotificationRepository")
  * @ORM\Table(name="notifications")
  */
 class Notification
