@@ -468,7 +468,7 @@ class GroupController extends BaseController
             return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
         }
 
-        $notificationService->unnotifyUserofNewGroupPosts($group, $user);
+        $notificationService->unnotifyUserOfNewGroupPosts($group, $user);
         $this->get('session')->getFlashBag()->add(
             'group.message',
             'You will no longer receive notifications when new posts are posted to the group  "' . $group->getTitle() . '"');

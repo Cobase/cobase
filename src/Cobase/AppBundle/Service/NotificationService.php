@@ -61,7 +61,7 @@ class NotificationService
      * @param Group $group
      * @param User $user
      */
-    public function unnotifyUserofNewGroupPosts(Group $group, User $user)
+    public function unnotifyUserOfNewGroupPosts(Group $group, User $user)
     {
         $this->notificationRepository->unnotifyUserofNewGroupPosts($group, $user);
     }
