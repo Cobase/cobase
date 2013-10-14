@@ -191,6 +191,12 @@ To remove admin rights from a user, you need to do similar task to demote a user
 	
 This time type ROLE_ADMIN to remove that role from this specific username.
 
+# Twitter Integration
+
+Cobase features an elegant way to keep you updated on the group related news by allowing groups to have multiple Twitter hash tags. When particular group is viewed, latest tweets from that group are displayed on screen.
+
+In order to enable Twitter feeds on group pages, Twitter API needs to be enabled in app/config/parameters.yml file by providing your Twitter API key credentials.
+
 #Testing
 
 We strongly encourage you to practice test driven development and write those
