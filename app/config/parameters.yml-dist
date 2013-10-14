@@ -60,3 +60,6 @@ twig:
 
         # Enable "Fork Me On Github" ribbon pn page
         show_forkme: true
+
+        # Display group/user/posts statistics?
+        show_stats: true

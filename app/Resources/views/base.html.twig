@@ -216,6 +216,29 @@
             </div>
             <div class="span4 sidebar">
 
+                {% if show_stats %}
+                    <div class="widget">
+                        <h2>Statistics</h2>
+                        <div class="statsBox">
+                            <div class="stats">
+                                <div class="stat">
+                                    <p class="main-detail text-warning">{{ statistics.users|number_format(0, '.', ',') }}</p>
+                                    <p class="info">Users</p>
+                                </div>
+                                <div class="stat">
+                                    <p class="main-detail text-warning">{{ statistics.groups|number_format(0, '.', ',') }}</p>
+                                    <p class="info">Groups</p>
+                                </div>
+                                <div class="stat">
+                                    <p class="main-detail text-warning">{{ statistics.posts|number_format(0, '.', ',') }}</p>
+                                    <p class="info">Posts</p>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+
                 {% block tabsWidget %}
                     <div class="widget">
                         <ul id="myTab" class="nav nav-tabs three-tabs fancy">
