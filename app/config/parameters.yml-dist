@@ -28,6 +28,7 @@ parameters:
     mailer_host:       localhost
     mailer_user:       ~
     mailer_password:   ~
+    mailer_port:       ~
 
     # Twitter API
     twitter_enabled: false
