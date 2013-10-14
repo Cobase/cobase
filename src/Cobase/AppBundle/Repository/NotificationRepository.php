@@ -32,7 +32,7 @@ class NotificationRepository extends EntityRepository
      * @param Group $group
      * @param User $user
      */
-    public function unnotifyUserofNewGroupPosts(Group $group, User $user)
+    public function setUserNotToBeNotifiedOfNewGroupPosts(Group $group, User $user)
     {
         $qb = $this->createQueryBuilder('n')
             ->delete('Cobase\AppBundle\Entity\Notification', 'n')

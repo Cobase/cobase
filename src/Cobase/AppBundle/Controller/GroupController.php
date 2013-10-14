@@ -169,6 +169,8 @@ class GroupController extends BaseController
 
                 $postService->savePost($post);
 
+                $this->getNotificationService()->newPostAdded($post);
+
                 // creating the ACL
                 $aclProvider = $this->get('security.acl.provider');
                 $objectIdentity = ObjectIdentity::fromDomainObject($post);
@@ -438,7 +440,7 @@ class GroupController extends BaseController
             return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
         }
 
-        $notificationService->notifyUserOfNewGroupPosts($group, $user);
+        $notificationService->setUserToBeNotifiedOfNewGroupPosts($group, $user);
 
         $this->get('session')->getFlashBag()->add(
             'group.message',

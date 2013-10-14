@@ -3,6 +3,8 @@ namespace Cobase\AppBundle\Service;
 
 use Cobase\AppBundle\Entity\Group;
 use Cobase\AppBundle\Entity\Notification;
+use Cobase\AppBundle\Entity\Post;
+use Cobase\AppBundle\Entity\PostEvent;
 use Cobase\AppBundle\Repository\NotificationRepository;
 use Cobase\UserBundle\Entity\User;
 
@@ -47,7 +49,7 @@ class NotificationService
      *
      * @return Notification
      */
-    public function notifyUserOfNewGroupPosts(Group $group, User $user)
+    public function setUserToBeNotifiedOfNewGroupPosts(Group $group, User $user)
     {
         $notification = new Notification($user, $group);
 
@@ -61,8 +63,22 @@ class NotificationService
      * @param Group $group
      * @param User $user
      */
-    public function unnotifyUserOfNewGroupPosts(Group $group, User $user)
+    public function setUserNotToBeNotifiedOfNewGroupPosts(Group $group, User $user)
     {
-        $this->notificationRepository->unnotifyUserofNewGroupPosts($group, $user);
+        $this->notificationRepository->setUserNotToBeNotifiedOfNewGroupPosts($group, $user);
+    }
+
+    /**
+     * @param Post $post
+     */
+    public function newPostAdded(Post $post)
+    {
+        $group = $post->getGroup();
+
+        if (null !== $group) {
+            $postEvent = new PostEvent($group);
+            $this->em->persist($postEvent);
+            $this->em->flush();
+        }
     }
 }
