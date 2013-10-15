@@ -29,6 +29,8 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     mailer_port:       ~
+    mailer_from:       example.com
+    mailer_name:       Admin
 
     # Twitter API
     twitter_enabled: false

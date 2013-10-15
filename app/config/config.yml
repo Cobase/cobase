@@ -72,6 +72,9 @@ jms_security_extra:
     secure_all_services: false
 
 fos_user:
+    from_email:
+        address:        %mailer_from%
+        sender_name:    %mailer_name%
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Cobase\UserBundle\Entity\User
