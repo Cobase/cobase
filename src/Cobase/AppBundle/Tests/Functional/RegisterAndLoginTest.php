@@ -60,38 +60,4 @@ class RegisterAndLoginTest extends WebTestCase
         );
 
     }
-
-    /**
-     * @test
-     *
-     * @group functional
-     */
-    public function testThatRegistrationAndLoginWorks()
-    {
-        // Test registration
-        $client = static::createClient();
-
-        $crawler = $client->request('GET', '/register');
-        $crawler = $client->followRedirect();
-        
-        $form = $crawler->selectButton('Register')->form();
-  
-        $crawler = $client->submit(
-            $form,
-            array(
-                'fos_user_registration_form[name]' => $this->realName,
-                'fos_user_registration_form[email]' => $this->email,
-                'fos_user_registration_form[username]' => $this->username,
-                'fos_user_registration_form[plainPassword][first]' => $this->password,
-                'fos_user_registration_form[plainPassword][second]' => $this->password,
-            )
-        );
-
-        $crawler = $client->followRedirect();
-        
-        $this->assertGreaterThan(
-            0,
-            $crawler->filter('html:contains("your account is now activated")')->count()
-        );
-    }
 }
