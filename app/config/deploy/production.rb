@@ -1,1 +1,1 @@
-set :deploy_to,   "/path/to/your/application"
+set :deploy_to,   "/var/workspace/cobase"
