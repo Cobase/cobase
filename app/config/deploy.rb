@@ -27,6 +27,8 @@ set :use_composer, true
 
 set :update_vendors, true                # Uncomment to run 'composer update' instead of 'composer install'
 
+set :dump_assetic_assets, true
+
 # Be more verbose by uncommenting the following line
 logger.level = Logger::MAX_LEVEL
 
