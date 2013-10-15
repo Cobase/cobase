@@ -84,7 +84,7 @@ fos_user:
             form:
                 type: cobase_user_registration
             confirmation:
-                enabled: false
+                enabled: true
 
 # Gravatar Configuration
 ornicar_gravatar:
