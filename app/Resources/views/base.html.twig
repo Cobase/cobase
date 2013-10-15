@@ -216,7 +216,7 @@
             </div>
             <div class="span4 sidebar">
 
-                {% if show_stats %}
+                {% if show_stats and is_granted('ROLE_ADMIN') %}
                     <div class="widget">
                         <h2>Statistics</h2>
                         <div class="statsBox">
