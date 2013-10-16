@@ -114,6 +114,8 @@ class GroupController extends BaseController
      */
     public function viewAction($groupId)
     {
+        $this->getNotificationService()->notifyOfNewPosts($this->get('cobase.mailTemplate.newPost'), 12);
+
         if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }

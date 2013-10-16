@@ -43,4 +43,35 @@ class NotificationRepository extends EntityRepository
 
         $qb->getQuery()->execute();
     }
+
+    /**
+     * @param int $amount
+     *
+     * @return array
+     */
+    public function getGroupsWithNewPosts($amount = 30)
+    {
+        $qb = $this->getEntityManager()->createQueryBuilder()
+            ->select('pe')
+            ->from('Cobase\AppBundle\Entity\PostEvent', 'pe')
+            ->setMaxResults($amount)
+            ->orderBy('pe.id', 'ASC');
+
+        return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param Group $group
+     *
+     * @return array
+     */
+    public function getNotificationsFor(Group $group)
+    {
+        $qb = $this->createQueryBuilder('n')
+            ->select('n')
+            ->where('n.group = :group')
+            ->setParameter('group', $group);
+
+        return $qb->getQuery()->execute();
+    }
 }

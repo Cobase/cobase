@@ -6,9 +6,14 @@ use Cobase\AppBundle\Entity\Notification;
 use Cobase\AppBundle\Entity\Post;
 use Cobase\AppBundle\Entity\PostEvent;
 use Cobase\AppBundle\Repository\NotificationRepository;
+use Cobase\Component\EmailTemplate;
 use Cobase\UserBundle\Entity\User;
 
 use Doctrine\ORM\EntityManager;
+
+use Swift_Mailer;
+
+use Swift_Message;
 
 class NotificationService
 {
@@ -23,13 +28,20 @@ class NotificationService
     protected $notificationRepository;
 
     /**
-     * @param EntityManager    $em
-     * @param NotificationRepository $repository
+     * @var Swift_Mailer;
      */
-    public function __construct(EntityManager $em, $notificationRepository)
+    protected $mailer;
+
+    /**
+     * @param EntityManager             $em
+     * @param NotificationRepository    $repository
+     * @param Swift_Mailer              $mailer
+     */
+    public function __construct(EntityManager $em, $notificationRepository, Swift_mailer $mailer)
     {
         $this->em                       = $em;
-        $this->notificationRepository  = $notificationRepository;
+        $this->notificationRepository   = $notificationRepository;
+        $this->mailer                   = $mailer;
     }
 
     /**
@@ -79,6 +91,37 @@ class NotificationService
             $postEvent = new PostEvent($group);
             $this->em->persist($postEvent);
             $this->em->flush();
+        }
+    }
+
+    /**
+     * @var EmailTemplate $emailTemplate
+     * @var int $amount
+     *
+     * @return array
+     */
+    public function notifyOfNewPosts(EmailTemplate $emailTemplate, $amount = 20)
+    {
+        $newPosts = $this->notificationRepository->getGroupsWithNewPosts($amount);
+
+        foreach ($newPosts as $event) {
+            $group = $event->getGroup();
+
+            $notifications = $this->notificationRepository->getNotificationsFor($group);
+
+            foreach ($notifications as $notification) {
+                $userToNotify = $notification->getUser();
+
+                $data = [];
+
+                $message = Swift_Message::newInstance()
+                    ->setSubject('Hello Email')
+                    ->setFrom('send@example.com')
+                    ->setTo($userToNotify->getEmail())
+                    ->setBody($emailTemplate->render($data));
+
+                $this->mailer->send($message);
+            }
         }
     }
 }

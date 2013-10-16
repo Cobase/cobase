@@ -22,6 +22,16 @@ class FixtureFactory extends BaseFixtureFactory
      */
     public function setUpFixtures()
     {
+        $this->define('AppBundle\Entity\Group')
+            ->sequence('title', 'title_%d')
+            ->sequence('description', 'my-description-%d')
+            ->field('isPublic', true)
+            ->sequence('shortUrl', 'my-short-url-%d')
+            ->sequence('slug', 'my-slug-%d');
+
+        $this->define('AppBundle\Entity\PostEvent')
+            ->reference('group', 'AppBundle\Entity\Group');
+
         return $this;
     }
 }
