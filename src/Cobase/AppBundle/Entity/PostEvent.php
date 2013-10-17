@@ -24,17 +24,17 @@ class PostEvent
     protected $id;
 
     /**
-     * @var Group
-     * @ORM\ManyToOne(targetEntity="Cobase\AppBundle\Entity\Group")
+     * @var Post
+     * @ORM\ManyToOne(targetEntity="Cobase\AppBundle\Entity\Post")
      */
-    protected $group;
+    protected $post;
 
     /**
-     * @param Group $group
+     * @param Post $post
      */
-    public function __construct(Group $group)
+    public function __construct(Post $post)
     {
-        $this->group = $group;
+        $this->post     = $post;
     }
 
     /**
@@ -46,22 +46,31 @@ class PostEvent
     }
 
     /**
-     * @param Group $group
+     * @return Group
+     */
+    public function getGroup()
+    {
+        return $this->post->getGroup();
+    }
+
+    /**
+     * @param Post $post
      *
      * @return PostEvent
      */
-    public function setGroup(Group $group)
+    public function setPost(Post $post)
     {
-        $this->group = $group;
+        $this->post = $post;
 
         return $this;
     }
 
     /**
-     * @return Group
+     * @return Post
      */
-    public function getGroup()
+    public function getPost()
     {
-        return $this->group;
+        return $this->post;
     }
 }
+

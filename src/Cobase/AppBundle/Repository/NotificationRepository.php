@@ -49,7 +49,7 @@ class NotificationRepository extends EntityRepository
      *
      * @return array
      */
-    public function getGroupsWithNewPosts($amount = 30)
+    public function getNewPosts($amount = 30)
     {
         $qb = $this->getEntityManager()->createQueryBuilder()
             ->select('pe')

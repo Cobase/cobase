@@ -3,6 +3,9 @@ parameters:
     # Title of the site
     # This will be as windows title as well as the title logo text
     site_title: "Cobase"
+    site_admin:
+        name:       "Admin"
+        address:    "admin@cobase.com"
 
     # Should the registration be enabled?
     # If this setting is set to false, user's can be created

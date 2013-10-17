@@ -75,7 +75,7 @@ services:
 
     cobase_app.service.notification:
         class:     Cobase\AppBundle\Service\NotificationService
-        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.notification", "@mailer"]
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.notification", "@mailer", "@router", "@cobase.appInfo"]
 
 #        class: Jme\ArticleBundle\Repository\ArticleRepository
 #        arguments: [Jme\ArticleBundle\Entity\Article]
@@ -122,4 +122,12 @@ services:
 
     cobase.mailTemplate.newPost:
         class: Cobase\Component\EmailTemplate
-        arguments: ["@twig", "CobaseAppBundle:Post:templates:new-post.txt.twig"]
+        arguments: ["@twig", "@translator", "CobaseAppBundle:Post:new-post.txt.twig", ""]
+
+    cobase.siteAdmin:
+        class: Cobase\Component\EmailUser
+        arguments: [%site_admin_name%, %site_admin_address%]
+
+    cobase.appInfo:
+        class: Cobase\Component\AppInfo
+        arguments: ["@cobase.siteAdmin", %site_title%]

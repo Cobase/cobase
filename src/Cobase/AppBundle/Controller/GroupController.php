@@ -114,8 +114,6 @@ class GroupController extends BaseController
      */
     public function viewAction($groupId)
     {
-        $this->getNotificationService()->notifyOfNewPosts($this->get('cobase.mailTemplate.newPost'), 12);
-
         if ($redirect = $this->checkLoginRequirement('CobaseAppBundle_all_groups', false)) {
             return $redirect;
         }
@@ -472,7 +470,7 @@ class GroupController extends BaseController
             return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
         }
 
-        $notificationService->unnotifyUserOfNewGroupPosts($group, $user);
+        $notificationService->setUserNotToBeNotifiedOfNewGroupPosts($group, $user);
         $this->get('session')->getFlashBag()->add(
             'group.message',
             'You will no longer receive notifications when new posts are posted to the group  "' . $group->getTitle() . '"');
