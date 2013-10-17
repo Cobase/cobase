@@ -32,3 +32,13 @@ set :dump_assetic_assets, true
 # Be more verbose by uncommenting the following line
 logger.level = Logger::MAX_LEVEL
 
+namespace :jsroutes do
+    desc "Exposing routes to javascripts"
+    task :dump do
+        run "cd #{release_path} && php app/console fos:js-routing:dump"
+    end
+end
+
+before "deploy:restart" do
+    jsroutes.dump
+end

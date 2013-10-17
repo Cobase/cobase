@@ -155,9 +155,9 @@ class BaseController extends Controller
         $posts = $this->getPostService()->getPosts();
 
         return array(
-            'users'  => sizeof($users),
-            'groups' => sizeof($groups),
-            'posts'  => sizeof($posts),
+            'users'  => $users,
+            'groups' => $groups,
+            'posts'  => $posts,
         );
     }
 
