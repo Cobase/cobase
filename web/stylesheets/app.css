@@ -10,6 +10,38 @@ h1.frontLogo {
     font-weight: normal;
 }
 
+div.attention-catcher {
+    border: 1px #dddde2 solid;
+    background-color: #eee;
+    padding: 15px;
+    padding-top: 0px;
+    margin-top: 15px;
+    margin-bottom: 20px;
+}
+
+.attention-catcher h2 {
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+    text-rendering: optimizelegibility;
+}
+
+.attention-catcher p {
+    color: #333;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.shadow-below {
+    -webkit-box-shadow: 0 8px 6px -6px #333;
+    -moz-box-shadow: 0 8px 6px -6px #333;
+    box-shadow: 0 8px 6px -6px #333;
+}
+
 /* News related stuff */
 
 #main-news {
