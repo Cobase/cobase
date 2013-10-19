@@ -1,7 +1,6 @@
 <?php
 namespace Cobase\AppBundle\Entity;
 
-use Cobase\Component\Doctrine\Traits\TimestampTrait;
 use Cobase\UserBundle\Entity\User;
 use Cobase\AppBundle\Entity\Group;
 
@@ -14,7 +13,6 @@ use Symfony\Component\Validator\Constraints as Assert;
  */
 class Notification
 {
-    use TimestampTrait;
 
     /**
      * @var int
@@ -25,6 +23,22 @@ class Notification
     protected $id;
 
     /**
+     * @var DateTime
+     *
+     * @Gedmo\Mapping\Annotation\Timestampable(on="create")
+     * @ORM\Column(type="datetime")
+     */
+    protected $created;
+
+    /**
+     * @var DateTime
+     *
+     * @Gedmo\Mapping\Annotation\Timestampable(on="update")
+     * @ORM\Column(type="datetime")
+     */
+    protected $updated;
+
+    /**
      * @param User $user
      * @param Group $group
      */
@@ -32,6 +46,46 @@ class Notification
     {
         $this->setUser($user);
         $this->setGroup($group);
+    }
+
+    /**
+     * @param DateTime $created
+     *
+     * @return $this
+     */
+    public function setCreated(DateTime $created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * @param DateTime $updated
+     *
+     * @return $this
+     */
+    public function setUpdated(DateTime $updated)
+    {
+        $this->updated = $updated;
+
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
     }
 
     /**

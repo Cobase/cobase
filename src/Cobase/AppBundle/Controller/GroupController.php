@@ -34,6 +34,7 @@ class GroupController extends BaseController
         if ($user->getGravatar() == null) {
             // @TODO: Implement this feature
             $gravatarGiven = false;
+            $gravatarGiven = false;
         }
 
         return $this->render('CobaseAppBundle:Group:create.html.twig',
@@ -245,7 +246,9 @@ class GroupController extends BaseController
             if ($this->processForm($form)) {
                 $groupService->saveGroup($group, $user);
 
-                $this->get('session')->getFlashBag()->add('group.message', 'Your changes to the group have been saved.');
+                $this->get('session')->getFlashBag()->add(
+                    'group.message',
+                    'Your changes to the group have been saved.');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                     array(
@@ -326,7 +329,9 @@ class GroupController extends BaseController
 
         $subscriptionService->subscribe($group, $user);
 
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been added.');
+        $this->get('session')->getFlashBag()->add(
+            'subscription.transaction',
+            'Your subscription to group "' . $group->getTitle() . '" has been added.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
@@ -356,7 +361,9 @@ class GroupController extends BaseController
 
         $subscriptionService->unsubscribe($group, $user);
 
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been removed.');
+        $this->get('session')->getFlashBag()->add(
+            'subscription.transaction',
+            'Your subscription to group "' . $group->getTitle() . '" has been removed.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
@@ -437,7 +444,7 @@ class GroupController extends BaseController
             $this->get('session')->getFlashBag()->add(
                 'group.message',
                 'You are already notified when a new post is made to the group "' . $group->getTitle() . '"');
-            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
+            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
         }
 
         $notificationService->setUserToBeNotifiedOfNewGroupPosts($group, $user);
@@ -446,7 +453,7 @@ class GroupController extends BaseController
             'group.message',
             'You will be notified when a new post is made to the group "' . $group->getTitle() . '"');
 
-        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
+        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
     }
 
     public function unnotifyAction($groupId)
@@ -467,15 +474,16 @@ class GroupController extends BaseController
             $this->get('session')->getFlashBag()->add(
                 'group.message',
                 'You have not selected to be notified of new posts in the group "' . $group->getTitle() . '"');
-            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
+            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
         }
 
         $notificationService->setUserNotToBeNotifiedOfNewGroupPosts($group, $user);
         $this->get('session')->getFlashBag()->add(
             'group.message',
-            'You will no longer receive notifications when new posts are posted to the group  "' . $group->getTitle() . '"');
+            'You will no longer receive notifications when new posts are posted to the group  "'
+            . $group->getTitle() . '"');
 
-        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', ['groupId' => $groupId]));
+        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
     }
 
     /**
