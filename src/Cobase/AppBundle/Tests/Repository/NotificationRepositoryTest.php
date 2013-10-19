@@ -6,7 +6,7 @@ use Cobase\Component\Test\ServiceTestCase;
 
 /**
  * @group repository
- * @group notification-repository1
+ * @group notification-repository
  */
 class NotificationRepositoryTest extends ServiceTestCase
 {
