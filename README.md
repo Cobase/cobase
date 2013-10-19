@@ -177,6 +177,12 @@ app/config/parameters.yml file.
 
 For more features of Google Bundle, refer to https://github.com/antimattr/GoogleBundle
 
+# Twitter Integration
+
+Cobase features an elegant way to keep you updated on the group related news by allowing groups to have multiple Twitter hash tags. When particular group is viewed, latest tweets from that group are displayed on screen.
+
+In order to enable Twitter feeds on group pages, Twitter API needs to be enabled in app/config/parameters.yml file by providing your Twitter API key credentials.
+
 #Admin users
 
 When you register yourself a user, its role is as ROLE_USER. In order to create administrators, you need to promote a user with the console:

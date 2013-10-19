@@ -31,8 +31,9 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     mailer_port:       ~
-    mailer_port:       ~
     mailer_encryption: ~
+    mailer_from:       example.com
+    mailer_name:       Admin
 
     # Twitter API
     twitter_enabled: false
@@ -64,3 +65,6 @@ twig:
 
         # Enable "Fork Me On Github" ribbon pn page
         show_forkme: true
+
+        # Display group/user/posts statistics?
+        show_stats: true

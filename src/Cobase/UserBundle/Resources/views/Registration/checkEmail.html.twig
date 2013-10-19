@@ -1,11 +1,24 @@
-{% extends '::base.html.twig' %}
+{% extends '::blank.html.twig' %}
 
 {% block content %}
-    <h2 class="p3">
-        <span class="color-1">Register</span> an account
-    </h2>
+    <div class="row-fluid login">
+        <div class="dialog">
 
-    {% block fos_user_content %}
-        <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
-    {% endblock fos_user_content %}
+            <h1 class="frontLogo">{{ site_title }}</h1>
+
+            <div class="block" style="padding: 10px">
+                <div class="block-header">
+                    <h2>Register</h2>
+                </div>
+                {% block fos_user_content %}
+                <div style="padding: 10px">
+                    <p>{{ 'registration.check_email'|trans({'%email%': user.email}, 'FOSUserBundle') }}</p>
+                    <ul class="links">
+                        <li><a href="{{ path('fos_user_security_login') }}">&laquo; {{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a></li>
+                    </ul>
+                </div>
+                {% endblock fos_user_content %}
+            </div>
+        </div>
+    </div>
 {% endblock content %}

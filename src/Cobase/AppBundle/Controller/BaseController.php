@@ -140,6 +140,23 @@ class BaseController extends Controller
             'subscriptions' => $this->getSubscriptions(),
             'latestGroups'  => $this->getGroupService()->getLatestPublicGroups(10),
             'latestUsers'   => $this->getUserService()->getLatestUsers(10),
+            'statistics'    => $this->getStatistics(),
+        );
+    }
+
+    /**
+     * @return array
+     */
+    public function getStatistics()
+    {
+        $users = $this->getUserService()->getUsers();
+        $groups = $this->getGroupService()->getGroups();
+        $posts = $this->getPostService()->getPosts();
+
+        return array(
+            'users'  => $users,
+            'groups' => $groups,
+            'posts'  => $posts,
         );
     }
 

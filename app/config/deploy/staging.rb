@@ -1,0 +1,1 @@
+set :deploy_to,   "/var/workspace/cobase-staging"

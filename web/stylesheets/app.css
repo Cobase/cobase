@@ -256,3 +256,19 @@ div.jqi .jqiclose:hover {
 .box-pads {
     margin: 0em 1em;
 }
+
+/* Front stats */
+
+.statsBox {
+    min-width: 200px;
+    margin-top: 15px;
+    padding-bottom: 0px;
+}
+
+.stat {
+    width: 33% !important;
+}
+
+.stats .stat .main-detail {
+    font-size: 1.2em;
+}

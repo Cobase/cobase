@@ -82,6 +82,9 @@ jms_security_extra:
     secure_all_services: false
 
 fos_user:
+    from_email:
+        address:        %mailer_from%
+        sender_name:    %mailer_name%
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Cobase\UserBundle\Entity\User
@@ -94,7 +97,7 @@ fos_user:
             form:
                 type: cobase_user_registration
             confirmation:
-                enabled: false
+                enabled: true
 
 # Gravatar Configuration
 ornicar_gravatar:
