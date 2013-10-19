@@ -134,23 +134,23 @@ class NotificationService
                 $userToNotify = $notification->getUser();
 
                 if ($userToNotify !== $post->getUser() ) {
-                    $data = [
+                    $data = array(
                         'name'              => $userToNotify->getName(),
                         'groupName'         => $group->getTitle(),
                         'submitterName'     => $post->getUser()->getName(),
                         'groupUrl'          => $this->router->generate(
                             'CobaseAppBundle_group_view',
-                            ['groupId' => $group->getShortUrl()],
+                            array('groupId' => $group->getShortUrl()),
                             true
                         ),
                         'removeNotificationUrl' => $this->router->generate(
                             'CobaseAppBundle_group_unnotify',
-                            ['groupId' => $group->getShortUrl()],
+                            array('groupId' => $group->getShortUrl()),
                             true
                         ),
 
                         'siteTitle' => $this->appInfo->getSiteName(),
-                    ];
+                    );
 
                     try {
                         $this->sendNotificationEmail($emailTemplate, $userToNotify, $data);
