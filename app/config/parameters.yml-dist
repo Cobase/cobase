@@ -32,6 +32,8 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     mailer_port:       ~
+    mailer_port:       ~
+    mailer_encryption: ~
 
     # Twitter API
     twitter_enabled: false
