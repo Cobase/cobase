@@ -120,7 +120,7 @@ class NotificationService
      */
     public function notifyOfNewPosts(EmailTemplate $emailTemplate, $amount = 20)
     {
-        $amount = 0;
+        $emailAmount = 0;
 
         $newPosts = $this->notificationRepository->getNewPosts($amount);
         foreach ($newPosts as $event) {
@@ -154,7 +154,7 @@ class NotificationService
 
                     try {
                         $this->sendNotificationEmail($emailTemplate, $userToNotify, $data);
-                        $amount++;
+                        $emailAmount++;
                     } catch (\Exception $e) {
                         // ignored on purpose
                     }
@@ -166,7 +166,7 @@ class NotificationService
 
         $this->em->flush();
 
-        return $amount;
+        return $emailAmount;
     }
 
     /**
