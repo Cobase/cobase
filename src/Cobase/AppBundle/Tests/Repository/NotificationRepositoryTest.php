@@ -6,7 +6,7 @@ use Cobase\Component\Test\ServiceTestCase;
 
 /**
  * @group repository
- * @group notification-repository
+ * @group notification-repository1
  */
 class NotificationRepositoryTest extends ServiceTestCase
 {
@@ -23,7 +23,7 @@ class NotificationRepositoryTest extends ServiceTestCase
 
         $this->getEntityManager()->flush();
 
-        $postEvents = $repository->getGroupsWithNewPosts(2);
+        $postEvents = $repository->getNewPosts(2);
 
         $this->assertCount(2, $postEvents);
 

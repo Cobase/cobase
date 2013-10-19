@@ -29,8 +29,13 @@ class FixtureFactory extends BaseFixtureFactory
             ->sequence('shortUrl', 'my-short-url-%d')
             ->sequence('slug', 'my-slug-%d');
 
+        $this->define('AppBundle\Entity\Post')
+            ->sequence('content', 'content-%d')
+            ->field('created', new \DateTime())
+            ->field('updated', new \DateTime());
+
         $this->define('AppBundle\Entity\PostEvent')
-            ->reference('group', 'AppBundle\Entity\Group');
+            ->reference('post', 'AppBundle\Entity\Post');
 
         return $this;
     }
