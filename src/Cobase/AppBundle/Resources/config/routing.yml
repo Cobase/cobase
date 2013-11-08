@@ -52,6 +52,10 @@ CobaseAppBundle_all_posts:
     pattern:  /posts
     defaults: { _controller: CobaseAppBundle:Post:showAll }
 
+CobaseAppBundle_post_modify:
+    pattern:  /post/modify/{postId}
+    defaults: { _controller: CobaseAppBundle:Post:modify }
+
 CobaseAppBundle_post_view:
     pattern:  /post/{groupId}/{postId}
     defaults: { _controller: CobaseAppBundle:Post:view }
@@ -66,10 +70,6 @@ CobaseAppBundle_post_feed:
 CobaseAppBundle_all_posts_with_sorting:
     pattern:  /posts/{orderType}
     defaults: { _controller: CobaseAppBundle:Post:showAll }
-
-CobaseAppBundle_post_modify:
-    pattern:  /post/modify/{postId}
-    defaults: { _controller: CobaseAppBundle:Post:modify }
 
 CobaseAppBundle_post_move:
     pattern:  /post/move
