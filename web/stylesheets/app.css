@@ -37,9 +37,9 @@ div.attention-catcher {
 }
 
 .shadow-below {
-    -webkit-box-shadow: 0 8px 6px -6px #333;
-    -moz-box-shadow: 0 8px 6px -6px #333;
-    box-shadow: 0 8px 6px -6px #333;
+    -webkit-box-shadow: 0 6px 6px -6px #333;
+    -moz-box-shadow: 0 6px 6px -6px #333;
+    box-shadow: 0 6px 6px -6px #333;
 }
 
 /* News related stuff */
