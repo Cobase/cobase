@@ -70,7 +70,13 @@ class Group
      * @ORM\OneToMany(targetEntity="Subscription", mappedBy="group")
      */
     protected $subscriptions;
-    
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="Cobase\AppBundle\Entity\Notification", mappedBy="group")
+     */
+    protected $notifications;
+
     /**
      * @ORM\Column(type="datetime")
      */
@@ -90,6 +96,7 @@ class Group
     public function __construct()
     {
         $this->posts = new ArrayCollection();
+        $this->notifications = new ArrayCollection();
 
         $this->shortUrl = base_convert(microtime(true), 10, 36);
         $this->setCreated(new \DateTime());
@@ -160,7 +167,7 @@ class Group
     {
         $this->shortUrl = base_convert(microtime(true), 10, 36);
     }
-    
+
     /**
      * Get id
      *
@@ -180,7 +187,7 @@ class Group
     {
         return $this->shortUrl;
     }
-    
+
     /**
      * Set title
      *
@@ -365,7 +372,7 @@ class Group
     {
         return $this->deleted;
     }
-    
+
     /**
      * Set slug
      *
@@ -386,4 +393,39 @@ class Group
         return $this->slug;
     }
 
+    /**
+     * @param Notification $notification
+     * @return Group
+     */
+    public function addNotification(Notification $notification)
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->add($notification);
+            $notification->setGroup($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param Notification $notification
+     * @return Group
+     */
+    public function removeNotification(Notification $notification)
+    {
+        if ($this->notifications->contains($notification)) {
+            $this->notifications->removeElement($notification);
+            $notification->setGroup(null);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return ArrayCollection
+     */
+    public function getNotifications()
+    {
+        return $this->notifications;
+    }
 }

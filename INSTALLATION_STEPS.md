@@ -17,9 +17,11 @@ The following is a step-by-step checklist of things you need to do when initiall
 
 	$ mkdir app/logs
 
-	$ sudo chmod -Rf +a "daemon allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+	$ mkdir app/data
 
-	$ sudo chmod -Rf +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+	$ sudo chmod -Rf +a "daemon allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/data
+
+	$ sudo chmod -Rf +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/data
 
 	$ curl -s https://getcomposer.org/installer | php
 

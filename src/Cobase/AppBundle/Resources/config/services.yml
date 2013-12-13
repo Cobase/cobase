@@ -17,10 +17,10 @@ services:
                 - { name: twig.extension }
 
     aga_dateconverter.twig.extension:
-        class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension  
+        class: Aga\DateConverterBundle\Extension\DateConverterTwigExtension
         tags:
             - { name: twig.extension }
-           
+
     portal_user.registration.form.type:
         class: Cobase\UserBundle\Form\Type\RegistrationFormType
         arguments: [%fos_user.model.user.class%, @translator]
@@ -44,34 +44,57 @@ services:
         factory_method:  getRepository
 
     cobase_app.service.post:
-            class:     Cobase\AppBundle\Service\PostService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
+        class:     Cobase\AppBundle\Service\PostService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.post", "@security.context", "@cobase_app.service.like"]
 
     cobase_app.repository.post:
-            class:           Cobase\AppBundle\Entity\Post
-            arguments:       [Cobase\AppBundle\Entity\Post]
-            factory_service: doctrine.orm.entity_manager
-            factory_method:  getRepository
+        class:           Cobase\AppBundle\Entity\PostRepository
+        arguments:       [Cobase\AppBundle\Entity\Post]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
 
     cobase_app.service.subscription:
-            class:     Cobase\AppBundle\Service\SubscriptionService
-            arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.subscription", "@security.context"]
+        class:     Cobase\AppBundle\Service\SubscriptionService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.subscription", "@security.context"]
+
+    cobase.app.service.email:
+        class:      Cobase\AppBundle\Service\EmailService
+        arguments:  ["@mailer"]
 
     cobase_app.repository.subscription:
-            class:           Cobase\AppBundle\Entity\Subscription
-            arguments:       [Cobase\AppBundle\Entity\Subscription]
-            factory_service: doctrine.orm.entity_manager
-            factory_method:  getRepository
+        class:           Cobase\AppBundle\Repository\SubscriptionRepository
+        arguments:       [Cobase\AppBundle\Entity\Subscription]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+
+    cobase_app.repository.notification:
+        class:           Cobase\AppBundle\Repository\NotificationRepository
+        arguments:       [Cobase\AppBundle\Entity\Notification]
+        factory_service: doctrine.orm.entity_manager
+        factory_method:  getRepository
+
+    cobase_app.service.notification:
+        class:     Cobase\AppBundle\Service\NotificationService
+        arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.notification", "@mailer", "@router", "@cobase.appInfo"]
+
+#        class: Jme\ArticleBundle\Repository\ArticleRepository
+#        arguments: [Jme\ArticleBundle\Entity\Article]
+#        factory_service: doctrine.orm.entity_manager
+#        factory_method: getRepository
+
+#    jme_article.service.article:
+#        class:     Jme\ArticleBundle\Service\ArticleService
+#        arguments: ["@doctrine.orm.entity_manager", "@jme_article.repository.article", "@service_container"]
 
     cobase_app.service.user:
-                class:     Cobase\AppBundle\Service\UserService
-                arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.user", "@security.context"]
+          class:     Cobase\AppBundle\Service\UserService
+          arguments: ["@doctrine.orm.entity_manager", "@cobase_app.repository.user", "@security.context"]
 
     cobase_app.repository.user:
-                class:           Cobase\UserBundle\Entity\User
-                arguments:       [Cobase\UserBundle\Entity\User]
-                factory_service: doctrine.orm.entity_manager
-                factory_method:  getRepository
+          class:           Cobase\UserBundle\Entity\User
+          arguments:       [Cobase\UserBundle\Entity\User]
+          factory_service: doctrine.orm.entity_manager
+          factory_method:  getRepository
 
     cobase_app.service.like:
         class:     Cobase\AppBundle\Service\LikeService
@@ -82,7 +105,7 @@ services:
         arguments: ["@fos_comment.manager.thread.default", "@router"]
 
     cobase_app.repository.like:
-        class:           Cobase\AppBundle\Repository\Like
+        class:           Cobase\AppBundle\Repository\LikeRepository
         arguments:       [Cobase\AppBundle\Entity\Like]
         factory_service: doctrine.orm.entity_manager
         factory_method:  getRepository
@@ -97,3 +120,14 @@ services:
         calls:
             - [ setAnnotationReader, [ @annotation_reader ] ]
 
+    cobase.mailTemplate.newPost:
+        class: Cobase\Component\EmailTemplate
+        arguments: ["@twig", "@translator", "CobaseAppBundle:Post:new-post.txt.twig", ""]
+
+    cobase.siteAdmin:
+        class: Cobase\Component\EmailUser
+        arguments: [%site_admin_name%, %site_admin_address%]
+
+    cobase.appInfo:
+        class: Cobase\Component\AppInfo
+        arguments: ["@cobase.siteAdmin", %site_title%]

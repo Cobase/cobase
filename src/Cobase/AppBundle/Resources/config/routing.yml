@@ -12,6 +12,14 @@ CobaseAppBundle_group_unsubscribe:
     pattern:  /group/unsubscribe/{groupId}
     defaults: { _controller: CobaseAppBundle:Group:unsubscribe }
 
+CobaseAppBundle_group_notify:
+    pattern:  /group/notify/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:notify }
+
+CobaseAppBundle_group_unnotify:
+    pattern:  /group/unnotify/{groupId}
+    defaults: { _controller: CobaseAppBundle:Group:unnotify }
+
 CobaseAppBundle_group_new:
     pattern:  /group/new
     defaults: { _controller: CobaseAppBundle:Group:new }
