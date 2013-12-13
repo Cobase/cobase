@@ -49,6 +49,21 @@
 
 {% block content %}
 <div class="row-fluid">
+
+    {% if not is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        <div class="attention-catcher shadow-below">
+            <h2>Please login or register an account</h2>
+            <p>
+                In order to access many great features on this site, you need to
+                {% if allow_registration %}
+                    either <a href="{{ path('fos_user_security_login') }}">login</a> or <a href="{{ path('fos_user_registration_register') }}">register</a> an account.
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">login</a> with your user account.
+                {% endif %}
+            </p>
+        </div>
+    {% endif %}
+
     <h2>Browse all groups</h2>
 
     {% for flashMessage in app.session.flashbag.get('group.message') %}
