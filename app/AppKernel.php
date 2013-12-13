@@ -35,6 +35,7 @@ class AppKernel extends Kernel
             new Aga\DateConverterBundle\DateConverterBundle(),
             new Eko\FeedBundle\EkoFeedBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

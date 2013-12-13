@@ -44,10 +44,11 @@
         "friendsofsymfony/jsrouting-bundle": "~1.1",
         "antimattr/google-bundle": "dev-master",
         "artur-gajewski/date-converter-bundle": "1.0.*@dev",
-        "gedmo/doctrine-extensions": "dev-wip-v2.4.0",
+        "gedmo/doctrine-extensions": "~2.3.7",
         "eko/feedbundle": "dev-master",
         "knplabs/knp-paginator-bundle": "dev-master",
         "friendsofsymfony/comment-bundle": "2.0.*@dev",
+		"stof/doctrine-extensions-bundle": "1.1.*@dev",
         "j7mbo/twitter-api-php": "dev-master",
         "incenteev/composer-parameter-handler": "2.1.*@dev"
     },

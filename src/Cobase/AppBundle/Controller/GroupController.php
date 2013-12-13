@@ -34,6 +34,7 @@ class GroupController extends BaseController
         if ($user->getGravatar() == null) {
             // @TODO: Implement this feature
             $gravatarGiven = false;
+            $gravatarGiven = false;
         }
 
         return $this->render('CobaseAppBundle:Group:create.html.twig',
@@ -123,6 +124,7 @@ class GroupController extends BaseController
         $groupService = $this->getGroupService();
         $postService = $this->getPostService();
         $subscriptionService = $this->getSubscriptionService();
+        $notificationService = $this->getNotificationService();
 
         $request    = $this->getRequest();
         $user       = $this->getCurrentUser();
@@ -149,8 +151,10 @@ class GroupController extends BaseController
         );
 
         $isSubscribed = false;
+        $isNotified = false;
         if ($user) {
-            $isSubscribed = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+            $isSubscribed   = $subscriptionService->hasUserSubscribedToGroup($group, $user);
+            $isNotified     = $notificationService->isUserUserNotifiedOfNewGroupPosts($group, $user);
         }
 
         if ($request->getMethod() == 'POST') {
@@ -166,6 +170,8 @@ class GroupController extends BaseController
 
                 $postService->savePost($post);
 
+                $this->getNotificationService()->newPostAdded($post);
+
                 // creating the ACL
                 $aclProvider = $this->get('security.acl.provider');
                 $objectIdentity = ObjectIdentity::fromDomainObject($post);
@@ -178,12 +184,6 @@ class GroupController extends BaseController
                 $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
                 $aclProvider->updateAcl($acl);
 
-                #$this->sendMail("You have received new high five for an event",
-                #    $group->getUser()->getEmail(),
-                #    $this->renderView('PortalAppBundle:Page:newHighFiveEmail.txt.twig',
-                #        array('event' => $event)
-                #    ));
-
                 $this->get('session')->getFlashBag()->add('group.message', 'Your post has been sent, thank you!');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
@@ -191,7 +191,6 @@ class GroupController extends BaseController
                         'groupId'    => $groupId,
                     )
                 ));
-
             }
         }
 
@@ -200,13 +199,15 @@ class GroupController extends BaseController
         return $this->render('CobaseAppBundle:Group:view.html.twig',
             $this->mergeVariables(
                 array(
-                    'group'              => $group,
-                    'groups'             => $groups,
-                    'pagination'         => $pagination,
-                    'form'               => $form->createView(),
-                    'subscribed'         => $isSubscribed,
-                    'groupTweets'        => $groupTweets,
-                    'groupTweetHashTags' => $processedTags
+
+                    'group'                 => $group,
+                    'groups'                => $groups,
+                    'pagination'            => $pagination,
+                    'form'                  => $form->createView(),
+                    'subscribed'            => $isSubscribed,
+                    'notified'              => $isNotified,
+                    'groupTweets'           => $groupTweets,
+                    'groupTweetHashTags'    => $processedTags
                 )
             )
         );
@@ -245,7 +246,9 @@ class GroupController extends BaseController
             if ($this->processForm($form)) {
                 $groupService->saveGroup($group, $user);
 
-                $this->get('session')->getFlashBag()->add('group.message', 'Your changes to the group have been saved.');
+                $this->get('session')->getFlashBag()->add(
+                    'group.message',
+                    'Your changes to the group have been saved.');
 
                 return $this->redirect($this->generateUrl('CobaseAppBundle_group_view',
                     array(
@@ -326,7 +329,9 @@ class GroupController extends BaseController
 
         $subscriptionService->subscribe($group, $user);
 
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been added.');
+        $this->get('session')->getFlashBag()->add(
+            'subscription.transaction',
+            'Your subscription to group "' . $group->getTitle() . '" has been added.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
@@ -356,7 +361,9 @@ class GroupController extends BaseController
 
         $subscriptionService->unsubscribe($group, $user);
 
-        $this->get('session')->getFlashBag()->add('subscription.transaction', 'Your subscription to group "' . $group->getTitle() . '" has been removed.');
+        $this->get('session')->getFlashBag()->add(
+            'subscription.transaction',
+            'Your subscription to group "' . $group->getTitle() . '" has been removed.');
 
         return $this->redirect($this->generateUrl('CobaseAppBundle_homepage',
             $this->mergeVariables()
@@ -417,6 +424,66 @@ class GroupController extends BaseController
         }
 
         return $this->getFeedPosts($groupId);
+    }
+
+    public function notifyAction($groupId)
+    {
+        $groupService = $this->getGroupService();
+        $notificationService = $this->getNotificationService();
+
+        $group    = $groupService->getGroupById($groupId);
+        $user     = $this->getCurrentUser();
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        if ($notificationService->isUserUserNotifiedOfNewGroupPosts($group, $user)) {
+            $this->get('session')->getFlashBag()->add(
+                'group.message',
+                'You are already notified when a new post is made to the group "' . $group->getTitle() . '"');
+            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
+        }
+
+        $notificationService->setUserToBeNotifiedOfNewGroupPosts($group, $user);
+
+        $this->get('session')->getFlashBag()->add(
+            'group.message',
+            'You will be notified when a new post is made to the group "' . $group->getTitle() . '"');
+
+        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
+    }
+
+    public function unnotifyAction($groupId)
+    {
+        $groupService = $this->getGroupService();
+        $notificationService = $this->getNotificationService();
+
+        $group    = $groupService->getGroupById($groupId);
+        $user     = $this->getCurrentUser();
+
+        if (!$group) {
+            return $this->render('CobaseAppBundle:Group:notfound.html.twig',
+                $this->mergeVariables()
+            );
+        }
+
+        if (!$notificationService->isUserUserNotifiedOfNewGroupPosts($group, $user)) {
+            $this->get('session')->getFlashBag()->add(
+                'group.message',
+                'You have not selected to be notified of new posts in the group "' . $group->getTitle() . '"');
+            return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
+        }
+
+        $notificationService->setUserNotToBeNotifiedOfNewGroupPosts($group, $user);
+        $this->get('session')->getFlashBag()->add(
+            'group.message',
+            'You will no longer receive notifications when new posts are posted to the group  "'
+            . $group->getTitle() . '"');
+
+        return $this->redirect($this->generateUrl('CobaseAppBundle_group_view', array('groupId' => $groupId)));
     }
 
     /**

@@ -121,6 +121,12 @@
             {% else %}
                 <a class="btn btn-mini group-subscribe icon-eye-open" href="{{ path('CobaseAppBundle_group_subscribe', { 'groupId': group.shortUrl }) }}"> Subscribe</a>
             {% endif %}
+
+            {% if notified %}
+                <a class="btn btn-mini group-subscribe icon-envelope-alt" href="{{ path('CobaseAppBundle_group_unnotify', { 'groupId': group.shortUrl }) }}">Unnotify</a>
+            {% else %}
+                <a class="btn btn-mini group-subscribe icon-envelope" href="{{ path('CobaseAppBundle_group_notify', { 'groupId': group.shortUrl }) }}">Notify</a>
+            {% endif %}
         {% endif %}
         <a class="btn btn-mini icon-rss" href="{{ path('CobaseAppBundle_group_feed', { 'groupId': group.shortUrl }) }}"> Rss feed</a>
     </p>

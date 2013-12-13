@@ -63,10 +63,20 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: %mailer_transport%
-    host:      %mailer_host%
-    username:  %mailer_user%
-    password:  %mailer_password%
+    transport:  %mailer_transport%
+    host:       %mailer_host%
+    username:   %mailer_user%
+    password:   %mailer_password%
+    port:       %mailer_port%
+    encryption: %mailer_encryption%
+    spool:
+        type: file
+        path: "%kernel.root_dir%/data/spool"
+
+stof_doctrine_extensions:
+    orm:
+        default:
+            timestampable: true
 
 jms_security_extra:
     secure_all_services: false

@@ -2,6 +2,7 @@
 
 namespace Cobase\AppBundle\Service;
 
+use Cobase\AppBundle\Entity\Notification;
 use Doctrine\ORM\EntityManager,
     Doctrine\ORM\EntityRepository,
     Symfony\Component\Security\Core\SecurityContext,
@@ -88,7 +89,7 @@ class SubscriptionService
         }
 
         $subscription = new Subscription();
-        
+
         $subscription->setUser($user);
         $subscription->setGroup($group);
 
@@ -113,7 +114,7 @@ class SubscriptionService
 
         $entities = $this->repository->findBy(
             array(
-                'user' => $user, 
+                'user' => $user,
                 'group' => $group
             )
         );
@@ -137,7 +138,7 @@ class SubscriptionService
 
         return $subscription;
     }
-    
+
     /**
      * Get all subscriptions for current user
      *
@@ -160,7 +161,7 @@ class SubscriptionService
 
     /**
      * Get all posts related to groups user has subscribed to
-     * 
+     *
      * @param User $user
      * @return mixed
      */

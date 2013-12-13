@@ -3,7 +3,9 @@ parameters:
     # Title of the site
     # This will be as windows title as well as the title logo text
     site_title: "Cobase"
-
+    site_admin_name: "Admin"
+    site_admin_address:    "admin@cobase.com"
+    
     # Should the registration be enabled?
     # If this setting is set to false, user's can be created
     # through the use of app/console
@@ -29,6 +31,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
     mailer_port:       ~
+    mailer_encryption: ~
     mailer_from:       example.com
     mailer_name:       Admin
 

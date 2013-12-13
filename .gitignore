@@ -21,6 +21,7 @@ app/bootstrap.php.cache
 app/SymfonyRequirements.php
 app/logs/*
 app/config/parameters.yml
+app/data/*
 /bin
 web/stylesheets/app_app_1.css
 web/stylesheets/cobase_app_1.css
