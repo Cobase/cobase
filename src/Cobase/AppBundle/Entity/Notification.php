@@ -53,7 +53,7 @@ class Notification
      *
      * @return $this
      */
-    public function setCreated(DateTime $created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
 
