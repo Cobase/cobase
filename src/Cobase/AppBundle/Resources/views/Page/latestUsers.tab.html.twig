@@ -2,7 +2,12 @@
     <li style="padding: 0em 1em;"><h3>Latest Users</h3></li>
     {% for user in latestUsers if latestUsers != null %}
         <li>
-            <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
+            {% if user.avatar %}
+                <img class="latest-users-gravatar" style="max-width: 50px" src="{{ path('CobaseAppBundle_avatar', {'avatarFile': user.avatar}) }}"/>
+            {% else %}
+                <img class="latest-users-gravatar" src="{{ gravatar(user.email, 50) }}"/>
+            {% endif %}
+
             <p><a href="{{ path('CobaseAppBundle_user_view', { 'username': user.username }) }}">{{ user.name }}</a></p>
             <p>{% if user.emailVisible %}{{ user.email }}{% endif %}</p>
         </li>

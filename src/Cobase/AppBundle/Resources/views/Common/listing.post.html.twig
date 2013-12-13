@@ -1,6 +1,10 @@
 <li>
     <div class="overview">
-        <img src="{{ gravatar(post.user.email) }}"/>
+        {% if post.user.avatar %}
+            <img src="{{ path('CobaseAppBundle_avatar', {'avatarFile': post.user.avatar}) }}"/>
+        {% else %}
+            <img src="{{ gravatar(post.user.email) }}"/>
+        {% endif %}
     </div>
     <div class="info">
         <p id="author"><a href="{{ path('CobaseAppBundle_user_view', { 'username': post.user.username }) }}">{{ post.user.name }}</a></p>
