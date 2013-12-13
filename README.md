@@ -75,10 +75,10 @@ Create the following directories inside app folder:
 - cache
 - logs
 
-Prepare cache and logs folder permissions by running (double check your apache user on the first one):
+Prepare cache, logs and data/avatars folder permissions by running (double check your apache user on the first one):
 
-    $ sudo chmod -Rf +a "daemon allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
-    $ sudo chmod -Rf +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs
+    $ sudo chmod -Rf +a "daemon allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/data/avatars
+    $ sudo chmod -Rf +a "`whoami` allow delete,write,append,file_inherit,directory_inherit" app/cache app/logs app/data/avatars
 
 If you don't have Composer yet, download it following the instructions on
 http://getcomposer.org/ or just run the following command:

@@ -1,47 +1,90 @@
 <form id="form" action="{{ path('fos_user_profile_edit') }}" method="post" {{ form_enctype(form) }} class="form-horizontal">
-    <div class="control-group">
-        {{ form_label(form.username, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.username) }}
-        <div class="controls">
-            {{ form_widget(form.username) }}
+
+    <div class="row-fluid">
+
+        <div class="span6">
+            <h4>Your Info</h4>
+
+            <div class="control-group">
+                {{ form_label(form.username, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.username) }}
+                <div class="controls">
+                    {{ form_widget(form.username) }}
+                </div>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.name, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.name) }}
+                <div class="controls">
+                    {{ form_widget(form.name) }}
+                </div>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.email, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.email) }}
+                <div class="controls">
+                    {{ form_widget(form.email) }}
+                </div>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.emailVisible, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.emailVisible) }}
+                <div class="controls">
+                    {{ form_widget(form.emailVisible) }}
+                </div>
+            </div>
+
+            <div class="control-group">
+
+                {{ form_label(form.current_password, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.current_password) }}
+                <div class="controls">
+                    {{ form_widget(form.current_password) }}
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="control-group">
-        {{ form_label(form.name, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.name) }}
-        <div class="controls">
-            {{ form_widget(form.name) }}
+    <div class="row-fluid">
+        <div class="span6">
+            <h4>Your profile image</h4>
+
+            <div class="control-group">
+                <div class="controls">
+                    {% if user.avatar %}
+                        <img src="{{ path('CobaseAppBundle_avatar', {'avatarFile': user.avatar}) }}"/>
+                    {% else %}
+                        <img src="{{ gravatar(user.gravatar|default(user.email)) }}"/>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.gravatar, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.gravatar) }}
+                <div class="controls">
+                    {{ form_widget(form.gravatar) }}
+                </div>
+            </div>
+
+            <div class="control-group">
+                {{ form_label(form.avatarFile, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
+                {{ form_errors(form.avatarFile) }}
+                <div class="controls">
+                    {{ form_widget(form.avatarFile) }}
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
         </div>
+
     </div>
 
-    <div class="control-group">
-        {{ form_label(form.email, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.email) }}
-        <div class="controls">
-            {{ form_widget(form.email) }}
-        </div>
-    </div>
-
-    <div class="control-group">
-        {{ form_label(form.emailVisible, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.emailVisible) }}
-        <div class="controls">
-            {{ form_widget(form.emailVisible) }}
-        </div>
-    </div>
-
-    <div class="control-group">
-        {{ form_label(form.current_password, label|default(null), { 'label_attr': { 'class': 'control-label' } }) }}
-        {{ form_errors(form.current_password) }}
-        <div class="controls">
-            {{ form_widget(form.current_password) }}
-        </div>
-    </div>
 
     {{ form_widget(form._token) }}
-
-
     <div class="control-group">
         <label class="control-label"></label>
         <div class="controls">

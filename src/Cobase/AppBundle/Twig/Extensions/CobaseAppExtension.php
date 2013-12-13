@@ -55,6 +55,6 @@ class CobaseAppExtension extends \Twig_Extension
         
     public function getName()
     {
-        return 'Cobase_app_extension';
+        return 'Cobase_app_gravatar';
     }
 }

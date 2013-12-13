@@ -9,5 +9,10 @@
     <br/>
 
     <h2 class="p3"><span class="color-1">Your</span> gravatar</h2>
-    <img src="{{ gravatar(user.email) }}"/>
+    {% if user.avatar %}
+        <img src="{{ path('CobaseAppBundle_avatar', {'avatarFile': user.avatar}) }}"/>
+    {% else %}
+        <img src="{{ gravatar(user.gravatar|default(user.email)) }}"/>
+    {% endif %}
+
 {% endblock content %}
