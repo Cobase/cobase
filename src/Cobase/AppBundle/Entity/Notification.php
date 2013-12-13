@@ -73,7 +73,7 @@ class Notification
      *
      * @return $this
      */
-    public function setUpdated(DateTime $updated)
+    public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
 
