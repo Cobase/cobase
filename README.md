@@ -233,6 +233,6 @@ Enjoy and welcome to the project!
 
 Artur Gajewski
 
-info@arturgajewski.com
+artur.gajewski.photography@gmail.com
 
 Skype: artur.t.gajewski
