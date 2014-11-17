@@ -12,10 +12,6 @@ messages not related to their work or interest.
 
 Cobase has a fully responsive layout that works on smart phones, tablet PCs and computer screen.
 
-A site at <http://www.php-updates.com> is built on top of Cobase engine and is meant for PHP developers from around the
-the world to share news and updates about PHP related things. Feel free to register an account and share what you
-know.
-
 Need to have a private Cobase app hosted on your server? You are quite welcome to do so. Just download the source code
 and follow few easy steps to have it up and running in no time.
 
